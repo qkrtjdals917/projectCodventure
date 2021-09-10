@@ -1,5 +1,4 @@
-# 0909Project
-9월9일 프로젝트 실습
+# Project Team 코드벤쳐
+## 9월 10일자 
+1. Repository 생성
 
-
-ㄴㄴㄴㄴ
