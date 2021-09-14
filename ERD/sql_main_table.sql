@@ -6,9 +6,6 @@ DROP TABLE IF EXISTS mc_like;
 DROP TABLE IF EXISTS mc_board;
 DROP TABLE IF EXISTS mc_member;
 
-
-
-
 /* Create Tables */
 
 CREATE TABLE mc_board
@@ -25,20 +22,16 @@ CREATE TABLE mc_board
 );
 
 
-CREATE TABLE mc_like
-(
-	board_uid int NOT NULL,
-	like_nickname varchar(20) CHECK (nickname REGEXP ('^[0-9a-zA-Z가-힣]+$'))
-);
+
 
 
 CREATE TABLE mc_member
 (
 	member_uid int NOT NULL AUTO_INCREMENT,
-	email varchar(40) NOT NULL CHECK (email REGEXP ("^[\\w]([-_\\.]?[\\w])*@[\\w]([-_\\.]?[\\w])*\\.[a-zA-Z]{2,3}$"),
+	email varchar(40) NOT NULL CHECK (email REGEXP ("^[\\w]([-_\\.]?[\\w])*@[\\w]([-_\\.]?[\\w])*\\.[a-zA-Z]{2,3}$")) , 
 	password varchar(128) NOT NULL,
 	nickname varchar(20) NOT NULL CHECK (nickname REGEXP ('^[0-9a-zA-Z가-힣]+$')),
-	phoneNumber varchar(15) CHECK (phonenum REGEXP ("^\\d{2,3}-\\d{3,4}-\\d{4}$"),
+	phoneNumber varchar(15) CHECK (phoneNumber REGEXP ("^\\d{2,3}-\\d{3,4}-\\d{4}$")),
 	authority int NOT NULL CHECK (authority IN (0, 1, 2)),
 	PRIMARY KEY (member_uid),
 	UNIQUE (email),
@@ -46,6 +39,11 @@ CREATE TABLE mc_member
 );
 
 
+CREATE TABLE mc_like
+(
+	board_uid int NOT NULL,
+	like_nickname varchar(20) CHECK (like_nickname REGEXP ('^[0-9a-zA-Z가-힣]+$'))
+);
 
 /* Create Foreign Keys */
 
