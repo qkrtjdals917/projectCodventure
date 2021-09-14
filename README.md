@@ -24,4 +24,8 @@
     1. 글고유번호	외래키 (글고유번호)	
     2. 추천한사람이메일(닉네임)
 
+<<<<<<< HEAD
 ### 사이트 이름 결정 : 모다콘 (ModaCoin) 
+=======
+### 사이트 이름 결정 : 모다콘 (ModaCoin) 
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
