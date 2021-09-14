@@ -17,7 +17,7 @@ CREATE TABLE mc_board
 	nickname varchar(20),
 	regDate datetime DEFAULT now(),
 	count int DEFAULT 0,
-	content varchar(500) NOT NULL,
+	content varchar(500) NOT NULL CHECK (LENGTH(content) >= 7),
 	PRIMARY KEY (board_uid)
 );
 
@@ -69,6 +69,12 @@ ALTER TABLE mc_like
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
+
+INSERT INTO mc_member (email , password , nickname , phoneNumber , authority) 
+VALUES ('root123@root.com' , '1234' , 'root' , '010-8989-1714', 2);
+
+SELECT * FROM mc_member;
+
 
 
 
