@@ -4,7 +4,14 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 메인페이지</title>
+<style>
+table {width: 100%;}
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+</style>
 </head>
 <body>
 <<<<<<< HEAD
