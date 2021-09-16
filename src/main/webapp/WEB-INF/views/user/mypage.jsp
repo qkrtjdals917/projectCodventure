@@ -54,24 +54,18 @@ header .container {
     font-size: 12px;
     text-decoration: none;
 }
-
 .contentA {
-    height : 600px;  
     position: relative;
     margin : 0 auto;
-    border: gray solid 1px;
+    left: 50%;
 }
 .contentB {
     position: relative;
     margin : 0 auto;
     left: 50%;
 }
-.contentC {
-    position: relative;
-    margin : 0 auto;
-    left: 50%;
-    
-}
+
+
 /* 모달 팝업 */
 /* 참조: https://www.w3schools.com/howto/howto_css_login_form.asp */
 .modal {  /* 모달 전체 적용 */
@@ -98,7 +92,7 @@ header .container {
 	border: 1px solid #888;
 }
 
-.modal .logincontainer {
+.modal .accountcontainer {
 	padding: 16px;
 	position: relative;  /* 아래 있는 요소들 absolute로 동작시키기 위해 */
 }
@@ -145,14 +139,19 @@ header .container {
 <script>
 	$(document).ready(function(){
 		
-		$("#btnLogin").click(function(){
-			setPopup("login");    // 글 작성 용으로 모달 팝업 셋업
-			$("#dlg_login").show();
+		$("#btnUpdate").click(function(){
+			setPopup("update");    // 글 작성 용으로 모달 팝업 셋업
+			$("#dlg_account").show();
 		});
 		
-		$("#btnJoin").click(function(){
-			setPopup("join");    // 글 작성 용으로 모달 팝업 셋업
-			$("#dlg_login").show();
+		$("#btnPwChange").click(function(){
+			setPopup("change");    // 글 작성 용으로 모달 팝업 셋업
+			$("#dlg_account").show();
+		});
+		
+		$("#btnSecession").click(function(){
+			setPopup("secession");    // 글 작성 용으로 모달 팝업 셋업
+			$("#dlg_account").show();
 		});
 		
 		$(".modal .close").click(function(){
@@ -163,17 +162,27 @@ header .container {
 	});
 	function setPopup(mode){
 		
-		if(mode == "login"){
-			$("#dlg_login .title").text("로그인");
-			$("#dlg_login .btn_login").show();
-			$("#dlg_login .btn_join").hide();
+		if(mode == "update"){
+			$("#dlg_account .title").text("회원정보수정");
+			$("#dlg_account .btn_update").show();
+			$("#dlg_account .btn_pwChange").hide();
+			$("#dlg_account .btn_secession").hide();
 		}
 		
-		if(mode == "join"){
+		if(mode == "change"){
 
-			$("#dlg_login .title").text("회원가입");
-			$("#dlg_login .btn_login").hide();
-			$("#dlg_login .btn_join").show();
+			$("#dlg_account .title").text("비밀번호변경");
+			$("#dlg_account .btn_update").hide();
+			$("#dlg_account .btn_pwChange").show();
+			$("#dlg_account .btn_secession").hide();
+		}
+		
+		if(mode == "secession"){
+
+			$("#dlg_account .title").text("회원탈퇴");
+			$("#dlg_account .btn_update").hide();
+			$("#dlg_account .btn_pwChange").hide();
+			$("#dlg_account .btn_secession").show();
 		}
 	} // end setPopup()
 </script>
@@ -197,8 +206,8 @@ header .container {
             <!-- 내비게이션 메뉴 -->
             
             <div class ="headC">
-                <button type="button" id="btnJoin" class="btn danger">회원가입</button>
-                <button type="button" id="btnLogin" class="btn danger">로그인</button>
+                <button type="button" id="btnMyPage" class="btn">마이페이지</button>
+                <button type="button" id="btnLogout" class="btn ">로그아웃</button>
             </div>
         </div>
 
@@ -206,91 +215,80 @@ header .container {
 
 
     <div class="contentA">
-        <img src='' alt="메인이미지" /> 
-    </div>
-
-    <div class="contentB">
        	<table border="">
        		<tr>
-       			<td>거래소명</td>
-       			<td>코인시세</td>
+       			<td>이메일</td>
+       			<td>test@email.com</td>
        		</tr>
        		<tr>
-       			<td>평균거래가</td>
-       			<td>10000 (0)</td>
+       			<td>닉네임</td>
+       			<td>TESTER (0)</td>
        		</tr>
        		<tr>
-       			<td>거래소1</td>
-       			<td>9000 (-1000)</td>
+       			<td>전화번호</td>
+       			<td>010-1111-1111</td>
        		</tr>
        		<tr>
-       			<td>거래소2</td>
-       			<td>11000 (+1000)</td>
+       			<td>작성 글 갯수</td>
+       			<td>0</td>
        		</tr>
        	</table>
+    </div>
+    <div class="contentB">
+    	<button type="button" id="btnUpdate" class="btn">정보수정</button>
+		<button type="button" id="btnPwChange" class="btn">비밀번호 변경</button>
+		<button type="button" id="btnSecession" class="btn">회원 탈퇴</button>
     </div>
     <br>
-    <div class="contentC">
-       	<table border="">
-       		<tr>
-       			<td>최근공지</td>
-       		</tr>
-       		<tr>
-       			<td>공지1</td>
-                <td>내용 ~~~~~~~~~</td>
-       		</tr>
-       		<tr>
-       			<td>공지2</td>
-                <td>내용 ~~~~~~~~~</td>
-       		</tr>
-       		<tr>
-       			<td>공지3</td>
-                <td>내용 ~~~~~~~~~</td>
-       		</tr>
-       	</table>
-    </div>
-    <div id="dlg_login" class="modal">
+    
+    <div id="dlg_account" class="modal">
 		<form class="modal-content animate" id="frmLogin" name="frmLogin" method="post">
-			<div class="logincontainer">
+			<div class="accountcontainer">
 				<h3 class="title">로그인</h3>
 				
 				<span class="close" title="Close Modal">&times;</span>
 				
-				<div class="btn_login">
-					<label for="Email"><b>Email</b></label>
-					<input type="text" placeholder="Email을 입력하세요" name="email" required>
+				<div class="btn_update">
+					<label for="Email"><b>이메일</b></label>
+					<input type="text" placeholder="Test@email.com" name="email" required>
 		            <br>
-					<label for="Pw"><b>PW</b></label>
-					<input type="text" placeholder="PW를 입력하세요" name="pw" required>
-					<br>
-                    <button type="submit" class="btn">로그인</button>
-					<button type="submit" class="btn">회원가입</button>
-                    
-                </div>
-
-				<div class="btn_join">
-					<label for="Email"><b>Email</b></label>
-					<input type="text" placeholder="Email을 입력하세요" name="email" required>
-					<button type="submit" class="btn">중복체크</button>
-					<br>
-					<label for="Pw"><b>PW</b></label>
-					<input type="text" placeholder="PW를 입력하세요" name="pw" required>
-					<br>
-					<label for="Pw"><b>PW 확인</b></label>
-					<input type="text" placeholder="PW를 다시 입력하세요" name="pw" required>
-					<br>
 					<label for="Pw"><b>닉네임</b></label>
-					<input type="text" placeholder="닉네임를 입력하세요" name="nickname" required>
+					<input type="text" placeholder="닉네임을 입력하세요" name="nickname" required>
 					<button type="submit" class="btn">중복체크</button>
 					<br>
-					<label for="Pw"><b>전화번호</b></label>
-					<input class="phoneNum" type="text" name="phonenum1" required> - 
+					<label for="Email"><b>이메일</b></label>
+					<input class="phoneNum" type="text" name="phonenum1" required> -
 					<input class="phoneNum" type="text" name="phonenum2" required> - 
 					<input class="phoneNum" type="text" name="phonenum3" required>
 					<br>
-					<button type="submit" class="btn">가입</button>
+                    <button type="submit" class="btn">변경</button>
+                    
+                </div>
+
+				<div class="btn_pwChange">
+					<label for="Pw"><b>현재 비밀번호</b></label>
+					<input type="text" placeholder="현재 PW를 입력하세요" name="nowpw" required>
+					<br>
+					<label for="Pw"><b>변경 비밀번호</b></label>
+					<input type="text" placeholder="바꿀 PW를 입력하세요" name="changepw" required>
+					<br>
+					<label for="Pw"><b>비밀번호 확인</b></label>
+					<input type="text" placeholder="바꿀 PW를 다시 입력하세요" name="checkpw" required>
+					<br>
+					<button type="submit" class="btn">변경</button>
 					<div class="clear"></div>
 				</div>
+				
+				<div class="btn_secession">
+					<b>정말로 탈퇴하십니까?</b><br>
+					<b>탈퇴하시려면 아래 입력란에 회원탈퇴를 입력하세요.</b>
+					<input type="text" name="checksecession" required>
+		            <br>
+                    <button type="submit" class="btn">회원 탈퇴</button>
+					<button type="submit" class="btn">취소</button>
+                    
+                </div>
+				
 			</div>
 		</form>
 	</div>
