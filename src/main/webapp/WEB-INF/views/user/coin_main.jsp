@@ -11,13 +11,6 @@ table, th, td {
 	border: 1px solid black;
 	border-collapse: collapse;
 }
-#nav_t {
-	list-style: none;
-	float: left;
-}
-.clear {
-	clear: both;
-}
 </style>
 
 </head>
@@ -64,12 +57,12 @@ table, th, td {
 				<c:otherwise>
 					<c:forEach var="dto" item="">
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td><!-- 거래소 --></td>
+							<td><!-- 거래소 --></td>
+							<td><!-- 거래소 --></td>
+							<td><!-- 거래소 --></td>
+							<td><!-- 거래소 --></td>
+							<td><!-- 거래소 --></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
