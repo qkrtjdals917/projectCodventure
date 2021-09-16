@@ -64,12 +64,12 @@ table, th, td {
 				<c:otherwise>
 					<c:forEach var="dto" item="">
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td><!-- 거래값 --></td>
+							<td><!-- 거래값 --></td>
+							<td><!-- 거래값 --></td>
+							<td><!-- 거래값 --></td>
+							<td><!-- 거래값 --></td>
+							<td><!-- 거래값 --></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
