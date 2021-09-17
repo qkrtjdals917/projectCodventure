@@ -49,6 +49,20 @@ class DummyData {
 	public static final String nickname = "Test";
 	public static final String [] phoneNumber = {"010-8989-1714", "010-1234-4566", "010-757-1745"};
 	
+	public static final String SQL_BOARD_DUMMY = 
+			"INSERT INTO mc_board" + 
+					"(type, subject, tag, content, member_uid) " +
+					"VALUES(?, ?, ?, ?, ?)";
+	
+	
+	public static final String [] TYPE = {"자유", "정보"};
+	public static final String SUBJECT = "Subject";
+	public static final String [] TAG1 = {"유머","잡담","질문"};
+	public static final String [] TAG2 = {"코인","뉴스","팁과노하우"};
+	public static final String CONTENT = "content";
+	
+	
+	
 	@Test
 	void test() {
 		fail("Not yet implemented");
@@ -91,5 +105,50 @@ class DummyData {
 			}
 		}
 	}
+	
+	@Test
+	void genBoardData() {
+		try {
+			Class.forName(DRIVER);
+			conn = DriverManager.getConnection(URL, USERID, USERPW);
 
+			pstmt = conn.prepareStatement(SQL_BOARD_DUMMY);
+			int num = 200;	// 많은 데이터
+			Random rand = new Random();
+			//(type, subject, tag, content, member_uid) 
+			for(int i = 0; i < num; i++) {
+				int typenumber = rand.nextInt(TYPE.length);
+				pstmt.setString(1, TYPE[typenumber] );  // 자유, 정보
+				pstmt.setString(2, SUBJECT + i);
+				switch (typenumber) {
+					case 0 :
+						pstmt.setString(3, TAG1[rand.nextInt(TAG1.length)] );
+						break;
+					case 1 :
+						pstmt.setString(3, TAG2[rand.nextInt(TAG2.length)] );
+						break;
+//					case 2 :
+//						pstmt.setString(3, "" );
+//						break;
+				}
+
+				pstmt.setString(4, CONTENT + i);   
+				
+				pstmt.setInt(5, rand.nextInt(50)+1);
+				
+				cnt += pstmt.executeUpdate();
+			}
+			System.out.println(cnt + "개 의 데이터가 INSERT 되었습니다");
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

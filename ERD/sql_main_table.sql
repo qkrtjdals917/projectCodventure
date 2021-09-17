@@ -161,3 +161,5 @@ VALUES( 'root@root.com', 'root', 'root', '010-1234-1234', 2);
 
 SELECT * FROM mc_authority;
 SELECT * FROM mc_member;
+SELECT * FROM mc_board;
+
