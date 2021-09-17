@@ -11,13 +11,10 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
-<<<<<<< HEAD
-	<x>247</x>
-	<y>238</y>
-=======
+
 	<x>147</x>
 	<y>64</y>
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
+
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -140,11 +137,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2021-09-10 13:28:25</creation_date>
-<<<<<<< HEAD
-			<updated_date>2021-09-16 10:21:43</updated_date>
-=======
 			<updated_date>2021-09-16 11:42:32</updated_date>
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -684,11 +677,9 @@
 			<connections>
 				<relation>
 					<id>2</id>
-<<<<<<< HEAD
-					<source>3</source>
-=======
+
 					<source>5</source>
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
+
 					<target>1</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -773,13 +764,10 @@
 				</normal_column>
 				<normal_column>
 					<id>3</id>
-<<<<<<< HEAD
-					<referenced_column>12</referenced_column>
-					<relation>2</relation>
-=======
+
 					<referenced_column>6</referenced_column>
 					<relation>3</relation>
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
+
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -845,13 +833,10 @@
 				</normal_column>
 				<normal_column>
 					<id>5</id>
-<<<<<<< HEAD
-					<referenced_column>6</referenced_column>
-					<relation>3</relation>
-=======
+
 					<referenced_column>18</referenced_column>
 					<relation>2</relation>
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
+
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -901,13 +886,10 @@
 			<width>271</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-<<<<<<< HEAD
-			<x>240</x>
-			<y>676</y>
-=======
+
 			<x>914</x>
 			<y>36</y>
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
+
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -1697,11 +1679,9 @@
 				<relation>
 					<id>6</id>
 					<source>2</source>
-<<<<<<< HEAD
-					<target>4</target>
-=======
+
 					<target>6</target>
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
+
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
 						<target_xp>-1</target_xp>
@@ -1722,13 +1702,10 @@
 				</relation>
 				<relation>
 					<id>7</id>
-<<<<<<< HEAD
-					<source>3</source>
-					<target>4</target>
-=======
+
 					<source>5</source>
 					<target>6</target>
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
+
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
 						<target_xp>-1</target_xp>
@@ -1756,48 +1733,11 @@
 			<option></option>
 			<columns>
 				<normal_column>
-<<<<<<< HEAD
-					<word_id>17</word_id>
-					<id>20</id>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>integer</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>true</auto_increment>
-					<foreign_key>false</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>true</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<id>21</id>
-					<referenced_column>12</referenced_column>
-					<relation>7</relation>
-=======
+
 					<id>24</id>
 					<referenced_column>6</referenced_column>
 					<relation>6</relation>
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
+
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1928,15 +1868,11 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-<<<<<<< HEAD
-					<id>24</id>
-					<referenced_column>6</referenced_column>
-					<relation>6</relation>
-=======
+
 					<id>28</id>
 					<referenced_column>18</referenced_column>
 					<relation>7</relation>
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
+
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
