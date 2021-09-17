@@ -27,7 +27,7 @@ table, th, td {
 				<div>모다콘(사이트 이름)</div>
 			</div>
 			<nav>
-				<table id="nav_t">
+				<table>
 					<tr>
 						<td>공지사항</td>
 						<td>게시판관리</td>
@@ -35,13 +35,12 @@ table, th, td {
 						<td>회원관리</td>
 					</tr>
 				</table>
-				<div class="clear">
 			</nav>
 		</header>
 		<article>
-			<div></div>
-			<div></div>
-			<div></div>
+			<div><!-- 내용1 --></div>
+			<div><!-- 내용2 --></div>
+			<div><!-- 내용3 --></div>
 		</article>
 	</div>
 </body>

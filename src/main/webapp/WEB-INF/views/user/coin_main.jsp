@@ -19,22 +19,21 @@ table, th, td {
 		<header>
 			<!-- 로그인  -->
 			<div>
-				<a href="">회원가입</a> | 
-				<a href="">로그인</a>
+				<a href="#">회원가입</a> | 
+				<a href="#">로그인</a>
 			</div>
 			<div>
 				<div>여긴 사이트 로고자리</div>
 				<div>모다콘(사이트 이름)</div>
 			</div>
 			<nav>
-				<table id="nav_t">
+				<table>
 					<tr>
 						<td>코인</td>
 						<td>커뮤니티</td>
 						<td>공지</td>
 					</tr>
 				</table>
-				<div class="clear">
 			</nav>
 		</header>
 		<article>
