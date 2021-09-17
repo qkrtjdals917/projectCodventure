@@ -11,10 +11,10 @@
 		<h1>로그인</h1>
 		<form>
 			ID<br>
-			<input type="text" name="id" />
+			<input type="text" name="id" /><br>
 			PW<br>
-			<input type="password" name="id" />
-			<button onclick="location.href = "></button>
+			<input type="password" name="pw" /><br>
+			<button onclick="">로그인</button>
 		</form>
 	</div>
 </body>
