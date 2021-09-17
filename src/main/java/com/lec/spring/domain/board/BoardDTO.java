@@ -1,7 +1,9 @@
-package com.lec.spring.domain;
+package com.lec.spring.domain.board;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.lec.spring.domain.like.LikeDTO;
 
 import lombok.Data;
 
