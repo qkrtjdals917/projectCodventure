@@ -10,7 +10,7 @@ public class MainController {
 	
 	@RequestMapping("")
 	public String mainPage(Model model) {
-		model.addAttribute("key","service.__()");
+//		model.addAttribute("key","service.__()");
 		// Service 로 데이터 가져와서 model 에 담아 view에 전달
 		return "user/main";
 	}
