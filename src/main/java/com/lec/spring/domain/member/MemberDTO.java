@@ -1,4 +1,4 @@
-package com.lec.spring.domain;
+package com.lec.spring.domain.member;
 
 import lombok.Data;
 
