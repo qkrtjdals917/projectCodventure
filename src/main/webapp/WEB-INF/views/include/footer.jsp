@@ -36,7 +36,7 @@
             </nav>
             <!-- 푸터C : 저작권-->
             <div class="footC">
-                © LOGGER corp. All rights reserved.
+                © MODACON corp. All rights reserved.
             </div>
         </div>
     </footer>
