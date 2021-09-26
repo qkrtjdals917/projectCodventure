@@ -5,54 +5,13 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>main</title>
 <style>
-
-body {
+* {
     margin: 0;
-}
-
-header {
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    width: 100%;
-}
-header .container {
-    border: black solid 1px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    max-width: var(--large-width);
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.headA {
-    display: inline-block;
-    line-height: 70px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.headB {
-    display: inline-block;
-}
-.headB ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-}
-.headB a {
-    width : 100px;
-    text-align: center;
-    display: block;
-    padding: 15px;
-    color: inherit;
-    font-size: 12px;
-    text-decoration: none;
+    color: #fff;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 25px;
 }
 
 .contentA {
@@ -141,7 +100,7 @@ header .container {
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://kit.fontawesome.com/bb29575d31.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 	$(document).ready(function(){
 		
@@ -179,32 +138,7 @@ header .container {
 </script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="container-small">
-                <!-- 작은 화면의 배치를 위한 컨테이너-->
-
-                <a href="" class="headA"><img src="./image/logo.png" alt="로고" width="250px;"></a>
-                
-                <nav class="headB">
-                    <ul>
-                        <li><a href="">코인시세</a></li>
-                        <li><a href="">커뮤니티</a></li>
-                        <li><a href="">공지사항</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <!-- 내비게이션 메뉴 -->
-            
-            <div class ="headC">
-                <button type="button" id="btnJoin" class="btn danger">회원가입</button>
-                <button type="button" id="btnLogin" class="btn danger">로그인</button>
-            </div>
-        </div>
-
-    </header>
-
-
+<%@ include file = "../include/header.jsp" %> <%-- header --%>
     <div class="contentA">
         <img src='' alt="메인이미지" /> 
     </div>
@@ -295,5 +229,6 @@ header .container {
 		</form>
 	</div>
 
+<%@ include file = "../include/footer.jsp" %> <%-- footer --%>
 </body>
 </html>
