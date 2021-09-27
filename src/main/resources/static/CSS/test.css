@@ -59,7 +59,6 @@ button {
     /* 800 이상 큰 화면에서는 */
 
     header .container {
-        /* 하단 컨텐츠와 너비 맞추기*/
         max-width: 1000px;
         max-width: var(--large-width);
         margin-left: auto;
