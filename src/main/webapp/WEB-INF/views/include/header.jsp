@@ -42,12 +42,6 @@
                 </ul>
             </nav> 
 
-            <div class ="headE"> <!-- 코딩 실력 부족으로 추가/ 큰화면에서 보임 -->
-                <button type="button" id="btnJoin" class="btn danger">회원가입</button>
-                <button type="button" id="btnLogin" class="btn danger">로그인</button>
-            </div>
-
-            
         </div>
     </header>
 </body>

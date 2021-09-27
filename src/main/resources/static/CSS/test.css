@@ -59,11 +59,6 @@ button {
     /* 800 이상 큰 화면에서는 */
 
     header .container {
-        /* 사이트이름 과 내비게이션 메뉴를 각각 왼쪽/오른쪽으로 배치하기 */
-        display: flex;
-        align-items: center;  /* 세로 방향으로 중앙 정렬 */
-        justify-content: space-between; /* 왼쪽 오른쪽 끝방향으로 정렬 */
-
         /* 하단 컨텐츠와 너비 맞추기*/
         max-width: 1000px;
         max-width: var(--large-width);
@@ -78,47 +73,37 @@ button {
 
 }
 
-/* 헤더C: 토글 버튼 */
-@media (max-width: 800px) {  /* 800 이하 */
-    /* 작은 화면 전용 설정 */
-    header .container-small {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+/* 작은 화면 전용 설정 */
+header .container-small {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-    /* 작은 화면에선 메뉴 감추기 */
-    .headB {
-        display: none;
-    }
+/* 작은 화면에선 메뉴 감추기 */
+.headB {
+    display: none;
+}
 
-    .headE {
-        display: none;;
-    }
 
-    /* 토글 버튼 스타일 */
-    .headC {
-        margin-right: 10px;
-        padding: 0;
-        border: none;
-        outline: none;
-        background: none;
-        font-size: 30px;
-        cursor: pointer;
-    }
+/* 토글 버튼 스타일 */
+.headC {
+    margin-right: 10px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 30px;
+    cursor: pointer;
+}
 
-    .headC:hover {
-        opacity: 0.3;
-    }
+.headC:hover {
+    opacity: 0.3;
 }
 
 @media (min-width: 800px) {
     /* 큰 화면 전용 설정 */
     .headC {
-        display: none;
-    }
-
-    .headD {
         display: none;
     }
 
@@ -131,7 +116,7 @@ button {
 
 /* 푸터 */
 footer {
-    background-color: #4F48EC;
+    background: #100E34;
 }
 
 footer .container{
