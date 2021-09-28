@@ -3,4 +3,80 @@
 <mapper namespace="com.lec.spring.domain.member.MemberDAO">
 
 
+	<select id="selectAll" resultType="com.lec.spring.domain.member.MemberDTO">
+		SELECT	
+			member_uid "uid",
+			email "email",
+			password "pw",
+			nickname "nickname",
+			phoneNumber "phoneNumber",
+			authority "authority"
+		FROM 
+			mc_member
+		ORDER BY
+			member_uid DESC
+	</select>
+	
+	<select id="selectByUid" resultType="com.lec.spring.domain.member.MemberDTO">
+		SELECT	
+			member_uid "uid",
+			email "email",
+			password "pw",
+			nickname "nickname",
+			phoneNumber "phoneNumber",
+			authority "authority"
+		FROM 
+			mc_member
+		WHERE meber_uid = #{uid}
+	</select>	
+	
+	<select id="selectByEmail" resultType="com.lec.spring.domain.member.MemberDTO">
+		SELECT	
+			member_uid "uid",
+			email "email",
+			password "pw",
+			nickname "nickname",
+			phoneNumber "phoneNumber",
+			authority "authority"
+		FROM 
+			mc_member
+		WHERE email = #{email}
+	</select>		
+	
+	<insert id="insertMember" parameterType="com.lec.spring.domain.member.MemberDTO">
+		INSERT INTO 
+			mc_member (email, password, nickname, phoneNumber, authority)
+		VALUES
+			(#{email} , #{pw} , #{nickname} , #{phoneNumber}, #{authority} )
+	</insert>
+	
+	<update id="changeAuth" >
+		UPDATE mc_member 
+		SET authority = #{authority}
+		WHERE member_uid = #{uid}
+	</update>
+
+	<delete id="deleteMember" >
+		DELETE FROM 
+			mc_member
+		WHERE 
+			member_uid = #{uid}
+	</delete>
+	
+	<update id="changeMember" parameterType="com.lec.spring.domain.member.MemberDTO">
+		UPDATE 
+			mc_member 
+		SET 
+			nickname= #{nickname} , phoneNumber = #{phoneNumber}
+		WHERE 
+			member_uid = #{uid}
+	</update>
+	
+	<update id="changePassword" >
+		UPDATE mc_member 
+		SET password = #{pw}
+		WHERE member_uid = #{uid}
+	</update>	
+	
+	
 </mapper>
