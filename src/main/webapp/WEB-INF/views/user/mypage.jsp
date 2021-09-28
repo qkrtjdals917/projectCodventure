@@ -188,31 +188,10 @@ header .container {
 </script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="container-small">
-                <!-- 작은 화면의 배치를 위한 컨테이너-->
-
-                <a href="" class="headA"><img src="./image/logo.png" alt="로고" width="250px;"></a>
-                
-                <nav class="headB">
-                    <ul>
-                        <li><a href="">코인시세</a></li>
-                        <li><a href="">커뮤니티</a></li>
-                        <li><a href="">공지사항</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <!-- 내비게이션 메뉴 -->
-            
-            <div class ="headC">
-                <button type="button" id="btnMyPage" class="btn">마이페이지</button>
-                <button type="button" id="btnLogout" class="btn ">로그아웃</button>
-            </div>
-        </div>
-
-    </header>
-
+<%@ include file = "../include/header.jsp" %> <%-- header --%>
+    <div class="contentA">
+        <img src='' alt="메인이미지" /> 
+    </div>
 
     <div class="contentA">
        	<table border="">
@@ -292,6 +271,7 @@ header .container {
 			</div>
 		</form>
 	</div>
-
+	
+<%@ include file = "../include/footer.jsp" %> <%-- footer --%>
 </body>
 </html>
