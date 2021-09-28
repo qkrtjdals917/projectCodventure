@@ -19,7 +19,16 @@
         <div class="container">
             <div class="container-small"> <!-- 작은 화면의 배치를 위한 컨테이너-->
                 <a href="index.html" class="headA">로고</a>
-
+                
+            	<!-- 내비게이션 메뉴 -->
+	            <nav class="headB">
+		            <ul>
+		                <li><a href="index.html">코인시세</a></li>
+		                <li><a href="contents.html">커뮤니티</a></li>
+		                <li><a href="about.html">공지사항</a></li>
+		            </ul>
+		        </nav> 
+		        
                 <!-- 메뉴 토글 버튼 -->
                 <div>
                     <button type="button" class="headC">
@@ -33,21 +42,8 @@
                 </div>
             </div>
 
-            <!-- 내비게이션 메뉴 -->
-            <nav class="headB">
-                <ul>
-                    <li><a href="index.html">코인시세</a></li>
-                    <li><a href="contents.html">커뮤니티</a></li>
-                    <li><a href="about.html">공지사항</a></li>
-                </ul>
-            </nav> 
 
-            <div class ="headE"> <!-- 코딩 실력 부족으로 추가/ 큰화면에서 보임 -->
-                <button type="button" id="btnJoin" class="btn danger">회원가입</button>
-                <button type="button" id="btnLogin" class="btn danger">로그인</button>
-            </div>
 
-            
         </div>
     </header>
 </body>
