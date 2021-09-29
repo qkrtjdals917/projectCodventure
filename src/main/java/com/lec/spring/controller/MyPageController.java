@@ -15,24 +15,24 @@ public class MyPageController {
 		return "user/mypage";
 	}
 	
-	//정보수정, 
-	@RequestMapping("/mypage")
-	public String hy_updateMypage() {
-		
-		return "user/mypage";
-	}
-	//비밀번호 변경, 
-	@RequestMapping("/board")
-	public String hy_updatePw() {
-		
-		return "user/mypage";
-	}
-	//회원탈퇴
-	@RequestMapping("/notice")
-	public String hy_resign() {
-		
-		return "user/mypage";
-	}
-	
+//	//정보수정, 
+//	@RequestMapping("/mypage")
+//	public String hy_updateMypage() {
+//		
+//		return "user/mypage";
+//	}
+//	//비밀번호 변경, 
+//	@RequestMapping("/board")
+//	public String hy_updatePw() {
+//		
+//		return "user/mypage";
+//	}
+//	//회원탈퇴
+//	@RequestMapping("/notice")
+//	public String hy_resign() {
+//		
+//		return "user/mypage";
+//	}
+//	
 	
 }

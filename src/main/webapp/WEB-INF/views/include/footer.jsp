@@ -28,9 +28,9 @@
             <nav class="footB">
                 <div>
                     <ul>
-                        <li><a href="#">코인시세</a></li>
-                        <li><a href="#">커뮤니티 (자유, 정보)</a></li>
-                        <li><a href="#">공지사항</a></li>    
+                        <li><a href="/modacon/coin">코인시세</a></li>
+                        <li><a href="/modacon/board">커뮤니티 (자유, 정보)</a></li>
+                        <li><a href="/modacon/notice">공지사항</a></li>    
                     </ul>
                 </div>
             </nav>
