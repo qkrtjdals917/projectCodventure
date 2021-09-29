@@ -14,13 +14,11 @@ table, th, td {
 </style>
 </head>
 <body>
-<<<<<<< HEAD
 	<div>
 		<header>
 			<!-- 로그인  -->
 			<div>
-				<a href="">회원가입</a> | 
-				<a href="">로그인</a>
+				<a href="">로그아웃</a>
 			</div>
 			<div>
 				<div>여긴 사이트 로고자리</div>
