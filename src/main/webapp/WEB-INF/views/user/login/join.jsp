@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<script src="${pageContext.request.contextPath }/JS/include.js"></script>
 </head>
 <body>
 	<h1>회원가입</h1>
-	<form action="/joinOk" method="POST">
+	<form action="/joinOk" method="POST" name="joinform" onsubmit="return chkJoin()">
 		<label for="Email"><b>Email</b></label>
 		<input type="text" placeholder="Email을 입력하세요" name="email" required>
 		<button type="submit" class="btn">중복체크</button>
@@ -27,6 +28,7 @@
 		<input class="phoneNumer" type="text" name="phonenum1" required> - 
 		<input class="phoneNumer" type="text" name="phonenum2" required> - 
 		<input class="phoneNumer" type="text" name="phonenum3" required>
+		<input type="hidden" name="phoneNumber" value="">
 		<br>
 		<button type="submit" class="btn">가입</button>
 		<div class="clear"></div>

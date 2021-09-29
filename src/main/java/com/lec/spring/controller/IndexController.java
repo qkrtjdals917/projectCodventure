@@ -1,5 +1,7 @@
 package com.lec.spring.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,8 +18,8 @@ public class IndexController {
 	@Autowired
 	MemberService MemberService;
 	
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	// board/작성 부분에서 낚아채기
 	
@@ -35,12 +37,13 @@ public class IndexController {
 	}
 	
 	@PostMapping("/joinOk")
-	public String joinOk(MemberDTO dto) {
+	public String joinOk(@Valid MemberDTO dto) {
 		System.out.println(dto);	// 잘 가져왔는지 확인
 		
-//		String rawPassword = user.getPw();
-//		String encPassword = passwordEncoder.encode(rawPassword);
-//		user.setPw(encPassword);
+		// pw 인코더
+		String rawPassword = dto.getPw();
+		String encPassword = passwordEncoder.encode(rawPassword);	// 원본을 암호화
+		dto.setPw(encPassword); // 암호와된 pw세팅
 		
 		int cnt = MemberService.addMember(dto);
 		
