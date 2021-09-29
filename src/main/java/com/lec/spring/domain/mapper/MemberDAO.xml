@@ -31,6 +31,7 @@
 		WHERE meber_uid = #{uid}
 	</select>
 	
+	<!-- nickname으로 계정정보 하나 가져오기 -->
 	<select id="selectByNickname" resultType="com.lec.spring.domain.member.MemberDTO">
 		SELECT	
 			member_uid "uid",
@@ -72,6 +73,13 @@
 		SET authority = #{authority}
 		WHERE member_uid = #{member_uid}
 	</update>
+	
+	<!-- 부여된 권한 가져오기 -->
+	<select id="selectAuthoritiesById" resultType="int">
+		SELECT authority
+		FROM mc_member
+		WHERE member_uid = #{member_uid}
+	</select>
 
 	<!-- 회원탈퇴 -->
 	<delete id="deleteMember" >

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -36,8 +37,15 @@
                     </button>
 
                     <div class ="headD">
-                        <button type="button" id="btnJoin" class="btn danger">회원가입</button>
-                        <button type="button" id="btnLogin" class="btn danger">로그인</button>
+                    	<c:choose>
+                    		<c:when test="session 정보 있을때">
+                    			<button type="button" id="btnMypage" class="btn danger">마이페이지</button>
+                    		</c:when>
+                    		<c:otherwise>
+		                        <button type="button" id="btnJoin" class="btn danger">회원가입</button>
+		                        <button type="button" id="btnLogin" class="btn danger">로그인</button>
+                    		</c:otherwise>
+                    	</c:choose>
                     </div>
                 </div>
             </div>
