@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			// 접근오류 발생시 /login으로 이동시키기
 			.and()
 			.formLogin()
-			.loginPage("/login")
+			.loginPage("/modacon")
 			
 			// 로그인 처리
 			.usernameParameter("email")

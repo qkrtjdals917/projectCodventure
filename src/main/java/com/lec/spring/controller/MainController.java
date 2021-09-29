@@ -31,6 +31,7 @@ public class MainController {
 		
 		return "user/board/list";
 	}
+	
 	//공지
 	@RequestMapping("/notice")
 	public String notice() {

@@ -150,7 +150,7 @@ body {
 </head>
 <body>
 <%@ include file = "../include/header.jsp" %> <%-- header --%>
-	<div style="clear:both"; height:70px></div>
+	<div style="clear:both; height:70px"></div>
     <div class="contentA">
         <img src='' alt="메인이미지" /> 
     </div>
