@@ -10,6 +10,18 @@ $(document).ready(function(){
 			$("#dlg_login").show();
 		});
 		
+		$("#btn_go_join").click(function(){
+			setPopup("join");
+		});
+		
+		$("#email_check").click(function(){
+			//TODO
+		});
+		
+		$("#nickname_check").click(function(){
+			//TODO
+		});
+		
 		$(".modal .close").click(function(){
 			$(this).parents(".modal").hide();
 		});
@@ -41,4 +53,16 @@ function setPopup(mode){
 		$("#dlg_login .btn_join").show();
 	}
 }// end setPopup()
+
+function chkJoin (){
+	frm = document.forms['joinform'];
 	
+	var result = "";
+	result += frm['phonenum1'].value.trim() + "-";
+	result += frm['phonenum2'].value.trim() + "-";
+	result += frm['phonenum3'].value.trim();
+	
+	frm['phoneNumber'].value = result;
+
+	return true;
+ }

@@ -27,17 +27,17 @@ public class MemberService {
 	}
 	
 	// 특정 email(email) 의 정보 가져오기 -> 중복체크
-	public List<MemberDTO> selectByEmail(String email) {
+	public MemberDTO selectByEmail(String email) {
 		return dao.selectByEmail(email);
 	}
 	
 	// 특정 uid(uid)의 정보 가져오기
-	public List<MemberDTO> selectByUid(int uid) {
+	public MemberDTO selectByUid(int uid) {
 		return dao.selectByUid(uid);
 	}
 	
 	// 특정 nickname(nickname) 의 정보 가져오기 -> 중복체크
-	public List<MemberDTO> selectByNickname(String nickname) {
+	public MemberDTO selectByNickname(String nickname) {
 		return dao.selectByNickname(nickname);
 	}
 	
@@ -49,6 +49,11 @@ public class MemberService {
 	// 권한 변경
 	public int changeAuth(int authority, int uid) {
 		return dao.changeAuth(authority, uid);
+	}
+	
+	// 부여된 권한 가져오기
+	public int selectAuthoritiesById(int member_uid) {
+		return dao.selectAuthoritiesById(member_uid);
 	}
 	
 	// 회원 정보변경

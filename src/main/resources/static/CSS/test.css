@@ -2,7 +2,6 @@
 
 * {
     margin: 0;
-    color: #fff;
     font-family: 'Do Hyeon', sans-serif;
     font-size: 25px;
 }
@@ -24,6 +23,7 @@ header .container {
 }
 
 .headA {
+    color: #fff;
     display: inline-block;
     line-height: 70px;
     padding-left: 20px;
@@ -38,7 +38,8 @@ header .container {
 }
 
 .headB li {
-   padding: 0 20px;
+	color: #fff;
+	padding: 0 20px;
 }
 
 .headB a {
@@ -190,11 +191,6 @@ b {
 	border: 1px solid #ccc;
 }
 
-.modal .fullbtn {
-	width: 100%;
-	cursor: pointer;
-}
-
 .title {
 	color: black;
 }
@@ -212,6 +208,9 @@ footer .container{
 .footA {
     margin-bottom: 30px;
 }
+.footA h2 , p{
+	color: #fff;
+}
 
 /* 푸터B : 푸터 메뉴 */
 .footB div {
@@ -225,7 +224,7 @@ footer .container{
 }
 
 .footB a {
-    color: inherit;
+	color: #fff;
     font-size: 25px;
     margin-bottom: 10px;
     border-bottom: solid 2px currentColor;
@@ -253,6 +252,7 @@ footer .container{
 }
 
 .footC {
+	color: #fff;
     font-size: 12px;
     text-align: center;
     font-family: 'Montserrat', sans-serif;

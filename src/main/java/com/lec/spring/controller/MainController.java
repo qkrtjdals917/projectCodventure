@@ -1,5 +1,6 @@
 package com.lec.spring.controller;
 
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	
 	@RequestMapping("")
-	public String mainPage(Model model) {
+	public String mainPage(Model model , Session session) {
 //		model.addAttribute("key","service.__()");
 		// Service 로 데이터 가져와서 model 에 담아 view에 전달
+		
+		model.addAttribute("session", session);
+		
 		return "user/main";
 	}
 	//코인, 

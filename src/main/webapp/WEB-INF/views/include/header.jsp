@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -38,8 +39,19 @@
                     </button>
 
                     <div class ="headD">
-                        <button type="button" id="btnJoin" class="btn danger">회원가입</button>
-                        <button type="button" id="btnLogin" class="btn danger">로그인</button>
+                    	<!-- 
+                    	<c:choose>
+                    		<c:when test="session 정보 있을때">
+                    			<button type="button" id="btnMypage">마이페이지</button>
+                    		</c:when>
+                    		<c:otherwise>
+		                        <button type="button" id="btnJoin" >회원가입</button>
+		                        <button type="button" id="btnLogin">로그인</button>
+                    		</c:otherwise>
+                    	</c:choose>
+                     	-->
+                    	<button type="button" id="btnJoin" >회원가입</button>
+                    	<button type="button" id="btnLogin">로그인</button>
                     </div>
                 </div>
             </div>
@@ -52,7 +64,7 @@
 				
 					<span class="close" title="Close Modal">&times;</span>
 					
-					<form id="frmLogin" action="/loginOk" name="frmLogin" method="post">
+					<form id="loginform" action="/loginOk" name="loginform" method="post">
 						<div class="btn_login">
 							<label for="Email"><b>Email</b></label>
 							<input type="text" placeholder="Email을 입력하세요" name="email" required>
@@ -61,30 +73,31 @@
 							<input type="text" placeholder="PW를 입력하세요" name="pw" required>
 							<br>
 		                    <button type="submit" class="btn">로그인</button>
-							<button type="submit" class="btn">회원가입</button>
+							<button type="button" id="btn_go_join" class="btn">회원가입</button>
 		                </div>
 	                </form>
 	                
-					<form id="frmJoin" action="/joinOk" name="frmJoin" method="post">
+					<form id="joinform" action="/joinOk" name="joinform" method="post" onsubmit="return chkJoin()">
 						<div class="btn_join">
 							<label for="Email"><b>Email</b></label>
 							<input type="text" placeholder="Email을 입력하세요" name="email" required>
-							<button type="submit" class="btn">중복체크</button>
+							<button type="button" id="email_check" class="btn">중복체크</button>
 							<br>
 							<label for="Pw"><b>PW</b></label>
 							<input type="text" placeholder="PW를 입력하세요" name="pw" required>
 							<br>
-							<label for="Pw"><b>PW 확인</b></label>
+							<label for="PwC"><b>PW 확인</b></label>
 							<input type="text" placeholder="PW를 다시 입력하세요" name="pw" required>
 							<br>
-							<label for="Pw"><b>닉네임</b></label>
+							<label for="Nickname"><b>닉네임</b></label>
 							<input type="text" placeholder="닉네임를 입력하세요" name="nickname" required>
-							<button type="submit" class="btn">중복체크</button>
+							<button type="button" id="nickname_check" class="btn">중복체크</button>
 							<br>
-							<label for="Pw"><b>전화번호</b></label>
+							<label for="phoneNumber"><b>전화번호</b></label>
 							<input class="phoneNum" type="text" name="phonenum1" required> - 
 							<input class="phoneNum" type="text" name="phonenum2" required> - 
 							<input class="phoneNum" type="text" name="phonenum3" required>
+							<input type="hidden" name="phoneNumber" value="">
 							<br>
 							<button type="submit" class="btn">가입</button>
 							<div class="clear"></div>
