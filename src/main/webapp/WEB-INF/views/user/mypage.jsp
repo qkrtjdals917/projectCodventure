@@ -17,6 +17,9 @@ body {
     margin : 0 auto;
     left: 50%;
 }
+.contentA td{
+	color: #100E34;
+}
 .contentB {
     position: relative;
     margin : 0 auto;
