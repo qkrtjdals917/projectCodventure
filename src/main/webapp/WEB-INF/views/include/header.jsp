@@ -18,14 +18,14 @@
 	<header>
         <div class="container">
             <div class="container-small"> <!-- 작은 화면의 배치를 위한 컨테이너-->
-                <a href="index.html" class="headA">로고</a>
+                <a href="/modacon" class="headA">로고</a>
                 
             	<!-- 내비게이션 메뉴 -->
 	            <nav class="headB">
 		            <ul>
-		                <li><a href="index.html">코인시세</a></li>
-		                <li><a href="contents.html">커뮤니티</a></li>
-		                <li><a href="about.html">공지사항</a></li>
+		                <li><a href="/modacon/coin">코인시세</a></li>
+		                <li><a href="/modacon/board">커뮤니티</a></li>
+		                <li><a href="/modacon/notice">공지사항</a></li>
 		            </ul>
 		        </nav> 
 		        

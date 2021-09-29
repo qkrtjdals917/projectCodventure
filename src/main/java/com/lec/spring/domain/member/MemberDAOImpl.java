@@ -23,8 +23,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public List<MemberDTO> selectByUid(int uid) {
-		return mapper.selectByUid(uid);
+	public List<MemberDTO> selectByUid(int member_uid) {
+		return mapper.selectByUid(member_uid);
 	}
 	
 	@Override
@@ -43,13 +43,13 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int changeAuth(int authority, int uid) {
-		return mapper.changeAuth(authority, uid);
+	public int changeAuth(int authority, int member_uid) {
+		return mapper.changeAuth(authority, member_uid);
 	}
 
 	@Override
-	public int deleteMember(int uid) {
-		return mapper.deleteMember(uid);
+	public int deleteMember(int member_uid) {
+		return mapper.deleteMember(member_uid);
 	}
 
 	@Override
