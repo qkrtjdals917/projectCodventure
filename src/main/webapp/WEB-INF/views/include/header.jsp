@@ -41,10 +41,55 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
+        
+        <div id="dlg_login" class="modal">
+			<form class="modal-content animate" id="frmLogin" name="frmLogin" method="post">
+				<div class="logincontainer">
+					<h3 class="title">로그인</h3>
+				
+					<span class="close" title="Close Modal">&times;</span>
+				
+					<div class="btn_login">
+						<label for="Email"><b>Email</b></label>
+						<input type="text" placeholder="Email을 입력하세요" name="email" required>
+			            <br>
+						<label for="Pw"><b>PW</b></label>
+						<input type="text" placeholder="PW를 입력하세요" name="pw" required>
+						<br>
+	                    <button type="submit" class="btn">로그인</button>
+						<button type="submit" class="btn">회원가입</button>
+	                    
+	                </div>
+	
+					<div class="btn_join">
+						<label for="Email"><b>Email</b></label>
+						<input type="text" placeholder="Email을 입력하세요" name="email" required>
+						<button type="submit" class="btn">중복체크</button>
+						<br>
+						<label for="Pw"><b>PW</b></label>
+						<input type="text" placeholder="PW를 입력하세요" name="pw" required>
+						<br>
+						<label for="Pw"><b>PW 확인</b></label>
+						<input type="text" placeholder="PW를 다시 입력하세요" name="pw" required>
+						<br>
+						<label for="Pw"><b>닉네임</b></label>
+						<input type="text" placeholder="닉네임를 입력하세요" name="nickname" required>
+						<button type="submit" class="btn">중복체크</button>
+						<br>
+						<label for="Pw"><b>전화번호</b></label>
+						<input class="phoneNum" type="text" name="phonenum1" required> - 
+						<input class="phoneNum" type="text" name="phonenum2" required> - 
+						<input class="phoneNum" type="text" name="phonenum3" required>
+						<br>
+						<button type="submit" class="btn">가입</button>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</form>
+		</div>
+		
     </header>
+    
 </body>
 </html>
