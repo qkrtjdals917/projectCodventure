@@ -49,8 +49,17 @@ header .container {
     text-decoration: none;
 }
 
+.headB a:hover {
+    opacity: 0.3;
+}
+
 .headD {
     float: right;
+}
+
+.headD button:hover {
+	cursor: pointer;
+	opacity: 0.3;
 }
 
 button {
@@ -88,7 +97,6 @@ header .container-small {
     display: none;
 }
 
-
 /* 토글 버튼 스타일 */
 .headC {
     margin-right: 10px;
@@ -117,6 +125,9 @@ header .container-small {
 
 }
 
+b {
+	color: black;
+}
 /* 모달 팝업 */
 /* 참조: https://www.w3schools.com/howto/howto_css_login_form.asp */
 .modal {  /* 모달 전체 적용 */
@@ -139,7 +150,7 @@ header .container-small {
 .modal .modal-content {
 	background-color: #fefefe;
 	width: 80%;   
-	margin: 5% auto 15% auto;
+	margin: 5%;
 	border: 1px solid #888;
 }
 
@@ -184,7 +195,9 @@ header .container-small {
 	cursor: pointer;
 }
 
-
+.title {
+	color: black;
+}
 
 /* 푸터 */
 footer {

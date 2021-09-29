@@ -10,8 +10,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
 <script src="https://kit.fontawesome.com/001c1f3b98.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <script src="${pageContext.request.contextPath }/JS/include.js"></script>
 </head>
 <body>
@@ -44,49 +46,53 @@
         </div>
         
         <div id="dlg_login" class="modal">
-			<form class="modal-content animate" id="frmLogin" name="frmLogin" method="post">
-				<div class="logincontainer">
+        	<div class="modal-content">
+        		<div class="logincontainer">
 					<h3 class="title">로그인</h3>
 				
 					<span class="close" title="Close Modal">&times;</span>
-				
-					<div class="btn_login">
-						<label for="Email"><b>Email</b></label>
-						<input type="text" placeholder="Email을 입력하세요" name="email" required>
-			            <br>
-						<label for="Pw"><b>PW</b></label>
-						<input type="text" placeholder="PW를 입력하세요" name="pw" required>
-						<br>
-	                    <button type="submit" class="btn">로그인</button>
-						<button type="submit" class="btn">회원가입</button>
-	                    
-	                </div>
-	
-					<div class="btn_join">
-						<label for="Email"><b>Email</b></label>
-						<input type="text" placeholder="Email을 입력하세요" name="email" required>
-						<button type="submit" class="btn">중복체크</button>
-						<br>
-						<label for="Pw"><b>PW</b></label>
-						<input type="text" placeholder="PW를 입력하세요" name="pw" required>
-						<br>
-						<label for="Pw"><b>PW 확인</b></label>
-						<input type="text" placeholder="PW를 다시 입력하세요" name="pw" required>
-						<br>
-						<label for="Pw"><b>닉네임</b></label>
-						<input type="text" placeholder="닉네임를 입력하세요" name="nickname" required>
-						<button type="submit" class="btn">중복체크</button>
-						<br>
-						<label for="Pw"><b>전화번호</b></label>
-						<input class="phoneNum" type="text" name="phonenum1" required> - 
-						<input class="phoneNum" type="text" name="phonenum2" required> - 
-						<input class="phoneNum" type="text" name="phonenum3" required>
-						<br>
-						<button type="submit" class="btn">가입</button>
-						<div class="clear"></div>
-					</div>
+					
+					<form id="frmLogin" action="/loginOk" name="frmLogin" method="post">
+						<div class="btn_login">
+							<label for="Email"><b>Email</b></label>
+							<input type="text" placeholder="Email을 입력하세요" name="email" required>
+				            <br>
+							<label for="Pw"><b>PW</b></label>
+							<input type="text" placeholder="PW를 입력하세요" name="pw" required>
+							<br>
+		                    <button type="submit" class="btn">로그인</button>
+							<button type="submit" class="btn">회원가입</button>
+		                </div>
+	                </form>
+	                
+					<form id="frmJoin" action="/joinOk" name="frmJoin" method="post">
+						<div class="btn_join">
+							<label for="Email"><b>Email</b></label>
+							<input type="text" placeholder="Email을 입력하세요" name="email" required>
+							<button type="submit" class="btn">중복체크</button>
+							<br>
+							<label for="Pw"><b>PW</b></label>
+							<input type="text" placeholder="PW를 입력하세요" name="pw" required>
+							<br>
+							<label for="Pw"><b>PW 확인</b></label>
+							<input type="text" placeholder="PW를 다시 입력하세요" name="pw" required>
+							<br>
+							<label for="Pw"><b>닉네임</b></label>
+							<input type="text" placeholder="닉네임를 입력하세요" name="nickname" required>
+							<button type="submit" class="btn">중복체크</button>
+							<br>
+							<label for="Pw"><b>전화번호</b></label>
+							<input class="phoneNum" type="text" name="phonenum1" required> - 
+							<input class="phoneNum" type="text" name="phonenum2" required> - 
+							<input class="phoneNum" type="text" name="phonenum3" required>
+							<br>
+							<button type="submit" class="btn">가입</button>
+							<div class="clear"></div>
+						</div>
+					</form>
+					
 				</div>
-			</form>
+        	</div>
 		</div>
 		
     </header>

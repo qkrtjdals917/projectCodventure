@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 		
 		$("#btnLogin").click(function(){
@@ -18,6 +17,13 @@ $(document).ready(function(){
 		$(".headC").click(function(){
         	$(".headB").slideToggle();
     	});
+
+		$(".modal").click(function(e){
+			var modal = $(".modal-content")
+			if(modal.has(e.target).length === 0){
+			   $(this).hide();
+			}
+    	});
 	});
 	
 function setPopup(mode){
@@ -35,6 +41,4 @@ function setPopup(mode){
 		$("#dlg_login .btn_join").show();
 	}
 }// end setPopup()
-	
-	
 	

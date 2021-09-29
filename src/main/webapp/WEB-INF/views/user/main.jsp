@@ -9,7 +9,7 @@
 <style>
 * {
     margin: 0;
-    color: #fff;
+    color: black;
     font-family: 'Do Hyeon', sans-serif;
     font-size: 25px;
 }

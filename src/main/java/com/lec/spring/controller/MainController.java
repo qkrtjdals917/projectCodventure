@@ -2,6 +2,7 @@ package com.lec.spring.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -22,7 +23,7 @@ public class MainController {
 	}
 	//커뮤니티, 
 	@RequestMapping("/board")
-	public String board() {
+	public String board() {		// 여기에서 작성 부분은 로그인 한 사람만 접근가능
 		
 		return "user/board/list";
 	}
@@ -34,5 +35,12 @@ public class MainController {
 		return "user/notice/view";
 	}
 	
+	//-------------------여기 이하 admin---------------------
+	
+	@GetMapping("/login")
+	public String login() {
+		
+		return "user/login/login";	// 로그인 페이지
+	}
 	
 }
