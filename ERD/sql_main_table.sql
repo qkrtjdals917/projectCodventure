@@ -163,3 +163,10 @@ SELECT * FROM mc_authority;
 SELECT * FROM mc_member;
 SELECT * FROM mc_board;
 
+
+
+
+
+
+
+
