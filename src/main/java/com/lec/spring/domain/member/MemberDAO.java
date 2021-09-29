@@ -14,6 +14,9 @@ public interface MemberDAO {
 		// uid받고 계정정보 하나 가져오기
 		public List<MemberDTO> selectByUid (int uid);
 		
+		// nickname으로 계정정보 가져오기
+		public List<MemberDTO> selectByNickname(String nickname);
+		
 		// email로 계정정보 하나 가져오기
 		public List<MemberDTO> selectByEmail(String email);
 		

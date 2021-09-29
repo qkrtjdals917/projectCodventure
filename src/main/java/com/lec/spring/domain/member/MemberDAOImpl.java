@@ -26,6 +26,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MemberDTO> selectByUid(int uid) {
 		return mapper.selectByUid(uid);
 	}
+	
+	@Override
+	public List<MemberDTO> selectByNickname(String nickname) {
+		return mapper.selectByNickname(nickname);
+	}
 
 	@Override
 	public List<MemberDTO> selectByEmail(String email) {

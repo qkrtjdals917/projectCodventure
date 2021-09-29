@@ -14,11 +14,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.authorizeRequests()
 			// 인증에 대한 세팅
-		
+
 			// /modacon/board/write/** 으로 들어오는 요청 인증
+		
 		
 			// /modacon/login/** 으로 들어오는 요청은 인증 / mypage도 마찬가지인데 경로가 문제....
 			.antMatchers("/modacon/login/**").authenticated()
+			
+			// /modacon/mypage/**는 로그인 필요
+			.antMatchers("/modacon/mypage/**").authenticated()
 			
 			// 그 밖의 요청은 모두 허용
 			.anyRequest().permitAll()

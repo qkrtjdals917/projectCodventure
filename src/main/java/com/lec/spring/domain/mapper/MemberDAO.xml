@@ -27,6 +27,19 @@
 		FROM 
 			mc_member
 		WHERE meber_uid = #{uid}
+	</select>
+	
+	<select id="selectByNickname" resultType="com.lec.spring.domain.member.MemberDTO">
+		SELECT	
+			member_uid "uid",
+			email "email",
+			password "pw",
+			nickname "nickname",
+			phoneNumber "phoneNumber",
+			authority "authority"
+		FROM 
+			mc_member
+		WHERE nickname = #{nickname}
 	</select>	
 	
 	<select id="selectByEmail" resultType="com.lec.spring.domain.member.MemberDTO">
