@@ -32,7 +32,7 @@
 
 		<div id="middle_menu">
 			<h2>커뮤니티</h2>
-			> <a href="#">정보</a> | <a href="#">자유</a> 
+			<a href="#">정보</a> | <a href="#">자유</a> 
 			<select name="" id="">
 				<option value="">전체</option>
 				<option value="">코인정보</option>
