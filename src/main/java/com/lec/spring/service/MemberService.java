@@ -27,19 +27,24 @@ public class MemberService {
 		return cnt;
 	}
 	
-	// 특정 email(email) 의 정보 가져오기 -> 중복체크
-	public MemberDTO selectByEmail(String email) {
-		return dao.selectByEmail(email);
-	}
-	
 	// 특정 uid(uid)의 정보 가져오기
 	public MemberDTO selectByUid(int uid) {
 		return dao.selectByUid(uid);
 	}
 	
-	// 특정 nickname(nickname) 의 정보 가져오기 -> 중복체크
-	public MemberDTO selectByNickname(String nickname) {
-		return dao.selectByNickname(nickname);
+	// 특정 email(email)의 정보 가져오기
+	public MemberDTO selectByEmail(String email) {
+		return dao.selectByEmail(email);
+	}
+	
+	// 특정 email(email)를 가진 정보의 개수 가져오기 -> 중복체크
+	public int countByEmail(String email) {
+		return dao.countByEmail(email);
+	}
+	
+	// 특정 nickname(nickname)를 가진 정보의 개수 가져오기 -> 중복체크
+	public int countByNickname(String nickname) {
+		return dao.countByNickname(nickname);
 	}
 	
 	// 모든 회원 정보 가져오기

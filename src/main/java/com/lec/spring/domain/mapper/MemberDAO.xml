@@ -31,22 +31,26 @@
 		WHERE meber_uid = #{uid}
 	</select>
 	
-	<!-- nickname으로 계정정보 하나 가져오기 -->
-	<select id="selectByNickname" resultType="com.lec.spring.domain.member.MemberDTO">
+	<!-- nickname 이 일치하는 계정 수 하나 가져오기 -->
+	<select id="countByNickname" resultType="int">
 		SELECT	
-			member_uid "member_uid",
-			email "email",
-			password "pw",
-			nickname "nickname",
-			phoneNumber "phoneNumber",
-			authority "authority"
+			count(nickname)
 		FROM 
 			mc_member
 		WHERE nickname = #{nickname}
 	</select>	
 	
+	<!-- email 이 일치하는 계정 수 하나 가져오기 -->
+	<select id="countByEmail" resultType="int">
+		SELECT	
+			count(email)
+		FROM 
+			mc_member
+		WHERE email = #{email}
+	</select>	
+	
 	<!-- email로 계정정보 하나 가져오기 -->
-	<select id="selectByEmail" resultType="com.lec.spring.domain.member.MemberDTO">
+	<select id="selectByEmail">
 		SELECT	
 			member_uid "member_uid",
 			email "email",
