@@ -28,8 +28,13 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public MemberDTO selectByNickname(String nickname) {
-		return mapper.selectByNickname(nickname);
+	public int countByNickname(String nickname) {
+		return mapper.countByNickname(nickname);
+	}
+	
+	@Override
+	public int countByEmail(String email) {
+		return mapper.countByEmail(email);
 	}
 
 	@Override
