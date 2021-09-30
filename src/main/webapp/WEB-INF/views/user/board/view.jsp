@@ -45,14 +45,7 @@
       </div>
       <hr>
       
-      <div id="comment_area"> <%-- 댓글부분 --%>
-        <span id="commenter">댓글작성자</span>
-        <span id="comment_text">댓글내용</span>
-        <button id="comment_del">삭제</button>
-        <div id="pagenation_div"> <%-- 댓글란 페이징 처리 부분 --%>
-          <ul class="pagenation" id="pagenation">1</ul>
-        </div>
-        <input id="comment_text"/><button>작성</button> <%-- 댓글 작성란 --%>
-      </div>
+      <%@ include file="./comment.jsp" %>
+      
     </body>
     </html>

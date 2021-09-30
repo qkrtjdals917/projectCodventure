@@ -12,52 +12,13 @@ body {
     margin: 0;
 }
 
-header {
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    width: 100%;
-}
-header .container {
-    border: black solid 1px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    max-width: var(--large-width);
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.headA {
-    display: inline-block;
-    line-height: 70px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.headB {
-    display: inline-block;
-}
-.headB ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-}
-.headB a {
-    width : 100px;
-    text-align: center;
-    display: block;
-    padding: 15px;
-    color: inherit;
-    font-size: 12px;
-    text-decoration: none;
-}
 .contentA {
     position: relative;
     margin : 0 auto;
     left: 50%;
+}
+.contentA td{
+	color: #100E34;
 }
 .contentB {
     position: relative;
@@ -189,6 +150,7 @@ header .container {
 </head>
 <body>
 <%@ include file = "../include/header.jsp" %> <%-- header --%>
+	<div style="clear:both; height:70px"></div>
     <div class="contentA">
         <img src='' alt="메인이미지" /> 
     </div>
