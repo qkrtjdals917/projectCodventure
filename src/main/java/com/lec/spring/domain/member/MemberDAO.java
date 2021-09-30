@@ -13,8 +13,11 @@ public interface MemberDAO {
 		// uid받고 계정정보 하나 가져오기
 		public MemberDTO selectByUid (int member_uid);
 		
-		// nickname으로 계정정보 가져오기
-		public MemberDTO selectByNickname(String nickname);
+		// nickname 이 일치하는 계정 수 가져오기
+		public int countByNickname(String nickname);
+		
+		// email 이 일치하는 계정 수 가져오기
+		public int countByEmail(String email);
 		
 		// email로 계정정보 하나 가져오기
 		public MemberDTO selectByEmail(String email);
