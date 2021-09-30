@@ -39,7 +39,7 @@ public class IndexController {
 	}
 	
 	@PostMapping("/joinOk")
-	public String joinOk(@Valid MemberDTO dto) {
+	public String joinOk(MemberDTO dto) {
 		System.out.println(dto);	// 잘 가져왔는지 확인
 		
 		// pw 인코더

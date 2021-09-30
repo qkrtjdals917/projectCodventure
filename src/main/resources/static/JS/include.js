@@ -6,7 +6,19 @@ $(function () {
 	})
 	
 	$("#email_check").click(function(){
-		// TODO
+		frm = document.forms['joinform'];
+		email = frm['email'].value;
+		
+		var Ereg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+		
+		if(Ereg.test(email) == false) {
+			alert("이메일 형식이 올바르지 않습니다.");
+			frm['email'].focus();
+			
+			return false;
+		}
+
+
 		checkEmailDuplication();
 	})
 	
@@ -17,7 +29,19 @@ $(function () {
 	})
 		
 	$("#nickname_check").click(function(){
-		// TODO
+		frm = document.forms['joinform'];
+		nickname = frm['nickname'].value;
+		
+		var Nreg = /^[0-9a-zA-Z가-힣]+$/;
+		
+		if(Nreg.test(nickname) == false) {
+			alert("닉네임 형식이 올바르지 않습니다.(특수기호 불가)");
+			frm['nickname'].focus();
+			
+			return false;
+		}
+
+
 		checkNicknameDuplication();
 	});
 	
@@ -74,7 +98,19 @@ function setPopup(mode){
 
 function chkJoin (){
 	frm = document.forms['joinform'];
+	// 비밀번호 확인
+	pw = frm['pw'].value;
+	pwC = frm['pwC'].value;
 	
+	if(pw != pwC) {
+		alert("비밀번호가 같지 않습니다. 다시 확인해주세요");
+		frm['pwC'].focus();
+		
+		return false;
+		
+	}
+	
+	// 전화번호 확인
 	var result = "";
 	result += frm['phonenum1'].value.trim() + "-";
 	result += frm['phonenum2'].value.trim() + "-";
@@ -82,8 +118,19 @@ function chkJoin (){
 	
 	frm['phoneNumber'].value = result;
 
+	var Preg =  /^\d{2,3}-\d{3,4}-\d{4}$/;
+	
+	if(Preg.test(frm['phoneNumber'].value) == false) {
+		alert("전화번호 형식이 올바르지 않습니다");
+		frm['phoneNumber'].focus();
+		
+		return false;
+	}
+	
+	
 	return true;
  }
+
 
 function checkEmailDuplication () {
 	var email = $('#email').val();

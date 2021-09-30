@@ -93,7 +93,7 @@
 							<input type="password" placeholder="PW를 입력하세요" name="pw" required>
 							<br>
 							<label for="PwC"><b>PW 확인</b></label>
-							<input type="password" placeholder="PW를 다시 입력하세요" name="pw" required>
+							<input type="password" placeholder="PW를 다시 입력하세요" name="pwC" required>
 							<br>
 							<label for="Nickname"><b>닉네임</b></label>
 							<input type="text" id="nickname" placeholder="닉네임를 입력하세요" name="nickname" required>
