@@ -11,7 +11,13 @@ $(function () {
 		
 		var Ereg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 		
-		if(Ereg.test(email) == false) {
+		if(email == "") {
+			alert("이메일은 필수입니다.");
+			frm['email'].focus();
+			
+			return false;
+			
+		} else if(Ereg.test(email) == false) {
 			alert("이메일 형식이 올바르지 않습니다.");
 			frm['email'].focus();
 			
@@ -34,7 +40,13 @@ $(function () {
 		
 		var Nreg = /^[0-9a-zA-Z가-힣]+$/;
 		
-		if(Nreg.test(nickname) == false) {
+		if(nickname == "") {
+			alert("닉네임은 필수입니다.");
+			frm['nickname'].focus();
+			
+			return false;
+			
+		} else if(Nreg.test(nickname) == false) {
 			alert("닉네임 형식이 올바르지 않습니다.(특수기호 불가)");
 			frm['nickname'].focus();
 			
