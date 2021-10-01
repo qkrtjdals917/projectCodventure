@@ -192,3 +192,14 @@ SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname,
 SELECT * FROM mc_like;
 
 -- 글 작성
+
+		SELECT	
+			member_uid "member_uid",
+			email "email",
+			password "pw",
+			nickname "nickname",
+			phoneNumber "phoneNumber",
+			authority "authority"
+		FROM 
+			mc_member
+		WHERE email = "aaa5@aaa.com";

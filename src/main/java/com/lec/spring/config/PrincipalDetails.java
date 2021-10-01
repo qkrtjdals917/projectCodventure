@@ -44,14 +44,24 @@ public class PrincipalDetails implements UserDetails {	// UserDetails는 Spring 
 
 	@Override
 	public String getPassword() {
+		
 		return dto.getPw();
 	}
 
 	@Override
 	public String getUsername() {
+		
 		return dto.getEmail();
 	}
-
+	
+	public String getNickname() {
+		return dto.getNickname();
+	}
+	
+	public int getUid() {
+		return dto.getMember_uid();
+	}
+	
 	// 계정이 만료된건 아닌가?
 	@Override
 	public boolean isAccountNonExpired() {
