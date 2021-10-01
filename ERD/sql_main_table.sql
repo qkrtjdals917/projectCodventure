@@ -164,9 +164,40 @@ SELECT * FROM mc_member ORDER BY member_uid DESC;
 SELECT * FROM mc_board;
 
 
+<<<<<<< HEAD
 
 
 
 
 
 
+=======
+-- 글 조회수 증가
+UPDATE mc_board SET count = count + 1 WHERE board_uid = 1;
+
+-- 공지페이지 리스트
+SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname, mb.regDate regDate, mb.count count
+FROM mc_board mb , mc_member mm 
+WHERE mb.member_uid = mm.member_uid
+AND mb.type = "공지"
+ORDER BY board_uid DESC;
+	
+-- 글선택
+SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname, 
+mb.regDate regDate, mb.count count, mb.content content, 
+mb.type type, mb.tag tag 
+FROM mc_board mb , mc_member mm 
+WHERE mb.member_uid = mm.member_uid 
+AND mb.board_uid = 1;
+
+SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname, 
+		mb.regDate regDate, mb.count count, mb.content content, 
+		mb.type type, mb.tag tag 
+		FROM mc_board mb , mc_member mm 
+		WHERE mb.member_uid = mm.member_uid
+		AND mb.type <> "공지";
+
+SELECT * FROM mc_like;
+
+-- 글 작성
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git

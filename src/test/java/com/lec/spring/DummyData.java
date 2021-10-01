@@ -55,6 +55,11 @@ class DummyData {
 					"VALUES(?, ?, ?, ?, ?)";
 	
 	
+	public static final String SQL_NOTICE_DUMMY = 
+			"INSERT INTO mc_board (type, subject, content, member_uid)"
+			+ "VALUES ('공지', ?, ?, 1)";
+	
+	
 	public static final String [] TYPE = {"자유", "정보"};
 	public static final String SUBJECT = "Subject";
 	public static final String [] TAG1 = {"유머","잡담","질문"};
@@ -141,6 +146,31 @@ class DummyData {
 			System.out.println(cnt + "개 의 데이터가 INSERT 되었습니다");
 			
 		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@Test
+	void noticeData() {
+		try {
+			Class.forName(DRIVER);
+			conn = DriverManager.getConnection(URL, USERID, USERPW);
+			pstmt = conn.prepareStatement(SQL_NOTICE_DUMMY);
+			
+			int num = 10;
+			for (int i = 0; i < num; i++) {
+				pstmt.setString(1, "noticesubject" + i);
+				pstmt.setString(2, "noticeContent" + i);
+				pstmt.executeUpdate();
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
