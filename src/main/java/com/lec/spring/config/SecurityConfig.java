@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			
 			// 로그인 처리
 			.usernameParameter("email")
+			.passwordParameter("pw")
 			.loginProcessingUrl("/loginOk")
 			.defaultSuccessUrl("/modacon")		// login 성공시 "/"로 이동
 		

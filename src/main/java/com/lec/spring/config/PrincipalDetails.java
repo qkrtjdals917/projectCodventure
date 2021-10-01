@@ -1,6 +1,5 @@
 package com.lec.spring.config;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
