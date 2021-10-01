@@ -2,13 +2,22 @@ package com.lec.spring.controller;
 
 import java.security.Principal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lec.spring.service.UserService;
+
 @Controller
 @RequestMapping("/modacon")
 public class MainController {
+	private UserService userService;
+	
+	@Autowired
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
 	
 	@RequestMapping("")
 	public String mainPage(Model model, Principal principal) {
@@ -30,15 +39,36 @@ public class MainController {
 	}
 	//커뮤니티, 
 	@RequestMapping("/board")
-	public String board() {		// 여기에서 작성 부분은 로그인 한 사람만 접근가능
-		
+	public String board(Model model) { // 여기에서 작성 부분은 로그인 한 사람만 접근가능
+		model.addAttribute("list", userService.communityList());
+		return "user/board/list";
+	}
+	
+	// 정보게시판 리스트
+	@RequestMapping("/infoboard")
+	public String infoBoard(Model model) {
+		model.addAttribute("list", userService.infoList());
+		return "user/board/list";
+	}
+	
+	// 자유게시판 리스트
+	@RequestMapping("/freeboard")
+	public String freeBoard(Model model) {
+		model.addAttribute("list", userService.freeList());
 		return "user/board/list";
 	}
 	
 	//공지
 	@RequestMapping("/notice")
-	public String notice() {
-		
+	public String notice(Model model) {
+		model.addAttribute("list", userService.noticeList());
+		return "user/notice/list";
+	}
+	
+	// 공지 뷰
+	@RequestMapping("notice/view")
+	public String noticeView(int uid, Model model) {
+		model.addAttribute("list", userService.viewContent(uid));
 		return "user/notice/view";
 	}
 	
@@ -51,5 +81,4 @@ public class MainController {
 //		return str;
 //
 //	}
-	
 }

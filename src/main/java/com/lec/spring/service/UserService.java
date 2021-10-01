@@ -1,13 +1,44 @@
 package com.lec.spring.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.lec.spring.domain.board.BoardDAO;
+import com.lec.spring.domain.board.BoardDTO;
 
 @Service
 public class UserService {
 	// DAO 객체 생성
 	// 자동 넣기 Autowired 
 
+	BoardDAO dao;
 	
-	// dao 를 활용한 트랜잭션들 담을 예정(user)
+	@Autowired
+	public void setDao(BoardDAO dao) {
+		this.dao = dao;
+	}
+	
+	public List<BoardDTO> communityList(){
+		return dao.selectCommunity();
+	}
+	
+	public List<BoardDTO> noticeList(){
+		return dao.selectNotice();
+	}
+	
+	public List<BoardDTO> freeList(){
+		return dao.selectFree();
+	}
+	
+	public List<BoardDTO> infoList(){
+		return dao.selectInfo();
+	}
+	
+	public List<BoardDTO> viewContent(int uid){
+		dao.viewCnt(uid);
+		return dao.selectOne(uid);
+	}
 	
 }
