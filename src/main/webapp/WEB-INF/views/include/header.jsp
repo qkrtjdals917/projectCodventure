@@ -43,6 +43,7 @@
                     	<c:choose>
                     		<c:when test="session 정보 있을때">
                     			<button type="button" id="btnMypage">마이페이지</button>
+                    			<button type="button" id="btnLogout">로그아웃</button>
                     		</c:when>
                     		<c:otherwise>
 		                        <button type="button" id="btnJoin" >회원가입</button>

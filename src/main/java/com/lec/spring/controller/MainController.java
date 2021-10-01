@@ -1,6 +1,8 @@
 package com.lec.spring.controller;
 
 import org.springframework.boot.web.servlet.server.Session;
+import org.springframework.security.core.AuthenticatedPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	
 	@RequestMapping("")
-	public String mainPage(Model model , Session session) {
+	public String mainPage(Model model , Session session, AuthenticatedPrincipal authentication) {
 //		model.addAttribute("key","service.__()");
 		// Service 로 데이터 가져와서 model 에 담아 view에 전달
 		
+//		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+//        model.addAttribute("author",userDetails.getUsername());
+        
 		model.addAttribute("session", session);
 		
 		return "user/main";

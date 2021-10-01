@@ -6,7 +6,7 @@ $(function () {
 	})
 	
 	$("#email_check").click(function(){
-		// TODO
+		// TODO 오류성 검사
 		checkEmailDuplication();
 	})
 	
@@ -17,7 +17,7 @@ $(function () {
 	})
 		
 	$("#nickname_check").click(function(){
-		// TODO
+		// TODO 오류성 검사
 		checkNicknameDuplication();
 	});
 	
@@ -82,6 +82,8 @@ function chkJoin (){
 	
 	frm['phoneNumber'].value = result;
 
+
+	// TODO : 오류성 검사 
 	return true;
  }
 
