@@ -1,15 +1,23 @@
 package com.lec.spring.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import java.security.Principal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lec.spring.service.UserService;
+
 @Controller
 @RequestMapping("/modacon")
 public class MainController {
+	private UserService userService;
+	
+	@Autowired
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
 	
 	@RequestMapping("")
 	public String mainPage(Model model, Principal principal) {
