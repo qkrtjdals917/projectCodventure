@@ -163,15 +163,6 @@ SELECT * FROM mc_authority;
 SELECT * FROM mc_member ORDER BY member_uid DESC;
 SELECT * FROM mc_board;
 
-
-<<<<<<< HEAD
-
-
-
-
-
-
-=======
 -- 글 조회수 증가
 UPDATE mc_board SET count = count + 1 WHERE board_uid = 1;
 
@@ -199,5 +190,13 @@ SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname,
 
 SELECT * FROM mc_like;
 
--- 글 작성
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
+		SELECT	
+			member_uid "member_uid",
+			email "email",
+			password "pw",
+			nickname "nickname",
+			phoneNumber "phoneNumber",
+			authority "authority"
+		FROM 
+			mc_member
+		WHERE email = "aaa5@aaa.com";

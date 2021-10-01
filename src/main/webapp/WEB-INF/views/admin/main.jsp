@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -100,21 +101,11 @@ table, th, td {
 							<c:otherwise>
 								<c:forEach var="dto" items="#">
 									<tr>
-										<td>
-											<!-- uid -->
-										</td>
-										<td>
-											<!-- subject -->
-										</td>
-										<td>
-											<!-- member -->
-										</td>
-										<td>
-											<!-- regDate -->
-										</td>
-										<td>
-											<!-- button? -->
-										</td>
+										<td>${dto.board_uid }</td>
+										<td><a href="board/view?board_uid=${dto.board_uid}">${dto.subject}</td>
+										<td>${dto.nickname }</td>
+										<td>${dto.regDateTime }</td>
+										<td><input type="button" id="delete_button" value="삭제"></td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
@@ -158,21 +149,11 @@ table, th, td {
 						<c:otherwise>
 							<c:forEach var="dto" items="#">
 								<tr>
-									<td>
-										<!-- uid -->
-									</td>
-									<td>
-										<!-- subject -->
-									</td>
-									<td>
-										<!-- member -->
-									</td>
-									<td>
-										<!-- regDate -->
-									</td>
-									<td>
-										<!-- DELETE -->
-									</td>
+									<td>${dto.board_uid }</td>
+									<td><a href="board/view?board_uid=${dto.board_uid}">${dto.subject}</td>
+									<td>${dto.nickname }</td>
+									<td>${dto.regDateTime }</td>
+									<td><input type="button" id="delete_button" value="삭제"></td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
@@ -208,24 +189,12 @@ table, th, td {
 						<c:otherwise>
 							<c:forEach var="dto" items="#">
 								<tr>
-									<td>
-										<!-- uid -->
-									</td>
-									<td>
-										<!-- subject -->
-									</td>
-									<td>
-										<!-- member -->
-									</td>
-									<td>
-										<!-- ? -->
-									</td>
-									<td>
-										<!-- 신고취하button -->
-									</td>
-									<td>
-										<!-- DELETE -->
-									</td>
+									<td>${dto.board_uid }</td>
+										<td><a href="board/view?board_uid=${dto.board_uid}">${dto.subject}</td>
+										<td>${dto.nickname }</td>
+										<td>${dto.nickname }</td>
+										<td><input type="button" id="reportBack_button" value="신고취하"></td>
+										<td><input type="button" id="delete_button" value="삭제"></td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
@@ -269,22 +238,11 @@ table, th, td {
 						<th>상태</th>
 					</tr>
 					<tr>
-						<td>
-							<!--email (mc_member)-->
-						</td>
-						<td>
-							<!--nickname (mc_member) -->
-						</td>
-						<td>
-							<!--phoneNumber (mc_member)-->
-						</td>
-						<td>
-							<!--authority 외부키  클릭시 mrm (member right modificaton (회원권한수정 page))-->
-						</td>
-						<td><button value=" ">
-								강퇴
-								<!-- -->
-							</button></td>
+						<td>${dto.email }</td>
+						<td>${dto.nickname }</td>
+						<td>${dto.phoneNumber }</td>
+						<td>${dto.authority }</td>
+						<td><input type="button" id="exit" value="강퇴"></td></td>
 
 					</tr>
 				</table>

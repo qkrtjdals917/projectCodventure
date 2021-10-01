@@ -1,12 +1,13 @@
 package com.lec.spring.controller;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lec.spring.config.PrincipalDetails;
+import com.lec.spring.domain.member.MemberDTO;
 import com.lec.spring.service.UserService;
 
 @Controller
@@ -20,20 +21,60 @@ public class MainController {
 	}
 	
 	@RequestMapping("")
-	public String mainPage(Model model, Principal principal) {
+	public String mainPage(Model model, Authentication authentication) {
+		
 //		model.addAttribute("key","service.__()");
 		// Service 로 데이터 가져와서 model 에 담아 view에 전달
-		if (principal != null) {
-			System.out.println("타입정보 : " + principal.getClass());
-			System.out.println("ID정보 : " + principal.getName());
+//		if (principal != null) {
+//			System.out.println("ID정보 : " + principal.getName());
+//			System.out.println("ID정보 : " + principal.getNickname());
+//			System.out.println("ID정보 : " + principal.getName());
+//		}
+		
+		if (authentication != null) {
+			MemberDTO dto = new MemberDTO();
+			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+
+			System.out.println("Email정보 : " + userDetails.getUsername());
+			System.out.println("Nickname정보 : " + userDetails.getNickname());
+			System.out.println("UID정보 : " + userDetails.getUid());
+			
+			dto.setEmail(userDetails.getUsername());
+			dto.setNickname(userDetails.getNickname());
+			dto.setMember_uid(userDetails.getUid());
+			
+			model.addAttribute("member" , dto);
 		}
+		
 		
 		return "user/main";
 	}
 	
+	@RequestMapping("/mypage")
+	public String hy_myPage(Model model, Authentication authentication) {
+		if (authentication != null) {
+			MemberDTO dto = new MemberDTO();
+			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+
+			System.out.println("Email정보 : " + userDetails.getUsername());
+			System.out.println("Nickname정보 : " + userDetails.getNickname());
+			System.out.println("UID정보 : " + userDetails.getUid());
+			
+			dto.setEmail(userDetails.getUsername());
+			dto.setNickname(userDetails.getNickname());
+			dto.setMember_uid(userDetails.getUid());
+			
+			model.addAttribute("member" , dto);
+		}
+		
+//		model.addAttribute("key","service.__()");
+		// Service 로 데이터 가져와서 model 에 담아 view에 전달
+		return "user/mypage";
+	}
+	
 	//코인, 
 	@RequestMapping("/coin")
-	public String coin() {
+	public String coin(Model model, Authentication authentication) {
 		
 		return "user/coin_main";
 	}
