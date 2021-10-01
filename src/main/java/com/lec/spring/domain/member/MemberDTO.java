@@ -7,7 +7,6 @@ public class MemberDTO {
 	private int member_uid;
 	private String email;
 	private String pw;				// DB는 password 
-	private String pwC;				// password 재확인 -> 이건 유효성검사로?
 	private String nickname;
 	private String phoneNumber;		// 폰번호 ***-****-**** 인데 나눠서 또 저장? -> 번호가 null값으로 가져와 진다 수정 필요
 	private int authority;

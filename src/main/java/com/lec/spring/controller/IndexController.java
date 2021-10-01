@@ -1,7 +1,5 @@
 package com.lec.spring.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -39,7 +37,7 @@ public class IndexController {
 	}
 	
 	@PostMapping("/joinOk")
-	public String joinOk(@Valid MemberDTO dto) {
+	public String joinOk(MemberDTO dto) {
 		System.out.println(dto);	// 잘 가져왔는지 확인
 		
 		// pw 인코더
