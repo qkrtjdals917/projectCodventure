@@ -23,12 +23,22 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public List<MemberDTO> selectByUid(int member_uid) {
+	public MemberDTO selectByUid(int member_uid) {
 		return mapper.selectByUid(member_uid);
+	}
+	
+	@Override
+	public int countByNickname(String nickname) {
+		return mapper.countByNickname(nickname);
+	}
+	
+	@Override
+	public int countByEmail(String email) {
+		return mapper.countByEmail(email);
 	}
 
 	@Override
-	public List<MemberDTO> selectByEmail(String email) {
+	public MemberDTO selectByEmail(String email) {
 		return mapper.selectByEmail(email);
 	}
 
@@ -40,6 +50,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int changeAuth(int authority, int member_uid) {
 		return mapper.changeAuth(authority, member_uid);
+	}
+	
+	@Override
+	public int selectAuthoritiesById(int member_uid) {
+		return mapper.selectAuthoritiesById(member_uid);
 	}
 
 	@Override

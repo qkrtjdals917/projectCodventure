@@ -1,3 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lec.spring.domain.comment.CommentDAO"></mapper>
+<mapper namespace="com.lec.spring.domain.comment.CommentDAO">
+
+
+	<insert id="insert" flushCache="true">
+	    INSERT INTO mc_comment 
+	    	(member_uid, board_uid, comment_content,)
+	    VALUES 
+	    	(#{member_uid}, #{board_uid}, #{comment_content})
+  	</insert>
+	
+	<select id="select" resultType="com.lec.spring.domain.comment.CommentDTO">
+        SELECT 
+        	comment_uid, board_uid, member_uid, comment_content AS content 
+        FROM 
+        	mc_comment 
+        WHERE 
+        	comment_uid = #{uid}
+    </select>
+    
+	<select id="selectByBoard" resultType="com.lec.spring.domain.comment.CommentDTO">
+        SELECT 
+        	comment_uid, board_uid, member_uid, comment_content AS content 
+        FROM 
+        	mc_comment 
+        WHERE 
+        	board_uid = #{uid}
+    </select>
+    
+    <select id="countByBoard">
+        SELECT 
+        	count(*) 
+        FROM 
+        	mc_comment 
+        WHERE 
+        	board_uid = #{uid} 
+        GROUP BY 
+        	board_uid;
+    </select>
+    
+    <delete id="delete">
+    	DELETE FROM 
+    		mc_comment 
+    	WHERE comment_uid = #{uid}
+    </delete>
+    
+    <delete id="deleteByBoard">
+    	DELETE FROM 
+    		mc_comment 
+    	WHERE 
+    		board_uid = #{uid}
+    </delete>
+    
+</mapper>

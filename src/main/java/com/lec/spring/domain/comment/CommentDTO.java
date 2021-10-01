@@ -8,5 +8,5 @@ public class CommentDTO {
 	private int member_uid;
 	private int board_uid;
 	private String content;
-	
+	// 생성일 넣어야되나? 
 }

@@ -160,7 +160,7 @@ INSERT INTO mc_member (email, password, nickname, phoneNumber, authority)
 VALUES( 'root@root.com', 'root', 'root', '010-1234-1234', 2);
 
 SELECT * FROM mc_authority;
-SELECT * FROM mc_member;
+SELECT * FROM mc_member ORDER BY member_uid DESC;
 SELECT * FROM mc_board;
 
 
