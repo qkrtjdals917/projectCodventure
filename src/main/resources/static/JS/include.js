@@ -23,11 +23,8 @@ $(function () {
 			
 			return false;
 		}
-
-
 		checkEmailDuplication();
-	})
-	
+	});
 	// nickname 부분
 	$("#nickname").change(function () {
 		$("#nicknameDuplication").val("emailUncheck");
@@ -35,6 +32,7 @@ $(function () {
 	})
 		
 	$("#nickname_check").click(function(){
+
 		frm = document.forms['joinform'];
 		nickname = frm['nickname'].value;
 		
@@ -52,7 +50,6 @@ $(function () {
 			
 			return false;
 		}
-
 
 		checkNicknameDuplication();
 	});
@@ -139,7 +136,7 @@ function chkJoin (){
 		return false;
 	}
 	
-	
+	alert("회원가입이 완료되었습니다.");
 	return true;
  }
 
@@ -166,6 +163,7 @@ function checkEmailDuplication () {
 		}
 	});	
 }
+
 function checkNicknameDuplication () {
 	var nickname = $('#nickname').val();
 

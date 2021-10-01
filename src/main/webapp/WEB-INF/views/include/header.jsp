@@ -44,6 +44,7 @@
                     	<c:choose>
                     		<c:when test="session 정보 있을때">
                     			<button type="button" id="btnMypage">마이페이지</button>
+                    			<button type="button" id="btnLogout">로그아웃</button>
                     		</c:when>
                     		<c:otherwise>
 		                        <button type="button" id="btnJoin" >회원가입</button>
@@ -83,10 +84,7 @@
 							<label for="Email"><b>Email</b></label>
 							<input type="text" id="email" placeholder="Email을 입력하세요" name="email" required>
 							<button type="button" id="email_check" class="btn">중복체크</button>
-							<!-- 
 							<input type="hidden" id="emailDuplication" name="emailDuplication" value="emailUncheck"> 
-							 -->
-							<input type="text" id="emailDuplication" name="emailDuplication" value="emailUncheck"> 
 							<br><b id="emailEx"></b>
 							<br>
 							<label for="Pw"><b>PW</b></label>
@@ -98,7 +96,7 @@
 							<label for="Nickname"><b>닉네임</b></label>
 							<input type="text" id="nickname" placeholder="닉네임를 입력하세요" name="nickname" required>
 							<button type="button" id="nickname_check" class="btn">중복체크</button>
-							<input type="text" id="nicknameDuplication" name="nicknameDuplication" value="nicknameUncheck"> 
+							<input type="hidden" id="nicknameDuplication" name="nicknameDuplication" value="nicknameUncheck"> 
 							<br><b id="nicknameEx"></b>
 							<br>
 							<label for="phoneNumber"><b>전화번호</b></label>

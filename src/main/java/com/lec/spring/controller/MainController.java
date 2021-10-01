@@ -1,9 +1,9 @@
 package com.lec.spring.controller;
 
-import org.springframework.boot.web.servlet.server.Session;
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -11,14 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	
 	@RequestMapping("")
-	public String mainPage(Model model , Session session) {
+	public String mainPage(Model model, Principal principal) {
 //		model.addAttribute("key","service.__()");
 		// Service 로 데이터 가져와서 model 에 담아 view에 전달
-		
-		model.addAttribute("session", session);
+		if (principal != null) {
+			System.out.println("타입정보 : " + principal.getClass());
+			System.out.println("ID정보 : " + principal.getName());
+		}
 		
 		return "user/main";
 	}
+	
 	//코인, 
 	@RequestMapping("/coin")
 	public String coin() {
@@ -41,10 +44,12 @@ public class MainController {
 	
 	//-------------------여기 이하 admin---------------------
 	
-	@GetMapping("/login")
-	public String login() {
-		
-		return "user/login/login";	// 로그인 페이지
-	}
+//	@GetMapping("/logincheck")
+//	@ResponseBody
+//	public String login(Authentication authentication) {
+//		String str = principal.getEmail();
+//		return str;
+//
+//	}
 	
 }
