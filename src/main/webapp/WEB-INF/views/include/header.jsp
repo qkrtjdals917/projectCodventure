@@ -40,20 +40,24 @@
                     </button>
 
                     <div class ="headD">
-                    	<!-- 
                     	<c:choose>
-                    		<c:when test="session 정보 있을때">
-                    			<button type="button" id="btnMypage">마이페이지</button>
-                    			<button type="button" id="btnLogout">로그아웃</button>
-                    		</c:when>
-                    		<c:otherwise>
+                    		<c:when test="${empty member}">
 		                        <button type="button" id="btnJoin" >회원가입</button>
 		                        <button type="button" id="btnLogin">로그인</button>
+                    		</c:when>
+                    		
+                    		<c:otherwise>
+                    			<button type="button" id="btnMypage" 
+                    			onClick="location.href='/modacon/mypage'">마이페이지</button>
+                    			<button href="/logout" type="button" id="btnLogout" 
+                    			onClick="location.href='/logout'">로그아웃</button>
                     		</c:otherwise>
                     	</c:choose>
-                     	-->
+                    	<!-- 
                     	<button type="button" id="btnJoin" >회원가입</button>
                     	<button type="button" id="btnLogin">로그인</button>
+                    	 -->
+                    	
                     </div>
                 </div>
             </div>
