@@ -58,6 +58,7 @@
         <div id="content">
           ${list[0].content }
         </div>
+        <hr>
       </div>
 
       <div class="content_btn"> <%-- 하단 버튼 모음 --%>

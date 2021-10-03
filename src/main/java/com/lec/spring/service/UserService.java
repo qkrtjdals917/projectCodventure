@@ -41,4 +41,8 @@ public class UserService {
 		return dao.selectOne(uid);
 	}
 	
+	public int write(BoardDTO dto) {
+		return dao.insert(dto);
+	}
+	
 }

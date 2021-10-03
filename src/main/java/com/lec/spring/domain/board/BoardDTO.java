@@ -18,6 +18,7 @@ public class BoardDTO {
 	private String type;			// 게시판
 	private String tag;				// 태그
 	private String likeCnt;
+	private String member_uid;		// 글작성, 수정 시 사용
 	
 	public String getRegDateTime() {
 		if(this.regDate == null) return "";

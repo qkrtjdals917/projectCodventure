@@ -49,6 +49,7 @@
 			FROM mc_board mb , mc_member mm 
 			WHERE mb.member_uid = mm.member_uid
 			AND mb.type = "자유"
+			ORDER BY board_uid DESC
 		]]>
 	</select>
 
@@ -61,14 +62,15 @@
 			FROM mc_board mb , mc_member mm 
 			WHERE mb.member_uid = mm.member_uid
 			AND mb.type = "정보"
+			ORDER BY board_uid DESC
 		]]>
 	</select>
 	
 	<!-- 글작성 로그인 연계-->
-	<!-- <insert id="insert" flushCache="true" parameterType="com.lec.spring.domain.board.BoardDTO"
+	<insert id="insert" flushCache="true" parameterType="com.lec.spring.domain.board.BoardDTO"
 	keyProperty="board_uid" keyColumn="board_uid" useGeneratedKeys="true">
 		INSERT INTO mc_board (type, subject, tag, content, member_uid)
-		VALUES (#{type}, #{subject}, #{tag}, #{content}, #{})
-	</insert> -->
+		VALUES (#{type}, #{subject}, #{tag, jdbcType=VARCHAR}, #{content}, #{member_uid})
+	</insert>
 	
 </mapper>

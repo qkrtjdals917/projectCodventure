@@ -200,11 +200,15 @@ b {
 /* 푸터 */
 footer {
     background: #100E34;
+    
 }
 
 footer .container{
     padding: 40px 20px;  /*안쪽 여백*/
 }
+
+
+
 
 /* 푸터A : 사이트 정보 */
 .footA {
