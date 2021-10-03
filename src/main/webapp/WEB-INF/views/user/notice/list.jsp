@@ -16,11 +16,11 @@
 
 
 <body>
-  <%-- 
-  <div>
+  <div class="header">
     <%@ include file="../../include/header.jsp"%>
   </div>
-  --%>
+  <div style="clear:both; height:70px"></div>
+  
   <div id="middle_menu">
     <h2>공지사항</h2>
 
@@ -54,6 +54,10 @@
     </table>
     <br>
 
+  </div>
+  
+  <div class="footer">
+    <%@ include file="../../include/footer.jsp"%>
   </div>
 </body>
 

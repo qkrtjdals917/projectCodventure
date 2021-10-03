@@ -17,9 +17,10 @@
 
 <body>
   <div>
-    <header>
-      헤더처리
-    </header>
+    <div class="header">
+    <%@ include file="../../include/header.jsp"%>
+ 	</div>
+ 	<div style="clear:both; height:70px"></div>
 
     <div id="middle_menu">
       <h2>커뮤니티</h2> <%-- 게시판에 따라 변경시켜야함 --%>
