@@ -1,13 +1,9 @@
 package com.lec.spring.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,7 +47,7 @@ public class IndexController {
 	    request.getSession().setAttribute("prevPage", referrer);
 	    return referrer;
 	}
-	
+
 	@RequestMapping(value = "/logoutcheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String logoutPage(HttpServletRequest request) {
@@ -59,8 +55,7 @@ public class IndexController {
 	    request.getSession().setAttribute("prevPage", referrer);
 	    return referrer;
 	}
-
-
+	
 	@PostMapping("/joinOk")
 	public String joinOk(MemberDTO dto) {
 		System.out.println(dto);	// 잘 가져왔는지 확인
@@ -70,7 +65,7 @@ public class IndexController {
 		String encPassword = passwordEncoder.encode(rawPassword);	// 원본을 암호화
 		dto.setPw(encPassword); // 암호와된 pw세팅
 		
-		int cnt = MemberService.addMember(dto);
+		MemberService.addMember(dto);
 		
 		return "redirect:/modacon";	// 회원가입 완료시 로그인 페이지로 이동
 	}
