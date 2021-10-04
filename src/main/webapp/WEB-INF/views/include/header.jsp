@@ -45,8 +45,17 @@
 		                        <button type="button" id="btnJoin" >회원가입</button>
 		                        <button type="button" id="btnLogin">로그인</button>
                     		</c:when>
+                    		<c:otherwise>
+                    			<button type="button" id="btnMypage" 
+                    			onClick="location.href='/modacon/mypage'">마이페이지</button>
+                    			<button type="button" id="btnLogout">로그아웃</button>
+                    		</c:otherwise>
                     	</c:choose>
-                    	
+                    	<!-- 
+                    	<button type="button" id="btnJoin" >회원가입</button>
+                    	<button type="button" id="btnLogin">로그인</button>
+                    	 -->
+                    	 
                     </div>
                 </div>
             </div>
