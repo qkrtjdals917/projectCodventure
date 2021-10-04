@@ -42,9 +42,20 @@ $(function () {
 		checkNicknameDuplication();
 	});
 	
-	
-	// 메뉴 버튼 부분
+	// 로그인 시 해당 페이지 url 저장하기위함
 	$("#btnLogin").click(function(){
+		
+		$.ajax({
+		url : "/logincheck/",
+		type : "GET",
+		cache : false,
+		success : function(data, status){
+			if(status == "success"){
+				alert(data);
+			}
+		}
+	});	
+		
 		setPopup("login");    // 글 작성 용으로 모달 팝업 셋업
 		$("#dlg_login").show();
 	});

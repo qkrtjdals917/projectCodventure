@@ -1,11 +1,19 @@
 package com.lec.spring.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lec.spring.domain.member.MemberDTO;
@@ -36,6 +44,23 @@ public class IndexController {
 		return MemberService.countByNickname(nickname);
 	}
 	
+	@RequestMapping(value = "/logincheck", method = RequestMethod.GET)
+	@ResponseBody
+	public String loginPage(HttpServletRequest request) {
+	    String referrer = request.getHeader("Referer");
+	    request.getSession().setAttribute("prevPage", referrer);
+	    return referrer;
+	}
+	
+	@RequestMapping(value = "/logoutcheck", method = RequestMethod.GET)
+	@ResponseBody
+	public String logoutPage(HttpServletRequest request) {
+	    String referrer = request.getHeader("Referer");
+	    request.getSession().setAttribute("prevPage", referrer);
+	    return referrer;
+	}
+
+
 	@PostMapping("/joinOk")
 	public String joinOk(MemberDTO dto) {
 		System.out.println(dto);	// 잘 가져왔는지 확인
