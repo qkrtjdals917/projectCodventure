@@ -44,5 +44,9 @@ public class UserService {
 	public int write(BoardDTO dto) {
 		return dao.insert(dto);
 	}
+
+	public int delete(int uid) {
+		return dao.deleteUid(uid);
+	}
 	
 }

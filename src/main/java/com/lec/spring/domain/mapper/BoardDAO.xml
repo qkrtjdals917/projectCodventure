@@ -66,11 +66,15 @@
 		]]>
 	</select>
 	
-	<!-- 글작성 로그인 연계-->
+	<!-- 글작성 -->
 	<insert id="insert" flushCache="true" parameterType="com.lec.spring.domain.board.BoardDTO"
 	keyProperty="board_uid" keyColumn="board_uid" useGeneratedKeys="true">
 		INSERT INTO mc_board (type, subject, tag, content, member_uid)
 		VALUES (#{type}, #{subject}, #{tag, jdbcType=VARCHAR}, #{content}, #{member_uid})
 	</insert>
 	
+	<!-- 글 삭제 -->
+	<delete id="deleteUid" flushCache="true">
+		DELETE FROM mc_board WHERE board_uid = #{board_uid}
+	</delete>
 </mapper>

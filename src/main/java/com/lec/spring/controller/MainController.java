@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -123,6 +124,14 @@ public class MainController {
 		model.addAttribute("result", userService.write(dto));
 		model.addAttribute("dto", dto);
 		return "user/board/writeOk";
+	}
+	
+	// 게시 글 삭제
+	@DeleteMapping("/board/delete")
+	public String delete(int uid, Model model, Authentication authentication) {
+		loginCheck(model, authentication);
+		model.addAttribute("result", userService.delete(uid));
+		return "user/board/delete";
 	}
 	
 	// 공지 리스트
