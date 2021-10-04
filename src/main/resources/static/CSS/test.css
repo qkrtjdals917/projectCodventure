@@ -31,18 +31,18 @@ header .container {
 }
 
 /* 헤더B: 네비게이션 메뉴 */
-.headB ul {
+.headB ul, .headE ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.headB li {
+.headB li, .headE li {
 	color: #fff;
 	padding: 0 20px;
 }
 
-.headB a {
+.headB a, .headE a {
     text-align: center;
     display: block;
     padding: 15px;
@@ -50,7 +50,7 @@ header .container {
     text-decoration: none;
 }
 
-.headB a:hover {
+.headB a:hover, .headE a:hover {
     opacity: 0.3;
 }
 .headC span{
@@ -97,6 +97,9 @@ header .container-small {
 
 /* 작은 화면에선 메뉴 감추기 */
 .headB {
+    display: none;
+}
+.headE{
     display: none;
 }
 

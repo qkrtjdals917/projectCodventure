@@ -1,4 +1,5 @@
 $(function () {
+	
 	// email 부분
 	$("#email").change(function() {
 		$("#emailDuplication").val("emailUncheck");
@@ -62,7 +63,7 @@ $(function () {
 	});
 	
 	$(".headC").click(function(){
-    	$(".headB").slideToggle();
+    	$(".headE").slideToggle();
 	});
 	
 	$("#btnJoin").click(function(){
@@ -88,7 +89,6 @@ $(function () {
 	});
 	
 });
-
 
 function setPopup(mode){
 	

@@ -54,7 +54,7 @@ table, th, td {
 					<c:when test="" />
 				</c:choose>
 				<c:otherwise>
-					<c:forEach var="dto" item="">
+					<c:forEach>
 						<tr>
 							<td><!-- 거래소 --></td>
 							<td><!-- 거래소 --></td>

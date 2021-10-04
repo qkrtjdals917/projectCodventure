@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -19,8 +19,8 @@
   <div>
     <div class="header">
     <%@ include file="../../include/header.jsp"%>
- 	</div>
- 	<div style="clear:both; height:70px"></div>
+    </div>
+    <div style="clear:both; height:70px"></div>
 
     <div id="middle_menu">
       <h2>커뮤니티</h2> <%-- 게시판에 따라 변경시켜야함 --%>
