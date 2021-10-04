@@ -54,7 +54,7 @@ $(function () {
 				alert(data);
 			}
 		}
-	});	
+		});	
 		
 		setPopup("login");    // 글 작성 용으로 모달 팝업 셋업
 		$("#dlg_login").show();
