@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+
+* {
+	margin: 0;
+	color: black;
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 25px;
+}
+
+table {
+	width: 100%;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.headB {
+	color: #fff;
+    float: right;
+}
+
+.headB button:hover {
+	cursor: pointer;
+	opacity: 0.3;
+}
+	
+
+.headC {
+	color: #fff;	
+}
+
+#contentMain {
+	margin-top: 80px;
+	padding: 15px;
+}
+
+#adm_content {
+	margin-top: 80px;
+	padding: 15px;
+	display: none;
+}
+#contentNotice {
+	height: 600px;
+	position: relative;
+	margin: 0 auto;
+	boarder: gray solid 1px;
+}
+
+#contentBoard {
+	height: 600px;
+	position: relative;
+	margin: 0 auto;
+	boarder: gray solid 1px;
+}
+
+#contentReport {
+	height: 600px;
+	position: relative;
+	margin: 0 auto;
+	boarder: gray solid 1px;
+}
+
+#contentMember {
+	height: 600px;
+	position: relative;
+	margin: 0 auto;
+	boarder: gray solid 1px;
+}
+
+.searchMember {
+	float: left;
+}
+
+.selectPage {
+	float: right;
+}
