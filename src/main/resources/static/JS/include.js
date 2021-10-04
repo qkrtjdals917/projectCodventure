@@ -42,9 +42,15 @@ $(function () {
 		checkNicknameDuplication();
 	});
 	
-	
-	// 메뉴 버튼 부분
+	// 로그인 시 해당 페이지 url 저장하기위함
 	$("#btnLogin").click(function(){
+		
+		$.ajax({
+		url : "/logincheck/",
+		type : "GET",
+		cache : false
+		});	
+		
 		setPopup("login");    // 글 작성 용으로 모달 팝업 셋업
 		$("#dlg_login").show();
 	});
@@ -57,6 +63,24 @@ $(function () {
 		setPopup("join");    // 글 작성 용으로 모달 팝업 셋업
 		$("#dlg_login").show();
 	});
+	
+	// 로그아웃 버튼
+	
+	$("#btnLogout").click (function(){
+		alert("로그아웃되셨습니다.");
+
+		$.ajax({
+		url : "/logoutcheck",
+		type : "GET",
+		cache : false
+		});
+		
+		location.href="/logout";
+		
+		
+	});	
+	
+	
 	
 	// 모달 창 내 버튼 부분
 	$("#btn_go_join").click(function(){
@@ -74,6 +98,7 @@ $(function () {
 		   $(this).hide();
 		}
 	});
+	
 	
 });
 
@@ -173,4 +198,8 @@ function checkNicknameDuplication () {
 			}
 		}
 	});	
+}
+
+function gourl(url) {
+	location.href=url;
 }

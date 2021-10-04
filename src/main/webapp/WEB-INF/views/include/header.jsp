@@ -49,8 +49,7 @@
                     		<c:otherwise>
                     			<button type="button" id="btnMypage" 
                     			onClick="location.href='/modacon/mypage'">마이페이지</button>
-                    			<button href="/logout" type="button" id="btnLogout" 
-                    			onClick="location.href='/logout'">로그아웃</button>
+                    			<button type="button" id="btnLogout">로그아웃</button>
                     		</c:otherwise>
                     	</c:choose>
                     	<!-- 
