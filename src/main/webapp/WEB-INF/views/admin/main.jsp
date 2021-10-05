@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+	
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -75,52 +78,52 @@
 	<div id="adm_content">
 
 		<div id="contentNotice">
-			<div id="middle_menu">
-				<h2>커뮤니티</h2>
-				<a href="#">정보</a> | <a href="#">자유</a>
-
-				<table>
-					<tr>
-						<th>글번호</th>
-						<th>'log'제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>DELETE</th>
-					</tr>
-
-					<c:choose>
-						<c:when test="#"></c:when>
-						<c:otherwise>
-							<c:forEach var="dto" items="#">
-								<tr>
-									<td>${dto.board_uid }</td>
-									<td><a href="board/view?board_uid=${dto.board_uid}">${dto.subject}</td>
-									<td>${dto.nickname }</td>
-									<td>${dto.regDateTime }</td>
-									<td><input type="button" id="delete_button" value="삭제"></td>
-								</tr>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-				</table>
-				<br>
-				<!-- <button onclick= "location.href = 'write.jsp'" >공지 등록</button> -->
-
-				<%-- [페이징] --%>
-				<div class="center">
-					<ul class="pagination" id="pagination"></ul>
+			<h2>공지사항</h2>
+			<select name="" id="">
+				<option value="">10</option>
+				<option value="">15</option>
+				<option value="">30</option>
+				<option value="">50</option>
+				<option value="">100</option>
+			</select>
+			<form id="NoticeForm" name="NoticeForm" method="GET">
+				<div id="NoticeContainer">
+					<table>
+						<tr>
+							<th>#</th>
+							<th>글번호</th>
+							<th>'log'제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>DELETE</th>
+						</tr>
+						<tbody>
+						</tbody>
+					</table>
+					<br>
+	
 				</div>
+			</form>
+			<!-- <button onclick= "location.href = 'write.jsp'" >공지 등록</button> -->
+			<%-- [페이징] --%>
+			<div class="center">
+				<ul class="pagination" id="pagination"></ul>
 			</div>
 
 		</div>
 
 		<div id="contentBoard">
+	
+			<h2>커뮤니티</h2>
+			<a href="#">정보</a> | <a href="#">자유</a>
+	
 			<select name="" id="">
 				<option value="">전체</option>
 				<option value="">코인정보</option>
 				<option value="">뉴스</option>
 				<option value="">팁과 노하우</option>
-			</select> <select name="" id="">
+			</select> 
+			<select name="" id="">
 				<option value="">10</option>
 				<option value="">15</option>
 				<option value="">30</option>
@@ -135,21 +138,6 @@
 					<th>작성일</th>
 					<th>DELETE</th>
 				</tr>
-
-				<c:choose>
-					<c:when test="#"></c:when>
-					<c:otherwise>
-						<c:forEach var="dto" items="#">
-							<tr>
-								<td>${dto.board_uid }</td>
-								<td><a href="board/view?board_uid=${dto.board_uid}">${dto.subject}</td>
-								<td>${dto.nickname }</td>
-								<td>${dto.regDateTime }</td>
-								<td><input type="button" id="delete_button" value="삭제"></td>
-							</tr>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
 			</table>
 
 			<%-- [페이징] --%>
@@ -181,13 +169,13 @@
 					<c:otherwise>
 						<c:forEach var="dto" items="#">
 							<tr>
-								<td>${dto.board_uid }</td>
-								<td><a href="board/view?board_uid=${dto.board_uid}">${dto.subject}</td>
-								<td>${dto.nickname }</td>
-								<td>${dto.nickname }</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
 								<td><input type="button" id="reportBack_button"
 									value="신고취하"></td>
-								<td><input type="button" id="delete_button" value="삭제"></td>
+								<td><input type="button" class="delete_button" value="삭제"></td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
@@ -203,7 +191,7 @@
 		<div id="contentMember">
 
 			<h2>회원관리</h2>
-			
+
 			<!-- form -->
 			<form id="searchMember" action=" " method=" ">
 				<input tpye="text" placeholder="회원검색"></input>
@@ -231,15 +219,7 @@
 					<th>권한</th>
 					<th>상태</th>
 				</tr>
-				<tr>
-					<td>${dto.email }</td>
-					<td>${dto.nickname }</td>
-					<td>${dto.phoneNumber }</td>
-					<td>${dto.authority }</td>
-					<td><input type="button" id="exit" value="강퇴"></td>
-					</td>
 
-				</tr>
 			</table>
 			<!--end table -->
 
