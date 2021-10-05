@@ -71,5 +71,16 @@ public class BoardDAOImpl implements BoardDAO {
 	public int insert(BoardDTO dto) {
 		return mapper.insert(dto);
 	}
-	
+
+	@Override
+	public int countAll() {
+		return mapper.countAll();
+	}
+
+
+	@Override
+	public List<BoardDTO> selectFromRow(int from, int pageRows) {
+		return mapper.selectFromRow(from, pageRows);
+	}
+
 }

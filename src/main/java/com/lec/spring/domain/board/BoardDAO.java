@@ -2,6 +2,7 @@ package com.lec.spring.domain.board;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.MapperScan;
 
 @MapperScan
@@ -32,6 +33,14 @@ public interface BoardDAO {
 	
 	// 글 작성
 	public abstract int insert(BoardDTO dto);
+
+	public abstract int countAll();
+
+	public abstract List<BoardDTO> selectFromRow(
+			@Param("from") int from, 
+			@Param("pageRows") int pageRows 
+			);
+
 
 	
 }

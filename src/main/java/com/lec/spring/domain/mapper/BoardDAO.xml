@@ -73,4 +73,15 @@
 		VALUES (#{type}, #{subject}, #{tag, jdbcType=VARCHAR}, #{content}, #{member_uid})
 	</insert>
 	
+	<!-- 글 여러개 삭제 (해연추가) -->
+	<delete id="deleteByBoard" flushCache="true"
+		parameterType="java.util.ArrayList">
+		DELETE FROM mc_board
+		WHERE board_uid in (
+			<foreach collection="array" item="item" index="index" separator=",">
+				${item}
+			</foreach>
+		)
+	</delete>
+	
 </mapper>
