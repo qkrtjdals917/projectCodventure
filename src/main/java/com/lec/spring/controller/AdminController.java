@@ -2,12 +2,17 @@ package com.lec.spring.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lec.spring.domain.ajax.ModaconAjaxList;
 import com.lec.spring.domain.board.BoardDTO;
@@ -25,14 +30,48 @@ public class AdminController {
 	}
 	
 	@RequestMapping({"", "/"})
-	public String adminMain(Model model) {
+	public String adminMain(HttpServletRequest request , Model model) {
+		HttpSession session = request.getSession();
+		if (session != null) {
+            String redirectUrl = (String) session.getAttribute("admPrevPage");
+            if (redirectUrl != null) {
+            	model.addAttribute("admPrevPage", redirectUrl);
+            } else {
+            	model.addAttribute("admPrevPage", "main");
+            }
+        } else {
+        	model.addAttribute("admPrevPage", "main");
+        }
 		
 		return "admin/main";
 	}
+
+	@GetMapping("/saveroute/{path}")
+	@ResponseBody
+	public String saveRoute (HttpServletRequest request , @PathVariable String path) {
+		HttpSession session = request.getSession();
+		if (session != null) {
+            String redirectUrl = (String) session.getAttribute("admPrevPage");
+            if (redirectUrl != null) {
+            	if(path.equals(redirectUrl)) {
+            		
+            	}
+            	session.removeAttribute("admPrevPage");
+            	request.getSession().setAttribute("admPrevPage", path);
+            } else {
+            	request.getSession().setAttribute("admPrevPage", path);
+            }
+        } else {
+        	request.getSession().setAttribute("admPrevPage", path);
+        }
+		
+//	    request.getSession().setAttribute("admPrevPage", path);
+	    
+	    return path;
+		
+	}
 	
-	
-	// 페이징
-	@GetMapping("noticeList/{page}/{pageRows}")
+	@GetMapping("/noticeList/{page}/{pageRows}")
 	public ModaconAjaxList admNoticeList(
 			@PathVariable int page,
 			@PathVariable int pageRows

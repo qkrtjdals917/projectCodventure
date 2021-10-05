@@ -12,7 +12,6 @@ public class CommentDAOImpl implements CommentDAO {
 	
 	@Autowired
 	public CommentDAOImpl(SqlSession sqlSession) {
-		System.out.println("AjaxDAOImpl() 생성");
 		mapper = sqlSession.getMapper(CommentDAO.class);
 	}
 

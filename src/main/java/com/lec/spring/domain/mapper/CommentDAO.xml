@@ -5,27 +5,33 @@
 
 	<insert id="insert" flushCache="true">
 	    INSERT INTO mc_comment 
-	    	(member_uid, board_uid, comment_content,)
+	    	(member_uid, board_uid, comment_content)
 	    VALUES 
 	    	(#{member_uid}, #{board_uid}, #{comment_content})
   	</insert>
 	
 	<select id="select" resultType="com.lec.spring.domain.comment.CommentDTO">
         SELECT 
-        	comment_uid, board_uid, member_uid, comment_content AS content 
+        	c.comment_uid AS comment_uid, c.board_uid AS board_uid, 
+        	c.member_uid AS member_uid, c.comment_content AS content,
+        	c.regDate AS regDate, m.nickname as nickname
         FROM 
-        	mc_comment 
+        	mc_comment c , mc_member m
         WHERE 
-        	comment_uid = #{uid}
+        	c.member_uid = m.member_uid
+        	AND c.comment_uid = #{uid} 
     </select>
     
 	<select id="selectByBoard" resultType="com.lec.spring.domain.comment.CommentDTO">
-        SELECT 
-        	comment_uid, board_uid, member_uid, comment_content AS content 
+		SELECT 
+        	c.comment_uid AS comment_uid, c.board_uid AS board_uid, 
+        	c.member_uid AS member_uid, c.comment_content AS content,
+        	c.regDate AS regDate, m.nickname as nickname
         FROM 
-        	mc_comment 
+        	mc_comment c , mc_member m
         WHERE 
-        	board_uid = #{uid}
+        	c.member_uid = m.member_uid
+        	AND c.board_uid = #{uid} 
     </select>
     
     <select id="countByBoard">
