@@ -39,7 +39,7 @@ public class AdminService {
 	
 	
 	// 공지사항 정보를 가져온다
-	public List<BoardDTO> noticeUpdateList(){
+	public List<BoardDTO> noticeList(){
 		return Bdao.selectNotice();
 	}
 	

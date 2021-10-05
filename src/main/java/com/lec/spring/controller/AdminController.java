@@ -30,6 +30,8 @@ public class AdminController {
 		return "admin/main";
 	}
 	
+	
+	// 페이징
 	@GetMapping("noticeList/{page}/{pageRows}")
 	public ModaconAjaxList admNoticeList(
 			@PathVariable int page,
@@ -60,7 +62,7 @@ public class AdminController {
 			// from: 몇번째 row 부터?
 			int from = (page - 1) * pageRows;  // MySQL 의 Limit 는 0-base 
 			
-			list = adminService.list(from, pageRows);
+			list = adminService.noticeUpdatelist(from, pageRows);
 			
 			if(list == null) {
 				message.append("[리스트할 데이터가 없습니다]");
