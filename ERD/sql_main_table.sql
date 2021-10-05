@@ -181,6 +181,7 @@ FROM mc_board mb , mc_member mm
 WHERE mb.member_uid = mm.member_uid 
 AND mb.board_uid = 1;
 
+
 SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname, 
 		mb.regDate regDate, mb.count count, mb.content content, 
 		mb.type type, mb.tag tag 

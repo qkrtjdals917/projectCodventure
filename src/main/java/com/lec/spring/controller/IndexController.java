@@ -70,5 +70,16 @@ public class IndexController {
 		return "redirect:/modacon";	// 회원가입 완료시 로그인 페이지로 이동
 	}
 	
+	@PostMapping("/deleteOk")
+	public String deleteOk(MemberDTO dto, int uid) {
+		if(dto.getChecksecession() == "회원탈퇴") {
+			
+			MemberService.deleteMember(dto, uid);
+			
+			return "redirect:/modacon";	// 로그인 페이지로 이동
+		}
+		
+		return "redirect:/modacon/mypage";
+	}
 	
 }

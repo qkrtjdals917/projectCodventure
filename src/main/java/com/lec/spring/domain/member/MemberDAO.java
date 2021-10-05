@@ -40,4 +40,7 @@ public interface MemberDAO {
 		// 비번바꾸깅
 		public int changePassword(MemberDTO dto);
 		
+		// 작성글 개수 가져오기
+		public int memberBoardCnt(int uid);
+		
 }

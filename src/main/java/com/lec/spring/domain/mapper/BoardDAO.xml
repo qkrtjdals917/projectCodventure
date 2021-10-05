@@ -73,4 +73,5 @@
 		VALUES (#{type}, #{subject}, #{tag, jdbcType=VARCHAR}, #{content}, #{member_uid})
 	</insert>
 	
+	
 </mapper>

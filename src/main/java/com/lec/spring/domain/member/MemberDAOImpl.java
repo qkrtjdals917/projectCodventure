@@ -71,5 +71,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public int changePassword(MemberDTO dto) {
 		return mapper.changePassword(dto);
 	}
+
+	@Override
+	public int memberBoardCnt(int uid) {
+		return mapper.memberBoardCnt(uid);
+	}
 	
 }

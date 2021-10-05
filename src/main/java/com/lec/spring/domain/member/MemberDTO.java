@@ -12,6 +12,8 @@ public class MemberDTO {
 	private int authority;
 	private String emailDuplication;
 	private String nicknameDuplication;
+	private int memberBoardCnt;
+	private String checksecession;
 	
 	// 홈페이지에서 입력받을때 자바스크립트에서 처리해주면 ㄱㅊ
 	// 다시 역으로 네모 3칸 로 다시꽂아줄때 스플릿으로 처리해서보내주면 ㄱㅊ

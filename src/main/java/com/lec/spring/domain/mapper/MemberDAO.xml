@@ -110,5 +110,11 @@
 		WHERE member_uid = #{member_uid}
 	</update>	
 	
+	<!-- 작성글 개수 가져오기 -->
+	<select id="memberBoardCnt" parameterType="com.lec.spring.domain.member.MemberDTO">
+		SELECT count(subject) 
+		FROM mc_board 
+		WHERE member_uid = #{member_uid};
+	</select>
 	
 </mapper>

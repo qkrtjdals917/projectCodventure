@@ -71,5 +71,6 @@ public class BoardDAOImpl implements BoardDAO {
 	public int insert(BoardDTO dto) {
 		return mapper.insert(dto);
 	}
+
 	
 }
