@@ -1,52 +1,43 @@
 $(document).ready(function() {
+
 	
 	$("#admNotice").click(function() {
-		$("#contentMain").hide();
-		$("#adm_content").show();
-		$("#contentNotice").show();
-		$("#contentBoard").hide();
-		$("#contentReport").hide();
-		$("#contentMember").hide();
+		saveRoute("notice")
+		viewPage("notice")
 		
-		noticeUpdateList(1,10);
-
+		//noticeUpdateList(1,10);
+		
 		
 	});
 	
 	$("#admBoard").click(function() {
-		$("#contentMain").hide();
-		$("#adm_content").show();
-		$("#contentNotice").hide();
-		$("#contentBoard").show();
-		$("#contentReport").hide();
-		$("#contentMember").hide();
+		saveRoute("board")
+		viewPage("board")
+
 	});
 	
 	$("#admReport").click(function() {
-		$("#contentMain").hide();
-		$("#adm_content").show();
-		$("#contentNotice").hide();
-		$("#contentBoard").hide();
-		$("#contentReport").show();
-		$("#contentMember").hide();
+		saveRoute("report")
+		viewPage("report")
+		
 	});
 	
 	$("#admMember").click(function() {
-		$("#contentMain").hide();
-		$("#adm_content").show();
-		$("#contentNotice").hide();
-		$("#contentBoard").hide();
-		$("#contentReport").hide();
-		$("#contentMember").show();
+		saveRoute("member")
+		viewPage("member")
+		
 	});
 	
-	
+	$("#logobtn").click(function() {
+		saveRoute("main")
+		viewPage("main")
+	});
 });
 
 function noticeUpdateList (page, pageRows) {
 	$.ajax( {
 		type: 'GET',
-		url : "./noticeList/" + page + "/" + pageRows,
+		url : "modacon/admin/noticeList/" + page + "/" + pageRows,
 		cache : false,
 		success : function(data, status) {
 			var result = "";
@@ -71,3 +62,68 @@ function noticeUpdateList (page, pageRows) {
 		}
 	} );
 }
+
+
+function saveRoute (route) {
+		
+		$.ajax( {
+		type: 'GET',
+		url : "/modacon/admin/saveroute/" + route,
+		cache : false
+	} );
+}
+
+function viewPage (route) {
+	if(route=="main") {
+		$("#contentMain").show();
+		$("#adm_content").show();
+		$("#contentNotice").hide();
+		$("#contentBoard").hide();
+		$("#contentReport").hide();
+		$("#contentMember").hide();
+	}
+	
+	if(route=="notice")  {
+		$("#contentMain").hide();
+		$("#adm_content").show();
+		$("#contentNotice").show();
+		$("#contentBoard").hide();
+		$("#contentReport").hide();
+		$("#contentMember").hide();
+	}
+	
+	if(route=="board")  {
+		$("#contentMain").hide();
+		$("#adm_content").show();
+		$("#contentNotice").hide();
+		$("#contentBoard").show();
+		$("#contentReport").hide();
+		$("#contentMember").hide();
+	}
+	
+	if(route=="report")  {
+		$("#contentMain").hide();
+		$("#adm_content").show();
+		$("#contentNotice").hide();
+		$("#contentBoard").hide();
+		$("#contentReport").show();
+		$("#contentMember").hide();
+	}
+	
+	if(route=="member")  {
+		$("#contentMain").hide();
+		$("#adm_content").show();
+		$("#contentNotice").hide();
+		$("#contentBoard").hide();
+		$("#contentReport").hide();
+		$("#contentMember").show();
+	}
+	
+	
+}
+
+
+
+
+
+

@@ -32,7 +32,7 @@
 		<div class="container">
 			<div class="container-small">
 				<!-- 작은 화면의 배치를 위한 컨테이너-->
-				<a href="/modacon/admin" class="headA">로고</a>
+				<a id="logobtn" class="headA" style="cursor:pointer">로고</a>
 
 				<!-- 내비게이션 메뉴 -->
 				<nav class="headB">
@@ -57,7 +57,7 @@
 
 	</header>
 
-
+	
 	<div id="contentMain">
 		<article>
 			<div>
@@ -230,7 +230,15 @@
 		</div>
 
 	</div>
-
+	
+	<c:choose>
+		<c:when test="${not empty admPrevPage}">
+			<script>
+				viewPage("${admPrevPage}");
+				
+			</script>
+		</c:when>
+	</c:choose>
 
 
 	<footer>
