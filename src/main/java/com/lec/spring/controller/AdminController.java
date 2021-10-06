@@ -72,7 +72,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/noticeList/{page}/{pageRows}")
-	public ModaconAjaxList admNoticeList(
+	public ModaconAjaxList<BoardDTO> admNoticeList(
 			@PathVariable int page,
 			@PathVariable int pageRows
 			) {
@@ -93,7 +93,7 @@ public class AdminController {
 		
 		try {			
 			// 글 전체 개수 구하기
-			totalCnt = adminService.count();
+			totalCnt = adminService.countNtc();
 			
 			// 총 몇페이지 분량?
 			totalPage = (int)Math.ceil(totalCnt / (double)pageRows);
@@ -101,7 +101,7 @@ public class AdminController {
 			// from: 몇번째 row 부터?
 			int from = (page - 1) * pageRows;  // MySQL 의 Limit 는 0-base 
 			
-			list = adminService.noticeUpdatelist(from, pageRows);
+			list = adminService.ntcUpdateList(from, pageRows);
 			
 			if(list == null) {
 				message.append("[리스트할 데이터가 없습니다]");
@@ -133,6 +133,41 @@ public class AdminController {
 		
 	} // end admNoticeList
 	
+	// 특정 uid 글 읽기
+		@GetMapping("/{uid}")   // URI:  /board/{uid}
+		public ModaconAjaxList<BoardDTO> admView(@PathVariable int uid) {
+			List<BoardDTO> list = null;
+			
+			// message 
+			StringBuffer message = new StringBuffer();
+			String status = "FAIL";
+			
+//			try {			
+//				list = AdminService.viewByUid(uid);  // 조회수 증가 + 읽기
+//				
+//				if(list == null || list.size() == 0) {
+//					message.append("[해당 데이터가 없습니다]");
+//				} else {
+//					status = "OK";
+//				}
+//			} catch(Exception e) {
+//				e.printStackTrace();
+//				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+//			}
+			
+			ModaconAjaxList<BoardDTO> result = new ModaconAjaxList<BoardDTO>();
+			
+			result.setStatus(status);
+			result.setMessage(message.toString());
+			
+//			if(list != null) {
+//				result.setCount(list.size());
+//				result.setList(list);
+//			}
+//			
+			return result;		
+		}
+		
 	
 	
 	

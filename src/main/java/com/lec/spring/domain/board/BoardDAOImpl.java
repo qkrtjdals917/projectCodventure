@@ -2,6 +2,7 @@ package com.lec.spring.domain.board;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -66,21 +67,59 @@ public class BoardDAOImpl implements BoardDAO {
 		return mapper.selectInfo();
 	}
 
-
+	// 로그인 연계
 	@Override
 	public int insert(BoardDTO dto) {
 		return mapper.insert(dto);
 	}
 
+	// ↓ 해연추가 
+	
+	// 공지사항 정보 가져오기
+	// 공지사항 카운트
 	@Override
+	public int countNtc() {
+		return mapper.countNtc();
+	}
+
+	// 공지사항 페이징
+	@Override
+	public List<BoardDTO> selectFromRowNtc(int from, int pageRows) {
+		return mapper.selectFromRowNtc(from, pageRows);
+	}
+	
+	// 공지사항 정보 삭제
+	@Override
+	public int deleteByNtc(int[] board_uid) {
+		return mapper.deleteByNtc(board_uid);
+	}
+	
+	// 공지사항 작성하기
+	public int insertNtc(BoardDTO dto) {
+		return mapper.insertNtc(dto);
+	}
+	
+	
+	// (커뮤티니 정보 가져오기)
+	// (커뮤니티 카운팅)
 	public int countAll() {
 		return mapper.countAll();
 	}
-
-
-	@Override
-	public List<BoardDTO> selectFromRow(int from, int pageRows) {
-		return mapper.selectFromRow(from, pageRows);
+		
+	// (커뮤니티 페이징)
+	public List<BoardDTO> selectFromRowCmt(int from, int pageRows) {
+				return mapper.selectFromRowCmt(from, pageRows);
+			}
+		
+	// (정보게시판 정보 가져오기)
+	// (정보게시판 페이징)
+	// (자유게시판 정보 가져오기)
+	// (자유게시판 페이징)
+	
+	
+	// (커뮤니티 삭제)
+	public int deleteByCmt(int [] board_uid) {
+		return mapper.deleteByCmt(board_uid);
 	}
 
 }
