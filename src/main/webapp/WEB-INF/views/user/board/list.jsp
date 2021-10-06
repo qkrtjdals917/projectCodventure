@@ -70,6 +70,10 @@
       <button onclick="location.href = 'board/write'">새글작성</button>
     </div>
   </div>
+  
+  <div class="footer">
+    <%@ include file="../../include/footer.jsp"%>
+  </div>
 </body>
 
 </html>
