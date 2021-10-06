@@ -143,10 +143,7 @@ header .container-small {
     white-space: nowrap;
     cursor: pointer;
 }
-#join_form label{
-	float: left;
-	
-}
+
 b {
 	color: black;
 }
