@@ -73,6 +73,10 @@
     	<%@ include file="../../include/footer.jsp"%>
     </div>
   </div>
+  
+  <div class="footer">
+    <%@ include file="../../include/footer.jsp"%>
+  </div>
 </body>
 
 </html>

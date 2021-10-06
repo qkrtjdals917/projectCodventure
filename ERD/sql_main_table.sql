@@ -192,18 +192,18 @@ SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname,
 		AND mb.type <> "공지";
 
 SELECT * FROM mc_like;
-<<<<<<< HEAD
 
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure
 -- 글 작성
 INSERT INTO mc_board (type, subject, tag, content, member_uid)
+<<<<<<< HEAD
 VALUES ("자유", "글작성테스트sql", "" ,"이 글은 테스트 중입니다.", 52);
 
 SELECT *FROM mc_board mb ;
+=======
+VALUES ("자유", "글작성테스트sql", ,"이 글은 테스트 중입니다.", 52);
+
+SELECT *FROM mc_board mb ;
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure
 SELECT	
 	member_uid "member_uid",
 	email "email",

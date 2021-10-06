@@ -54,8 +54,7 @@
           not_Login_msg();
           return;
         }
-
-                
+        
         Swal.fire({
           title: '글 삭제',
           text: "해당 글을 삭제하시겠습니까? 삭제 후 다시 복구 할 수 없습니다.",
@@ -79,7 +78,7 @@
           }
         });
       }
-
+   
       // 프론트 수정 제약사항
       function chkUpdate() {
         // 로그인 확인
@@ -154,9 +153,13 @@
         <button id="del_btn" onclick="chkDelete()">삭제</button>
       </div>
       <hr>
-	  <div class="footer">
-        <%@ include file="../../include/footer.jsp"%>
-      </div>
+
+      <%@ include file="./comment.jsp" %>
+
+  <div class="footer">
+    <%@ include file="../../include/footer.jsp"%>
+  </div>
+  
     </body>
 
     </html>
