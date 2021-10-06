@@ -72,7 +72,7 @@ public class IndexController {
 	
 	//(/update)
 	@PostMapping("/update")
-	public int update(@PathVariable MemberDTO dto) {
+	public int update(MemberDTO dto) {
 		
 		return MemberService.changeMember(dto);
 	}

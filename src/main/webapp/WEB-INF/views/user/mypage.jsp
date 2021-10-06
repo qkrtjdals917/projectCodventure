@@ -64,6 +64,7 @@
 						<input class="phoneNum" type="text" name="phonenum1" required> -
 						<input class="phoneNum" type="text" name="phonenum2" required> - 
 						<input class="phoneNum" type="text" name="phonenum3" required>
+						<input type="hidden" name="phoneNumber" value="">
 						<br>
 	                    <button type="submit" class="btn">변경</button>
 	                    

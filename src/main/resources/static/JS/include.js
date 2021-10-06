@@ -88,8 +88,8 @@ $(function () {
 				`.trim())
 				})
 
-		//setPopup("login");    // 글 작성 용으로 모달 팝업 셋업
-		//$("#dlg_login").show();
+		setPopup("login");    // 글 작성 용으로 모달 팝업 셋업
+		$("#dlg_login").show();
 	});
 	
 	$(".headC").click(function(){
@@ -147,8 +147,8 @@ $(function () {
 				})
 				
 				
-		//setPopup("join");    // 글 작성 용으로 모달 팝업 셋업
-		//$("#dlg_login").show();
+		setPopup("join");    // 글 작성 용으로 모달 팝업 셋업
+		$("#dlg_login").show();
 	});
 	
 	// 로그아웃 버튼

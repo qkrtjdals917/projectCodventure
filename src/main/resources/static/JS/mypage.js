@@ -4,13 +4,12 @@
 
 $(function () {
 	// nickname 부분
-	$("#nickname").change(function () {
-		$("#nicknameDuplication").val("emailUncheck");
-		$("#nicknameEx").text("중복체크를 해주세요");
+	$(".btn_update #nickname").change(function () {
+		$(".btn_update #nicknameDuplication").val("emailUncheck");
+		$(".btn_update #nicknameEx").text("중복체크를 해주세요");
 	})
 	
-	$("#nickname_check").click(function(){
-		alert("클릭이 되긴하나?");
+	$(".btn_update #nickname_check").click(function(){
 
 		frm = document.forms['memChangeform'];
 		nickname = frm['nickname'].value;
@@ -87,8 +86,33 @@ function setMyPagePopup(mode){
 	}
 } // end setPopup()
 
+function chkUpdate (){
+	frm = document.forms['memChangeform'];
+	
+	// 전화번호 확인
+	var result = "";
+	result += frm['phonenum1'].value.trim() + "-";
+	result += frm['phonenum2'].value.trim() + "-";
+	result += frm['phonenum3'].value.trim();
+	
+	frm['phoneNumber'].value = result;
+
+	var Preg =  /^\d{2,3}-\d{3,4}-\d{4}$/;
+	
+	if(Preg.test(frm['phoneNumber'].value) == false) {
+		alert("전화번호 형식이 올바르지 않습니다");
+		frm['phoneNumber'].focus();
+		
+		return false;
+	}
+	
+	alert("정보변경이 완료되었습니다.");
+	return true;
+ }
+
+
 function mpCheckNicknameDuplication () {
-	var nickname = $('#nickname').val();
+	var nickname = $('.btn_update #nickname').val();
 
 	$.ajax({
 		url : "/checknickname/" + nickname,
@@ -97,12 +121,12 @@ function mpCheckNicknameDuplication () {
 		success : function(data, status){
 			if(status == "success"){
 				if(data == 0) {
-					$("#nicknameDuplication").val("nicknameCheck");
-					$("#nicknameEx").text("사용 가능한 닉네임입니다.");
+					$(".btn_update #nicknameDuplication").val("nicknameCheck");
+					$(".btn_update #nicknameEx").text("사용 가능한 닉네임입니다.");
 				}
 				else {
-					$("#nicknameDuplication").val("nicknameUncheck");
-					$("#nicknameEx").text("이미 존재하는 닉네임입니다.");
+					$(".btn_update #nicknameDuplication").val("nicknameUncheck");
+					$(".btn_update #nicknameEx").text("이미 존재하는 닉네임입니다.");
 				}
 			}
 		}
