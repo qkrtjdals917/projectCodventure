@@ -17,13 +17,20 @@ $(function () {
 		var Nreg = /^[0-9a-zA-Z가-힣]+$/;
 		
 		if(nickname == "") {
-			alert("닉네임은 필수입니다.");
+			Swal.fire({
+			  icon: 'warning',
+			  title: '닉네임은 필수입니다'
+			})
 			frm['nickname'].focus();
 			
 			return false;
 			
 		} else if(Nreg.test(nickname) == false) {
-			alert("닉네임 형식이 올바르지 않습니다.(특수기호 불가)");
+			Swal.fire({
+			  icon: 'warning',
+			  title: '형식과 맞지 않습니다.',
+			  text: '특수기호 사용불가'
+			})
 			frm['nickname'].focus();
 			
 			return false;
@@ -31,6 +38,20 @@ $(function () {
 
 		mpCheckNicknameDuplication();
 	});
+	
+	// 정보변경후 로그아웃
+	$(".chAftLogout").click (function(){
+
+		$.ajax({
+		url : "/logoutcheck",
+		type : "GET",
+		cache : false
+		});
+		
+		location.href="/logout";
+		
+		
+	});	
 		
 	// 모달창
 	$("#btnUpdate").click(function(){
@@ -96,21 +117,40 @@ function chkUpdate (){
 	result += frm['phonenum3'].value.trim();
 	
 	frm['phoneNumber'].value = result;
-
+	
 	var Preg =  /^\d{2,3}-\d{3,4}-\d{4}$/;
 	
 	if(Preg.test(frm['phoneNumber'].value) == false) {
-		alert("전화번호 형식이 올바르지 않습니다");
+		Swal.fire({
+			  icon: 'warning',
+			  title: '전화번호 형식과 맞지 않습니다.'
+			})
 		frm['phoneNumber'].focus();
 		
 		return false;
 	}
 	
-	alert("정보변경이 완료되었습니다.");
+	$.ajax({
+		url : "/logoutcheck",
+		type : "GET",
+		cache : false
+		});
+		
+	location.href="/logout";
+	
+	Swal.fire({
+	  icon: 'success',
+	  title: '정보변경이 완료되었습니다.',
+	  text: '재로그인 해주세요!',
+	})
+	
+		
 	return true;
+	
  }
 
 
+/* 닉네임 중복확인 */
 function mpCheckNicknameDuplication () {
 	var nickname = $('.btn_update #nickname').val();
 
@@ -132,4 +172,98 @@ function mpCheckNicknameDuplication () {
 		}
 	});	
 }
+
+/* password 확인*/
+function chkPw(){
+	/*
+	$.ajax({
+		url : "/checkpw/" + pw,
+		type : "GET",
+		cache : false,
+		success : function(data, status){
+			if(status == "success"){
+				if(data == 0) {
+					$("#nicknameDuplication").val("nicknameCheck");
+					$("#nicknameEx").text("사용 가능한 닉네임입니다.");
+				}
+			}
+		}
+	});	
+	*/
+	
+	frm = document.forms['pwChangeform'];
+	
+	changepw = frm['changepw'].value;
+	checkpw = frm['checkpw'].value;
+	
+	if(changepw != checkpw) {
+		Swal.fire({
+			  icon: 'warning',
+			  title: '바뀔 비밀번호의 입력이 맞지 않습니다'
+			})
+		frm['checkpw'].focus();
+		
+		return false;
+	}
+	
+	$.ajax({
+		url : "/logoutcheck",
+		type : "GET",
+		cache : false
+		});
+		
+	location.href="/logout";
+	
+	Swal.fire({
+	  icon: 'success',
+	  title: '비밀번호 변경이 완료되었습니다.',
+	  text: '재로그인 해주세요!'
+	})
+	
+	return true;
+}
+
+function chkDelete(){
+	
+	frm = document.forms['memDeleteform'];
+	checksecession = frm['checksecession'].value;
+	checkStr = "회원탈퇴";
+	
+	if(checksecession !== checkStr) {
+		
+		Swal.fire({
+		  icon: 'error',
+		  title: '형식과 맞지 않습니다.',
+		  text: '띄어쓰기는 없습니다!'
+		})
+		
+		return false;
+	}
+	
+	$.ajax({
+		url : "/logoutcheck",
+		type : "GET",
+		cache : false
+		});
+		
+	location.href="/logout";
+	
+	Swal.fire({
+	  icon: 'success',
+	  title: '회원탈퇴가 완료되었습니다.',
+	  text: '안녕히가세요!'
+	})
+	
+	
+	return true;
+}
+
+
+
+
+
+
+
+
+
 

@@ -54,6 +54,8 @@ public class MainController {
 			dto.setNickname(userDetails.getNickname());
 			dto.setPhoneNumber(userDetails.getPhonNum());
 			dto.setMemberBoardCnt(userDetails.getBordCnt());
+			dto.setMember_uid(userDetails.getUid());
+			dto.setPw(userDetails.getPassword());
 			
 			model.addAttribute("member" , dto);
 		}

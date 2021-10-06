@@ -78,7 +78,6 @@ $(function () {
 		});
 	
 	// 로그아웃 버튼
-	
 	$("#btnLogout").click (function(){
 		alert("로그아웃되셨습니다.");
 

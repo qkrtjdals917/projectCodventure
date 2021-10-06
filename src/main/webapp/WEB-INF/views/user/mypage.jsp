@@ -52,8 +52,9 @@
 				
 				<span class="close" title="Close Modal">&times;</span>
 				
-				<form id="memChangeform" action="/update" name="memChangeform" method="post">
+				<form id="memChangeform" action="/update" name="memChangeform" method="post" onsubmit="return chkUpdate()">
 					<div class="btn_update">
+						<input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid}"> 
 						<label for="Pw"><b>닉네임</b></label>
 						<input type="text" id="nickname" placeholder="${member.nickname}" name="nickname" required>
 						<button type="button" id="nickname_check" class="btn">중복체크</button>
@@ -71,10 +72,11 @@
 	                </div>
                 </form>
 
-				<form id="pwChangeform" action="/pwChange" name="pwChangeform" method="post">
+				<form id="pwChangeform" action="/pwChange" name="pwChangeform" method="post" onsubmit="return chkPw()">
 					<div class="btn_pwChange">
 						<label for="Pw"><b>현재 비밀번호</b></label>
-						<input type="text" placeholder="현재 PW를 입력하세요" name="nowpw" required>
+						<input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid}">
+						<input type="text" placeholder="현재 PW를 입력하세요" name="pw" required>
 						<br>
 						<label for="Pw"><b>변경 비밀번호</b></label>
 						<input type="text" placeholder="바꿀 PW를 입력하세요" name="changepw" required>
@@ -87,13 +89,15 @@
 					</div>
 				</form>
 				
-				<form id="memDeleteform" action="/deleteOk" name="memDeleteform" method="post">
+				<form id="memDeleteform" action="/deleteOk" name="memDeleteform" method="post" onsubmit="return chkDelete()">
 					<div class="btn_secession">
 						<b>정말로 탈퇴하십니까?</b><br>
 						<b>탈퇴하시려면 아래 입력란에 회원탈퇴를 입력하세요.</b>
+						<input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid}">
+						<input type="hidden" id="pw" name="pw" value="${member.pw}">
 						<input type="text" name="checksecession" required>
 			            <br>
-	                    <button type="submit" class="btn">회원 탈퇴</button>
+	                    <button type="submit"  class="btn">회원 탈퇴</button>
 						<button type="submit" class="btn">취소</button>
 	                    
 	                </div>

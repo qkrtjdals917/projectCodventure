@@ -3,6 +3,7 @@ package com.lec.spring.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +41,16 @@ public class IndexController {
 		return MemberService.countByNickname(nickname);
 	}
 	
+//	@PostMapping("/checkPw/{pw}")
+//	@ResponseBody
+//	public int currentCheckPw(@PathVariable String nickname) {
+//
+	// 이렇게 되면 암호화된 비밀번호를 어떻게 복호화해서 가져오는지?
+	// 방법 찾으면 sql에 추가하고 .js 함수 완성
+	
+//		;
+//	}
+	
 	@RequestMapping(value = "/logincheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String loginPage(HttpServletRequest request) {
@@ -72,35 +83,47 @@ public class IndexController {
 	
 	//(/update)
 	@PostMapping("/update")
-	public int update(MemberDTO dto) {
+	public String update(MemberDTO dto) {
 		
-		return MemberService.changeMember(dto);
+		System.out.println(dto);
+		System.out.println(MemberService.changeMember(dto));
+	
+		
+		return "redirect:/modacon";
 	}
 	
 	
 	//(/pwChange)
 	@PostMapping("/pwChange")
-	public int pwChange(MemberDTO dto) {
+	public String pwChange(MemberDTO dto) {
 		
-		return MemberService.changePassword(dto);
+		String changePassword = dto.getChangepw();	// 바꿀 비밀번호
+		String currentPw = dto.getPw();			// 현재 비밀번호
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		if(encoder.matches(changePassword, currentPw)) {
+		
+			String encPassword = passwordEncoder.encode(changePassword);	// 원본을 암호화
+			dto.setPw(encPassword); // 암호와된 pw세팅
+			
+			System.out.println(MemberService.changePassword(dto));
+			System.out.println("변경성공");
+			
+			return "redirect:/modacon";
+		
+		}
+		System.out.println("변경실패");
+		
+		return "redirect:/modacon";
 	}
 	
 	
 	//(/deleteOk)
 	@PostMapping("/deleteOk")
-	public String deleteOk(MemberDTO dto) {
-		
-		String check = dto.getChecksecession();
-		
-		if(check.trim().equals("회원탈퇴")) {
+	public String deleteOk(MemberDTO dto) {		
+		System.out.println(MemberService.deleteMember(dto));
 			
-			MemberService.deleteMember(dto);
-			
-			return "redirect:/logout";	// 로그아웃 실행
-		}
-		
-		System.out.println("삭제 안됨");
-		return "redirect:/modacon/mypage";
+		return "redirect:/modacon";	// 로그아웃 실행
 	}
 	
 }
