@@ -28,9 +28,7 @@
 
     <body>
       <div class="header">
-        <header>
-          헤더처리
-        </header>
+        <%@ include file="../../include/header.jsp"%>
       </div>
 
       <hr>
@@ -71,6 +69,9 @@
 
       <%@ include file="./comment.jsp" %>
       
+      <div class="footer">
+        <%@ include file="../../include/footer.jsp"%>
+      </div>
     </body>
 
     </html>

@@ -70,15 +70,36 @@ public class IndexController {
 		return "redirect:/modacon";	// 회원가입 완료시 로그인 페이지로 이동
 	}
 	
+	//(/update)
+	@PostMapping("/update")
+	public int update(@PathVariable MemberDTO dto) {
+		
+		return MemberService.changeMember(dto);
+	}
+	
+	
+	//(/pwChange)
+	@PostMapping("/pwChange")
+	public int pwChange(MemberDTO dto) {
+		
+		return MemberService.changePassword(dto);
+	}
+	
+	
+	//(/deleteOk)
 	@PostMapping("/deleteOk")
-	public String deleteOk(MemberDTO dto, int uid) {
-		if(dto.getChecksecession() == "회원탈퇴") {
+	public String deleteOk(MemberDTO dto) {
+		
+		String check = dto.getChecksecession();
+		
+		if(check.trim().equals("회원탈퇴")) {
 			
-			MemberService.deleteMember(dto, uid);
+			MemberService.deleteMember(dto);
 			
-			return "redirect:/modacon";	// 로그인 페이지로 이동
+			return "redirect:/logout";	// 로그아웃 실행
 		}
 		
+		System.out.println("삭제 안됨");
 		return "redirect:/modacon/mypage";
 	}
 	

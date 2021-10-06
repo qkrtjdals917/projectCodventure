@@ -46,20 +46,19 @@
     <br>
     
     <div id="dlg_account" class="modal">
-		<form class="modal-content animate" id="frmLogin" name="frmLogin" method="post">
+		<div class="modal-content">
 			<div class="accountcontainer">
 				<h3 class="title">마이페이지</h3>
 				
 				<span class="close" title="Close Modal">&times;</span>
 				
-				<form id="memChangeform" action="" name="memChangeform" method="post">
+				<form id="memChangeform" action="/update" name="memChangeform" method="post">
 					<div class="btn_update">
-						<label for="Email"><b>이메일</b></label>
-						<input type="text" placeholder="${member.email}" name="email" required>
-			            <br>
 						<label for="Pw"><b>닉네임</b></label>
-						<input type="text" placeholder="${member.nickname}" name="nickname" required>
-						<button type="submit" class="btn">중복체크</button>
+						<input type="text" id="nickname" placeholder="${member.nickname}" name="nickname" required>
+						<button type="button" id="nickname_check" class="btn">중복체크</button>
+						<input type="hidden" id="nicknameDuplication" name="nicknameDuplication" value="nicknameUncheck"> 
+						<br><b id="nicknameEx"></b>
 						<br>
 						<label for="phoneNumber"><b>전화번호</b></label>
 						<input class="phoneNum" type="text" name="phonenum1" required> -
@@ -71,7 +70,7 @@
 	                </div>
                 </form>
 
-				<form id="pwChangeform" action="" name="pwChangeform" method="post">
+				<form id="pwChangeform" action="/pwChange" name="pwChangeform" method="post">
 					<div class="btn_pwChange">
 						<label for="Pw"><b>현재 비밀번호</b></label>
 						<input type="text" placeholder="현재 PW를 입력하세요" name="nowpw" required>
@@ -100,7 +99,7 @@
                 </form>
 				
 			</div>
-		</form>
+		</div>
 	</div>
 	
 <%@ include file = "../include/footer.jsp" %> <%-- footer --%>

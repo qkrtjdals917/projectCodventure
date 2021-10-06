@@ -14,7 +14,9 @@ table {
 	color: #100E34;
 	border: 1px solid black;
 }
-
+.btn_update , .btn_pwChange , .btn_secession {
+	display: none;
+}
 /* 모달 팝업 */
 /* 참조: https://www.w3schools.com/howto/howto_css_login_form.asp */
 .modal {  /* 모달 전체 적용 */

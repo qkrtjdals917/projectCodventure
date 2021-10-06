@@ -7,6 +7,7 @@
 <title>게시판 글 수정</title>
 </head>
 <body>
+
     <!--selecter 2 sets-->
 	<select name="" id="">
     <option value="">정보게시판</option>
