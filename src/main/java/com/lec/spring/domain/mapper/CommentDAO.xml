@@ -7,7 +7,7 @@
 	    INSERT INTO mc_comment 
 	    	(member_uid, board_uid, comment_content)
 	    VALUES 
-	    	(#{member_uid}, #{board_uid}, #{comment_content})
+	    	(#{member_uid}, #{board_uid}, #{content})
   	</insert>
 	
 	<select id="select" resultType="com.lec.spring.domain.comment.CommentDTO">
@@ -34,7 +34,7 @@
         	AND c.board_uid = #{uid} 
     </select>
     
-    <select id="countByBoard">
+    <select id="countByBoard" resultType="Integer">
         SELECT 
         	count(*) 
         FROM 

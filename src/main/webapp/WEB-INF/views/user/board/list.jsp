@@ -18,7 +18,7 @@
 <body>
   <div>
     <div class="header">
-    	<%@ include file="../../include/header.jsp"%>
+      <%@ include file="../../include/header.jsp"%>
     </div>
     <div style="clear:both; height:70px"></div>
 
@@ -67,7 +67,7 @@
         </c:choose>
       </table>
       <br>
-      <button onclick= "location.href = 'board/write'" >새글작성</button>
+      <button onclick="location.href = 'board/write'">새글작성</button>
     </div>
     <div class="footer">
     	<%@ include file="../../include/footer.jsp"%>

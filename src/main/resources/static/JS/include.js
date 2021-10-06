@@ -63,9 +63,33 @@ $(function () {
 		type : "GET",
 		cache : false
 		});	
-		
-		setPopup("login");    // 글 작성 용으로 모달 팝업 셋업
-		$("#dlg_login").show();
+//<button type="button" id="email_check" class="btn">중복체크</button>
+		Swal.fire({
+			title: 'Login Form',
+			html: `<input type="text" id="login" class="swal2-input" placeholder="Username">
+			<input type="password" id="password" class="swal2-input" placeholder="Password">`,
+			confirmButtonText: 'Sign in',
+			showCloseButton: true,
+			showCancelButton: true,
+			cancelButtonText: 'join',
+			focusConfirm: false,
+			preConfirm: () => {
+				const login = Swal.getPopup().querySelector('#login').value
+				const password = Swal.getPopup().querySelector('#password').value
+				if (!login || !password) {
+					Swal.showValidationMessage(`Please enter login and password`)
+					}
+					return { login: login, password: password }
+				}
+			}).then((result) => {
+				Swal.fire(`
+				Login: ${result.value.login}
+				Password: ${result.value.password}
+				`.trim())
+				})
+
+		//setPopup("login");    // 글 작성 용으로 모달 팝업 셋업
+		//$("#dlg_login").show();
 	});
 	
 	$(".headC").click(function(){
@@ -73,8 +97,58 @@ $(function () {
 	});
 	
 	$("#btnJoin").click(function(){
-		setPopup("join");    // 글 작성 용으로 모달 팝업 셋업
-		$("#dlg_login").show();
+		Swal.fire({
+			title: 'Join Form',
+			html: `
+			<form id="join_form">
+			<label for="Email"><b>Email</b></label>
+			<input type="text" id="email" class="swal2-input" placeholder="Email을 입력하세요" name="email" required>
+			<button type="button" id="email_check" class="btn">중복체크</button>
+			<input type="hidden" id="emailDuplication" name="emailDuplication" value="emailUncheck"> 
+			<br><b id="emailEx"></b>
+			<br>
+			<label for="Pw"><b>PW</b></label>
+			<input type="password" class="swal2-input" placeholder="PW를 입력하세요" name="pw" required>
+			<br>
+			<label for="PwC"><b>PW 확인</b></label>
+			<input type="password" class="swal2-input" placeholder="PW를 다시 입력하세요" name="pwC" required>
+			<br>
+			<label for="Nickname"><b>닉네임</b></label>
+			<input type="text" id="nickname" class="swal2-input" placeholder="닉네임를 입력하세요" name="nickname" required>
+			<button type="button" id="nickname_check" class="btn">중복체크</button>
+			<input type="hidden" id="nicknameDuplication" name="nicknameDuplication" value="nicknameUncheck"> 
+			<br><b id="nicknameEx"></b>
+			<br>
+			<label for="phoneNumber"><b>전화번호</b></label>
+			<input class="phoneNum swal2-input" type="text" name="phonenum1" required> - 
+			<input class="phoneNum swal2-input" type="text" name="phonenum2" required> - 
+			<input class="phoneNum swal2-input" type="text" name="phonenum3" required>
+			<input type="hidden" name="phoneNumber" value="">
+			</form>
+			`,
+			confirmButtonText: 'Sign in',
+			showCloseButton: true,
+			showCancelButton: true,
+			cancelButtonText: 'join',
+			focusConfirm: false,
+			preConfirm: () => {
+				const login = Swal.getPopup().querySelector('#login').value
+				const password = Swal.getPopup().querySelector('#password').value
+				if (!login || !password) {
+					Swal.showValidationMessage(`Please enter login and password`)
+					}
+					return { login: login, password: password }
+				}
+			}).then((result) => {
+				Swal.fire(`
+				Login: ${result.value.login}
+				Password: ${result.value.password}
+				`.trim())
+				})
+				
+				
+		//setPopup("join");    // 글 작성 용으로 모달 팝업 셋업
+		//$("#dlg_login").show();
 	});
 	
 	// 로그아웃 버튼
