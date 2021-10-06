@@ -190,8 +190,6 @@ SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname,
 
 SELECT * FROM mc_like;
 
-<<<<<<< HEAD
-=======
 -- 글 작성
 INSERT INTO mc_board (type, subject, tag, content, member_uid)
 VALUES ("자유", "글작성테스트sql", "" ,"이 글은 테스트 중입니다.", 52);
@@ -199,8 +197,9 @@ VALUES ("자유", "글작성테스트sql", "" ,"이 글은 테스트 중입니�
 SELECT *FROM mc_board mb ;
 
 
+
+
 -- -------------------------------------------------------------
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
 		SELECT	
 			member_uid "member_uid",
 			email "email",
