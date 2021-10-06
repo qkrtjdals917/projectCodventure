@@ -16,7 +16,7 @@
 	<select id="selectOne" resultType="com.lec.spring.domain.board.BoardDTO">
 		SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname,
 		mb.regDate regDate, mb.count count, mb.content content,
-		mb.type type, mb.tag tag
+		mb.type type, mb.tag tag, mb.member_uid
 		FROM mc_board mb , mc_member mm
 		WHERE mb.member_uid = mm.member_uid
 		AND mb.board_uid = #{board_uid}
@@ -72,7 +72,6 @@
 		INSERT INTO mc_board (type, subject, tag, content, member_uid)
 		VALUES (#{type}, #{subject}, #{tag, jdbcType=VARCHAR}, #{content}, #{member_uid})
 	</insert>
-	
 	
 	
 	<!-- ↓ 해연 추가 -->
@@ -178,5 +177,10 @@
 	<!-- 게시글을 본다 -->
 	
 	
+	
+	<!-- 글삭제 -->
+	<delete id="deleteUid" flushCache="true">
+		DELETE FROM mc_board WHERE board_uid = #{board_uid}
+	</delete>
 	
 </mapper>
