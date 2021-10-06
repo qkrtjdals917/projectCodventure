@@ -6,6 +6,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -17,6 +19,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
+	@Bean
+	public AuthenticationSuccessHandler successHandler() {
+	    return new CustomLoginSuccessHandler("/defaultUrl");
+	}
+	
+	@Bean
+	public SimpleUrlLogoutSuccessHandler logoutSuccessHandler() {
+	    return new CustomLogoutSuccessHandler();
+	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -40,14 +51,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.formLogin()
 			.loginPage("/modacon")
-			
+			.successHandler(successHandler())
 			// 로그인 처리
 			.usernameParameter("email")
+			.passwordParameter("pw")
 			.loginProcessingUrl("/loginOk")
-			.defaultSuccessUrl("/modacon")		// login 성공시 "/"로 이동
-		
+//			.defaultSuccessUrl("/modacon")		// login 성공시 "/"로 이동
+			
+			
+			.permitAll()
+			.and()
+			// 로그아웃 처리
+			.logout()
+			.logoutSuccessHandler(logoutSuccessHandler())
+            .invalidateHttpSession(false)
 		;
 		
 	}
+	
+//    @Override
+//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(memberService).passwordEncoder(encoder());
+//    }
 	
 }

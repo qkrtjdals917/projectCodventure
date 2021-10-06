@@ -1,9 +1,8 @@
 package com.lec.spring.domain.board;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
 
-import com.lec.spring.domain.like.LikeDTO;
 
 import lombok.Data;
 
@@ -11,15 +10,20 @@ import lombok.Data;
 @Data
 public class BoardDTO {
 	private int board_uid;
-	private int member_uid;
-	private String type;
 	private String subject;
-	private String tag;
+	private String nickname;
 	private LocalDateTime regDate;
 	private int count;
-	private String content;
+	private String content;			// 글
+	private String type;			// 게시판
+	private String tag;				// 태그
+	private String likeCnt;
+	private String member_uid;		// 글작성, 수정 시 사용
 	
-	private List<LikeDTO> like;
-	// 댓글List도 가지고 있어야되나? 혹은 따로 가져와야되나?
-	
+	public String getRegDateTime() {
+		if(this.regDate == null) return "";
+		return this.regDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
+	}
+
+
 }

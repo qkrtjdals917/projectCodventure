@@ -28,7 +28,7 @@
 			authority "authority"
 		FROM 
 			mc_member
-		WHERE meber_uid = #{uid}
+		WHERE member_uid = #{member_uid}
 	</select>
 	
 	<!-- nickname 이 일치하는 계정 수 하나 가져오기 -->
@@ -50,7 +50,7 @@
 	</select>	
 	
 	<!-- email로 계정정보 하나 가져오기 -->
-	<select id="selectByEmail">
+	<select id="selectByEmail" resultType="com.lec.spring.domain.member.MemberDTO">
 		SELECT	
 			member_uid "member_uid",
 			email "email",
