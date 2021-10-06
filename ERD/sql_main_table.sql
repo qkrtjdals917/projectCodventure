@@ -207,3 +207,4 @@ SELECT
 FROM 
 	mc_member
 WHERE email = "aaa5@aaa.com";
+SELECT *FROM mc_board mb ;
