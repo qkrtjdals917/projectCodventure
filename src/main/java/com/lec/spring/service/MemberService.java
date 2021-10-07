@@ -73,8 +73,8 @@ public class MemberService {
 	}
 	
 	// 작성글 개수 가져오기
-	public int memberBoardCnt(int uid) {
-		return dao.memberBoardCnt(uid);
+	public int memberBoardCnt(MemberDTO dto) {
+		return dao.memberBoardCnt(dto);
 	}
 	
 }

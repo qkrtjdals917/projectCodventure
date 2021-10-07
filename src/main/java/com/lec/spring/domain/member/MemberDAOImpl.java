@@ -73,8 +73,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int memberBoardCnt(int uid) {
-		return mapper.memberBoardCnt(uid);
+	public int memberBoardCnt(MemberDTO dto) {
+		return mapper.memberBoardCnt(dto);
 	}
 	
 }

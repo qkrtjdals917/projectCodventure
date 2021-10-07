@@ -52,7 +52,7 @@
 				
 				<span class="close" title="Close Modal">&times;</span>
 				
-				<form id="memChangeform" name="memChangeform" method="post" onsubmit="return chkUpdate()">
+				<form id="memChangeform" action="/update" name="memChangeform" method="post">
 					<div class="btn_update">
 						<input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid}"> 
 						<label for="Pw"><b>닉네임</b></label>
@@ -67,7 +67,7 @@
 						<input class="phoneNum" type="text" name="phonenum3" required>
 						<input type="hidden" name="phoneNumber" value="">
 						<br>
-	                    <button type="submit" class="btn">변경</button>
+	                    <button type="button" class="btn" onclick="chkUpdate()">변경</button>
 	                    
 	                </div>
                 </form>
@@ -76,7 +76,7 @@
 					<div class="btn_pwChange">
 						<label for="Pw"><b>현재 비밀번호</b></label>
 						<input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid}">
-						<input type="text" placeholder="현재 PW를 입력하세요" name="pw" required>
+						<input type="text" placeholder="현재 PW를 입력하세요" name="currentpw" required>
 						<br>
 						<label for="Pw"><b>변경 비밀번호</b></label>
 						<input type="text" placeholder="바꿀 PW를 입력하세요" name="changepw" required>
@@ -84,7 +84,7 @@
 						<label for="Pw"><b>비밀번호 확인</b></label>
 						<input type="text" placeholder="바꿀 PW를 다시 입력하세요" name="checkpw" required>
 						<br>
-						<button type="submit" class="btn">변경</button>
+						<button type="button" class="btn" onclick="chkPw()">변경</button>
 						<div class="clear"></div>
 					</div>
 				</form>
@@ -97,7 +97,7 @@
 						<input type="hidden" id="pw" name="pw" value="${member.pw}">
 						<input type="text" name="checksecession" required>
 			            <br>
-	                    <button type="submit"  class="btn">회원 탈퇴</button>
+	                    <button type="button" class="btn" onclick="chkDelete()">회원 탈퇴</button>
 						<button type="submit" class="btn">취소</button>
 	                    
 	                </div>

@@ -127,17 +127,16 @@ function chkUpdate (){
 			});
 		frm['phoneNumber'].focus();
 		
-		return false;
-	} else {
-	
-	
-	Swal.fire({
-	  icon: 'success',
-	  title: '정보변경이 완료되었습니다.',
-	  text: '재로그인 해주세요!'
-	});
-
+		return;
 	}
+		Swal.fire({
+		  icon: 'success',
+		  title: '정보변경이 완료되었습니다.',
+		  text: '재로그인 해주세요!'
+		}).then(function(){
+			frm.submit();
+		});
+
  }
 
 
@@ -194,16 +193,17 @@ function chkPw(){
 			})
 		frm['checkpw'].focus();
 		
-		return false;
+		return;
 	}
 	
 	Swal.fire({
 	  icon: 'success',
 	  title: '비밀번호 변경이 완료되었습니다.',
 	  text: '재로그인 해주세요!'
-	})
+	}).then(function(){
+		frm.submit();
+	});
 	
-	return true;
 }
 
 function chkDelete(){
@@ -220,16 +220,17 @@ function chkDelete(){
 		  text: '띄어쓰기는 없습니다!'
 		})
 		
-		return false;
+		return;
 	}
 	
 	Swal.fire({
 	  icon: 'success',
 	  title: '회원탈퇴가 완료되었습니다.',
 	  text: '안녕히가세요!'
-	})
+	}).then(function(){
+		frm.submit();
+	});
 	
-	return true;
 }
 
 

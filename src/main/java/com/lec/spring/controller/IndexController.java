@@ -97,12 +97,13 @@ public class IndexController {
 	@PostMapping("/pwChange")
 	public String pwChange(MemberDTO dto) {
 		
-		String changePassword = dto.getChangepw();	// 바꿀 비밀번호
-		String currentPw = dto.getPw();			// 현재 비밀번호
+		String currentPw = dto.getCurrentpw();		// 현재 비밀번호(입력)
+		String pw = dto.getPw();					// 현재 비밀번호
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		if(encoder.matches(changePassword, currentPw)) {
+		if(encoder.matches(currentPw, pw)) {
 		
+			String changePassword = dto.getChangepw();
 			String encPassword = passwordEncoder.encode(changePassword);	// 원본을 암호화
 			dto.setPw(encPassword); // 암호와된 pw세팅
 			

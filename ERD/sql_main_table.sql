@@ -165,6 +165,7 @@ SELECT * FROM mc_member ORDER BY member_uid DESC;
 SELECT * FROM mc_board;
 SELECT * FROM mc_comment;
 SELECT * FROM mc_member WHERE email = "test3@email.com";
+SELECT count(subject) FROM mc_board WHERE member_uid = 77;
 
 -- 글 조회수 증가
 UPDATE mc_board SET count = count + 1 WHERE board_uid = 1;
@@ -196,15 +197,9 @@ SELECT * FROM mc_like;
 
 -- 글 작성
 INSERT INTO mc_board (type, subject, tag, content, member_uid)
-<<<<<<< HEAD
-VALUES ("자유", "글작성테스트sql", "" ,"이 글은 테스트 중입니다.", 52);
-
-SELECT *FROM mc_board mb ;
-=======
 VALUES ("자유", "글작성테스트sql", ,"이 글은 테스트 중입니다.", 52);
-
 SELECT *FROM mc_board mb ;
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure
+
 SELECT	
 	member_uid "member_uid",
 	email "email",

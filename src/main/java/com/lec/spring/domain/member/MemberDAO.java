@@ -41,6 +41,7 @@ public interface MemberDAO {
 		public int changePassword(MemberDTO dto);
 		
 		// 작성글 개수 가져오기
-		public int memberBoardCnt(int uid);
+		public int memberBoardCnt(MemberDTO dto);
+
 		
 }
