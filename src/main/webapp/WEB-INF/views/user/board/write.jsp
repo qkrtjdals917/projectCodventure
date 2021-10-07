@@ -28,7 +28,7 @@
       </select>
 
       <select name="tag">
-        <option value=></option>
+        <option selected value="">TAG</option>
         <option value="코인">코인</option>
         <option value="뉴스">뉴스</option>
         <option value="팁과노하우">팁과노하우</option>
@@ -45,8 +45,6 @@
     <button type="submit">등록</button>
     <button type="button" onclick="history.back()">취소</button>
   </form>
-
-
 
 </body>
 

@@ -73,6 +73,7 @@
 		VALUES (#{type}, #{subject}, #{tag, jdbcType=VARCHAR}, #{content}, #{member_uid})
 	</insert>
 	
+<<<<<<< HEAD
 	
 	<!-- ↓ 해연 추가 -->
 	
@@ -183,4 +184,9 @@
 		DELETE FROM mc_board WHERE board_uid = #{board_uid}
 	</delete>
 	
+	<!-- 글 수정 -->
+	<update id="update" flushCache="true" parameterType="com.lec.spring.domain.board.BoardDTO">
+		UPDATE mc_board SET type = #{type}, tag = #{tag, jdbcType=VARCHAR}, subject = #{subject}, content = #{content}
+		WHERE board_uid = #{board_uid}
+	</update>
 </mapper>

@@ -27,9 +27,9 @@
 
     <body>
       <div class="header">
-        <p>헤더 들어갈 부분</p>
+        <%@ include file="../../include/header.jsp"%>
       </div>
-
+      <div style="clear:both; height:70px"></div>
       <hr>
 
       <div class="content_btn"> <%-- 상단 버튼 모음 --%>
@@ -53,7 +53,9 @@
           ${list[0].content }
         </div>
       </div>
-
+      <div class="footer">
+        <%@ include file="../../include/footer.jsp"%>
+      </div>
     </body>
 
     </html>
