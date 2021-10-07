@@ -34,15 +34,13 @@
         	AND c.board_uid = #{uid} 
     </select>
     
-    <select id="countByBoard" resultType="Integer">
+    <select id="countByBoard" resultType="int">
         SELECT 
-        	count(*) 
+        	IFNULL (count(*) , 0) 
         FROM 
         	mc_comment 
         WHERE 
         	board_uid = #{uid} 
-        GROUP BY 
-        	board_uid;
     </select>
     
     <delete id="delete">
