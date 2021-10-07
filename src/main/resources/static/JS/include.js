@@ -100,6 +100,7 @@ $(function () {
 	});
 	
 	$(".modal .close").click(function(){
+		clear_modal_main()
 		$(this).parents(".modal").hide();
 	});
 	
@@ -107,7 +108,8 @@ $(function () {
 	$(".modal").click(function(e){
 		var modal = $(".modal-content")
 		if(modal.has(e.target).length === 0){
-		   $(this).hide();
+			clear_modal_main()
+			$(this).hide();
 		}
 	});
 	
@@ -213,4 +215,9 @@ function checkNicknameDuplication () {
 
 function gourl(url) {
 	location.href=url;
+}
+
+function clear_modal_main() {
+	$("#loginform")[0].reset();
+	$("#joinform")[0].reset();
 }

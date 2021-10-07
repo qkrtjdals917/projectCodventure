@@ -111,8 +111,9 @@
 	</update>	
 	
 	<!-- 작성글 개수 가져오기 -->
-	<select id="memberBoardCnt" parameterType="com.lec.spring.domain.member.MemberDTO">
-		SELECT count(subject) 
+	<select id="memberBoardCnt" parameterType="com.lec.spring.domain.member.MemberDTO"
+	resultType="int">
+		SELECT IFNULL (count(subject) , 0) 
 		FROM mc_board 
 		WHERE member_uid = #{member_uid};
 	</select>

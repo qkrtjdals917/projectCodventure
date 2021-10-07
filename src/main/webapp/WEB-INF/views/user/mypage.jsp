@@ -72,17 +72,17 @@
 	                </div>
                 </form>
 
-				<form id="pwChangeform" action="/pwChange" name="pwChangeform" method="post" onsubmit="return chkPw()">
+				<form id="pwChangeform" action="/pwChange" name="pwChangeform" method="post">
 					<div class="btn_pwChange">
 						<label for="Pw"><b>현재 비밀번호</b></label>
 						<input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid}">
-						<input type="text" placeholder="현재 PW를 입력하세요" name="currentpw" required>
+						<input type="password" placeholder="현재 PW를 입력하세요" name="currentpw" required>
 						<br>
 						<label for="Pw"><b>변경 비밀번호</b></label>
-						<input type="text" placeholder="바꿀 PW를 입력하세요" name="changepw" required>
+						<input type="password" placeholder="바꿀 PW를 입력하세요" name="changepw" required>
 						<br>
 						<label for="Pw"><b>비밀번호 확인</b></label>
-						<input type="text" placeholder="바꿀 PW를 다시 입력하세요" name="checkpw" required>
+						<input type="password" placeholder="바꿀 PW를 다시 입력하세요" name="checkpw" required>
 						<br>
 						<button type="button" class="btn" onclick="chkPw()">변경</button>
 						<div class="clear"></div>
