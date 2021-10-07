@@ -103,7 +103,7 @@ ALTER TABLE mc_comment
 	ADD FOREIGN KEY (board_uid)
 	REFERENCES mc_board (board_uid)
 	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 ;
 
 
@@ -164,6 +164,7 @@ SELECT * FROM mc_authority;
 SELECT * FROM mc_member ORDER BY member_uid DESC;
 SELECT * FROM mc_board;
 SELECT * FROM mc_comment;
+SELECT * FROM mc_member WHERE email = "test3@email.com";
 
 -- 글 조회수 증가
 UPDATE mc_board SET count = count + 1 WHERE board_uid = 1;
@@ -215,20 +216,3 @@ FROM
 	mc_member
 WHERE email = "aaa5@aaa.com";
 SELECT *FROM mc_board mb ;
-<<<<<<< HEAD
-
-
--- -------------------------------------------------------------
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
-		SELECT	
-			member_uid "member_uid",
-			email "email",
-			password "pw",
-			nickname "nickname",
-			phoneNumber "phoneNumber",
-			authority "authority"
-		FROM 
-			mc_member
-		WHERE email = "aaa5@aaa.com";
-=======
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure

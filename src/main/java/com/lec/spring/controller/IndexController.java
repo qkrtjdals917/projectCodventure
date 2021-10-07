@@ -89,7 +89,7 @@ public class IndexController {
 		System.out.println(MemberService.changeMember(dto));
 	
 		
-		return "redirect:/modacon";
+		return "redirect:/logout";
 	}
 	
 	
@@ -109,7 +109,7 @@ public class IndexController {
 			System.out.println(MemberService.changePassword(dto));
 			System.out.println("변경성공");
 			
-			return "redirect:/modacon";
+			return "redirect:/logout";
 		
 		}
 		System.out.println("변경실패");
@@ -123,7 +123,7 @@ public class IndexController {
 	public String deleteOk(MemberDTO dto) {		
 		System.out.println(MemberService.deleteMember(dto));
 			
-		return "redirect:/modacon";	// 로그아웃 실행
+		return "redirect:/logout";	// 로그아웃 실행
 	}
 	
 }

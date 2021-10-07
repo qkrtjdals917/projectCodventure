@@ -111,12 +111,12 @@ function chkUpdate (){
 	frm = document.forms['memChangeform'];
 	
 	// 전화번호 확인
-	var result = "";
-	result += frm['phonenum1'].value.trim() + "-";
-	result += frm['phonenum2'].value.trim() + "-";
-	result += frm['phonenum3'].value.trim();
+	var presult = "";
+	presult += frm['phonenum1'].value.trim() + "-";
+	presult += frm['phonenum2'].value.trim() + "-";
+	presult += frm['phonenum3'].value.trim();
 	
-	frm['phoneNumber'].value = result;
+	frm['phoneNumber'].value = presult;
 	
 	var Preg =  /^\d{2,3}-\d{3,4}-\d{4}$/;
 	
@@ -124,29 +124,20 @@ function chkUpdate (){
 		Swal.fire({
 			  icon: 'warning',
 			  title: '전화번호 형식과 맞지 않습니다.'
-			})
+			});
 		frm['phoneNumber'].focus();
 		
 		return false;
-	}
+	} else {
 	
-	$.ajax({
-		url : "/logoutcheck",
-		type : "GET",
-		cache : false
-		});
-		
-	location.href="/logout";
 	
 	Swal.fire({
 	  icon: 'success',
 	  title: '정보변경이 완료되었습니다.',
-	  text: '재로그인 해주세요!',
-	})
-	
-		
-	return true;
-	
+	  text: '재로그인 해주세요!'
+	});
+
+	}
  }
 
 
@@ -206,14 +197,6 @@ function chkPw(){
 		return false;
 	}
 	
-	$.ajax({
-		url : "/logoutcheck",
-		type : "GET",
-		cache : false
-		});
-		
-	location.href="/logout";
-	
 	Swal.fire({
 	  icon: 'success',
 	  title: '비밀번호 변경이 완료되었습니다.',
@@ -240,20 +223,11 @@ function chkDelete(){
 		return false;
 	}
 	
-	$.ajax({
-		url : "/logoutcheck",
-		type : "GET",
-		cache : false
-		});
-		
-	location.href="/logout";
-	
 	Swal.fire({
 	  icon: 'success',
 	  title: '회원탈퇴가 완료되었습니다.',
 	  text: '안녕히가세요!'
 	})
-	
 	
 	return true;
 }

@@ -52,7 +52,7 @@
 				
 				<span class="close" title="Close Modal">&times;</span>
 				
-				<form id="memChangeform" action="/update" name="memChangeform" method="post" onsubmit="return chkUpdate()">
+				<form id="memChangeform" name="memChangeform" method="post" onsubmit="return chkUpdate()">
 					<div class="btn_update">
 						<input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid}"> 
 						<label for="Pw"><b>닉네임</b></label>
