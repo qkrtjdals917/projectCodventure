@@ -194,7 +194,7 @@ SELECT * FROM mc_like;
 
 -- 글 작성
 INSERT INTO mc_board (type, subject, tag, content, member_uid)
-VALUES ("자유", "글작성테스트sql", "" ,"이 글은 테스트 중입니다.", 52);
+VALUES ("자유", "글작성테스트sql", ,"이 글은 테스트 중입니다.", 52);
 
 SELECT *FROM mc_board mb ;
 SELECT	

@@ -122,6 +122,12 @@ public class MainController {
 	@PostMapping("/board/writeOk")
 	public String writeOk(BoardDTO dto, Model model, Authentication authentication) {
 		loginCheck(model, authentication);
+		
+		// 태그의 문자열이 빈 문자열이면 null 값으로 처리
+		if (dto.getTag().isEmpty()) {
+			dto.setTag(null);
+		}
+		
 		model.addAttribute("result", userService.write(dto));
 		model.addAttribute("dto", dto);
 		return "user/board/writeOk";
@@ -131,9 +137,15 @@ public class MainController {
 	@RequestMapping("/board/delete")
 	public String delete(int uid, Model model, Authentication authentication) {
 		MemberDTO m_dto = loginCheck(model, authentication);
+		
+		if (userService.selectOne(uid).isEmpty()) { // 보드 uid가 존재하지 않는다면
+			model.addAttribute("result", 0 );
+			return "user/board/delete";
+		}
+
 		String board_m_uid = userService.selectOne(uid).get(0).getMember_uid().trim();
 		String m_dto_uid = String.valueOf(m_dto.getMember_uid()).trim();
-
+		
 		// 보드의 멤버 아이디와 로그인 된 멤버아이디가 같을 경우
 		if (board_m_uid.equals(m_dto_uid)) {	
 			model.addAttribute("result", userService.delete(uid));
@@ -149,6 +161,13 @@ public class MainController {
 	@RequestMapping("board/update")
 	public String update(int uid, Model model, Authentication authentication) {
 		MemberDTO m_dto = loginCheck(model, authentication);
+		
+		// 보드 uid가 존재하지 않는다면
+		if (userService.selectOne(uid).isEmpty()) {
+			model.addAttribute("list", userService.selectOne(uid));
+			return "user/board/update";
+		}
+		
 		String board_m_uid = userService.selectOne(uid).get(0).getMember_uid().trim();
 		String m_dto_uid = String.valueOf(m_dto.getMember_uid());
 		
@@ -164,10 +183,19 @@ public class MainController {
 	
 	// 게시글 수정 완료페이지
 	@PostMapping("board/updateOk")
-	public String updateOk(int uid, Model model, BoardDTO dto) {
+	public String updateOk(Model model, BoardDTO dto, Authentication authentication) {
+		loginCheck(model, authentication);
+		
+		// 태그의 문자열이 빈 문자열이면 null 값으로 처리
+		if (dto.getTag().isEmpty()) {
+			dto.setTag(null);
+		}
+		
+		System.out.println(dto);
 		
 		model.addAttribute("result", userService.update(dto));
-		return "board/updateOk";
+		model.addAttribute("dto", dto);
+		return "user/board/updateOk";
 	}
 	
 	
