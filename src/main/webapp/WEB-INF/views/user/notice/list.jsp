@@ -22,6 +22,7 @@
   <div style="clear:both; height:70px"></div>
 
   <div id="middle_menu">
+    <table>
     <h2>공지사항</h2>
 
     <tr>

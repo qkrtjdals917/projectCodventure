@@ -4,11 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lec.spring.config.PrincipalDetails;
+import com.lec.spring.domain.ajax.ModaconAjaxList;
 import com.lec.spring.domain.board.BoardDTO;
+import com.lec.spring.domain.coin.CoinDTO;
 import com.lec.spring.domain.member.MemberDTO;
 import com.lec.spring.service.UserService;
 
@@ -69,6 +73,27 @@ public class MainController {
 //		model.addAttribute("key","service.__()");
 		// Service 로 데이터 가져와서 model 에 담아 view에 전달
 		return "user/mypage";
+	}
+	
+	// Coin List ajax 페이지
+	@GetMapping("/coin/getlist")
+	@ResponseBody
+	public ModaconAjaxList<CoinDTO> getCoinList (Model model ) {
+		ModaconAjaxList<CoinDTO> result = new ModaconAjaxList<CoinDTO> ();
+		
+		
+		if( !userService.selectCoinList().isEmpty()) {
+			
+			result.setStatus("success");
+			result.setList(userService.selectCoinList());
+			result.setCount(100);
+		}
+		else  {
+			result.setStatus("fail");
+		}
+		
+		
+		return result;
 	}
 	
 	// 코인페이지

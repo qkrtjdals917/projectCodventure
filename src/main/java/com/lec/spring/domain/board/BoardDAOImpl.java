@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.lec.spring.domain.coin.CoinDTO;
+
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 
@@ -72,4 +74,8 @@ public class BoardDAOImpl implements BoardDAO {
 		return mapper.insert(dto);
 	}
 	
+	@Override
+	public List<CoinDTO> selectCoinList () {
+		return mapper.selectCoinList();
+	}
 }

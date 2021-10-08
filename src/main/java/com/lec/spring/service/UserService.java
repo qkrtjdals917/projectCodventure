@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lec.spring.domain.board.BoardDAO;
 import com.lec.spring.domain.board.BoardDTO;
+import com.lec.spring.domain.coin.CoinDTO;
 
 @Service
 public class UserService {
@@ -61,6 +62,10 @@ public class UserService {
 	// 글 수정
 	public int update(BoardDTO dto) {
 		return dao.update(dto);
+	}
+	
+	public List<CoinDTO> selectCoinList () {
+		return dao.selectCoinList();
 	}
 	
 }
