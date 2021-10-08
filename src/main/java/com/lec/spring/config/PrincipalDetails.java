@@ -66,8 +66,9 @@ public class PrincipalDetails implements UserDetails {	// UserDetails는 Spring 
 	}
 	
 	public int getBordCnt() {
-		return dto.getMemberBoardCnt();
+		return memberService.memberBoardCnt(dto);
 	}
+	
 	
 	// 계정이 만료된건 아닌가?
 	@Override

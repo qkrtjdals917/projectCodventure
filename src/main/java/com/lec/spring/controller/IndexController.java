@@ -3,6 +3,7 @@ package com.lec.spring.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lec.spring.config.PrincipalDetails;
 import com.lec.spring.domain.member.MemberDTO;
 import com.lec.spring.service.MemberService;
 
@@ -95,27 +97,35 @@ public class IndexController {
 	
 	//(/pwChange)
 	@PostMapping("/pwChange")
-	public String pwChange(MemberDTO dto) {
-		
+	@ResponseBody
+	public String pwChange(Authentication authentication, MemberDTO dto) {
 		String currentPw = dto.getCurrentpw();		// 현재 비밀번호(입력)
-		String pw = dto.getPw();					// 현재 비밀번호
+		String pw = "";					// 현재 비밀번호
+		
+		if (authentication != null) {
+			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+			
+			pw = userDetails.getPassword();
+		}
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		if(encoder.matches(currentPw, pw)) {
-		
 			String changePassword = dto.getChangepw();
+			if(encoder.matches(changePassword, pw)) {
+				return "fail_eq";	//바꾸려는 비번과 현재 비번이 같음
+			}
 			String encPassword = passwordEncoder.encode(changePassword);	// 원본을 암호화
 			dto.setPw(encPassword); // 암호와된 pw세팅
 			
 			System.out.println(MemberService.changePassword(dto));
 			System.out.println("변경성공");
 			
-			return "redirect:/logout";
+			return "success";
 		
 		}
 		System.out.println("변경실패");
 		
-		return "redirect:/modacon";
+		return "fail_wr";	// 현재 비밀번호가 틀림
 	}
 	
 	

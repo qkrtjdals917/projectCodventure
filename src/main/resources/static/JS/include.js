@@ -117,11 +117,13 @@ $(function () {
 						
 					} 
 					else if (result.isDenied) {
+						clear_modal_main()
 						$(this).parents(".modal").hide();
 					}
 	        });
 		}
 		else {
+			clear_modal_main()
 			$(this).parents(".modal").hide();
 		}
 	});
@@ -143,11 +145,13 @@ $(function () {
 							
 						} 
 						else if (result.isDenied) {
+							clear_modal_main()
 							$(this).hide();
 						}
 		        });
 			}
 			else {
+				clear_modal_main()
 				$(this).hide();
 			}
 		}
@@ -255,4 +259,9 @@ function checkNicknameDuplication () {
 
 function gourl(url) {
 	location.href=url;
+}
+
+function clear_modal_main() {
+	$("#loginform")[0].reset();
+	$("#joinform")[0].reset();
 }

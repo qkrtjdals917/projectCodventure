@@ -165,21 +165,6 @@ function mpCheckNicknameDuplication () {
 
 /* password 확인*/
 function chkPw(){
-	/*
-	$.ajax({
-		url : "/checkpw/" + pw,
-		type : "GET",
-		cache : false,
-		success : function(data, status){
-			if(status == "success"){
-				if(data == 0) {
-					$("#nicknameDuplication").val("nicknameCheck");
-					$("#nicknameEx").text("사용 가능한 닉네임입니다.");
-				}
-			}
-		}
-	});	
-	*/
 	
 	frm = document.forms['pwChangeform'];
 	
@@ -190,20 +175,48 @@ function chkPw(){
 		Swal.fire({
 			  icon: 'warning',
 			  title: '바뀔 비밀번호의 입력이 맞지 않습니다'
-			})
+			}).then(function(){
+					clear_modal();
+				});
 		frm['checkpw'].focus();
 		
 		return;
 	}
-	
-	Swal.fire({
-	  icon: 'success',
-	  title: '비밀번호 변경이 완료되었습니다.',
-	  text: '재로그인 해주세요!'
-	}).then(function(){
-		frm.submit();
+	$.ajax({
+		type:'POST',
+		url : "/pwChange",
+		data : $("#pwChangeform").serialize(),
+		cache : false,
+		success : function (data) {
+			if (data == "success") {
+				Swal.fire({
+				  icon: 'success',
+				  title: '비밀번호 변경이 완료되었습니다.',
+				  text: '재로그인 해주세요!'
+				}).then(function(){
+					location.href="/logout";
+				});
+			} else if (data == "fail_eq"){
+				Swal.fire({
+					icon: 'error',
+					title: '현재 비밀번호와 일치합니다.',
+					text: '다시 입력해주세요!'
+				}).then(function(){
+					clear_modal();
+				});
+			} else if (data == "fail_wr") {
+				Swal.fire({
+					icon: 'error',
+					title: '입력된 비밀번호가 다릅니다.',
+					text: '다입력된 비밀번호를 다시 확인해주세요!'
+				}).then(function(){   
+					clear_modal();
+				});
+			}
+			
+		}
+		
 	});
-	
 }
 
 function chkDelete(){
@@ -233,8 +246,11 @@ function chkDelete(){
 	
 }
 
-
-
+function clear_modal() {
+	$("#memChangeform")[0].reset();
+	$("#pwChangeform")[0].reset();
+	$("#memDeleteform")[0].reset();
+}
 
 
 
