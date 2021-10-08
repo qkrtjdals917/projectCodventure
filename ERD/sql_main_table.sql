@@ -164,6 +164,8 @@ SELECT * FROM mc_authority;
 SELECT * FROM mc_member ORDER BY member_uid DESC;
 SELECT * FROM mc_board;
 SELECT * FROM mc_comment;
+SELECT * FROM mc_member WHERE email = "test3@email.com";
+SELECT count(subject) FROM mc_board WHERE member_uid = 77;
 
 -- 글 조회수 증가
 UPDATE mc_board SET count = count + 1 WHERE board_uid = 1;
@@ -182,6 +184,7 @@ mb.type type, mb.tag tag
 FROM mc_board mb , mc_member mm 
 WHERE mb.member_uid = mm.member_uid 
 AND mb.board_uid = 1;
+
 
 SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname, 
 		mb.regDate regDate, mb.count count, mb.content content, 
@@ -210,8 +213,8 @@ SELECT *FROM mc_board mb ;
 		WHERE email = "aaa5@aaa.com";
 
 VALUES ("자유", "글작성테스트sql", ,"이 글은 테스트 중입니다.", 52);
-
 SELECT *FROM mc_board mb ;
+
 SELECT	
 	member_uid "member_uid",
 	email "email",
@@ -221,5 +224,9 @@ SELECT
 	authority "authority"
 FROM 
 	mc_member
+
+WHERE email = "aaa5@aaa.com";
+SELECT *FROM mc_board mb ;
+
 WHERE email = "aaa5@aaa.com";
 SELECT *FROM mc_board mb ;

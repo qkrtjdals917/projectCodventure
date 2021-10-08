@@ -58,8 +58,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int deleteMember(int member_uid) {
-		return mapper.deleteMember(member_uid);
+	public int deleteMember(MemberDTO dto) {
+		return mapper.deleteMember(dto);
 	}
 
 	@Override
@@ -70,6 +70,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int changePassword(MemberDTO dto) {
 		return mapper.changePassword(dto);
+	}
+
+	@Override
+	public int memberBoardCnt(MemberDTO dto) {
+		return mapper.memberBoardCnt(dto);
 	}
 	
 	// 회원 리스트 가져오기 (페이징)

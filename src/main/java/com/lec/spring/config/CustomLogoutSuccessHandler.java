@@ -22,12 +22,12 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
             if (redirectUrl != null) {
                 getRedirectStrategy().sendRedirect(request, response, redirectUrl);
             } else {
-                super.onLogoutSuccess(request, response, authentication);
+            	getRedirectStrategy().sendRedirect(request, response, "/modacon");
             }
             
             session.invalidate();
         } else {
-            super.onLogoutSuccess(request, response, authentication);
+        	getRedirectStrategy().sendRedirect(request, response, "/modacon");
         }
         
 		//여기에 로직 추가

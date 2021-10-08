@@ -22,8 +22,8 @@ public class MemberService {
 	}
 	
 	// 회원삭제
-	public int deleteMember(int uid) {
-		int cnt = dao.deleteMember(uid);
+	public int deleteMember(MemberDTO dto) {
+		int cnt = dao.deleteMember(dto);
 		return cnt;
 	}
 	
@@ -70,6 +70,11 @@ public class MemberService {
 	// 회원 비번 변경
 	public int changePassword(MemberDTO dto) {
 		return dao.changePassword(dto);
+	}
+	
+	// 작성글 개수 가져오기
+	public int memberBoardCnt(MemberDTO dto) {
+		return dao.memberBoardCnt(dto);
 	}
 	
 }

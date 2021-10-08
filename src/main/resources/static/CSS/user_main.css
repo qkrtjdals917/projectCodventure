@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+/* main.jsp, coin_main.jsp, coin_main_d.jsp에 적용 */
+
+/* 전체 적용 */
+* {
+    color: black;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 25px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+/* main.jsp */
+.contentA { 
+    position: relative;
+    margin : 0 auto;
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+

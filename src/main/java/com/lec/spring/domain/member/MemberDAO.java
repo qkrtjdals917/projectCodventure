@@ -33,7 +33,7 @@ public interface MemberDAO {
 		public int selectAuthoritiesById(int member_uid);
 		
 		// 회원탈퇴
-		public int deleteMember(int member_uid);
+		public int deleteMember(MemberDTO dto);
 		
 		// 정보변경
 		public int changeMember(MemberDTO dto);
@@ -41,6 +41,7 @@ public interface MemberDAO {
 		// 비번바꾸깅
 		public int changePassword(MemberDTO dto);
 		
+
 		
 		// 관리자 
 		
@@ -59,5 +60,9 @@ public interface MemberDAO {
 		// => deleteMember
 		// 검색기능 listAll
 		// TODO 
+
+		// 작성글 개수 가져오기
+		public int memberBoardCnt(MemberDTO dto);
+
 		
 }

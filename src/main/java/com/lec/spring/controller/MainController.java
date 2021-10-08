@@ -38,6 +38,29 @@ public class MainController {
 		return dto;	// dto를 반환
 	}
 	
+	// Mypage
+	private void memberBoardCnt(Model model, Authentication authentication) {
+		if (authentication != null) {
+			MemberDTO dto = new MemberDTO();
+			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+			
+			// 확인용 코드
+			System.out.println("Email정보 : " + userDetails.getUsername());
+			System.out.println("Nickname정보 : " + userDetails.getNickname());
+			System.out.println("Phonenum정보 : " + userDetails.getPhonNum());
+			System.out.println("cnt정보 : " + userDetails.getBordCnt());
+			
+			dto.setEmail(userDetails.getUsername());
+			dto.setNickname(userDetails.getNickname());
+			dto.setPhoneNumber(userDetails.getPhonNum());
+			dto.setMemberBoardCnt(userDetails.getBordCnt());
+			dto.setMember_uid(userDetails.getUid());
+			dto.setPw(userDetails.getPassword());
+			
+			model.addAttribute("member" , dto);
+		}
+	}
+	
 	
 	@Autowired
 	public void setUserService(UserService userService) {
@@ -68,6 +91,8 @@ public class MainController {
 		
 //		model.addAttribute("key","service.__()");
 		// Service 로 데이터 가져와서 model 에 담아 view에 전달
+		memberBoardCnt(model, authentication);
+		
 		return "user/mypage";
 	}
 	

@@ -5,38 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>코인 메인페이지</title>
-<style>
-table {width: 100%;}
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-</style>
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/user_main.css">
 </head>
 <body>
 	<div>
-		<header>
-			<!-- 로그인  -->
-			<div>
-				<a href="#">회원가입</a> | 
-				<a href="#">로그인</a>
-			</div>
-			<div>
-				<div>여긴 사이트 로고자리</div>
-				<div>모다콘(사이트 이름)</div>
-			</div>
-			<nav>
-				<table>
-					<tr>
-						<td>코인</td>
-						<td>커뮤니티</td>
-						<td>공지</td>
-					</tr>
-				</table>
-			</nav>
-		</header>
-		<article>
+		<div class="header">
+	    	<%@ include file="../include/header.jsp"%>
+	    </div>
+		<div class="content">
 			<form>
 				<input type="text" name="coin" placeholder="원하는 코인은?"/>
 			</form>
@@ -49,24 +25,19 @@ table, th, td {
 					<td>거래소4</td>
 					<td>거래소5</td>
 				</tr>
-				
-				<c:choose>
-					<c:when test="" />
-				</c:choose>
-				<c:otherwise>
-					<c:forEach var="dto" item="">
-						<tr>
-							<td><!-- 거래소 --></td>
-							<td><!-- 거래소 --></td>
-							<td><!-- 거래소 --></td>
-							<td><!-- 거래소 --></td>
-							<td><!-- 거래소 --></td>
-							<td><!-- 거래소 --></td>
-						</tr>
-					</c:forEach>
-				</c:otherwise>
+				<tr>
+					<td><!-- 거래소 --></td>
+					<td><!-- 거래소 --></td>
+					<td><!-- 거래소 --></td>
+					<td><!-- 거래소 --></td>
+					<td><!-- 거래소 --></td>
+					<td><!-- 거래소 --></td>
+				</tr>
 			</table>
-		</article>
+		</div>
+		<div class="footer">
+	    	<%@ include file="../include/footer.jsp"%>
+	    </div>
 	</div>
 </body>
 </html>

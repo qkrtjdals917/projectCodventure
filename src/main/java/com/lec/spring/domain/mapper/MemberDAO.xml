@@ -61,7 +61,7 @@
 		FROM 
 			mc_member
 		WHERE email = #{email}
-	</select>		
+	</select>
 	
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="com.lec.spring.domain.member.MemberDTO">
@@ -110,6 +110,7 @@
 		WHERE member_uid = #{member_uid}
 	</update>	
 	
+<<<<<<< HEAD
 
 	
 	<!-- 회원 리스트 가져오기 : selectAll -->
@@ -166,5 +167,14 @@
 	
 	-->
 	
+=======
+	<!-- 작성글 개수 가져오기 -->
+	<select id="memberBoardCnt" parameterType="com.lec.spring.domain.member.MemberDTO"
+	resultType="int">
+		SELECT IFNULL (count(subject) , 0) 
+		FROM mc_board 
+		WHERE member_uid = #{member_uid};
+	</select>
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
 	
 </mapper>

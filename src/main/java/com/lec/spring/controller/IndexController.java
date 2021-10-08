@@ -3,6 +3,8 @@ package com.lec.spring.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lec.spring.config.PrincipalDetails;
 import com.lec.spring.domain.member.MemberDTO;
 import com.lec.spring.service.MemberService;
 
@@ -39,6 +42,16 @@ public class IndexController {
 
 		return MemberService.countByNickname(nickname);
 	}
+	
+//	@PostMapping("/checkPw/{pw}")
+//	@ResponseBody
+//	public int currentCheckPw(@PathVariable String nickname) {
+//
+	// 이렇게 되면 암호화된 비밀번호를 어떻게 복호화해서 가져오는지?
+	// 방법 찾으면 sql에 추가하고 .js 함수 완성
+	
+//		;
+//	}
 	
 	@RequestMapping(value = "/logincheck", method = RequestMethod.GET)
 	@ResponseBody
@@ -70,5 +83,58 @@ public class IndexController {
 		return "redirect:/modacon";	// 회원가입 완료시 로그인 페이지로 이동
 	}
 	
+	//(/update)
+	@PostMapping("/update")
+	public String update(MemberDTO dto) {
+		
+		System.out.println(dto);
+		System.out.println(MemberService.changeMember(dto));
+	
+		
+		return "redirect:/logout";
+	}
+	
+	
+	//(/pwChange)
+	@PostMapping("/pwChange")
+	@ResponseBody
+	public String pwChange(Authentication authentication, MemberDTO dto) {
+		String currentPw = dto.getCurrentpw();		// 현재 비밀번호(입력)
+		String pw = "";					// 현재 비밀번호
+		
+		if (authentication != null) {
+			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+			
+			pw = userDetails.getPassword();
+		}
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		if(encoder.matches(currentPw, pw)) {
+			String changePassword = dto.getChangepw();
+			if(encoder.matches(changePassword, pw)) {
+				return "fail_eq";	//바꾸려는 비번과 현재 비번이 같음
+			}
+			String encPassword = passwordEncoder.encode(changePassword);	// 원본을 암호화
+			dto.setPw(encPassword); // 암호와된 pw세팅
+			
+			System.out.println(MemberService.changePassword(dto));
+			System.out.println("변경성공");
+			
+			return "success";
+		
+		}
+		System.out.println("변경실패");
+		
+		return "fail_wr";	// 현재 비밀번호가 틀림
+	}
+	
+	
+	//(/deleteOk)
+	@PostMapping("/deleteOk")
+	public String deleteOk(MemberDTO dto) {		
+		System.out.println(MemberService.deleteMember(dto));
+			
+		return "redirect:/logout";	// 로그아웃 실행
+	}
 	
 }

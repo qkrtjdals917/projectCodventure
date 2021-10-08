@@ -174,6 +174,7 @@
 	<delete id="deleteUid" flushCache="true">
 		DELETE FROM mc_board WHERE board_uid = #{board_uid}
 	</delete>
+
 	
 	<!-- 글 수정 -->
 	<update id="update" flushCache="true" parameterType="com.lec.spring.domain.board.BoardDTO">

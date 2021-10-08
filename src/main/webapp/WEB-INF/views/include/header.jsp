@@ -26,7 +26,7 @@
             <div class="container-small"> <!-- 작은 화면의 배치를 위한 컨테이너-->
                 <a href="/modacon" class="headA">로고</a>
                 
-            	<!-- 내비게이션 메뉴 -->
+            	<!-- 작은 창 내비게이션 메뉴 -->
 	            <nav class="headB">
 		            <ul>
 		                <li><a href="/modacon/coin">코인시세</a></li>
@@ -47,7 +47,6 @@
 		                        <button type="button" id="btnJoin" >회원가입</button>
 		                        <button type="button" id="btnLogin">로그인</button>
                     		</c:when>
-                    		
                     		<c:otherwise>
                     			<button type="button" id="btnMypage" 
                     			onClick="location.href='/modacon/mypage'">마이페이지</button>
@@ -58,10 +57,19 @@
                     	<button type="button" id="btnJoin" >회원가입</button>
                     	<button type="button" id="btnLogin">로그인</button>
                     	 -->
-                    	
+                    	 
                     </div>
                 </div>
             </div>
+
+			<!-- 큰 창 내비게이션 메뉴 -->
+			<nav class="headE">
+				<ul>
+					<li><a href="/modacon/coin">코인시세</a></li>
+					<li><a href="/modacon/board">커뮤니티</a></li>
+					<li><a href="/modacon/notice">공지사항</a></li>
+				</ul>
+			</nav>
         </div>
         
         <div id="dlg_login" class="modal">

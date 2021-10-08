@@ -61,6 +61,15 @@ public class PrincipalDetails implements UserDetails {	// UserDetails는 Spring 
 		return dto.getMember_uid();
 	}
 	
+	public String getPhonNum() {
+		return dto.getPhoneNumber();
+	}
+	
+	public int getBordCnt() {
+		return memberService.memberBoardCnt(dto);
+	}
+	
+	
 	// 계정이 만료된건 아닌가?
 	@Override
 	public boolean isAccountNonExpired() {

@@ -72,6 +72,7 @@ public class BoardDAOImpl implements BoardDAO {
 		return mapper.insert(dto);
 	}
 
+
 	// ↓ 해연추가 
 	
 	// 공지사항 정보 가져오기

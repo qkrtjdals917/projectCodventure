@@ -156,10 +156,10 @@
 
       <%@ include file="./comment.jsp" %>
 
-
   <div class="footer">
     <%@ include file="../../include/footer.jsp"%>
   </div>
+  
     </body>
 
     </html>
