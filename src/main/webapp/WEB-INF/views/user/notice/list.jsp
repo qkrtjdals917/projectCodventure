@@ -23,6 +23,8 @@
 
   <div id="middle_menu">
     <h2>공지사항</h2>
+  <table>
+  
 
     <tr>
       <th>글번호</th>
@@ -31,7 +33,8 @@
       <th>작성일</th>
       <th>조회수</th>
     </tr>
-    <hr>
+
+
 
 
     <c:choose>
