@@ -1,3 +1,5 @@
+var modal_status = "";
+
 $(function () {
 	
 	// email 부분
@@ -74,7 +76,7 @@ $(function () {
 	
 	// 로그인 시 해당 페이지 url 저장하기위함
 	$("#btnLogin").click(function(){
-		
+		modal_status = "login";
 		$.ajax({
 		url : "/logincheck/",
 		type : "GET",
@@ -90,6 +92,7 @@ $(function () {
 		});
 		
 		$("#btnJoin").click(function(){
+			modal_status = "join";
 			setPopup("join");    // 글 작성 용으로 모달 팝업 셋업
 			$("#dlg_login").show();
 		});
@@ -113,20 +116,61 @@ $(function () {
 	
 	// 모달 창 내 버튼 부분
 	$("#btn_go_join").click(function(){
+		modal_status = "join";
 		setPopup("join");
 	});
 	
 	$(".modal .close").click(function(){
-		clear_modal_main()
-		$(this).parents(".modal").hide();
+		if(modal_status == "join") {
+			Swal.fire({
+				icon: 'warning',
+				title: '회원 가입 취소',
+				text: '회원 가입 창을 닫을 경우 해당 정보는 다 삭제됩니다.',
+				showDenyButton: true,
+				confirmButtonText: '닫기 취소',
+				denyButtonText: `닫기`,
+				}).then((result) => {
+					if (result.isConfirmed) {
+						
+					} 
+					else if (result.isDenied) {
+						clear_modal_main()
+						$(this).parents(".modal").hide();
+					}
+	        });
+		}
+		else {
+			clear_modal_main()
+			$(this).parents(".modal").hide();
+		}
 	});
 	
 	// 모달 창 외부 클릭시 모달창 닫기
 	$(".modal").click(function(e){
 		var modal = $(".modal-content")
 		if(modal.has(e.target).length === 0){
-			clear_modal_main()
-			$(this).hide();
+				if(modal_status == "join") {
+				Swal.fire({
+					icon: 'warning',
+					title: '회원 가입 취소',
+					text: '회원 가입 창을 닫을 경우 해당 정보는 다 삭제됩니다.',
+					showDenyButton: true,
+					confirmButtonText: '닫기 취소',
+					denyButtonText: `닫기`,
+					}).then((result) => {
+						if (result.isConfirmed) {
+							
+						} 
+						else if (result.isDenied) {
+							clear_modal_main()
+							$(this).hide();
+						}
+		        });
+			}
+			else {
+				clear_modal_main()
+				$(this).hide();
+			}
 		}
 	});
 	
