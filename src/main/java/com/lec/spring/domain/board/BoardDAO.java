@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.mybatis.spring.annotation.MapperScan;
 
+import com.lec.spring.domain.coin.CoinDTO;
+
 @MapperScan
 public interface BoardDAO {
 	// 전체글 list
@@ -33,5 +35,6 @@ public interface BoardDAO {
 	// 글 작성
 	public abstract int insert(BoardDTO dto);
 
-	
+	// 코인 리스트 ㅈ가져오기
+	public abstract List<CoinDTO> selectCoinList ();
 }
