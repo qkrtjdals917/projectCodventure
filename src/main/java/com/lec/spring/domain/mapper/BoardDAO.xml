@@ -73,11 +73,11 @@
 		VALUES (#{type}, #{subject}, #{tag, jdbcType=VARCHAR}, #{content}, #{member_uid})
 	</insert>
 	
-<<<<<<< HEAD
+
 	
 	<!-- ↓ 해연 추가 -->
 	
-	<!-- 공지사항 정보 -->
+	<!-- 공지사항 정보 : selectNotice-->
 	
 	<!-- 공지사항 카운트 -->
 	<select id="countNtc" resultType="int">
@@ -104,16 +104,16 @@
 		]]>
 	</select>
 	
-	<!-- 공지사항 정보 삭제 -->
-	 <delete id="deleteByNtc" flushCache="true"
-		parameterType="java.util.ArrayList">
-		DELETE FROM mc_board mb, mc_member mm
-		WHERE mb.member_uid AND mb.type = "공지" in (
-			<foreach collection="array" item="item" index="index" separator=",">
-				${item}
-			</foreach>
-		)
-	</delete>
+	<!-- 공지사항 정보 삭제 체크된 것 여러개-->
+	<delete id="deleteByChk" flushCache="true"
+ 	 	parameterType="java.util.ArrayList">
+ 	 	DELETE FROM mc_board
+ 	 	WHERE mm.member_uid in (
+ 	 		<foreach collection="array" item="item" index="index" separator=",">
+ 	 			${item}
+ 	 		</foreach>
+ 	 	) 	 
+ 	 </delete>
 	
 	<!-- 공지사항 작성하기, 정보를 DB에 저장한다 -->
 	<insert id="insertNtc" flushCache="true">
@@ -128,7 +128,7 @@
 	
 	
 	
-	<!-- 게시판 정보를 가져온다 -->
+	<!-- 게시판 정보를 가져온다 : selectCommunity-->
 	
 	<!-- 커뮤니티 게시판 글의 개수를 카운트해서 가져온다 -->
 	<select id="countAll" resultType="int">
@@ -159,21 +159,12 @@
 		]]>
 	</select>
 	
-	<!-- 정보 게시판 리스트 가져오기 -->
+	<!-- 정보 게시판 리스트 가져오기 : selectInfo -->
 	<!-- 정보게시판 페이징 -->
-	<!-- 자유 게시판 리스트 가져오기 -->
+	<!-- 자유 게시판 리스트 가져오기 : selectFree-->
 	<!-- 자유게시판 페이징 -->
 	
-	<!-- 게시글을 삭제한다 -->
-	 <delete id="deleteByCmt" flushCache="true"
-		parameterType="java.util.ArrayList">
-		DELETE FROM mc_board mb, mc_member mm
-		WHERE mb.member_uid in (
-			<foreach collection="array" item="item" index="index" separator=",">
-				${item}
-			</foreach>
-		)
-	</delete>
+	<!-- 게시글을 삭제한다 : deleteUid -->
 	<!-- 체크된 게시글 삭제 ? -->
 	<!-- 게시글을 본다 -->
 	

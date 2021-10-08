@@ -103,7 +103,7 @@ ALTER TABLE mc_comment
 	ADD FOREIGN KEY (board_uid)
 	REFERENCES mc_board (board_uid)
 	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 ;
 
 

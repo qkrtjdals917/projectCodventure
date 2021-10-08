@@ -2,6 +2,7 @@ package com.lec.spring.domain.member;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.MapperScan;
 
 @MapperScan
@@ -39,5 +40,24 @@ public interface MemberDAO {
 		
 		// 비번바꾸깅
 		public int changePassword(MemberDTO dto);
+		
+		
+		// 관리자 
+		
+		// 회원 리스트 가져오기 (페이징)
+		// => selectAll
+		// 회원 리스트 카운팅
+		public int countMb();
+		// 회원 리스트 from 부터 pageRows 개를 가져온다.
+		public List<MemberVO> selectFromRowMb(
+				@Param("from") int from, 
+				@Param("pageRows") int pageRows 
+				);
+		// 회원리스트를 본다
+		// => selectByUid
+		// 강퇴기능
+		// => deleteMember
+		// 검색기능 listAll
+		// TODO 
 		
 }

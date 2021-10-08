@@ -1,5 +1,7 @@
 package com.lec.spring.domain.member;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -10,26 +12,26 @@ public class MemberVO {
 	private String nickname;
 	private String phoneNumber;		// 폰번호 ***-****-**** 인데 나눠서 또 저장? -> 번호가 null값으로 가져와 진다 수정 필요
 	private int authority;
-	
+	@JsonIgnore
 	public String getPhonenum1 () {
 		if(!phoneNumber.isEmpty()) {
 			return phoneNumber.split("-")[0];
 		}
-		return null;
+		return "";
 	}
-	
+	@JsonIgnore
 	public String getPhonenum2 () {
 		if(!phoneNumber.isEmpty()) {
 			return phoneNumber.split("-")[1];
 		}
-		return null;
+		return "";
 	}
-	
+	@JsonIgnore
 	public String getPhonenum3 () {
 		if(!phoneNumber.isEmpty()) {
 			return phoneNumber.split("-")[2];
 		}
-		return null;
+		return "";
 	}
 
 	public String toString() {

@@ -110,10 +110,61 @@
 		WHERE member_uid = #{member_uid}
 	</update>	
 	
+
 	
-	<!-- 회원 리스트 가져오기 (페이징) -->
-	<!-- 강퇴기능 -->
-	<!-- 검색기능 -->
+	<!-- 회원 리스트 가져오기 : selectAll -->
+		
+	<!-- 회원 리스트 카운팅-->
+	<select id="countMb" resultType="int">
+		SELECT count(*)
+		FROM mc_member
+		WHERE member_uid = #{member_uid}
+	</select>
+
+	<!--회원 리스트 from 부터 pageRows 개를 가져온다.-->
+	<select id="selectFromRowMb"
+		resultType="com.lec.spring.domain.member.MemberVO">
+		<![CDATA[    
+		SELECT
+			member_uid "member_uid",
+			email "email",
+			password "pw",
+			nickname "nickname",
+			IFNULL (phoneNumber, "") "phoneNumber",
+			authority "authority"
+		FROM 
+			mc_member
+		ORDER BY 
+			member_uid DESC
+		LIMIT #{from}, #{pageRows}
+		]]>
+	</select>
+	
+	<!--회원리스트를 본다 selectByUid -->
+
+	<!-- 강퇴기능 deleteMember -->
+	
+	<!--검색기능 listAll -->
+	
+	
+	<!--
+	
+	<select id="listAll" resultType="com.lec.spring.domain.member.memberDTO">
+		SELECT	
+			member_uid "member_uid",
+			email "email",
+			password "pw",
+			nickname "nickname",
+			phoneNumber "phoneNumber",
+			authority "authority"
+		FROM 
+			mc_member
+		<include refid="search"></include>
+		ORDER BY
+			member_uid DESC 
+	</select> 
+	
+	-->
 	
 	
 </mapper>

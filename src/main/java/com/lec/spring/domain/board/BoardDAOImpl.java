@@ -2,7 +2,6 @@ package com.lec.spring.domain.board;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -88,17 +87,15 @@ public class BoardDAOImpl implements BoardDAO {
 		return mapper.selectFromRowNtc(from, pageRows);
 	}
 	
-	// 공지사항 정보 삭제
-	@Override
-	public int deleteByNtc(int[] board_uid) {
-		return mapper.deleteByNtc(board_uid);
+	// 공지사항 정보 삭제 체크된 것
+	public int deleteByChk (int [] uids) {
+		return mapper.deleteByChk(uids);
 	}
 	
 	// 공지사항 작성하기
 	public int insertNtc(BoardDTO dto) {
 		return mapper.insertNtc(dto);
 	}
-	
 	
 	// (커뮤티니 정보 가져오기)
 	// (커뮤니티 카운팅)
@@ -118,8 +115,5 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	
 	// (커뮤니티 삭제)
-	public int deleteByCmt(int [] board_uid) {
-		return mapper.deleteByCmt(board_uid);
-	}
 
 }

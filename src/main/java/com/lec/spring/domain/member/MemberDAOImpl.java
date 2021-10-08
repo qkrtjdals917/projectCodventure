@@ -72,4 +72,21 @@ public class MemberDAOImpl implements MemberDAO {
 		return mapper.changePassword(dto);
 	}
 	
+	// 회원 리스트 가져오기 (페이징)
+	// TODO selectAll
+	// 회원 리스트 카운팅
+	public int countMb() {
+		return mapper.countMb();
+	}
+	// 회원 리스트 from 부터 pageRows 개를 가져온다.
+	public List<MemberVO> selectFromRowMb(int from, int pageRows){
+		return mapper.selectFromRowMb(from, pageRows);
+	}
+	// 회원리스트를 본다
+	// TODO
+	// 강퇴기능
+	// TODO 
+	// 검색기능 listAll
+	// TODO 
+	
 }

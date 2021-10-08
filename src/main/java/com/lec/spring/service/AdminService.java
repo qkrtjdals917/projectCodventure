@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.lec.spring.domain.board.BoardDAO;
 import com.lec.spring.domain.board.BoardDTO;
 import com.lec.spring.domain.member.MemberDAO;
+import com.lec.spring.domain.member.MemberVO;
 import com.lec.spring.domain.report.ReportDAO;
 
 @Service
@@ -39,7 +40,7 @@ public class AdminService {
 	
 	
 	// 공지사항 정보를 가져온다
-	public List<BoardDTO> noticeList(){
+	public List<BoardDTO> admNtcList(){
 		return Bdao.selectNotice();
 	}
 	
@@ -48,25 +49,40 @@ public class AdminService {
 		return Bdao.countNtc();
 	}
 	
+	// 공지사항 정보를 본다.
+	public List<BoardDTO> admViewOne(int uid) {
+//		Bdao.viewCnt(uid);
+		return Bdao.selectOne(uid);
+	}
+	
 	// 공지사항 정보를 from 부터 pageRows 개를 가져온다.
 	public List<BoardDTO> ntcUpdateList(int from , int pageRows) {
 		return Bdao.selectFromRowNtc(from, pageRows);
 	}
 	
 	// 공지사항 정보를 삭제한다
-	public int deleteByNtc (int [] board_uid) {
-		return Bdao.deleteByNtc(board_uid);
+	public int deleteUid (int uid) {
+		return Bdao.deleteUid(uid);
+	}
+	
+	// 공지사항 체크된것 삭제한다
+	public int deleteByChk (int [] uids) {
+		return Bdao.deleteByChk(uids);
 	}
 	
 	// 공지사항 작성하기, 정보를 DB에 저장한다
 	public int write(BoardDTO dto) {
-		return Bdao.insertNtc(dto);
+		return Bdao.insert(dto);
+	}
+	
+	public int update(BoardDTO dto) {
+		return Bdao.update(dto);
 	}
 	
 	
 	
 	// 게시판 정보를 가져온다
-	public List<BoardDTO> communityList(){
+	public List<BoardDTO> admCmtList(){
 		return Bdao.selectCommunity();
 	}
 	
@@ -79,15 +95,20 @@ public class AdminService {
 		return Bdao.selectFromRowCmt(from, pageRows);
 	}
 	// 정보 게시판 리스트 가져오기
-	// TODO
+	public List<BoardDTO> admInfoList(){
+		return Bdao.selectInfo();
+	}
 	
 	// 자유 게시판 리스트 가져오기
-	// TODO
-	
-	// 게시글을 삭제한다
-	public int deleteByCmt(int [] board_uid) {
-		return Bdao.deleteByCmt(board_uid);
+	public List<BoardDTO> admFreeList(){
+		return Bdao.selectFree();
 	}
+	
+	// 커뮤니티 게시글을 삭제한다
+	public int deleteByCmt(int uid) {
+		return Bdao.deleteUid(uid);
+	}
+
 
 	// 체크된 게시글 삭제 ?
 	// TODO
@@ -109,13 +130,21 @@ public class AdminService {
 	
 	
 	// 회원 리스트 가져오기 (페이징)
+	// TODO selectAll
+	// 회원 리스트 카운팅
+	public int countMb() {
+		return Mdao.countMb();
+	}
+	// 회원 리스트 from 부터 pageRows 개를 가져온다.
+	public List<MemberVO> mbUpdateList(int from, int pageRows){
+		return Mdao.selectFromRowMb(from, pageRows);
+	}
+	// 회원리스트를 본다
 	// TODO
-	
 	// 강퇴기능
-	// TODO
-	
-	// 검색기능
-	// TODO
+	// TODO 
+	// 검색기능 listAll
+	// TODO 
 
 	// 매퍼 dAo 1:1
 	// 서비스 트랜잭션 1:n (모르겠음 1:1)

@@ -48,8 +48,8 @@ public interface BoardDAO {
 			@Param("pageRows") int pageRows 
 			);
 
-	// (공지사항 정보 삭제)
-	public int deleteByNtc(int [] board_uid);
+	// (공지사항 정보 삭제 (체크된 것)
+	public int deleteByChk(int [] uids);
 	
 	// (공지사항 정보 입력)
 	public int insertNtc(BoardDTO dto);
@@ -69,7 +69,6 @@ public interface BoardDAO {
 	// (자유게시판 정보 가져오기)
 	// (자유게시판 페이징)
 	// (커뮤니티 삭제)
-	public int deleteByCmt(int [] board_uid);
 
 	
 }
