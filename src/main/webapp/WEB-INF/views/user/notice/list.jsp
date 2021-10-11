@@ -26,8 +26,6 @@
     <h2>공지사항</h2>
   <table>
   
-
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
     <tr>
       <th>글번호</th>
       <th>제목</th>

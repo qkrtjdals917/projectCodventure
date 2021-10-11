@@ -115,11 +115,11 @@
 			</form>
 			<%-- [페이징] --%>
 			<div class="center">
-				<ul class="pagination" id="pagination"></ul>
+				<ul class="pagination"></ul>
 			</div>
 
 			<!-- <button onclick= "location.href = 'write.jsp'" >공지 등록</button> -->
-		<!-- 
+
 			<div class="a01">
 				<div class="ntcLeft">
 					<button type="button" id="ntcDle" class="ntc danger">글삭제</button>
@@ -128,7 +128,7 @@
 					<button type="button" id="ntcWrite" class="ntc success">글작성</button>
 				</div>
 			</div>
-			-->
+	
 			 
 			<!--  모달 위치 -->
 			
@@ -177,7 +177,7 @@
 		
 		<%-- [페이징] --%>
 		<div class="center">
-			<ul class="pagination" id="pagination"></ul>
+			<ul class="pagination"></ul>
 		</div>
 	</div>
 
@@ -223,7 +223,7 @@
 
 		<%-- [페이징] --%>
 		<div class="center">
-			<ul class="pagination" id="pagination"></ul>
+			<ul class="pagination"></ul>
 		</div>
 	</div>
 	
@@ -330,7 +330,7 @@
 
 		<%-- [페이징] --%>
 		<div class="center">
-			<ul class="pagination" id="pagination"></ul>
+			<ul class="pagination"></ul>
 		</div>
 	</div>
 

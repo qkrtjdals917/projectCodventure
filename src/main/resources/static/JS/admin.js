@@ -153,7 +153,7 @@ function noticeList (jsonObj) {
 		
 		// [페이징] 정보 업데이트
 		var pagination = buildPagination(jsonObj.writepages, jsonObj.totalpage, jsonObj.page, jsonObj.pagerows);
-		$("#pagination").html(pagination);
+		$(".pagination").html(pagination);
 		
 		} else{
 			alert("내용이 없습니다");
@@ -169,6 +169,9 @@ function noticeList (jsonObj) {
 // 총 페이지수 --> totalPage
 // 현재 페이지 --> curPage
 function buildPagination(writePages, totalPage, curPage, pageRows){
+	// alert(page + "몇개");
+	alert(writePages + "개" + totalPage + "개" + curPage + "개" + pageRows);
+	
 	var str = "";   // 최종적으로 페이징에 나타날 HTML 문자열 <li> 태그로 구성
 	
 	// 페이징에 보여질 숫자들 (시작숫자 start_page ~ 끝숫자 end_page)
@@ -178,12 +181,11 @@ function buildPagination(writePages, totalPage, curPage, pageRows){
     if (end_page >= totalPage){
     	end_page = totalPage;
     }
-    
+
   //■ << 표시 여부
 	if(curPage > 1){
 		str += "<li><a onclick='loadPage(" + 1 + ")' class='tooltip-top' title='처음'><i class='fas fa-angle-double-left'></i></a></li>\n";
 	}
-	
   	//■  < 표시 여부
     if (start_page > 1) 
     	str += "<li><a onclick='loadPage(" + (start_page - 1) + ")' class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n";
@@ -207,22 +209,21 @@ function buildPagination(writePages, totalPage, curPage, pageRows){
     if (curPage < totalPage) {
         str += "<li><a onclick='loadPage(" + totalPage + ")' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n";
     }
-
+	alert(str);
     return str;
 	
 } // end buildPagination()
 
 
-/*
+
 
 // <select> 에서 pageRows 값 변경될때마다
 function changePageRows(){
 	window.pagerows = $("#rows").val();
-	loadPage(window.page);
+	loadPageNtc(window.page);
 }
 
 
-*/
 
 // 커뮤니티 페이징
 function loadPageCmt(page) {
@@ -282,7 +283,7 @@ function communityList (jsonObj) {
 		
 		// [페이징] 정보 업데이트
 		var pagination = buildPagination(jsonObj.writepages, jsonObj.totalpage, jsonObj.page, jsonObj.pagerows);
-		$("#pagination").html(pagination);
+		$(".pagination").html(pagination);
 		
 		}
 
