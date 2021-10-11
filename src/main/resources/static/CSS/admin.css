@@ -74,6 +74,7 @@ table, th, td {
 
 #adm_content {
 	margin-top: 80px;
+	margin-bottom: 100px;
 	padding: 15px;
 	display: none;
 }
@@ -112,3 +113,36 @@ table, th, td {
 .selectPage {
 	float: right;
 }
+
+
+/* [페이징] */
+.center {
+	text-align: center;
+	backgroundcolor: black;
+}
+
+ul.pagination{
+	list-style-type: none;
+	color: black;
+}
+
+ul.pagination li{
+	display: inline-block;
+}
+
+ul.pagination a {
+	color: black;
+	float: left;
+	padding: 4px 8px;
+	text-decoration: none;
+	transition: background-color .3s;
+	margin: 0px;
+}
+
+ul.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+	border: 1px solid #4CAF50;
+}
+
+ul.pagination a:hover:not(.active) {background-color: #ddd;}

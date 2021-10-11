@@ -80,13 +80,13 @@
 		<div id="contentNotice">
 			<h2>공지사항</h2>
 			
-			<!-- 
+			 
 			<div class="p01">
 				<div class="pleft" id="pageinfo"></div>
 				<div class="pright" id="pageRows"></div>
 			</div>
 			
-			-->
+			
 			
 			<select name="" id="">
 				<option value="">10</option>
@@ -113,8 +113,13 @@
 
 				</div>
 			</form>
+			<%-- [페이징] --%>
+			<div class="center">
+				<ul class="pagination" id="pagination"></ul>
+			</div>
 
 			<!-- <button onclick= "location.href = 'write.jsp'" >공지 등록</button> -->
+		<!-- 
 			<div class="a01">
 				<div class="ntcLeft">
 					<button type="button" id="ntcDle" class="ntc danger">글삭제</button>
@@ -123,11 +128,7 @@
 					<button type="button" id="ntcWrite" class="ntc success">글작성</button>
 				</div>
 			</div>
-			
-			<%-- [페이징] --%>
-			<div class="center">
-				<ul class="pagination" id="pagination"></ul>
-			</div>
+			-->
 			 
 			<!--  모달 위치 -->
 			
@@ -312,6 +313,7 @@
 					<thead>
 					<tr>
 						<th>#</th>
+						<th>uid</th>						
 						<th>이메일</th>
 						<th>닉네임</th>
 						<th>전화번호</th>
@@ -354,6 +356,7 @@
 			</div>
 
 			<!-- 푸터B : 푸터 메뉴 -->
+
 			<nav class="footB">
 				<div>
 					<ul>
@@ -364,8 +367,10 @@
 					</ul>
 				</div>
 			</nav>
+		
 			<!-- 푸터C : 저작권-->
 			<div class="footC">© MODACON corp. All rights reserved.</div>
+			
 		</div>
 	</footer>
 </body>

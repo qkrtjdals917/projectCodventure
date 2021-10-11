@@ -23,7 +23,7 @@
 
   <div id="middle_menu">
     <h2>공지사항</h2>
-
+<table>
     <tr>
       <th>글번호</th>
       <th>제목</th>

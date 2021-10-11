@@ -20,7 +20,7 @@ import com.lec.spring.domain.board.BoardDTO;
 import com.lec.spring.domain.member.MemberVO;
 import com.lec.spring.service.AdminService;
 
-@Controller	
+@Controller
 @RequestMapping("/modacon/admin")
 public class AdminController {
 	

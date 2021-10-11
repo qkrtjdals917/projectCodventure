@@ -4,17 +4,19 @@ var viewItem = undefined;   // 가장 최근에 view 한 글의 데이터
 
 $(document).ready(function() {
 	// 페이지 최초 로딩되면 1페이지 내용을 로딩
-	
+	// loadPage(page); // 특정 페이지를 로딩하는 것
 	
 	$("#admNotice").click(function() {
 		saveRoute("notice")
 		viewPage("notice")
+		loadPageNtc(page);
 		//noticeList(1,10);
 	});
 	
 	$("#admBoard").click(function() {
 		saveRoute("board")
 		viewPage("board")
+		loadPageCmt(page);
 		//communityList(1,10);
 	});
 	
@@ -85,49 +87,51 @@ $(document).ready(function() {
 
 */
 
-/*
+
+
+
 // 페이징
-function loadPage(page) {
-	
+function loadPageNtc(page) {
  	$.ajax({
 		url : "/modacon/admin/noticeList/" + page + "/" + pageRows,
 		type : "GET",
 		cache : false,
-		success : function(data, status) {
+		success : function(list, status) {
 			if(status == "success"){
-				if(NoticeList(data)){
-					addViewEvent(); // view창
-				}
+				noticeList(list);
+				
+			}else{
 			}
 		}
 		
 	}); // end ajax
 } // end loadPage
 
-*/
 
-function noticeList (page, pageRows) {
-	// alert("가져오고 있니?")
-	$.ajax( {
-		type: 'GET',
-		url : "/modacon/admin/noticeList/" + page + "/" + pageRows,
-		cache : false,
-		success : function(data, status) {
-			var result = "";
 
-			var count = data.count;
+
+function noticeList (jsonObj) {
+		var result = "";
 			
-			var items = data.list;
+		if(jsonObj.status == "OK") {
 			
-			for(var i = 0 ; i < count ; i++) {
+			var count = jsonObj.count;
+			
+			window.page = jsonObj.page;
+			window.pagerows = jsonObj.pagerows;
+		
+			var items = jsonObj.list;
+			
+			for(var i = 0; i < count; i++) {
 				result += "<tr>\n";
 
 				result += "<td><input type='checkbox' name='board_uid' value='" + items[i].board_uid + "'></td>\n";
 				result += "<td>" + items[i].board_uid + "</td>\n";
-				result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[" + items[i].tag + "]" + items[i].subject + "</span></td>\n";
+				result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>" + items[i].subject + "</span></td>\n";
 				result += "<td>" + items[i].nickname + "</td>\n";
 				result += "<td>" + items[i].regDateTime + "</td>\n";
-				result += "<td><input type='button' id='notice_delete' class='delete_btn' value='삭제'></td>"
+				result += "<td><input type='button' id='community_delete' class='delete_btn' value='삭제'></td>"
+				
 				result += "</tr>\n";
 			}
 			$("#contentNotice tbody").html(result);
@@ -135,6 +139,7 @@ function noticeList (page, pageRows) {
 		
 		// 페이지 정보 업데이트
 		$("#pageinfo").text(jsonObj.page + "/" + jsonObj.totalpage + "페이지, " + jsonObj.totalcnt + "개의 글");
+		
 		
 		// pageRows
 		var txt = "<select id='rows' onchange='changePageRows()'>\n";
@@ -150,13 +155,15 @@ function noticeList (page, pageRows) {
 		var pagination = buildPagination(jsonObj.writepages, jsonObj.totalpage, jsonObj.page, jsonObj.pagerows);
 		$("#pagination").html(pagination);
 		
+		} else{
+			alert("내용이 없습니다");
+			return false;
 		}
-		
-	});
+	}
 
-}
 
-/* 
+
+
 // [페이징] 생성
 // 한 [페이징]에 표시될 페이지수 --> writePages
 // 총 페이지수 --> totalPage
@@ -206,34 +213,48 @@ function buildPagination(writePages, totalPage, curPage, pageRows){
 } // end buildPagination()
 
 
-
+/*
 
 // <select> 에서 pageRows 값 변경될때마다
 function changePageRows(){
-	window.pageRows = $("#rows").val();
+	window.pagerows = $("#rows").val();
 	loadPage(window.page);
 }
 
+
 */
 
-
-
-
-
-function communityList (page, pageRows) {
-	// alert("커뮤니티 가져오고 있니?")
-	$.ajax( {
-		type: 'GET',
+// 커뮤니티 페이징
+function loadPageCmt(page) {
+ 	$.ajax({
 		url : "/modacon/admin/communityList/" + page + "/" + pageRows,
+		type : "GET",
 		cache : false,
-		success : function(data, status) {
-			var result = "";
+		success : function(list, status) {
+			if(status == "success"){
+				communityList(list);
+				
+			} else {
+			}
+		}
+		
+	}); // end ajax
+} // end loadPage
 
-			var count = data.count;
+
+function communityList (jsonObj) {	
+			var result = "";
 			
-			var items = data.list;
+		if(jsonObj.status == "OK") {
 			
-			for(var i = 0 ; i < count ; i++) {
+			var count = jsonObj.count;
+			
+			window.page = jsonObj.page;
+			window.pagerows = jsonObj.pagerows;
+			
+			var items = jsonObj.list;
+			
+			for(var i = 0; i < count; i++) {
 				result += "<tr>\n";
 
 				result += "<td><input type='checkbox' name='board_uid' value='" + items[i].board_uid + "'></td>\n";
@@ -245,13 +266,29 @@ function communityList (page, pageRows) {
 				result += "</tr>\n";
 			}
 			$("#contentBoard tbody").html(result);
+		// 페이지 정보 업데이트
+		$("#pageinfo").text(jsonObj.page + "/" + jsonObj.totalpage + "페이지, " + jsonObj.totalcnt + "개의 글");
+		
+		
+		// pageRows
+		var txt = "<select id='rows' onchange='changePageRows()'>\n";
+		txt += "<option " + ((window.pageRows == 10)?"selected":"") + " value='10'>10개씩</option>\n";
+		txt += "<option " + ((window.pageRows == 20)?"selected":"") + " value='20'>20개씩</option>\n";
+		txt += "<option " + ((window.pageRows == 50)?"selected":"") + " value='50'>50개씩</option>\n";
+		txt += "<option " + ((window.pageRows == 100)?"selected":"") + " value='100'>100개씩</option>\n";
+		txt += "</select>\n";
+		$("#pageRows").html(txt);
+		$("#pageRows").html(txt);
+		
+		// [페이징] 정보 업데이트
+		var pagination = buildPagination(jsonObj.writepages, jsonObj.totalpage, jsonObj.page, jsonObj.pagerows);
+		$("#pagination").html(pagination);
 		
 		}
-		
-	
-	} );
 
 }
+
+
 
 function memberList (page, pageRows) {
 	//alert("가져오고 있니?")
@@ -271,6 +308,7 @@ function memberList (page, pageRows) {
 
 				result += "<td><input type='checkbox' name='member_uid' value='" + items[i].member_uid + "'></td>\n";
 				result += "<td>" + items[i].member_uid + "</td>\n";
+				result += "<td>" + items[i].email + "</td>\n";
 				result += "<td>" + items[i].nickname + "</td>\n";
 				result += "<td>" + items[i].phoneNumber + "</td>\n";
 				result += "<td>" + items[i].authority + "</td>\n";
@@ -306,7 +344,7 @@ function viewPage (route) {
 	}
 	
 	if(route=="notice")  {
-		noticeList(1,10);
+		// noticeList(1,10);
 		$("#contentMain").hide();
 		$("#adm_content").show();
 		$("#contentNotice").show();
