@@ -124,29 +124,61 @@ function proc(coinNumber) {
 	
 }
 function set_select_coin (coinNumber) {
-
+	// 값 체크해서 스타일까지 변경 if문으로 구분
     $('#bithumb_Price').html('&#92; ' + numberWithCommas( parseFloat(bithumb_data[coinNumber]['closing_price'])  )); 
     $('#bithumb_fluctate_24H').html('\\ ' + numberWithCommas( parseFloat(bithumb_data[coinNumber]['fluctate_24H']) ));
     $('#bithumb_fluctate_rate_24H').html((parseFloat(bithumb_data[coinNumber]['fluctate_rate_24H'])) + '%');
     $('#bithumb_units_traded_24H').html((parseFloat(bithumb_data[coinNumber]['units_traded_24H']).toFixed(0)));
 	
-	$('#upbit_Price').html('\\ ' + numberWithCommas( parseFloat(upbit_data[coinNumber]['trade_price']) ));
-	$('#upbit_Change_price').html('\\ ' + numberWithCommas( parseFloat(upbit_data[coinNumber]['change_price']) ));
-	$('#upbit_Change_Rate').html((( parseFloat(upbit_data[coinNumber]['change_rate']) ) * 100).toFixed(2) + '%' );
-	$('#upbit_Acc_trade_volume').html((( parseFloat(upbit_data[coinNumber]['acc_trade_volume']) ) * 100).toFixed(0) );
+	if (!upbit_data[coinNumber]) {	// 데이터 있으면 { 오브젝트} 	없으면 "" empty 
+		$('#upbit_Price').html("");
+		$('#upbit_Change_price').html("");
+		$('#upbit_Change_Rate').html("");
+		$('#upbit_Acc_trade_volume').html("");
+		// 비어있다면 = 값이 없다 -> 공백
+	}
+	else {
+		$('#upbit_Price').html('\\ ' + numberWithCommas( parseFloat(upbit_data[coinNumber]['trade_price']) ));
+		$('#upbit_Change_price').html('\\ ' + numberWithCommas( parseFloat(upbit_data[coinNumber]['change_price']) ));
+		$('#upbit_Change_Rate').html((( parseFloat(upbit_data[coinNumber]['change_rate']) ) * 100).toFixed(2) + '%' );
+		$('#upbit_Acc_trade_volume').html((( parseFloat(upbit_data[coinNumber]['acc_trade_volume']) ) * 100).toFixed(0) );
+		// 값이 있으니까 그대로 
+	}
+	
+	if (!coinone_data[coinNumber]) {	// 데이터 있으면 { 오브젝트} 	없으면 "" empty 
+		$('#coinone_BTC_last').html("");
+		$('#coinone_BTC_change').html("");
+		$('#coinone_BTC_changePercent').html("");
+		$('#coinone_BTC_volume').html("");
+		// 비어있다면 = 값이 없다 -> 공백
+	}
+	else {
+		var coinone_btc_last = parseFloat(coinone_data[coinNumber]['last']);
+		var coinone_btc_change = parseFloat((coinone_data[coinNumber]['last']) - coinone_data[coinNumber]['yesterday_last']);
+	
+	    $('#coinone_BTC_last').html('\\ ' + numberWithCommas( coinone_btc_last ));
+	    $('#coinone_BTC_change').html('\\ ' + numberWithCommas( coinone_btc_change ));
+	    $('#coinone_BTC_changePercent').html((((coinone_btc_change / coinone_btc_last) * 100).toFixed(2) + '%'));
+	    $('#coinone_BTC_volume').html(numberWithCommas(parseFloat(coinone_data[coinNumber]['volume']).toFixed(0)));
+		// 값이 있으니까 그대로 
+	}
+	
+	if (!korbit_data[coinNumber]) {	// 데이터 있으면 { 오브젝트} 	없으면 "" empty 
+		$('#korbit_last').html("");
+		$('#korbit_change').html("");
+		$('#korbit_changePercent').html("");
+		$('#korbit_volume').html("");
+		// 비어있다면 = 값이 없다 -> 공백
+	}
+	else {
 
-	var coinone_btc_last = parseFloat(coinone_data[coinNumber]['last']);
-	var coinone_btc_change = parseFloat((coinone_data[coinNumber]['last']) - coinone_data[coinNumber]['yesterday_last']);
-
-    $('#coinone_BTC_last').html('\\ ' + numberWithCommas( coinone_btc_last ));
-    $('#coinone_BTC_change').html('\\ ' + numberWithCommas( coinone_btc_change ));
-    $('#coinone_BTC_changePercent').html((((coinone_btc_change / coinone_btc_last) * 100).toFixed(2) + '%'));
-    $('#coinone_BTC_volume').html(numberWithCommas(parseFloat(coinone_data[coinNumber]['volume']).toFixed(0)));
-
-	$('#korbit_last').html('\\ ' + numberWithCommas( parseFloat( korbit_data[coinNumber]['last']) ));
-	$('#korbit_change').html('\\ ' + numberWithCommas( parseFloat( korbit_data[coinNumber]['change']) ));
-	$('#korbit_changePercent').html( (parseFloat(korbit_data[coinNumber]['changePercent'])) + '%');
-	$('#korbit_volume').html(parseFloat(korbit_data[coinNumber]['volume']).toFixed(0));
+		$('#korbit_last').html('\\ ' + numberWithCommas( parseFloat( korbit_data[coinNumber]['last']) ));
+		$('#korbit_change').html('\\ ' + numberWithCommas( parseFloat( korbit_data[coinNumber]['change']) ));
+		$('#korbit_changePercent').html( (parseFloat(korbit_data[coinNumber]['changePercent'])) + '%');
+		$('#korbit_volume').html(parseFloat(korbit_data[coinNumber]['volume']).toFixed(0));
+	}
+	
+	
 
 }
 function set_select_all() {
@@ -195,6 +227,8 @@ function set_select_all() {
 // 빗썸 함수
 
 function bithumb_all() {
+//	alert("all");
+	bithumb_data = [];
     $.ajax({
         type: 'get',
         url: 'https://api.bithumb.com/public/ticker/all',
@@ -219,7 +253,7 @@ function upbit_all() {
 			upbit_coin_name += upbit_coinlist[i];			
 		}
 	}
-	
+	upbit_data = [];
 	//alert(upbit_coin_name);
     $.ajax({
         type: 'get',
@@ -242,7 +276,7 @@ function upbit_all() {
 // 코인원 함수
 
 function coinone_all() {
-
+	coinone_data = [];
     $.ajax({
         type: 'get',
         url: 'https://api.coinone.co.kr/ticker?currency=all',
@@ -267,6 +301,7 @@ function coinone_all() {
 }
 // // 코빗 함수 
 function korbit_all() {
+	korbit_data = [];
     $.ajax({
         type: 'get',
         url: 'https://api.korbit.co.kr/v1/ticker/detailed/all',
