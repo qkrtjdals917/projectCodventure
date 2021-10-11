@@ -22,8 +22,12 @@
   <div style="clear:both; height:70px"></div>
 
   <div id="middle_menu">
+    <table>
     <h2>공지사항</h2>
-<table>
+  <table>
+  
+
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
     <tr>
       <th>글번호</th>
       <th>제목</th>
@@ -31,7 +35,8 @@
       <th>작성일</th>
       <th>조회수</th>
     </tr>
-    <hr>
+
+
 
 
     <c:choose>

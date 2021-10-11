@@ -181,4 +181,14 @@
 		UPDATE mc_board SET type = #{type}, tag = #{tag, jdbcType=VARCHAR}, subject = #{subject}, content = #{content}
 		WHERE board_uid = #{board_uid}
 	</update>
+	
+	<!-- Coin List 가져오기 -->
+	<select id="selectCoinList" resultType="com.lec.spring.domain.coin.CoinDTO">
+		SELECT 
+			coin_uid, bithumb_name, upbit_name, coinone_name, korbit_name
+		FROM 
+			mc_coin;
+	
+	</select>
+	
 </mapper>
