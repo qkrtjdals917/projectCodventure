@@ -99,17 +99,18 @@ $(function () {
 	
 	// 로그아웃 버튼
 	$("#btnLogout").click (function(){
-		alert("로그아웃되셨습니다.");
-
-		$.ajax({
-		url : "/logoutcheck",
-		type : "GET",
-		cache : false
-		});
-		
-		location.href="/logout";
-		
-		
+		Swal.fire({
+			icon: 'success',
+			title: '로그아웃되었습니다.'
+			}).then((result) => {
+				$.ajax({
+					url : "/logoutcheck",
+					type : "GET",
+					cache : false
+					});
+					
+					location.href="/logout";
+	   			});
 	});	
 	
 	

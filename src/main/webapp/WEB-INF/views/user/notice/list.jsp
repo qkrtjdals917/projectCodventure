@@ -23,7 +23,7 @@
 
   <div id="middle_menu">
     <h2>공지사항</h2>
-
+	<table>
     <tr>
       <th>글번호</th>
       <th>제목</th>
@@ -32,8 +32,6 @@
       <th>조회수</th>
     </tr>
     <hr>
-
-
     <c:choose>
       <c:when test="${empty list || fn:length(list) == 0 }">
       </c:when>

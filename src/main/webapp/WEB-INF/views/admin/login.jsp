@@ -20,10 +20,10 @@
 		<h2>관리자</h2>
 		<form id="adlogin" action="" name="adlogin" method="POST">
 			ID<br>
-			<input type="text" name="userid" placeholder="아이디 입력" /><br>
+			<input type="text" name="email" placeholder="아이디 입력" /><br>
 			PW<br>
-			<input type="password" name="password" placeholder="패스워드 입력" /><br>
-			<button type="button" onclick="">로그인</button>
+			<input type="password" name="pw" placeholder="패스워드 입력" /><br>
+			<button type="submit" onclick="">로그인</button>
 		</form>
 	</div>
 </body>

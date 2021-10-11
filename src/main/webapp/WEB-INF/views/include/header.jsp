@@ -87,6 +87,7 @@
 							<label for="Pw"><b>PW</b></label>
 							<input type="password" placeholder="PW를 입력하세요" name="pw" required>
 							<br>
+							<p>${requestScope.loginFailMsg}</p>
 		                    <button type="submit" class="btn">로그인</button>
 							<button type="button" id="btn_go_join" class="btn">회원가입</button>
 		                </div>
