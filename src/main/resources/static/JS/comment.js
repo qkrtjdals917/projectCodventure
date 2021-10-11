@@ -50,11 +50,10 @@ function getCommentList(uid){
                     html += "<td>" + list[i].content + "</td>";
                     html += "<td>" + list[i].regDateTime + "</td>";
                     //html += "<td><button id='update_comment_btn" + list.comment_uid + "'>수정</button></td>";
-					
-                    html += "<td><c:choose><c:when test='${empty member}'>";
-					html += "<c:when test='${member.member_uid == list[i].member_uid}'>"
+
+                    html += "<td><c:choose><c:when test='${list[0].member_uid == member.member_uid}'>";
 					html += "<button onclick='' id='delete_comment_btn" + list[i].comment_uid + "'>삭제</button>"
-					html += "</c:when></c:when></c:choose></td><tr>";
+					html += "</c:when></c:choose></td><tr>";
 
                 }
                 html += "</table>"

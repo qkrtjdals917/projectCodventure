@@ -29,12 +29,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    return new CustomLogoutSuccessHandler();
 	}
 	
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+
 		http.csrf().disable();
 		http.authorizeRequests()
 			// 인증에 대한 세팅
-
+			
 			// /modacon/board/write/** 으로 들어오는 요청 인증
 		
 		

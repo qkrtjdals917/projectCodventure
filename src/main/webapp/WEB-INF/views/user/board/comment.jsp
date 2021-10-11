@@ -43,19 +43,13 @@
         </div>
         <!--  <input type="hidden" id="b_code" name="b_code" value="${result.code }" />    -->     
     </form>
-    <%--
+
         <c:choose>
-	<c:when test='${empty member}'>
-		<c:when test='${member.member_uid == list[i].member_uid}'>
-			<button onclick='' id='delete_comment_btn" + list[i].comment_uid + "'>삭제</button>
-		</c:when>
-		<c:otherwise>
-		</c:otherwise>
-	</c:when>
-	<c:otherwise>
-	</c:otherwise>
+			<c:when test="${list[0].member_uid == member.member_uid}">
+				
+				<button onclick='' id='delete_comment_btn" + list[i].comment_uid + "'>삭제</button>
+			</c:when>
 </c:choose>
-     --%>
 
 </div>
  
