@@ -200,6 +200,21 @@ SELECT * FROM mc_like;
 
 -- 글 작성
 INSERT INTO mc_board (type, subject, tag, content, member_uid)
+
+VALUES ("자유", "글작성테스트sql", "" ,"이 글은 테스트 중입니다.", 52);
+
+SELECT *FROM mc_board mb ;
+		SELECT	
+			member_uid "member_uid",
+			email "email",
+			password "pw",
+			nickname "nickname",
+			phoneNumber "phoneNumber",
+			authority "authority"
+		FROM 
+			mc_member
+		WHERE email = "aaa5@aaa.com";
+
 VALUES ("자유", "글작성테스트sql", ,"이 글은 테스트 중입니다.", 52);
 SELECT *FROM mc_board mb ;
 
@@ -212,6 +227,12 @@ SELECT
 	authority "authority"
 FROM 
 	mc_member
+
+WHERE email = "aaa5@aaa.com";
+SELECT *FROM mc_board mb ;
+
+WHERE email = "aaa5@aaa.com";
+SELECT *FROM mc_board mb ;
 
 SELECT * FROM mc_coin;
 

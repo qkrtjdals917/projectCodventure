@@ -68,13 +68,57 @@ public class BoardDAOImpl implements BoardDAO {
 		return mapper.selectInfo();
 	}
 
-
+	// 로그인 연계
 	@Override
 	public int insert(BoardDTO dto) {
 		return mapper.insert(dto);
 	}
 
+
+	// ↓ 해연추가 
+
+	// 공지사항 정보 가져오기
+	// 공지사항 카운트
+	@Override
+	public int countNtc() {
+		return mapper.countNtc();
+	}
+
+	// 공지사항 페이징
+	@Override
+	public List<BoardDTO> selectFromRowNtc(int from, int pageRows) {
+		return mapper.selectFromRowNtc(from, pageRows);
+	}
 	
+	// 공지사항 정보 삭제 체크된 것
+	public int deleteByChk (int [] uids) {
+		return mapper.deleteByChk(uids);
+	}
+	
+	// 공지사항 작성하기
+	public int insertNtc(BoardDTO dto) {
+		return mapper.insertNtc(dto);
+	}
+	
+	// (커뮤티니 정보 가져오기)
+	// (커뮤니티 카운팅)
+	public int countAll() {
+		return mapper.countAll();
+	}
+		
+	// (커뮤니티 페이징)
+	public List<BoardDTO> selectFromRowCmt(int from, int pageRows) {
+				return mapper.selectFromRowCmt(from, pageRows);
+			}
+		
+	// (정보게시판 정보 가져오기)
+	// (정보게시판 페이징)
+	// (자유게시판 정보 가져오기)
+	// (자유게시판 페이징)
+	
+	
+	// (커뮤니티 삭제)
+
 	@Override
 	public List<CoinDTO> selectCoinList () {
 		return mapper.selectCoinList();
