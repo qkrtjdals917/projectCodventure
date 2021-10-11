@@ -36,15 +36,15 @@ $(function () {
 	
 	$('#targetTrade').change(function() {
 		
-		var result = $('#targetTraded option:selected').val();
-		
+		var result = $('#targetTrade option:selected').val();
+		//alert(result);
 		
 		if (result == 0) {
 			$('#select_coin').hide();
 			$('#select_all').show();
 		}
 		else {
-			proc(result);
+			proc(Number(result)-1);
 			// 가져온 전체 데이터에서 원하는 부분만 뽑아서 보내는 함수 
 		    $('#select_coin').show();
 			$('#select_all').hide();
@@ -100,6 +100,7 @@ function CurrentTime() {
 
 // 갱신 함수 
 function proc(coinNumber) {
+	//alert(coinNumber);
     if (timer)
         clearTimeout(timer);
 
@@ -151,17 +152,37 @@ function set_select_coin (coinNumber) {
 function set_select_all() {
 		
     var table = "<tr><th>--</th><th>빗썸</th><th>업비트</th><th>코인원</th><th>코빗</th></tr>";
-    for (i = 0; i < 100; i++) {
+	for (i = 0; i < 100; i++) {
         table += "<tr>";
         table += "<td>" + bithumb_coinlist[i] + "</td>";
-        table += "<td>" + numberWithCommas(parseFloat( bithumb_data[coinNumber]['closing_price'])) + "</td>";table += "<td>" + numberWithCommas(upbit_all(modaCoin[i])) + "</td>";
-        table += "<td>" + numberWithCommas(parseFloat( upbit_data[coinNumber]['trade_price'])) + "</td>";
-        table += "<td>" + numberWithCommas( parseFloat(coinone_data[coinNumber]['last']) ) + "</td>";
-        table += "<td>" + numberWithCommas( parseFloat( korbit_data[coinNumber]['last']) ) + "</td>";
+        table += "<td>" + numberWithCommas(parseFloat( bithumb_data[i]['closing_price'])) + "</td>";
+		
+		//alert(JSON.stringify(upbit_data[i]));
+		
+		if (!upbit_data[i]) {
+			table += "<td>-</td>";
+		}
+		else {
+	        table += "<td>" + numberWithCommas(parseFloat( upbit_data[i]['trade_price'])) + "</td>";	
+		}
+		
+		if (!coinone_data[i]) {
+			table += "<td>-</td>";
+		}
+		else {
+	        table += "<td>" + numberWithCommas(parseFloat(coinone_data[i]['last']) ) + "</td>";
+		}
+		if (!korbit_data[i]) {
+			table += "<td>-</td>";
+		}
+		else {
+	        table += "<td>" + numberWithCommas(parseFloat( korbit_data[i]['last']) ) + "</td>";
+		}
         table += "</tr>";
 
     }
-	alert(table);
+//alert(table); 
+
     $("#coinTable").html(table);
 
 }
