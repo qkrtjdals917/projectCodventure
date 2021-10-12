@@ -1,6 +1,7 @@
 package com.lec.spring.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +63,26 @@ public class UserService {
 	// 글 수정
 	public int update(BoardDTO dto) {
 		return dao.update(dto);
+	}
+	
+	// 글 추천
+	public int likeUp(BoardDTO dto) {
+		return dao.likeUp(dto);
+	}
+	
+	// 추천 취소
+	public int likeDown(BoardDTO dto) {
+		return dao.likeDown(dto);
+	}
+	
+	// 추천수 카운트
+	public int likeCount(int uid) {
+		return dao.likeCount(uid);
+	}
+	
+	// 신고
+	public int report(Map<String, Object> param) {
+		return dao.report(param);
 	}
 	
 	public List<CoinDTO> selectCoinList () {

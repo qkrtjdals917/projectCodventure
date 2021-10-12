@@ -17,7 +17,7 @@ public class BoardDTO {
 	private String content;			// 글
 	private String type;			// 게시판
 	private String tag;				// 태그
-	private String likeCnt;
+	private String likeCnt;			// 추천수
 	private String member_uid;		// 글작성, 수정 시 사용
 	
 	public String getRegDateTime() {
