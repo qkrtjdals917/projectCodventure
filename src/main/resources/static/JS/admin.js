@@ -95,15 +95,7 @@ function loadPage(page, type){
 		cache : false,
 		success : function(list, status){
 			if(status == "success"){
-				if(list["dataType"] == "ntc") {
-					
-				}
-				else if (list["dataType"] == "cmt") {
-					
-				}
-				else if (list["dataType"] == "mb") {
-					
-				}
+
 				memberList(list, type);
 				//alert("목록 가져오기 성공:  뿌~~")
 			}
@@ -131,8 +123,8 @@ function memberList (jsonObj , type) {
 					result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>" + items[i].subject + "</span></td>\n";
 					result += "<td>" + items[i].nickname + "</td>\n";
 					result += "<td>" + items[i].regDateTime + "</td>\n";
-					result += "<td><input type='button' id='community_delete' class='delete_btn' value='삭제'></td>"
-					result += "<td><button type='button' onclick='delete_by_uid(" + items[i].board_uid + ", " + type + " )' class='btn_delete'>삭제</button></td> ";
+					result += `<td><button type='button' onclick="delete_by_uid(`
+					result +=  items[i].board_uid + `, '${type}' )" class='btn_delete'>삭제</button></td> `;
 					result += "</tr>\n";
 				}
 				result += "</table>";
@@ -148,7 +140,8 @@ function memberList (jsonObj , type) {
 					result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[" + items[i].tag + "]" + items[i].subject + "</span></td>\n";
 					result += "<td>" + items[i].nickname + "</td>\n";
 					result += "<td>" + items[i].regDateTime + "</td>\n";
-					result += "<td><button type='button' onclick='delete_by_uid(" + items[i].board_uid + ", " + type + " )' class='btn_delete'>삭제</button></td> ";
+					result += `<td><button type='button' onclick="delete_by_uid(`
+					result +=  items[i].board_uid + `, '${type}' )" class='btn_delete'>삭제</button></td> `;
 					result += "</tr>\n";
 				}
 				result += "</table>";
@@ -166,7 +159,8 @@ function memberList (jsonObj , type) {
 					result += "<td>" + items[i].nickname + "</td>\n";
 					result += "<td>" + items[i].phoneNumber + "</td>\n";
 					result += "<td>" + items[i].authority + "</td>\n";
-					result += "<td><button type='button' onclick='delete_by_uid(" + items[i].member_uid + ", \'" + type + "\'' )' class='btn_delete'>삭제</button></td> ";
+					result += `<td><button type='button' onclick="delete_by_uid(`
+					result +=  items[i].member_uid + `, '${type}' )" class='btn_delete'>삭제</button></td> `;
 					result += "</tr>\n";
 				}
 				$("#contentMember tbody").html(result);
@@ -198,7 +192,7 @@ function memberList (jsonObj , type) {
 
 // [커뮤니티 페이징 생성]
 function buildPagination(writePages, totalPage, curPage, pageRows, type){
-	alert(page +"페이지");
+	//alert(page +"페이지");
 	var str = "";   // 최종적으로 페이징에 나타날 HTML 문자열 <li> 태그로 구성
 	
 	// 페이징에 보여질 숫자들 (시작숫자 start_page ~ 끝숫자 end_page)
@@ -211,30 +205,39 @@ function buildPagination(writePages, totalPage, curPage, pageRows, type){
 
   //■ << 표시 여부
 	if(curPage > 1){
-		str += "<li><a onclick='loadPage(" + 1 + ", " + type +  ")' class='tooltip-top' title='처음'><i class='fas fa-angle-double-left'></i></a></li>\n";
+		str += `<li><a onclick="loadPage(` + 1;
+		str += `, '${type}' )" class="tooltip-top" title="처음"><i class="fas fa-angle-double-left"></i></a></li>\n`;
 	}
   	//■  < 표시 여부
     if (start_page > 1) 
-    	str += "<li><a onclick='loadPage(" + (start_page - 1) + ", " + type +  ")' class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n";
+
+    	str += `<li><a onclick="loadPage(` + (start_page - 1) + `, '${type}'`;
+		str += `)" class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n`;
     
     //■  페이징 안의 '숫자' 표시	
 	if (totalPage > 1) {
 	    for (var k = start_page; k <= end_page; k++) {
-	        if (curPage != k)
-	            str += "<li><a onclick='loadPage(" + k + ", " + type +  ")'>" + k + "</a></li>\n";
-	        else
+	        if (curPage != k) {
+	            str += `<li><a onclick="loadPage(` + k;
+				str += `, '${type}' )">` + k + `</a></li>\n`;
+		
+			}
+	        else {
 	            str += "<li><a class='active tooltip-top' title='현재페이지'>" + k + "</a></li>\n";
+			}
 	    }
 	}
 	
 	//■ > 표시
     if (totalPage > end_page){
-    	str += "<li><a onclick='loadPage(" + (end_page + 1) + ", " + type + ")' class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n";
+    	str += `<li><a onclick="loadPage(` + (end_page + 1) + `, '${type}'`;
+		str += `)" class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n`;
     }
 
 	//■ >> 표시
     if (curPage < totalPage) {
-        str += "<li><a onclick='loadPage(" + totalPage + ", " + type +")' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n";
+        str += `<li><a onclick='loadPage(` + totalPage + `, '${type}'`;
+		str += `)' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n`;
     }
     return str;
 	
@@ -383,6 +386,8 @@ function setPopup(mode) {
 
 // 해당 type 의 데이터를 uid로 골라 삭제 
 function delete_by_uid (uid, type) {
+	alert(uid);
+	alert(type);
 	
 }
 

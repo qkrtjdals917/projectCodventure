@@ -94,7 +94,7 @@ public class MainController {
 	// 마이페이지
 	@RequestMapping("/mypage")
 	public String hy_myPage(Model model, Authentication authentication) {
-		loginCheck(model, authentication);
+		//loginCheck(model, authentication);
 		
 //		model.addAttribute("key","service.__()");
 		// Service 로 데이터 가져와서 model 에 담아 view에 전달
