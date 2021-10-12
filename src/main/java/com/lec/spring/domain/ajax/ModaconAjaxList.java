@@ -19,6 +19,9 @@ public class ModaconAjaxList<T>{
 	String status;
 	String message;
 		
+	// 현재 가져오는 데이터의 타입
+	String dataType;
+	
 	int page;  // 현재 페이지 #
 	
 	@JsonProperty("totalpage")

@@ -76,25 +76,19 @@
 	</div>
 
 	<div id="adm_content">
+	
+		<h2 id="admin_title"></h2>
+
+
+
+		<div class="pageSet">
+			<div class="pleft" id="pageinfo"></div>
+			<div class="pright" id="pageRows"></div>
+		</div>
+
 
 		<div id="contentNotice">
-			<h2>공지사항</h2>
 
-
-			<div class="p01">
-				<div class="pleft" id="ntcPageinfo"></div>
-				<div class="pright" id="ntcPageRows"></div>
-			</div>
-
-
-
-			<select name="" id="">
-				<option value="">10</option>
-				<option value="">15</option>
-				<option value="">30</option>
-				<option value="">50</option>
-				<option value="">100</option>
-			</select>
 			<form id="NoticeForm" name="NoticeForm" method="GET">
 				<div id="NoticeContainer">
 					<table>
@@ -112,53 +106,26 @@
 
 				</div>
 			</form>
-			<%-- [페이징] --%>
-			<div class="center">
-				<ul class="pagination" id="ntcPagination"></ul>
-			</div>
 
 			<!-- <button onclick= "location.href = 'write.jsp'" >공지 등록</button> -->
 
 			<div class="a01">
-				<div class="ntcLeft">
-					<button type="button" id="ntcDle" class="ntc danger">글삭제</button>
-				</div>
 				<div class="ntcright">
 					<button type="button" id="ntcWrite" class="ntc success">글작성</button>
 				</div>
 			</div>
 
-
 			<!--  모달 위치 -->
-
-
 		</div>
 
-
-
-
 	<div id="contentBoard">
-
-		<h2>커뮤니티</h2>
-		
-		<div class="p01">
-				<div class="pleft" id="cmtPageinfo"></div>
-				<div class="pright" id="cmtPageRows"></div>
-			</div>
 		
 		<a href="#">정보</a> | <a href="#">자유</a> <select name="" id="">
 			<option value="">전체</option>
 			<option value="">코인정보</option>
 			<option value="">뉴스</option>
 			<option value="">팁과 노하우</option>
-		</select> <select name="" id="">
-			<option value="">10</option>
-			<option value="">15</option>
-			<option value="">30</option>
-			<option value="">50</option>
-			<option value="">100</option>
-		</select>
-
+		</select> 
 		<%-- 커뮤니티 목록 --%>
 		<form id="CommunityForm" name="CommunityForm" method="GET">
 			<div id="communityContainer">
@@ -175,12 +142,6 @@
 				</table>
 			</div>
 		</form>
-
-
-		<%-- [페이징] --%>
-		<div class="center">
-			<ul class="pagination" id="cmtPagination"></ul>
-		</div>
 	</div>
 
 
@@ -189,13 +150,7 @@
 
 
 	<div id="contentReport">
-		<select name="" id="">
-			<option value="">10</option>
-			<option value="">15</option>
-			<option value="">30</option>
-			<option value="">50</option>
-			<option value="">100</option>
-		</select>
+
 		<table>
 			<tr>
 				<th>글번호</th>
@@ -223,12 +178,49 @@
 			</c:choose>
 		</table>
 
-		<%-- [페이징] --%>
-		<div class="center">
-			<ul class="pagination"></ul>
-		</div>
 	</div>
 
+
+
+	<div id="contentMember">
+	
+		<!-- form -->
+		<form id="searchMember" action=" " method=" ">
+			<input tpye="text" placeholder="회원검색"></input>
+
+		</form>
+		<!-- end form -->
+		
+		<!-- table -->
+		<form id="MemberForm" name="MemberForm" method="GET">
+			<div id="memberContainer">
+				<table>
+					<thead>
+						<tr>
+							<th>uid</th>
+							<th>이메일</th>
+							<th>닉네임</th>
+							<th>전화번호</th>
+							<th>권한</th>
+							<th>상태</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</form>
+		<!--end table -->
+
+		
+	</div>
+	
+	<%-- [페이징] --%>
+	<div class="center">
+		<ul class="pagination" id="pagination"></ul>
+	</div>
+		
+		
 	<%-- 글 작성 / 보기 / 수정 대화상자 --%>
 	<div id="noticeWrite" class="modal">
 		<form class="modal-notice anitmate" id="noticeFrm" name="noticeFrm"
@@ -285,51 +277,7 @@
 			</div>
 		</form>
 	</div>
-
-	<div id="contentMember">
-
-		<h2>회원관리</h2>
-
-		<!-- form -->
-		<form id="searchMember" action=" " method=" ">
-			<input tpye="text" placeholder="회원검색"></input>
-
-		</form>
-		<!-- end form -->
-
-		<div class="p04">
-			<div class="pleft" id="mbPageinfo"></div>
-			<div class="pright" id="mbPageRows"></div>
-		</div>
-
-
-		<!-- table -->
-		<form id="MemberForm" name="MemberForm" method="GET">
-			<div id="memberContainer">
-				<table>
-					<thead>
-						<tr>
-							<th>uid</th>
-							<th>이메일</th>
-							<th>닉네임</th>
-							<th>전화번호</th>
-							<th>권한</th>
-							<th>상태</th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
-			</div>
-		</form>
-		<!--end table -->
-
-		<%-- [페이징] --%>
-		<div class="center">
-			<ul class="pagination" id="mbPagination"></ul>
-		</div>
-	</div>
-
+	
 	</div>
 
 	<c:choose>

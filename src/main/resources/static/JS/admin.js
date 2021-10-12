@@ -7,13 +7,13 @@ $(document).ready(function() {
 	$("#admNotice").click(function() {
 		saveRoute("notice")
 		viewPage("notice")
-		loadPageNtc(page);
+		//loadPageNtc(page);
 	});
 	
 	$("#admBoard").click(function() {
 		saveRoute("board")
 		viewPage("board")
-		loadPageCmt(page);
+		//loadPageCmt(page);
 		// communityList(1,10);
 	});
 	
@@ -26,7 +26,7 @@ $(document).ready(function() {
 	$("#admMember").click(function() {
 		saveRoute("member")
 		viewPage("member")
-		loadPageMb(page);
+		//loadPageMb(page);
 	});
 	
 	$("#logobtn").click(function() {
@@ -83,312 +83,122 @@ $(document).ready(function() {
 });
 
 
-
-// 페이징
-function loadPageNtc(page) {
- 	$.ajax({
-		url : "/modaconAdmin/noticeList/" + page + "/" + pageRows,
+function loadPage(page, type){
+	
+	//alert(page + " 페이지 로딩");
+	if(type == 1) {
+		
+	}
+	$.ajax({
 		type : "GET",
+		url : "/modaconAdmin/" + type + "List/" + page + "/" + pageRows,
 		cache : false,
-		success : function(list, status) {
+		success : function(list, status){
 			if(status == "success"){
-				noticeList(list);
-				
-			}else{
+				if(list["dataType"] == "ntc") {
+					
+				}
+				else if (list["dataType"] == "cmt") {
+					
+				}
+				else if (list["dataType"] == "mb") {
+					
+				}
+				memberList(list, type);
+				//alert("목록 가져오기 성공:  뿌~~")
 			}
 		}
-		
-	}); // end ajax
-} // end loadPage
+	}); 	
+} // end loadPage()
 
-
-
-
-function noticeList (jsonObj) {
+function memberList (jsonObj , type) {
+	
 		var result = "";
-			
-		if(jsonObj.status == "OK") {
-			
-			var count = jsonObj.count;
-			
-			window.page = jsonObj.page;
-			window.pagerows = jsonObj.pagerows;
-		
-			var items = jsonObj.list;
-			
-			for(var i = 0; i < count; i++) {
-				result += "<tr>\n";
-
-				result += "<td><input type='checkbox' name='board_uid' value='" + items[i].board_uid + "'></td>\n";
-				result += "<td>" + items[i].board_uid + "</td>\n";
-				result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>" + items[i].subject + "</span></td>\n";
-				result += "<td>" + items[i].nickname + "</td>\n";
-				result += "<td>" + items[i].regDateTime + "</td>\n";
-				result += "<td><input type='button' id='community_delete' class='delete_btn' value='삭제'></td>"
-				
-				result += "</tr>\n";
-			}
-			$("#contentNotice tbody").html(result);
-		
-		
-		// 페이지 정보 업데이트
-		$("#ntcPageinfo").text(jsonObj.page + "/" + jsonObj.totalpage + "페이지, " + jsonObj.totalcnt + "개의 글");
-		
-		
-		// pageRows
-		var txt = "<select id='ntcRows' onchange='ntcChangePageRows()'>\n";
-		txt += "<option " + ((window.ntcPageRows == 10)?"selected":"") + " value='10'>10개씩</option>\n";
-		txt += "<option " + ((window.ntcPageRows == 20)?"selected":"") + " value='20'>20개씩</option>\n";
-		txt += "<option " + ((window.ntcPageRows == 50)?"selected":"") + " value='50'>50개씩</option>\n";
-		txt += "<option " + ((window.ntcPageRows == 100)?"selected":"") + " value='100'>100개씩</option>\n";
-		txt += "</select>\n";
-		$("#ntcPageRows").html(txt);
-		
-		// [페이징] 정보 업데이트
-		var ntcPagination = ntcBuildPagination(jsonObj.writepages, jsonObj.totalpage, jsonObj.page, jsonObj.pagerows);
-		$(".ntcPagination").html(ntcPagination);
-		
-		} else{
-			alert("내용이 없습니다");
-			return false;
-		}
-	}
-
-// [공지사항] 페이징
-function ntcBuildPagination(writePages, totalPage, curPage, pageRows){
-	
-	var str = "";   // 최종적으로 페이징에 나타날 HTML 문자열 <li> 태그로 구성
-	
-	// 페이징에 보여질 숫자들 (시작숫자 start_page ~ 끝숫자 end_page)
-    var start_page = ( (parseInt( (curPage - 1 ) / writePages ) ) * writePages ) + 1;
-    var end_page = start_page + writePages - 1;
-
-    if (end_page >= totalPage){
-    	end_page = totalPage;
-    }
-
-  //■ << 표시 여부
-	if(curPage > 1){
-		str += "<li><a onclick='loadPageNtc(" + 1 + ")' class='tooltip-top' title='처음'><i class='fas fa-angle-double-left'></i></a></li>\n";
-	}
-  	//■  < 표시 여부
-    if (start_page > 1) 
-    	str += "<li><a onclick='loadPageNtc(" + (start_page - 1) + ")' class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n";
-    
-    //■  페이징 안의 '숫자' 표시	
-	if (totalPage > 1) {
-	    for (var k = start_page; k <= end_page; k++) {
-	        if (curPage != k)
-	            str += "<li><a onclick='loadPageNtc(" + k + ")'>" + k + "</a></li>\n";
-	        else
-	            str += "<li><a class='active tooltip-top' title='현재페이지'>" + k + "</a></li>\n";
-	    }
-	}
-	
-	//■ > 표시
-    if (totalPage > end_page){
-    	str += "<li><a onclick='loadPageNtc(" + (end_page + 1) + ")' class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n";
-    }
-
-	//■ >> 표시
-    if (curPage < totalPage) {
-        str += "<li><a onclick='loadPageNtc(" + totalPage + ")' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n";
-    }
-    return str;
-	
-} // end buildPagination()
-// [공지사항] <select> 에서 pageRows 값 변경될때마다
-function ntcChangePageRows(){
-	window.pageRows = $("#ntcRows").val();
-	loadPageNtc(window.page);
-}
-
-
-
-
-
-// 커뮤니티
-function loadPageCmt(page){
-	
-	//alert(page + " 페이지 로딩");
-	
-	$.ajax({
-		type : "GET",
-		url : "/modaconAdmin/communityList/" + page + "/" + pageRows,
-		cache : false,
-		success : function(list, status){
-			if(status == "success"){
-				communityList(list);
-				//alert("목록 가져오기 성공:  뿌~~")
-			}
-		}
-	}); 	
-} // end loadPage()
-
-
-// 커뮤니티 페이징
-function communityList (jsonObj) {	
-	
-			var result = "";
-			
-			if(jsonObj.status == "OK"){
-				var count = jsonObj.count;
-		
-				window.page = jsonObj.page;
-				window.pageRows = jsonObj.pagerows;
-		
-				var items = jsonObj.list;  // 배열
-			
-			for(var i = 0; i < count; i++) {
-				result += "<tr>\n";
-				
-				result += "<td>" + items[i].board_uid + "</td>\n";
-				result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[" + items[i].tag + "]" + items[i].subject + "</span></td>\n";
-				result += "<td>" + items[i].nickname + "</td>\n";
-				result += "<td>" + items[i].regDateTime + "</td>\n";
-				result += "<td><input type='button' id='community_delete' class='delete_btn' value='삭제'></td>"
-				result += "</tr>\n";
-			}
-			$("#contentBoard tbody").html(result);
-			
-		// 페이지 정보 업데이트
-		$("#cmtPageinfo").text(jsonObj.page + "/" + jsonObj.totalpage + "페이지, " + jsonObj.totalcnt + "개의 글");
-		
-		
-		// pageRows
-		var txt = "<select id='cmtRows' onchange='cmtChangePageRows()'>\n";
-		txt += "<option " + ((window.cmtPageRows == 10)?"selected":"") + " value='10'>10개씩</option>\n";
-		txt += "<option " + ((window.cmtPageRows == 20)?"selected":"") + " value='20'>20개씩</option>\n";
-		txt += "<option " + ((window.cmtPageRows == 50)?"selected":"") + " value='50'>50개씩</option>\n";
-		txt += "<option " + ((window.cmtPageRows == 100)?"selected":"") + " value='100'>100개씩</option>\n";
-		txt += "</select>\n";
-		$("#cmtPageRows").html(txt);
-		
-		// [페이징] 정보 업데이트
-		var cmtPagination = cmtBuildPagination(jsonObj.writepages, jsonObj.totalpage, jsonObj.page, jsonObj.pagerows);
-		$("#cmtPagination").html(cmtPagination);
-		
-		}
-		return true;
-}
-
-
-// [커뮤니티 페이징 생성]
-function cmtBuildPagination(writePages, totalPage, curPage, pageRows){
-	
-	var str = "";   // 최종적으로 페이징에 나타날 HTML 문자열 <li> 태그로 구성
-	
-	// 페이징에 보여질 숫자들 (시작숫자 start_page ~ 끝숫자 end_page)
-    var start_page = ( (parseInt( (curPage - 1 ) / writePages ) ) * writePages ) + 1;
-    var end_page = start_page + writePages - 1;
-
-    if (end_page >= totalPage){
-    	end_page = totalPage;
-    }
-
-  //■ << 표시 여부
-	if(curPage > 1){
-		str += "<li><a onclick='loadPageCmt(" + 1 + ")' class='tooltip-top' title='처음'><i class='fas fa-angle-double-left'></i></a></li>\n";
-	}
-  	//■  < 표시 여부
-    if (start_page > 1) 
-    	str += "<li><a onclick='loadPageCmt(" + (start_page - 1) + ")' class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n";
-    
-    //■  페이징 안의 '숫자' 표시	
-	if (totalPage > 1) {
-	    for (var k = start_page; k <= end_page; k++) {
-	        if (curPage != k)
-	            str += "<li><a onclick='loadPageCmt(" + k + ")'>" + k + "</a></li>\n";
-	        else
-	            str += "<li><a class='active tooltip-top' title='현재페이지'>" + k + "</a></li>\n";
-	    }
-	}
-	
-	//■ > 표시
-    if (totalPage > end_page){
-    	str += "<li><a onclick='loadPageCmt(" + (end_page + 1) + ")' class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n";
-    }
-
-	//■ >> 표시
-    if (curPage < totalPage) {
-        str += "<li><a onclick='loadPageCmt(" + totalPage + ")' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n";
-    }
-    return str;
-	
-} // end buildPagination()
-
-// [커뮤니티] <select> 에서 pageRows 값 변경될때마다
-function cmtChangePageRows(){
-	window.pageRows = $("#cmtRows").val();
-	loadPageCmt(window.page);
-}
-
-
-
-function loadPageMb(page){
-	
-	//alert(page + " 페이지 로딩");
-	
-	$.ajax({
-		type : "GET",
-		url : "/modaconAdmin/memberList/" + page + "/" + pageRows,
-		cache : false,
-		success : function(list, status){
-			if(status == "success"){
-				memberList(list);
-				//alert("목록 가져오기 성공:  뿌~~")
-			}
-		}
-	}); 	
-} // end loadPage()
-
-function memberList (jsonObj) {
-	
-			var result = "";
 		if(jsonObj.status == "OK"){
 			var count = jsonObj.count;
 			
 			window.page = jsonObj.page;
-			window.pagerows = jsonObj.pagerows;
+			window.pageRows = jsonObj.pagerows;
 			
 			var items = jsonObj.list;
 			
-			for(var i = 0 ; i < count ; i++) {
-				result += "<tr>\n";
+			if ( type == "notice") {	// 여기를 바꾸고 
+				result += "<table>";
+				for(var i = 0; i < count; i++) {
+					result += "<tr>\n";
+	
+					result += "<td>" + items[i].board_uid + "</td>\n";
+					result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>" + items[i].subject + "</span></td>\n";
+					result += "<td>" + items[i].nickname + "</td>\n";
+					result += "<td>" + items[i].regDateTime + "</td>\n";
+					result += "<td><input type='button' id='community_delete' class='delete_btn' value='삭제'></td>"
+					result += "<td><button type='button' onclick='delete_by_uid(" + items[i].board_uid + ", " + type + " )' class='btn_delete'>삭제</button></td> ";
+					result += "</tr>\n";
+				}
+				result += "</table>";
+				$("#contentNotice tbody").html(result);
 				
-				result += "<td>" + items[i].member_uid + "</td>\n";
-				result += "<td>" + items[i].email + "</td>\n";
-				result += "<td>" + items[i].nickname + "</td>\n";
-				result += "<td>" + items[i].phoneNumber + "</td>\n";
-				result += "<td>" + items[i].authority + "</td>\n";
-				result += "<td><input type='button' id='member_delete' class='delete_btn' value='삭제'></td>"
-				result += "</tr>\n";
 			}
-			$("#contentMember tbody").html(result);
+			else if (type == "community") {
+				result += "<table>";
+				for(var i = 0; i < count; i++) {
+					result += "<tr>\n";
+					
+					result += "<td>" + items[i].board_uid + "</td>\n";
+					result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[" + items[i].tag + "]" + items[i].subject + "</span></td>\n";
+					result += "<td>" + items[i].nickname + "</td>\n";
+					result += "<td>" + items[i].regDateTime + "</td>\n";
+					result += "<td><button type='button' onclick='delete_by_uid(" + items[i].board_uid + ", " + type + " )' class='btn_delete'>삭제</button></td> ";
+					result += "</tr>\n";
+				}
+				result += "</table>";
+				$("#contentBoard tbody").html(result);
+			}
+			else if (type == "report") {
+				
+			}
+			else if (type == "member") {
+				for(var i = 0 ; i < count ; i++) {
+					result += "<tr>\n";
+					
+					result += "<td>" + items[i].member_uid + "</td>\n";
+					result += "<td>" + items[i].email + "</td>\n";
+					result += "<td>" + items[i].nickname + "</td>\n";
+					result += "<td>" + items[i].phoneNumber + "</td>\n";
+					result += "<td>" + items[i].authority + "</td>\n";
+					result += "<td><button type='button' onclick='delete_by_uid(" + items[i].member_uid + ", \'" + type + "\'' )' class='btn_delete'>삭제</button></td> ";
+					result += "</tr>\n";
+				}
+				$("#contentMember tbody").html(result);
+			
+			}
+			
+			
 			
 		// 페이지 정보 업데이트
-		$("#mbPageinfo").text(jsonObj.page + "/" + jsonObj.totalpage + "페이지, " + jsonObj.totalcnt + "개의 글");
+		$("#pageinfo").text(jsonObj.page + "/" + jsonObj.totalpage + "페이지, " + jsonObj.totalcnt + "개의 정보");
 		
 		
 		// pageRows
-		var txt = "<select id='mbRows' onchange='mbChangePageRows()'>\n";
-		txt += "<option " + ((window.mbPageRows == 10)?"selected":"") + " value='10'>10개씩</option>\n";
-		txt += "<option " + ((window.mbPageRows == 20)?"selected":"") + " value='20'>20개씩</option>\n";
-		txt += "<option " + ((window.mbPageRows == 50)?"selected":"") + " value='50'>50개씩</option>\n";
-		txt += "<option " + ((window.mbPageRows == 100)?"selected":"") + " value='100'>100개씩</option>\n";
+		var txt = `<select id='rows' onchange="changePageRows('${type}')">`;
+		txt += "<option " + ((window.pageRows == 10) ? "selected" : "") + " value='10'>10개씩</option>\n";
+		txt += "<option " + ((window.pageRows == 20)?"selected":"") + " value='20'>20개씩</option>\n";
+		txt += "<option " + ((window.pageRows == 50)?"selected":"") + " value='50'>50개씩</option>\n";
+		txt += "<option " + ((window.pageRows == 100)?"selected":"") + " value='100'>100개씩</option>\n";
 		txt += "</select>\n";
-		$("#mbPageRows").html(txt);
+		$("#pageRows").html(txt);
 		// [페이징] 정보 업데이트
 		
-		var mbPagination = mbBuildPagination(jsonObj.writepages, jsonObj.totalpage, jsonObj.page, jsonObj.pagerows);
-		$("#mbPagination").html(mbPagination);
+		var pagination = buildPagination(jsonObj.writepages, jsonObj.totalpage, jsonObj.page, jsonObj.pagerows, type);
+		$("#pagination").html(pagination);
 		
 		}
 		return true;
 }
 
 // [커뮤니티 페이징 생성]
-function mbBuildPagination(writePages, totalPage, curPage, pageRows){
+function buildPagination(writePages, totalPage, curPage, pageRows, type){
+	alert(page +"페이지");
 	var str = "";   // 최종적으로 페이징에 나타날 HTML 문자열 <li> 태그로 구성
 	
 	// 페이징에 보여질 숫자들 (시작숫자 start_page ~ 끝숫자 end_page)
@@ -401,17 +211,17 @@ function mbBuildPagination(writePages, totalPage, curPage, pageRows){
 
   //■ << 표시 여부
 	if(curPage > 1){
-		str += "<li><a onclick='loadPageMb(" + 1 + ")' class='tooltip-top' title='처음'><i class='fas fa-angle-double-left'></i></a></li>\n";
+		str += "<li><a onclick='loadPage(" + 1 + ", " + type +  ")' class='tooltip-top' title='처음'><i class='fas fa-angle-double-left'></i></a></li>\n";
 	}
   	//■  < 표시 여부
     if (start_page > 1) 
-    	str += "<li><a onclick='loadPageMb(" + (start_page - 1) + ")' class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n";
+    	str += "<li><a onclick='loadPage(" + (start_page - 1) + ", " + type +  ")' class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n";
     
     //■  페이징 안의 '숫자' 표시	
 	if (totalPage > 1) {
 	    for (var k = start_page; k <= end_page; k++) {
 	        if (curPage != k)
-	            str += "<li><a onclick='loadPageMb(" + k + ")'>" + k + "</a></li>\n";
+	            str += "<li><a onclick='loadPage(" + k + ", " + type +  ")'>" + k + "</a></li>\n";
 	        else
 	            str += "<li><a class='active tooltip-top' title='현재페이지'>" + k + "</a></li>\n";
 	    }
@@ -419,21 +229,21 @@ function mbBuildPagination(writePages, totalPage, curPage, pageRows){
 	
 	//■ > 표시
     if (totalPage > end_page){
-    	str += "<li><a onclick='loadPageMb(" + (end_page + 1) + ")' class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n";
+    	str += "<li><a onclick='loadPage(" + (end_page + 1) + ", " + type + ")' class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n";
     }
 
 	//■ >> 표시
     if (curPage < totalPage) {
-        str += "<li><a onclick='loadPageMb(" + totalPage + ")' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n";
+        str += "<li><a onclick='loadPage(" + totalPage + ", " + type +")' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n";
     }
     return str;
 	
 } // end buildPagination()
 
 // [커뮤니티] <select> 에서 pageRows 값 변경될때마다
-function mbChangePageRows(){
-	window.pageRows = $("#mbRows").val();
-	loadPageMb(window.page);
+function changePageRows(type ){
+	window.pageRows = $("#rows").val();
+	loadPage(window.page, type );
 }
 
 
@@ -459,7 +269,7 @@ function viewPage (route) {
 	}
 	
 	if(route=="notice")  {
-		loadPageNtc(page);
+		loadPage(page, "notice");
 		$("#contentMain").hide();
 		$("#adm_content").show();
 		$("#contentNotice").show();
@@ -469,7 +279,7 @@ function viewPage (route) {
 	}
 	
 	if(route=="board")  {
-		loadPageCmt(page);
+		loadPage(page, "community");
 		$("#contentMain").hide();
 		$("#adm_content").show();
 		$("#contentNotice").hide();
@@ -479,6 +289,7 @@ function viewPage (route) {
 	}
 	
 	if(route=="report")  {
+		
 		$("#contentMain").hide();
 		$("#adm_content").show();
 		$("#contentNotice").hide();
@@ -488,7 +299,7 @@ function viewPage (route) {
 	}
 	
 	if(route=="member")  {
-		loadPageMb(page);
+		loadPage(page, "member");
 		$("#contentMain").hide();
 		$("#adm_content").show();
 		$("#contentNotice").hide();
@@ -570,6 +381,10 @@ function setPopup(mode) {
 	
 } // end setPopup()
 
+// 해당 type 의 데이터를 uid로 골라 삭제 
+function delete_by_uid (uid, type) {
+	
+}
 
 
 /*
