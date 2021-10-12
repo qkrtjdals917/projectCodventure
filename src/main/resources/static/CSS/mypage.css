@@ -47,6 +47,8 @@ table {
 
 .modal .modal-content {
 	width: 60%;
+	background-color: #fefefe;
+	width: 80%;   
 	margin: 5% auto 15% auto;
 }
 

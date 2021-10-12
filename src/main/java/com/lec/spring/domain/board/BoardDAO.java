@@ -1,6 +1,7 @@
 package com.lec.spring.domain.board;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.MapperScan;
@@ -36,8 +37,18 @@ public interface BoardDAO {
 	// 글 작성
 	public abstract int insert(BoardDTO dto);
 
-
 	
+	// 추천하기
+	public abstract int likeUp(BoardDTO dto);
+	
+	// 추천 취소
+	public abstract int likeDown(BoardDTO dto);
+	
+	// 추천수 카운트
+	public abstract int likeCount(int uid);
+	
+	// 신고
+	public abstract int report(Map<String, Object> param);
 	
 	//  ↓해연추가
 	
