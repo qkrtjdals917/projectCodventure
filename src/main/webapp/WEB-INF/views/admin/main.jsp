@@ -79,15 +79,15 @@
 
 		<div id="contentNotice">
 			<h2>공지사항</h2>
-			
-			 
+
+
 			<div class="p01">
-				<div class="pleft" id="pageinfo"></div>
-				<div class="pright" id="pageRows"></div>
+				<div class="pleft" id="ntcPageinfo"></div>
+				<div class="pright" id="ntcPageRows"></div>
 			</div>
-			
-			
-			
+
+
+
 			<select name="" id="">
 				<option value="">10</option>
 				<option value="">15</option>
@@ -99,7 +99,6 @@
 				<div id="NoticeContainer">
 					<table>
 						<thead>
-							<th>#</th>
 							<th>글번호</th>
 							<th>'log'제목</th>
 							<th>작성자</th>
@@ -115,7 +114,7 @@
 			</form>
 			<%-- [페이징] --%>
 			<div class="center">
-				<ul class="pagination"></ul>
+				<ul class="pagination" id="ntcPagination"></ul>
 			</div>
 
 			<!-- <button onclick= "location.href = 'write.jsp'" >공지 등록</button> -->
@@ -128,21 +127,25 @@
 					<button type="button" id="ntcWrite" class="ntc success">글작성</button>
 				</div>
 			</div>
-	
-			 
+
+
 			<!--  모달 위치 -->
-			
-			
+
+
 		</div>
 
-	</div>
-	
-	
-	
+
+
 
 	<div id="contentBoard">
 
 		<h2>커뮤니티</h2>
+		
+		<div class="p01">
+				<div class="pleft" id="cmtPageinfo"></div>
+				<div class="pright" id="cmtPageRows"></div>
+			</div>
+		
 		<a href="#">정보</a> | <a href="#">자유</a> <select name="" id="">
 			<option value="">전체</option>
 			<option value="">코인정보</option>
@@ -155,13 +158,12 @@
 			<option value="">50</option>
 			<option value="">100</option>
 		</select>
-		
+
 		<%-- 커뮤니티 목록 --%>
 		<form id="CommunityForm" name="CommunityForm" method="GET">
 			<div id="communityContainer">
 				<table>
 					<thead>
-						<th>#</th>
 						<th>글번호</th>
 						<th>'log'제목</th>
 						<th>작성자</th>
@@ -173,11 +175,11 @@
 				</table>
 			</div>
 		</form>
-		
-		
+
+
 		<%-- [페이징] --%>
 		<div class="center">
-			<ul class="pagination"></ul>
+			<ul class="pagination" id="cmtPagination"></ul>
 		</div>
 	</div>
 
@@ -226,38 +228,38 @@
 			<ul class="pagination"></ul>
 		</div>
 	</div>
-	
-			<%-- 글 작성 / 보기 / 수정 대화상자 --%>
-			<div id="noticeWrite" class="modal">
-				<form class="modal-notice anitmate" id="noticeFrm" name="noticeFrm"
-					method="post">
-					<div class="container">
-						<h3 class="title">공지 작성</h3>
-						<span class="close" title="Close Modal">&times;</span><%-- 닫기버튼 --%>
-						<input type="hidden" name="uid" value="0"> <%-- 읽기, 삭제, 수정을 위해 필요 --%>
 
-						<div class="a01 ntc_group_header">
-							<div class="ntcLeft">
-								<p id="viewcnt"></p>
-							</div>
-							<div class="ntcright">
-								<p id="regdate"></p>
-							</div>
-							<div class="clear"></div>
-						</div>
+	<%-- 글 작성 / 보기 / 수정 대화상자 --%>
+	<div id="noticeWrite" class="modal">
+		<form class="modal-notice anitmate" id="noticeFrm" name="noticeFrm"
+			method="post">
+			<div class="container">
+				<h3 class="title">공지 작성</h3>
+				<span class="close" title="Close Modal">&times;</span>
+				<%-- 닫기버튼 --%>
+				<input type="hidden" name="uid" value="0">
+				<%-- 읽기, 삭제, 수정을 위해 필요 --%>
 
-							<label for="subject"><b>글제목</b></label> 
-							<input type="text" placeholder="글제목(필수)" name="subject" required> 
-							
-							<label for="ntc_uid"><b>작성자</b></label> 
-							<input type="text" placeholder="UID" name="member_uid" required> 
-						
-							<label for="content"><b>내용</b></label>
-							<textarea placeholder="글내용" name="content"></textarea>
+				<div class="a01 ntc_group_header">
+					<div class="ntcLeft">
+						<p id="viewcnt"></p>
+					</div>
+					<div class="ntcright">
+						<p id="regdate"></p>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+				<label for="subject"><b>글제목</b></label> <input type="text"
+					placeholder="글제목(필수)" name="subject" required> <label
+					for="ntc_uid"><b>작성자</b></label> <input type="text"
+					placeholder="UID" name="member_uid" required> <label
+					for="content"><b>내용</b></label>
+				<textarea placeholder="글내용" name="content"></textarea>
 
 				<%-- 하단 버튼 : 글 작성 --%>
 				<div class="a01 ntc_group_write">
-							<button type="submit" class="ntc write fullntc">공지 작성</button>
+					<button type="submit" class="ntc write fullntc">공지 작성</button>
 				</div>
 
 				<%-- 하단 버튼 : 글 조회 --%>
@@ -276,13 +278,13 @@
 					<div>
 						<button type="button" class="ntc update fullbtn" id="updateOk">수정완료</button>
 					</div>
-						<div class="clear"></div>
+					<div class="clear"></div>
 				</div>
 
 
-					</div>
-				</form>
 			</div>
+		</form>
+	</div>
 
 	<div id="contentMember">
 
@@ -295,15 +297,10 @@
 		</form>
 		<!-- end form -->
 
-		<!--selecter -->
-		<select id="selectPage">
-			<option value=" ">10</option>
-			<option value=" ">15</option>
-			<option value=" ">30</option>
-			<option value=" ">50</option>
-			<option value=" ">100</option>
-		</select>
-		<!-- end selecter -->
+		<div class="p04">
+			<div class="pleft" id="mbPageinfo"></div>
+			<div class="pright" id="mbPageRows"></div>
+		</div>
 
 
 		<!-- table -->
@@ -311,15 +308,14 @@
 			<div id="memberContainer">
 				<table>
 					<thead>
-					<tr>
-						<th>#</th>
-						<th>uid</th>						
-						<th>이메일</th>
-						<th>닉네임</th>
-						<th>전화번호</th>
-						<th>권한</th>
-						<th>상태</th>
-					</tr>
+						<tr>
+							<th>uid</th>
+							<th>이메일</th>
+							<th>닉네임</th>
+							<th>전화번호</th>
+							<th>권한</th>
+							<th>상태</th>
+						</tr>
 					</thead>
 					<tbody>
 					</tbody>
@@ -330,7 +326,7 @@
 
 		<%-- [페이징] --%>
 		<div class="center">
-			<ul class="pagination"></ul>
+			<ul class="pagination" id="mbPagination"></ul>
 		</div>
 	</div>
 
@@ -367,10 +363,10 @@
 					</ul>
 				</div>
 			</nav>
-		
+
 			<!-- 푸터C : 저작권-->
 			<div class="footC">© MODACON corp. All rights reserved.</div>
-			
+
 		</div>
 	</footer>
 </body>

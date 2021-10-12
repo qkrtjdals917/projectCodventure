@@ -74,7 +74,6 @@ table, th, td {
 
 #adm_content {
 	margin-top: 80px;
-	margin-bottom: 100px;
 	padding: 15px;
 	display: none;
 }
@@ -93,7 +92,7 @@ table, th, td {
 }
 
 #contentReport {
-	height: 600px;
+	height: 700px;
 	position: relative;
 	margin: 0 auto;
 	boarder: gray solid 1px;
@@ -146,3 +145,87 @@ ul.pagination a.active {
 }
 
 ul.pagination a:hover:not(.active) {background-color: #ddd;}
+
+
+/* 푸터 */
+footer {
+    background: #100E34;
+    
+}
+
+footer .container{
+    padding: 40px 20px;  /*안쪽 여백*/
+}
+
+
+
+
+/* 푸터A : 사이트 정보 */
+.footA {
+    margin-bottom: 30px;
+}
+.footA h2 , p{
+	color: #fff;
+}
+
+/* 푸터B : 푸터 메뉴 */
+.footB div {
+    margin-bottom: 20px;
+}
+
+.footB ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footB a {
+	color: #fff;
+    font-size: 25px;
+    margin-bottom: 10px;
+    border-bottom: solid 2px currentColor;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+}
+
+.footB a:hover {
+    background-color: rgba(0,0,0,0.3);
+}
+
+@media (min-width: 800px) {
+    .footB {
+        display: flex;
+    }
+    /* div 들의 비율 1:1:1 로 만들기 */
+    .footB div {
+        flex: 1;
+    }
+    /* 메뉴 사이의 여백 확보 */
+    .footB div:not(:first-child) {
+        margin-left: 40px;
+    }
+}
+
+.footC {
+	color: #fff;
+    font-size: 12px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+@media (min-width: 800px) {
+    /* 768px 이상의 화면에서는 */
+    footer .container {
+        display: flex;
+        flex-wrap: wrap; /* */
+        /* 위 쪽의 컨텐츠와 너비 맞추기 */
+        max-width: 1000px;
+        max-width: var(--large-width);
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .footA {flex: 0 0 40%;}  /* 사이트정보 40% */
+    .footB {flex: 0 0 60%;}  /* 푸터 메뉴 60% */
+    .footC {flex: 0 0 100%;} /* 저작권 100% */
+}
