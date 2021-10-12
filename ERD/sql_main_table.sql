@@ -165,6 +165,10 @@ VALUES( 'root@root.com', 'root', 'root', '010-1234-1234', 2);
 
 SELECT * FROM mc_authority;
 SELECT * FROM mc_member ORDER BY member_uid DESC;
+UPDATE mc_member 
+		SET authority = 2
+		WHERE member_uid = 57;
+		
 SELECT * FROM mc_board;
 SELECT * FROM mc_comment;
 SELECT * FROM mc_member WHERE email = "test3@email.com";

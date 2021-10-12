@@ -153,7 +153,7 @@
         <button id="del_btn" onclick="chkDelete()">삭제</button>
       </div>
       <hr>
-
+      
       <%@ include file="./comment.jsp" %>
 
   <div class="footer">
