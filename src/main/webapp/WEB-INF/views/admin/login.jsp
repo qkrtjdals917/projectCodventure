@@ -18,12 +18,12 @@
 	<div id="wrap">
 		<h1>MODACON</h1>
 		<h2>관리자</h2>
-		<form id="adlogin" action="" name="adlogin" method="POST">
+		<form id="adlogin" action="/modaconAdmin/loginOk" name="adlogin" method="POST">
 			ID<br>
 			<input type="text" name="email" placeholder="아이디 입력" /><br>
 			PW<br>
 			<input type="password" name="pw" placeholder="패스워드 입력" /><br>
-			<button type="submit" onclick="">로그인</button>
+			<button>로그인</button>
 		</form>
 	</div>
 </body>

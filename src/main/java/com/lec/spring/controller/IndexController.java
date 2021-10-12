@@ -76,7 +76,11 @@ public class IndexController {
 		return "include/loginConfirm";
 	}
 	
-	
+	@RequestMapping("/modaconAdmin/login")
+	public String adminlogin() {
+		
+		return "admin/login";
+	}
 	
 	
 	@PostMapping("/joinOk")

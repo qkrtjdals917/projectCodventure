@@ -53,7 +53,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public int selectAuthoritiesById(int member_uid) {
+	public Integer selectAuthoritiesById(int member_uid) {
 		return mapper.selectAuthoritiesById(member_uid);
 	}
 

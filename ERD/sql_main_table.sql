@@ -169,6 +169,7 @@ SELECT * FROM mc_board;
 SELECT * FROM mc_comment;
 SELECT * FROM mc_member WHERE email = "test3@email.com";
 SELECT count(subject) FROM mc_board WHERE member_uid = 77;
+UPDATE mc_member SET authority = 2 WHERE email = 'root99@email.com';
 
 -- 글 조회수 증가
 UPDATE mc_board SET count = count + 1 WHERE board_uid = 1;

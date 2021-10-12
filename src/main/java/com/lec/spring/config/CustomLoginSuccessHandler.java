@@ -24,14 +24,14 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
             if (redirectUrl != null) {
             	session.setAttribute("loginConfirm", "success");
 //                session.removeAttribute("prevPage");
-                getRedirectStrategy().sendRedirect(request, response, redirectUrl);
+                getRedirectStrategy().sendRedirect(request, response, "/loginConfirm");
             } else {
             	session.setAttribute("loginConfirm", "success");
-            	getRedirectStrategy().sendRedirect(request, response, "/modacon");
+            	getRedirectStrategy().sendRedirect(request, response, "/loginConfirm");
             }
         } else {
         	//session.setAttribute("loginConfirm", "success");
-        	getRedirectStrategy().sendRedirect(request, response, "/modacon");
+        	getRedirectStrategy().sendRedirect(request, response, "/loginConfirm");
         }
     }
 }

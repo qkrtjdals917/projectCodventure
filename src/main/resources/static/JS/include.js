@@ -109,7 +109,7 @@ $(function () {
 					cache : false
 					});
 					
-					location.href="/logout";
+					location.href="/modacon/logout";
 	   			});
 	});	
 	

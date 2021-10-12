@@ -79,7 +79,7 @@
 				
 					<span class="close" title="Close Modal">&times;</span>
 					
-					<form id="loginform" action="/loginOk" name="loginform" method="post">
+					<form id="loginform" action="/modacon/loginOk" name="loginform" method="post">
 						<div class="btn_login">
 							<label for="Email"><b>Email</b></label>
 							<input type="text" placeholder="Email을 입력하세요" name="email" required>

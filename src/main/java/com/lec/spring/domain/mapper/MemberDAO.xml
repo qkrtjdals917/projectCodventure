@@ -79,7 +79,7 @@
 	</update>
 	
 	<!-- 부여된 권한 가져오기 -->
-	<select id="selectAuthoritiesById" resultType="int">
+	<select id="selectAuthoritiesById" resultType="Integer">
 		SELECT authority
 		FROM mc_member
 		WHERE member_uid = #{member_uid}

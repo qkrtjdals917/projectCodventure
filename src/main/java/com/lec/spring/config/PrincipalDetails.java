@@ -1,8 +1,10 @@
 package com.lec.spring.config;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.lec.spring.domain.member.MemberDTO;
@@ -38,7 +40,13 @@ public class PrincipalDetails implements UserDetails {	// UserDetails는 Spring 
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		System.out.println("getAuthorities() 호출");
 		
-		 return null;
+		Collection<GrantedAuthority> collect = new ArrayList<>();
+				
+		Integer authByUid = memberService.selectAuthoritiesById(dto.getMember_uid());
+		
+		collect.add(new SimpleGrantedAuthority(authByUid.toString()));	
+		System.out.println(authByUid.toString());
+		return collect;
 	}
 
 	@Override
