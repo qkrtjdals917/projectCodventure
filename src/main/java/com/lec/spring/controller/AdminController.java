@@ -127,6 +127,7 @@ public class AdminController {
 			result.setList(list);
 		}
 		
+		result.setDataType("ntc");
 		result.setPage(page);
 		result.setTotalPage(totalPage);
 		result.setWritePages(writePages);
@@ -229,32 +230,32 @@ public class AdminController {
 //		}
 
 		// 글 삭제
-		@DeleteMapping("")  // URI: /board
-		public ModaconAjaxResult deleteOk(int [] uid) {
-			int count = 0;
-			
-			// message 
-			StringBuffer message = new StringBuffer();
-			String status = "FAIL";
-			
-			try {
-				
-				if(uid != null) {
-					count = adminService.deleteByChk(uid);
-					status = "OK";
-				}
-				
-			} catch(Exception e) {
-				e.printStackTrace();
-				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
-			}
-			
-			ModaconAjaxResult result = new ModaconAjaxResult();
-			result.setStatus(status);
-			result.setMessage(message.toString());
-			result.setCount(count);
-			return result;
-		}
+//		@DeleteMapping("")  // URI: /board
+//		public ModaconAjaxResult deleteOk(int [] uid) {
+//			int count = 0;
+//			
+//			// message 
+//			StringBuffer message = new StringBuffer();
+//			String status = "FAIL";
+//			
+//			try {
+//				
+//				if(uid != null) {
+//					count = adminService.deleteByChk(uid);
+//					status = "OK";
+//				}
+//				
+//			} catch(Exception e) {
+//				e.printStackTrace();
+//				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+//			}
+//			
+//			ModaconAjaxResult result = new ModaconAjaxResult();
+//			result.setStatus(status);
+//			result.setMessage(message.toString());
+//			result.setCount(count);
+//			return result;
+//		}
 		
 		
 		
@@ -316,6 +317,7 @@ public class AdminController {
 				result.setList(list);
 			}
 			
+			result.setDataType("cmt");
 			result.setPage(page);
 			result.setTotalPage(totalPage);
 			result.setWritePages(writePages);
@@ -383,6 +385,7 @@ public class AdminController {
 				result.setList(list);
 			}
 			
+			result.setDataType("mb");
 			result.setPage(page);
 			result.setTotalPage(totalPage);
 			result.setWritePages(writePages);
