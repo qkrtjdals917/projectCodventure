@@ -1,5 +1,6 @@
 package com.lec.spring.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lec.spring.config.PrincipalDetails;
 import com.lec.spring.domain.ajax.ModaconAjaxList;
 import com.lec.spring.domain.board.BoardDTO;
+import com.lec.spring.domain.board.BoardList;
 import com.lec.spring.domain.coin.CoinDTO;
 import com.lec.spring.domain.member.MemberDTO;
 import com.lec.spring.service.UserService;
@@ -136,24 +138,28 @@ public class MainController {
 	@RequestMapping("/board")
 	public String board(Model model, Authentication authentication) {
 		loginCheck(model, authentication);
-		model.addAttribute("list", userService.communityList());
 		return "user/board/list";
 	}
 
-	// 정보게시판 리스트
-	@RequestMapping("/infoboard")
-	public String infoBoard(Model model, Authentication authentication) {
+	// 게시판 변경
+	@PostMapping("/board")
+	@ResponseBody
+	public BoardList infoBoard(String type, Model model, Authentication authentication) {
 		loginCheck(model, authentication);
-		model.addAttribute("list", userService.infoList());
-		return "user/board/list";
-	}
-
-	// 자유게시판 리스트
-	@RequestMapping("/freeboard")
-	public String freeBoard(Model model, Authentication authentication) {
-		loginCheck(model, authentication);
-		model.addAttribute("list", userService.freeList());
-		return "user/board/list";
+		
+		List<BoardDTO> list = null;
+		
+		if (type.equals("전체")) {
+			list = userService.communityList();
+		} else if (type.equals("정보")) {
+			list = userService.infoList();
+		} else if (type.equals("자유")) {
+			list = userService.freeList();
+		}
+				
+		BoardList result = new BoardList();
+		result.setList(list);
+		return result;
 	}
 
 	// 커뮤니티 뷰

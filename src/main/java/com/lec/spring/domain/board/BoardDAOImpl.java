@@ -99,6 +99,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	// ↓ 해연추가 
 
+
 	// 공지사항 정보 가져오기
 	// 공지사항 카운트
 	@Override
@@ -139,12 +140,10 @@ public class BoardDAOImpl implements BoardDAO {
 	// (자유게시판 페이징)
 	
 	
-
 	// (커뮤니티 삭제)
 
 	@Override
 	public List<CoinDTO> selectCoinList () {
 		return mapper.selectCoinList();
 	}
-
 }

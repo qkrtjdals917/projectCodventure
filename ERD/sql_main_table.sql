@@ -207,7 +207,15 @@ SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname,
 		WHERE mb.member_uid = mm.member_uid
 		AND mb.type <> "공지";
 
-SELECT * FROM mc_like;
+SELECT count(*), board_uid, member_uid FROM mc_like GROUP BY board_uid ;
+
+-- 글 리스트 (추천수까지)
+SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname, 
+		mb.regDate regDate, mb.count count, mb.content content, 
+		mb.type type, mb.tag tag, (SELECT count(*) FROM mc_like ml WHERE ml.board_uid = mb.board_uid)
+FROM mc_board mb, mc_member mm
+WHERE mb.member_uid = mm.member_uid
+AND mb.type <> "공지";
 
 -- 글 작성
 INSERT INTO mc_board (type, subject, tag, content, member_uid)
@@ -248,6 +256,7 @@ WHERE email = "aaa5@aaa.com";
 SELECT *FROM mc_board mb ;
 
 SELECT * FROM mc_coin;
+
 
 INSERT INTO mc_coin (bithumb_name,upbit_name,coinone_name,korbit_name)
 VALUES ("BTC","BTC","btc","btc_krw"),
