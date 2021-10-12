@@ -1,6 +1,7 @@
 package com.lec.spring.domain.board;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,12 +69,33 @@ public class BoardDAOImpl implements BoardDAO {
 		return mapper.selectInfo();
 	}
 
-	// 로그인 연계
+	// 글 작성
 	@Override
 	public int insert(BoardDTO dto) {
 		return mapper.insert(dto);
 	}
 
+	// 추천
+	@Override
+	public int likeUp(BoardDTO dto) {
+		return mapper.likeUp(dto);
+	}
+
+	@Override
+	public int likeDown(BoardDTO dto) {
+		return mapper.likeDown(dto);
+	}
+	
+	@Override
+	public int likeCount(int uid) {
+		return mapper.likeCount(uid);
+	}
+
+	// 신고
+	@Override
+	public int report(Map<String, Object> param) {
+		return mapper.report(param);
+	}
 
 	// ↓ 해연추가 
 
@@ -123,4 +145,6 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<CoinDTO> selectCoinList () {
 		return mapper.selectCoinList();
 	}
+
+
 }

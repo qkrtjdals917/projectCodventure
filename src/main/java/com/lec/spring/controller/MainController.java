@@ -1,5 +1,7 @@
 package com.lec.spring.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lec.spring.config.PrincipalDetails;
@@ -248,7 +251,6 @@ public class MainController {
 		return "user/board/updateOk";
 	}
 	
-	
 	// 공지 리스트
 	@RequestMapping("/notice")
 	public String notice(Model model, Authentication authentication) {
@@ -265,5 +267,32 @@ public class MainController {
 		return "user/notice/view";
 	}
 
+	// 추천
+	@PostMapping("board/like")
+	@ResponseBody
+	public void likeUp(Model model, BoardDTO dto, Authentication authentication) {
+		loginCheck(model, authentication);
+		userService.likeUp(dto);
+	}
+	
+	// 추천수 카운트
+	@PostMapping("board/likeCount")
+	@ResponseBody
+	public int likeCount(int uid) {
+		int count = 0;
+		System.out.println(uid);
+		count = userService.likeCount(uid);
+		return count;
+	}
+	
+	// 신고
+	@PostMapping("board/report")
+	@ResponseBody
+	public void report(Model model, @RequestParam Map<String, Object> param, Authentication authentication) {
+		loginCheck(model, authentication);
+		System.out.println(param);
+		userService.report(param);
+		
+	}
 
 }
