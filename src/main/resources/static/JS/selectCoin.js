@@ -48,7 +48,11 @@ $(function () {
 			// 가져온 전체 데이터에서 원하는 부분만 뽑아서 보내는 함수 
 		    $('#select_coin').show();
 			$('#select_all').hide();
+			//var upbit_ChangePercent = $("#upbit_Change_Rate").val();
+			//alert(upbit_ChangePercent);
+			//$("#korbit_changePercent").css("color","blue");
 		}
+		
   }); 	
 });
 
@@ -119,15 +123,30 @@ function proc(coinNumber) {
     } finally {
         timer = setTimeout(function () {
             proc(coinNumber);
-        }, 10000); //10초후 재시작
+        }, 1000); //1초후 재시작
     }
 	
 }
 function set_select_coin (coinNumber) {
+
 	// 값 체크해서 스타일까지 변경 if문으로 구분
-    $('#bithumb_Price').html('&#92; ' + numberWithCommas( parseFloat(bithumb_data[coinNumber]['closing_price'])  )); 
-    $('#bithumb_fluctate_24H').html('\\ ' + numberWithCommas( parseFloat(bithumb_data[coinNumber]['fluctate_24H']) ));
-    $('#bithumb_fluctate_rate_24H').html((parseFloat(bithumb_data[coinNumber]['fluctate_rate_24H'])) + '%');
+    $('#bithumb_Price').html('\\ ' + numberWithCommas( parseFloat(bithumb_data[coinNumber]['closing_price'])  )); 
+    var bithumb_ChangePrice = parseFloat(bithumb_data[coinNumber]['fluctate_24H']);
+	if (bithumb_ChangePrice >= 0 ) {
+			$("#bithumb_fluctate_24H").css("color","red");
+		}
+	else {
+			$("#bithumb_fluctate_24H").css("color","blue");
+		}
+	$('#bithumb_fluctate_24H').html('\\ ' + numberWithCommas(bithumb_ChangePrice));
+	var bithumb_ChangePercent = (parseFloat(bithumb_data[coinNumber]['fluctate_rate_24H']));
+	if (bithumb_ChangePercent >= 0 ) {
+			$("#bithumb_fluctate_rate_24H").css("color","red");
+		}
+	else {
+			$("#bithumb_fluctate_rate_24H").css("color","blue");
+		}
+    $('#bithumb_fluctate_rate_24H').html((parseFloat(bithumb_ChangePercent)) + '%');
     $('#bithumb_units_traded_24H').html((parseFloat(bithumb_data[coinNumber]['units_traded_24H']).toFixed(0)));
 	
 	if (!upbit_data[coinNumber]) {	// 데이터 있으면 { 오브젝트} 	없으면 "" empty 
@@ -139,8 +158,23 @@ function set_select_coin (coinNumber) {
 	}
 	else {
 		$('#upbit_Price').html('\\ ' + numberWithCommas( parseFloat(upbit_data[coinNumber]['trade_price']) ));
-		$('#upbit_Change_price').html('\\ ' + numberWithCommas( parseFloat(upbit_data[coinNumber]['change_price']) ));
-		$('#upbit_Change_Rate').html((( parseFloat(upbit_data[coinNumber]['change_rate']) ) * 100).toFixed(2) + '%' );
+		var upbit_ChangePrice =  (parseFloat(upbit_data[coinNumber]['change_price']));
+		if (upbit_ChangePrice >= 0 ) {
+			$("#upbit_Change_price").css("color","red");
+		}
+		else {
+			$("#upbit_Change_price").css("color","blue");
+		}
+		$('#upbit_Change_price').html('\\ ' + numberWithCommas(upbit_ChangePrice));
+		var upbit_ChangePercent = ((parseFloat(upbit_data[coinNumber]['change_rate']) ) * 100).toFixed(2); 
+		if (upbit_ChangePercent >= 0 ) {
+			$("#upbit_Change_Rate").css("color","red");
+		}
+		else {
+			$("#upbit_Change_Rate").css("color","blue");
+		}
+		$('#upbit_Change_Rate').html( upbit_ChangePercent + '%' );
+		//alert(upbit_ChangePercent);
 		$('#upbit_Acc_trade_volume').html((( parseFloat(upbit_data[coinNumber]['acc_trade_volume']) ) * 100).toFixed(0) );
 		// 값이 있으니까 그대로 
 	}
@@ -157,8 +191,23 @@ function set_select_coin (coinNumber) {
 		var coinone_btc_change = parseFloat((coinone_data[coinNumber]['last']) - coinone_data[coinNumber]['yesterday_last']);
 	
 	    $('#coinone_BTC_last').html('\\ ' + numberWithCommas( coinone_btc_last ));
-	    $('#coinone_BTC_change').html('\\ ' + numberWithCommas( coinone_btc_change ));
+	    var coinone_ChangePrice = coinone_btc_change;
+		if (coinone_ChangePrice >= 0 ) {
+			$("#coinone_BTC_change").css("color","red");
+		}
+		else {
+			$("#coinone_BTC_change").css("color","blue");
+		}
+		$('#coinone_BTC_change').html('\\ ' + numberWithCommas( coinone_btc_change ));
+		var coinone_ChangePercent = ((coinone_btc_change / coinone_btc_last) * 100).toFixed(2);
+		if (coinone_ChangePercent >= 0 ) {
+			$("#coinone_BTC_changePercent").css("color","red");
+		}
+		else {
+			$("#coinone_BTC_changePercent").css("color","blue");
+		}
 	    $('#coinone_BTC_changePercent').html((((coinone_btc_change / coinone_btc_last) * 100).toFixed(2) + '%'));
+
 	    $('#coinone_BTC_volume').html(numberWithCommas(parseFloat(coinone_data[coinNumber]['volume']).toFixed(0)));
 		// 값이 있으니까 그대로 
 	}
@@ -173,8 +222,22 @@ function set_select_coin (coinNumber) {
 	else {
 
 		$('#korbit_last').html('\\ ' + numberWithCommas( parseFloat( korbit_data[coinNumber]['last']) ));
-		$('#korbit_change').html('\\ ' + numberWithCommas( parseFloat( korbit_data[coinNumber]['change']) ));
-		$('#korbit_changePercent').html( (parseFloat(korbit_data[coinNumber]['changePercent'])) + '%');
+		var korbit_ChangePrice = parseFloat( korbit_data[coinNumber]['change']);
+		if (korbit_ChangePrice >= 0 ) {
+			$("#korbit_change").css("color","red");
+		}
+		else {
+			$("#korbit_change").css("color","blue");
+		}
+		$('#korbit_change').html('\\ ' + numberWithCommas(korbit_ChangePrice));
+		var korbit_ChangePercent = parseFloat(korbit_data[coinNumber]['changePercent']);
+		if (korbit_ChangePrice >= 0 ) {
+			$("#korbit_changePercent").css("color","red");
+		}
+		else {
+			$("#korbit_changePercent").css("color","blue");
+		}
+		$('#korbit_changePercent').html( (parseFloat(korbit_ChangePercent)) + '%');
 		$('#korbit_volume').html(parseFloat(korbit_data[coinNumber]['volume']).toFixed(0));
 	}
 	
@@ -186,8 +249,8 @@ function set_select_all() {
     var table = "<tr><th>--</th><th>빗썸</th><th>업비트</th><th>코인원</th><th>코빗</th></tr>";
 	for (i = 0; i < 100; i++) {
         table += "<tr>";
-        table += "<td>" + bithumb_coinlist[i] + "</td>";
-        table += "<td>" + numberWithCommas(parseFloat( bithumb_data[i]['closing_price'])) + "</td>";
+        table += "<td id>" + bithumb_coinlist[i] + "</td>";
+        table += "<td id>" + numberWithCommas(parseFloat( bithumb_data[i]['closing_price'])) + "</td>";
 		
 		//alert(JSON.stringify(upbit_data[i]));
 		

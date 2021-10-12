@@ -169,6 +169,7 @@ SELECT * FROM mc_board;
 SELECT * FROM mc_comment;
 SELECT * FROM mc_member WHERE email = "test3@email.com";
 SELECT count(subject) FROM mc_board WHERE member_uid = 77;
+UPDATE mc_member SET authority = 2 WHERE email = 'root99@email.com';
 
 -- 글 조회수 증가
 UPDATE mc_board SET count = count + 1 WHERE board_uid = 1;
@@ -199,6 +200,9 @@ SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname,
 SELECT * FROM mc_like;
 
 -- 글 작성
+
+INSERT INTO mc_board (type, subject, tag, content, member_uid)
+
 INSERT INTO mc_board (type, subject, tag, content, member_uid)
 VALUES ("자유", "글작성테스트sql", "" ,"이 글은 테스트 중입니다.", 52);
 
@@ -223,6 +227,7 @@ DELETE FROM mc_like WHERE board_uid = 226 AND member_uid = 1;
 SELECT * FROM mc_report mr ;
 -- -------------------------------------------------------------
 
+SELECT *FROM mc_board mb ;
 SELECT *FROM mc_board mb ;
 		SELECT	
 			member_uid "member_uid",

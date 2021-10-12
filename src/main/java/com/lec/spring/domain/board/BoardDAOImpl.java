@@ -139,12 +139,12 @@ public class BoardDAOImpl implements BoardDAO {
 	// (자유게시판 페이징)
 	
 	
+
 	// (커뮤니티 삭제)
 
 	@Override
 	public List<CoinDTO> selectCoinList () {
 		return mapper.selectCoinList();
 	}
-
 
 }

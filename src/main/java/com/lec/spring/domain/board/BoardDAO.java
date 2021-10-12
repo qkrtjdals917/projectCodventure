@@ -36,6 +36,7 @@ public interface BoardDAO {
 	
 	// 글 작성
 	public abstract int insert(BoardDTO dto);
+
 	
 	// 추천하기
 	public abstract int likeUp(BoardDTO dto);

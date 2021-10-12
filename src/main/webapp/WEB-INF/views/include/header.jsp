@@ -79,50 +79,63 @@
 				
 					<span class="close" title="Close Modal">&times;</span>
 					
-					<form id="loginform" action="/loginOk" name="loginform" method="post">
+					<form id="loginform" action="/modacon/loginOk" name="loginform" method="post">
 						<div class="btn_login">
-							<label for="Email"><b>Email</b></label>
-							<input type="text" placeholder="Email을 입력하세요" name="email" required>
-				            <br>
-							<label for="Pw"><b>PW</b></label>
-							<input type="password" placeholder="PW를 입력하세요" name="pw" required>
-							<br>
+							<div class="row">
+								<label for="Email" class="title_content"><b>Email</b></label>
+								<input type="text" placeholder="Email을 입력하세요" name="email" required>
+							</div>
+							<div class="row">
+								<label for="Pw" class="title_content"><b>PW</b></label>
+								<input type="password" placeholder="PW를 입력하세요" name="pw" required>
+							</div>
+							<p>${requestScope.loginFailMsg}</p>
 		                    <button type="submit" class="btn">로그인</button>
 							<button type="button" id="btn_go_join" class="btn">회원가입</button>
 		                </div>
 	                </form>
 	                
-					<form id="joinform" action="/joinOk" name="joinform" method="post" onsubmit="return chkJoin()">
+					<div class="clearAll"></div>
+
+					<form id="joinform" action="/joinOk" name="joinform" method="post">
 						<div class="btn_join">
-							<label for="Email"><b>Email</b></label>
-							<input type="text" id="email" placeholder="Email을 입력하세요" name="email" required>
-							<button type="button" id="email_check" class="btn">중복체크</button>
-							<input type="hidden" id="emailDuplication" name="emailDuplication" value="emailUncheck"> 
-							<br><b id="emailEx"></b>
-							<br>
-							<label for="Pw"><b>PW</b></label>
-							<input type="password" placeholder="PW를 입력하세요" name="pw" required>
-							<br>
-							<label for="PwC"><b>PW 확인</b></label>
-							<input type="password" placeholder="PW를 다시 입력하세요" name="pwC" required>
-							<br>
-							<label for="Nickname"><b>닉네임</b></label>
-							<input type="text" id="nickname" placeholder="닉네임를 입력하세요" name="nickname" required>
-							<button type="button" id="nickname_check" class="btn">중복체크</button>
-							<input type="hidden" id="nicknameDuplication" name="nicknameDuplication" value="nicknameUncheck"> 
-							<br><b id="nicknameEx"></b>
-							<br>
-							<label for="phoneNumber"><b>전화번호</b></label>
-							<input class="phoneNum" type="text" name="phonenum1" required> - 
-							<input class="phoneNum" type="text" name="phonenum2" required> - 
-							<input class="phoneNum" type="text" name="phonenum3" required>
-							<input type="hidden" name="phoneNumber" value="">
-							<br>
-							<button type="submit" class="btn">가입</button>
+							<div class="row">
+								<span for="Email" class="title_content"><b>Email</b></span>
+								<input type="text" id="email" placeholder="Email을 입력하세요" name="email" required>
+							</div>
+							<b id="emailEx"></b>
+								<button type="button" id="email_check" class="btn">중복체크</button>
+								<input type="hidden" id="emailDuplication" name="emailDuplication" value="emailUncheck"> 
+							<div class="clearAll"></div>
+							<div class="row">
+								<span for="Pw" class="title_content"><b>PW</b></span>
+								<input type="password" placeholder="PW를 입력하세요" name="pw" required>
+							</div>
+							<div class="row">
+								<span for="PwC" class="title_content"><b>PW 확인</b></span>
+								<input type="password" placeholder="PW를 다시 입력하세요" name="pwC" required>
+							</div>
+							<div class="row">
+								<span for="Nickname" class="title_content"><b>닉네임</b></span>
+								<input type="text" id="nickname" placeholder="닉네임를 입력하세요" name="nickname" required>
+							</div>
+							<b id="nicknameEx"></b>
+								<button type="button" id="nickname_check" class="btn">중복체크</button>
+								<input type="hidden" id="nicknameDuplication" name="nicknameDuplication" value="nicknameUncheck"> 
+							<div class="clearAll"></div>
+							<div>
+								<span for="phoneNumber" class="title_content"><b>전화번호</b></span>
+								<input class="phoneNum" type="text" name="phonenum1" required> - 
+								<input class="phoneNum" type="text" name="phonenum2" required> - 
+								<input class="phoneNum" type="text" name="phonenum3" required>
+								<input type="hidden" name="phoneNumber" value="">
+							</div>
+							<button type="button" class="joinbtn" onclick="chkJoin()">가입</button>
 							<div class="clear"></div>
 						</div>
 					</form>
-					
+					<div class="clearAll"></div>
+
 				</div>
         	</div>
 		</div>
