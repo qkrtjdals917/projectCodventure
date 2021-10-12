@@ -13,8 +13,43 @@ table {
 }
 
 table, th, td {
+	position: relative;
 	border: 1px solid black;
 	border-collapse: collapse;
+}
+
+.ntc {
+	border: none;
+	color: white;
+	padding: 14px 28px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.success {background-color: #0000a0;}
+.update {background-color: #2196F3;}
+.warning {background-color: #da190b;}
+
+.modal .modal-notice {
+	background-color: #fefefe;
+	width: 80%;   
+	margin: 5% auto 15% auto;
+	border: 1px solid #888;
+}
+
+.modal .container {
+	padding: 16px;
+	position: relative;
+}
+
+
+.modal .close { /* 닫기(x) 버튼 */
+	font-size: 35px;
+	font-weight: bold;
+	color: #000;
+	position: absolute;
+	right: 25px;
+	top: 0px;
 }
 
 .headB {
@@ -39,6 +74,7 @@ table, th, td {
 
 #adm_content {
 	margin-top: 80px;
+	margin-bottom: 100px;
 	padding: 15px;
 	display: none;
 }
@@ -77,3 +113,36 @@ table, th, td {
 .selectPage {
 	float: right;
 }
+
+
+/* [페이징] */
+.center {
+	text-align: center;
+	backgroundcolor: black;
+}
+
+ul.pagination{
+	list-style-type: none;
+	color: black;
+}
+
+ul.pagination li{
+	display: inline-block;
+}
+
+ul.pagination a {
+	color: black;
+	float: left;
+	padding: 4px 8px;
+	text-decoration: none;
+	transition: background-color .3s;
+	margin: 0px;
+}
+
+ul.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+	border: 1px solid #4CAF50;
+}
+
+ul.pagination a:hover:not(.active) {background-color: #ddd;}
