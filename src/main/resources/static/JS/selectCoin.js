@@ -123,7 +123,7 @@ function proc(coinNumber) {
     } finally {
         timer = setTimeout(function () {
             proc(coinNumber);
-        }, 1000); //1초후 재시작
+        }, 10000); //1초후 재시작
     }
 	
 }
