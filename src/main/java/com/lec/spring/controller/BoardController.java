@@ -70,4 +70,13 @@ public class BoardController {
 	    return result;
 	    
 	}
+	
+	@GetMapping(value="/deleteComment/{comment_uid}")
+	@ResponseBody
+	public int ajax_deleteComment(@PathVariable int comment_uid) {
+	    int cnt = boardService.delete(comment_uid);
+
+	    return cnt;
+	    
+	}
 }

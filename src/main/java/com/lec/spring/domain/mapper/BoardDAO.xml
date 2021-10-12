@@ -16,7 +16,8 @@
 	<select id="selectOne" resultType="com.lec.spring.domain.board.BoardDTO">
 		SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname,
 		mb.regDate regDate, mb.count count, mb.content content,
-		mb.type type, mb.tag tag, mb.member_uid
+		mb.type type, mb.tag tag, (SELECT count(member_uid) FROM mc_like WHERE board_uid=#{board_uid}) likeCnt,
+		mb.member_uid member_uid
 		FROM mc_board mb , mc_member mm
 		WHERE mb.member_uid = mm.member_uid
 		AND mb.board_uid = #{board_uid}
@@ -73,8 +74,32 @@
 		VALUES (#{type}, #{subject}, #{tag, jdbcType=VARCHAR}, #{content}, #{member_uid})
 	</insert>
 	
-
+	<!-- 추천 하기 -->
+	<insert id="likeUp" flushCache="true">
+		INSERT INTO mc_like (board_uid, member_uid)
+		SELECT #{board_uid}, #{member_uid} FROM DUAL
+		WHERE NOT EXISTS (SELECT board_uid FROM mc_like WHERE board_uid = #{board_uid} AND member_uid = #{member_uid})
+	</insert>
 	
+	<!-- 추천 취소 -->
+	<delete id="likeDown" flushCache="true">
+		DELETE FROM mc_like 
+		WHERE board_uid = #{board_uid} AND member_uid = #{member_uid}
+	</delete>
+	
+	<!-- 추천수 카운트 -->
+	<select id="likeCount" resultType="int">
+		SELECT count(member_uid) FROM mc_like WHERE board_uid=#{board_uid}
+	</select>
+	
+	<!-- 신고 -->
+	<insert id="report" flushCache="true" parameterType="hashMap"
+	keyProperty="report_uid" keyColumn="report_uid" useGeneratedKeys="true">
+		INSERT INTO mc_report (board_uid, report_tag, report_content, member_uid)
+		VALUES (#{board_uid}, #{report_tag}, #{report_content}, #{member_uid})
+	</insert>
+	
+
 	<!-- ↓ 해연 추가 -->
 	
 	<!-- 공지사항 정보 : selectNotice-->
@@ -187,8 +212,8 @@
 		SELECT 
 			coin_uid, bithumb_name, upbit_name, coinone_name, korbit_name
 		FROM 
-			mc_coin;
+			mc_coin
 	
 	</select>
-	
+
 </mapper>

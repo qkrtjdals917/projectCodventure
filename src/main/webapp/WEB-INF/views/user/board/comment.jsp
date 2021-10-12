@@ -14,10 +14,64 @@
 <!--  댓글 갱신 -->
 <c:forEach items="${list}" var="data">
 	<script>
-		getCommentList("${data.board_uid}");
+		board_uid = ${data.board_uid};
+		//getCommentList("${data.board_uid}");
+		
+		
 	</script>
 </c:forEach>
+<script>
+	function delete_comment (comment_uid , member_uid) {
+		
+		if (${member_null}) {
+			not_Login_msg();
+		}
+		
+		Swal.fire({
+			title: '댓글 삭제',
+			text: "해당 댓글을 삭제하시겠습니까? 삭제 후 다시 복구 할 수 없습니다.",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '삭제',
+			cancelButtonText: '취소'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					alert(comment_uid);
+					alert(member_uid)
+					alert("${member.member_uid}");
+					
+					if (member_uid == "${member.member_uid}") {
+						$.ajax({
+							url : "/modacon/board/deleteComment/" + comment_uid,
+		            		type : "GET",
+		            		async : false,
+		            		cache : false,
+		            		success : function(data, status){
+		            			Swal.fire({
+		            				title : '댓글 삭제',
+		            				text : '해당 댓글이 삭제되었습니다.',
+		            				icon : "success"
+		            			}).then((result) => {
+		         					location.reload();
+		         					})
+							}
+						});
+					} else {
+						Swal.fire(
+								'삭제 실패',
+								'해당 댓글의 작성자가 아닙니다.',
+								'error'
+						)
+					}
+				}
+			});
+		}	// end delete_comment();
 
+
+	
+</script>
 
 
 					
@@ -43,19 +97,13 @@
         </div>
         <!--  <input type="hidden" id="b_code" name="b_code" value="${result.code }" />    -->     
     </form>
-    <%--
+
         <c:choose>
-	<c:when test='${empty member}'>
-		<c:when test='${member.member_uid == list[i].member_uid}'>
-			<button onclick='' id='delete_comment_btn" + list[i].comment_uid + "'>삭제</button>
-		</c:when>
-		<c:otherwise>
-		</c:otherwise>
-	</c:when>
-	<c:otherwise>
-	</c:otherwise>
+			<c:when test="${list[0].member_uid == member.member_uid}">
+				
+				<button onclick='' id='delete_comment_btn" + list[i].comment_uid + "'>삭제</button>
+			</c:when>
 </c:choose>
-     --%>
 
 </div>
  
