@@ -10,6 +10,7 @@
     <%-- SweetAlert2 --%>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="${pageContext.request.contextPath }/JS/BoardScript/board.js"></script>
+
     <body onload="view_chk()"></body>
   </c:when>
 

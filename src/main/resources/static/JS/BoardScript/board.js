@@ -153,7 +153,7 @@ function chkReport() {
     preConfirm: () => {
       var rep_tag = document.getElementById('report_tag').value;
       var rep_content = Swal.getInput().value.trim();
-      if(rep_tag == ""){
+      if (rep_tag == "") {
         Swal.fire({
           icon: "error",
           text: "신고사유를 선택해주세요.",
@@ -163,8 +163,8 @@ function chkReport() {
         });
         return;
       }
-      
-      if(rep_content == ""){
+
+      if (rep_content == "") {
         Swal.fire({
           icon: "error",
           text: "신고내용을 입력해주세요.",
@@ -181,7 +181,7 @@ function chkReport() {
         data: {
           board_uid: board_uid,
           report_tag: rep_tag,
-          report_content: rep_content, 
+          report_content: rep_content,
           member_uid: member_uid
         },
         success: function () {
@@ -197,6 +197,6 @@ function chkReport() {
 }
 
 // 7. 댓글 토글
-function comment_toggle(){
+function comment_toggle() {
   $('#comment_area').toggle();
 }

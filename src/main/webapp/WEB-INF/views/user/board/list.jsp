@@ -25,25 +25,24 @@
 
     <div id="middle_menu">
       <h2>커뮤니티</h2> <%-- 게시판에 따라 변경시켜야함 --%>
-      > <a href="infoboard">정보</a> | <a href="freeboard">자유</a>
       <div class="selectMenu">
-          <select id="board_type" name="type" onchange="type_toggle()">
-          	<option id="all_type" value="전체" selected>전체게시판</option>
-            <option id="infoBoard_type" value="정보">정보게시판</option>
-            <option id="freeBoard_type" value="자유">자유게시판</option>
-          </select>
+        <select id="board_type" name="type" onchange="type_toggle()">
+          <option id="all_type" value="전체" selected>전체게시판</option>
+          <option id="infoBoard_type" value="정보">정보게시판</option>
+          <option id="freeBoard_type" value="자유">자유게시판</option>
+        </select>
 
-          <select id="board_tag" name="tag">
-            <option class="tag_default_sel" value="" selected>전체</option>
-            <option class="info_sel" value="코인">코인</option>
-            <option class="info_sel" value="뉴스">뉴스</option>
-            <option class="info_sel" value="팁과노하우">팁과노하우</option>
-            <option class="free_sel" value="유머">유머</option>
-            <option class="free_sel" value="잡담">잡담</option>
-            <option class="free_sel" value="질문">질문</option>
-          </select>
-        </div>
-      
+        <select id="board_tag" name="tag">
+          <option class="tag_default_sel" value="" selected>전체</option>
+          <option class="info_sel" value="코인">코인</option>
+          <option class="info_sel" value="뉴스">뉴스</option>
+          <option class="info_sel" value="팁과노하우">팁과노하우</option>
+          <option class="free_sel" value="유머">유머</option>
+          <option class="free_sel" value="잡담">잡담</option>
+          <option class="free_sel" value="질문">질문</option>
+        </select>
+      </div>
+
       <table>
         <thead>
           <th>글번호</th>
@@ -54,16 +53,15 @@
           <th>조회수</th>
         </thead>
 
-       
-              <tbody id="tbody">
-              </tbody>
-            
+        <tbody id="tbody">
+        </tbody>
+
       </table>
       <br>
       <button onclick="location.href = 'board/write'">새글작성</button>
     </div>
     <div class="footer">
-    	<%@ include file="../../include/footer.jsp"%>
+      <%@ include file="../../include/footer.jsp"%>
     </div>
   </div>
 </body>
