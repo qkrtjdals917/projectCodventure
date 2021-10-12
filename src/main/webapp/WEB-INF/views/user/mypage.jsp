@@ -39,9 +39,9 @@
        	</table>
     </div>
     <div class="contentC">
-    	<button type="button" id="btnUpdate" class="btn">정보수정</button>
-		<button type="button" id="btnPwChange" class="btn">비밀번호 변경</button>
-		<button type="button" id="btnSecession" class="btn">회원 탈퇴</button>
+    	<button type="button" id="btnUpdate" class="btn mypagebtn">정보수정</button>
+		<button type="button" id="btnPwChange" class="btn mypagebtn">비밀번호 변경</button>
+		<button type="button" id="btnSecession" class="btn mypagebtn">회원 탈퇴</button>
     </div>
     <br>
     
@@ -55,18 +55,21 @@
 				<form id="memChangeform" action="/update" name="memChangeform" method="post">
 					<div class="btn_update">
 						<input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid}"> 
-						<label for="Pw"><b>닉네임</b></label>
-						<input type="text" id="nickname" placeholder="${member.nickname}" name="nickname" required>
-						<button type="button" id="nickname_check" class="btn">중복체크</button>
-						<input type="hidden" id="nicknameDuplication" name="nicknameDuplication" value="nicknameUncheck"> 
-						<br><b id="nicknameEx"></b>
-						<br>
-						<label for="phoneNumber"><b>전화번호</b></label>
-						<input class="phoneNum" type="text" name="phonenum1" required> -
-						<input class="phoneNum" type="text" name="phonenum2" required> - 
-						<input class="phoneNum" type="text" name="phonenum3" required>
-						<input type="hidden" name="phoneNumber" value="">
-						<br>
+						<div class="row">
+							<label for="Pw"><b>닉네임</b></label>
+							<input type="text" id="nickname" placeholder="${member.nickname}" name="nickname" required>
+							<input type="hidden" id="nicknameDuplication" name="nicknameDuplication" value="nicknameUncheck"> 
+						</div>
+							<b id="nicknameEx"></b>
+							<button type="button" id="nickname_check" class="btn">중복체크</button>
+						<div class="clearAll"></div>
+						<div class="row">
+							<label for="phoneNumber"><b>전화번호</b></label>
+							<input class="phoneNum" type="text" name="phonenum1" required> -
+							<input class="phoneNum" type="text" name="phonenum2" required> - 
+							<input class="phoneNum" type="text" name="phonenum3" required>
+							<input type="hidden" name="phoneNumber" value="">
+						</div>
 	                    <button type="button" class="btn" onclick="chkUpdate()">변경</button>
 	                    
 	                </div>
@@ -74,16 +77,19 @@
 
 				<form id="pwChangeform" action="/pwChange" name="pwChangeform" method="post">
 					<div class="btn_pwChange">
-						<label for="Pw"><b>현재 비밀번호</b></label>
-						<input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid}">
-						<input type="password" placeholder="현재 PW를 입력하세요" name="currentpw" required>
-						<br>
-						<label for="Pw"><b>변경 비밀번호</b></label>
-						<input type="password" placeholder="바꿀 PW를 입력하세요" name="changepw" required>
-						<br>
-						<label for="Pw"><b>비밀번호 확인</b></label>
-						<input type="password" placeholder="바꿀 PW를 다시 입력하세요" name="checkpw" required>
-						<br>
+						<div class="row">
+							<label for="Pw"><b>현재 비밀번호</b></label>
+							<input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid}">
+							<input type="password" placeholder="현재 PW를 입력하세요" name="currentpw" required>
+						</div>
+						<div class="row">
+							<label for="Pw"><b>변경 비밀번호</b></label>
+							<input type="password" placeholder="바꿀 PW를 입력하세요" name="changepw" required>
+						</div>
+						<div class="row">
+							<label for="Pw"><b>비밀번호 확인</b></label>
+							<input type="password" placeholder="바꿀 PW를 다시 입력하세요" name="checkpw" required>
+						</div>
 						<button type="button" class="btn" onclick="chkPw()">변경</button>
 						<div class="clear"></div>
 					</div>

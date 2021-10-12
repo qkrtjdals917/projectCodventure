@@ -100,7 +100,7 @@
 					<form id="joinform" action="/joinOk" name="joinform" method="post">
 						<div class="btn_join">
 							<div class="row">
-								<span for="Email" class="title_content"><b>Email</b></span>
+								<label for="Email" class="title_content"><b>Email</b></label>
 								<input type="text" id="email" placeholder="Email을 입력하세요" name="email" required>
 							</div>
 							<b id="emailEx"></b>
@@ -108,23 +108,23 @@
 								<input type="hidden" id="emailDuplication" name="emailDuplication" value="emailUncheck"> 
 							<div class="clearAll"></div>
 							<div class="row">
-								<span for="Pw" class="title_content"><b>PW</b></span>
+								<label for="Pw" class="title_content"><b>PW</b></label>
 								<input type="password" placeholder="PW를 입력하세요" name="pw" required>
 							</div>
 							<div class="row">
-								<span for="PwC" class="title_content"><b>PW 확인</b></span>
+								<label for="PwC" class="title_content"><b>PW 확인</b></label>
 								<input type="password" placeholder="PW를 다시 입력하세요" name="pwC" required>
 							</div>
 							<div class="row">
-								<span for="Nickname" class="title_content"><b>닉네임</b></span>
+								<label for="Nickname" class="title_content"><b>닉네임</b></label>
 								<input type="text" id="nickname" placeholder="닉네임를 입력하세요" name="nickname" required>
 							</div>
 							<b id="nicknameEx"></b>
 								<button type="button" id="nickname_check" class="btn">중복체크</button>
 								<input type="hidden" id="nicknameDuplication" name="nicknameDuplication" value="nicknameUncheck"> 
 							<div class="clearAll"></div>
-							<div>
-								<span for="phoneNumber" class="title_content"><b>전화번호</b></span>
+							<div class="row">
+								<label for="phoneNumber" class="title_content"><b>전화번호</b></label>
 								<input class="phoneNum" type="text" name="phonenum1" required> - 
 								<input class="phoneNum" type="text" name="phonenum2" required> - 
 								<input class="phoneNum" type="text" name="phonenum3" required>

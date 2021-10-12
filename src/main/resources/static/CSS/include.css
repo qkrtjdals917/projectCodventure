@@ -6,6 +6,10 @@
     font-size: 25px;
 }
 
+body {
+	min-width: 414px;
+}
+
 .clearAll {
 	clear: both;
 }
@@ -65,11 +69,6 @@ header .container {
 	opacity: 0.3;
 }
 
-button {
-    background: #100E34;
-    border: none;
-    color: #fff;
-}
 
 @media (min-width: 800px) {
     /* 800 이상 큰 화면에서는 */
@@ -209,7 +208,7 @@ form .row {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
 form .title_content {
@@ -227,6 +226,10 @@ form .title_content {
 	padding: 12px 20px;
 	display: inline-block;
 	box-sizing: border-box;
+}
+
+.modal input[type=text].phoneNum {
+	width: 22%;
 }
 
 .modal button {
@@ -259,9 +262,7 @@ form .title_content {
 @media (min-width: 800px) {
     /* 큰 화면 전용 설정 */
     .modal .modal-content {
-        position: relative;
-        background-color: #fefefe;
-        width: 50%;
+        width: 40%;
     }
 }
 
