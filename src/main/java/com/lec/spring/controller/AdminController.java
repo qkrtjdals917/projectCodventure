@@ -20,13 +20,9 @@ import com.lec.spring.domain.board.BoardDTO;
 import com.lec.spring.domain.member.MemberVO;
 import com.lec.spring.service.AdminService;
 
-<<<<<<< HEAD
+
 @Controller	
 @RequestMapping("/modaconAdmin")
-=======
-@Controller
-@RequestMapping("/modacon/admin")
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure
 public class AdminController {
 	
 	private AdminService adminService;
