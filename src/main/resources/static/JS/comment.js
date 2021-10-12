@@ -1,3 +1,5 @@
+var board_uid;
+
 function add_comment(uid){
 	$.ajax({
         type:'POST',
@@ -23,8 +25,8 @@ function add_comment(uid){
  * 초기 페이지 로딩시 댓글 불러오기
  */
 $(function () {
-
-
+	getCommentList(board_uid);
+	
 });
  
 /**
