@@ -24,8 +24,7 @@ function delete_comment (uid) {
 	alert(uid);
 	if (${member_null}) {
         not_Login_msg();
-        
-      }
+    }
 	Swal.fire({
         title: '글 삭제',
         text: "해당 글을 삭제하시겠습니까? 삭제 후 다시 복구 할 수 없습니다.",
