@@ -57,9 +57,9 @@ public class MainController {
 			dto.setEmail(userDetails.getUsername());
 			dto.setNickname(userDetails.getNickname());
 			dto.setPhoneNumber(userDetails.getPhonNum());
-			dto.setMemberBoardCnt(userDetails.getBordCnt());
 			dto.setMember_uid(userDetails.getUid());
-			dto.setPw(userDetails.getPassword());
+			dto.setPw(userDetails.getPassword());			
+			dto.setMemberBoardCnt(userDetails.getBordCnt());
 			
 			model.addAttribute("member" , dto);
 		}

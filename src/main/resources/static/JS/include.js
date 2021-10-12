@@ -15,14 +15,22 @@ $(function () {
 		var Ereg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 		
 		if(email == "") {
-			alert("이메일은 필수입니다.");
-			frm['email'].focus();
+			Swal.fire({
+				icon: 'warning',
+				title: '이메일은 필수입니다.',
+			}).then(function(){
+				frm['email'].focus();
+			});
 			
 			return false;
 			
 		} else if(Ereg.test(email) == false) {
-			alert("이메일 형식이 올바르지 않습니다.");
-			frm['email'].focus();
+			Swal.fire({
+				icon: 'warning',
+				title: '이메일 형식이 올바르지 않습니다.'
+			}).then(function(){
+				frm['email'].focus();
+			});
 			
 			return false;
 		}
@@ -42,14 +50,23 @@ $(function () {
 		var Nreg = /^[0-9a-zA-Z가-힣]+$/;
 		
 		if(nickname == "") {
-			alert("닉네임은 필수입니다.");
-			frm['nickname'].focus();
+			Swal.fire({
+				icon: 'warning',
+				title: '닉네임은 필수입니다.'
+			}).then(function(){
+				frm['nickname'].focus();
+			});
 			
 			return false;
 			
 		} else if(Nreg.test(nickname) == false) {
-			alert("닉네임 형식이 올바르지 않습니다.(특수기호 불가)");
-			frm['nickname'].focus();
+			Swal.fire({
+				icon: 'warning',
+				title: '닉네임 형식이 올바르지 않습니다.',
+				text: '특수기호 불가'
+			}).then(function(){
+				frm['nickname'].focus();
+			});
 			
 			return false;
 		}
@@ -82,17 +99,18 @@ $(function () {
 	
 	// 로그아웃 버튼
 	$("#btnLogout").click (function(){
-		alert("로그아웃되셨습니다.");
-
-		$.ajax({
-		url : "/logoutcheck",
-		type : "GET",
-		cache : false
-		});
-		
-		location.href="/logout";
-		
-		
+		Swal.fire({
+			icon: 'success',
+			title: '로그아웃되었습니다.'
+			}).then((result) => {
+				$.ajax({
+					url : "/logoutcheck",
+					type : "GET",
+					cache : false
+					});
+					
+					location.href="/modacon/logout";
+	   			});
 	});	
 	
 	
@@ -176,17 +194,22 @@ function setPopup(mode){
 	}
 }// end setPopup()
 
-function chkJoin (){
+function chkJoin(){
 	frm = document.forms['joinform'];
 	// 비밀번호 확인
 	pw = frm['pw'].value;
 	pwC = frm['pwC'].value;
 	
 	if(pw != pwC) {
-		alert("비밀번호가 같지 않습니다. 다시 확인해주세요");
-		frm['pwC'].focus();
+		Swal.fire({
+			icon: 'warning',
+			title: '변경될 비밀번호가 같지 않습니다.',
+			text: '다시 확인해주세요'
+		}).then(function(){
+			frm['pwC'].focus();
+		});
 		
-		return false;
+		return;
 		
 	}
 	
@@ -201,14 +224,24 @@ function chkJoin (){
 	var Preg =  /^\d{2,3}-\d{3,4}-\d{4}$/;
 	
 	if(Preg.test(frm['phoneNumber'].value) == false) {
-		alert("전화번호 형식이 올바르지 않습니다");
-		frm['phoneNumber'].focus();
+		Swal.fire({
+			icon: 'warning',
+			title: '전화번호 형식이 올바르지 않습니다.'
+		}).then(function(){
+			frm['phoneNumber'].focus();
+		});
 		
-		return false;
+		return;
+	}else {
+		Swal.fire({
+			icon: 'success',
+			title: '회원가입이 완료되었습니다.',
+			text: '환영합니다!'
+		}).then(function(){
+			frm.submit();
+		});
 	}
 	
-	alert("회원가입이 완료되었습니다.");
-	return true;
  }
 
 

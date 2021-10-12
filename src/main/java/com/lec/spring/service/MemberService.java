@@ -58,7 +58,7 @@ public class MemberService {
 	}
 	
 	// 부여된 권한 가져오기
-	public int selectAuthoritiesById(int member_uid) {
+	public Integer selectAuthoritiesById(int member_uid) {
 		return dao.selectAuthoritiesById(member_uid);
 	}
 	

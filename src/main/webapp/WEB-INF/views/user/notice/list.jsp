@@ -24,8 +24,8 @@
   <div id="middle_menu">
     <table>
     <h2>공지사항</h2>
-  <table>
-  
+	<table>
+
     <tr>
       <th>글번호</th>
       <th>제목</th>
@@ -33,9 +33,6 @@
       <th>작성일</th>
       <th>조회수</th>
     </tr>
-
-
-
 
     <c:choose>
       <c:when test="${empty list || fn:length(list) == 0 }">

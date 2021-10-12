@@ -30,7 +30,7 @@ public interface MemberDAO {
 		public int changeAuth(int authority , int member_uid);
 		
 		// 부여된 권한 가져오기
-		public int selectAuthoritiesById(int member_uid);
+		public Integer selectAuthoritiesById(int member_uid);
 		
 		// 회원탈퇴
 		public int deleteMember(MemberDTO dto);

@@ -79,7 +79,7 @@
 				
 					<span class="close" title="Close Modal">&times;</span>
 					
-					<form id="loginform" action="/loginOk" name="loginform" method="post">
+					<form id="loginform" action="/modacon/loginOk" name="loginform" method="post">
 						<div class="btn_login">
 							<label for="Email"><b>Email</b></label>
 							<input type="text" placeholder="Email을 입력하세요" name="email" required>
@@ -87,12 +87,13 @@
 							<label for="Pw"><b>PW</b></label>
 							<input type="password" placeholder="PW를 입력하세요" name="pw" required>
 							<br>
+							<p>${requestScope.loginFailMsg}</p>
 		                    <button type="submit" class="btn">로그인</button>
 							<button type="button" id="btn_go_join" class="btn">회원가입</button>
 		                </div>
 	                </form>
 	                
-					<form id="joinform" action="/joinOk" name="joinform" method="post" onsubmit="return chkJoin()">
+					<form id="joinform" action="/joinOk" name="joinform" method="post">
 						<div class="btn_join">
 							<label for="Email"><b>Email</b></label>
 							<input type="text" id="email" placeholder="Email을 입력하세요" name="email" required>
@@ -118,7 +119,7 @@
 							<input class="phoneNum" type="text" name="phonenum3" required>
 							<input type="hidden" name="phoneNumber" value="">
 							<br>
-							<button type="submit" class="btn">가입</button>
+							<button type="button" class="btn" onclick="chkJoin()">가입</button>
 							<div class="clear"></div>
 						</div>
 					</form>

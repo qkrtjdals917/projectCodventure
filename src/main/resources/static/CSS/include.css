@@ -176,6 +176,7 @@ b {
 .modal .logincontainer {
 	padding: 16px;
 	position: relative;  /* 아래 있는 요소들 absolute로 동작시키기 위해 */
+	text-align: center;
 }
 
 .modal .close { /* 닫기(x) 버튼 */

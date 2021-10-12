@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+body {
+    background-color: #100E34;
+}
+
+#wrap {
+    position: absolute;
+    left: 15%;
+    top: 15%;
+    background-color: #fff;
+    width: 500px;
+    height: 480px;
+    padding: 18px 0;
+    text-align: center;
+    border-radius: 20px;
+	box-shadow: 0 0 20px 13px rgba(255,191,24, 0.5);
+}
+
+h1 {
+    font-size: 45px;
+    color: #4F48EC;
+}
+
+h2 {
+	margin: 10px 0;
+}
+
+form {
+    padding: 25px 0;
+    font-size: 30px;
+}
+
+form input {
+    margin: 15px 0;
+    padding: 10px;
+    font-size: 18px;
+    
+}
+
+form button {
+    background-color: #4F48EC;
+    color: #fff;
+    border-radius: 5px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+}
+
+@media (min-width: 800px) {
+    /* 800 이상 큰 화면에서는 */
+    #wrap {
+        position: absolute;
+        left: 35%;
+        top: 20%;
+    }
+
+}
