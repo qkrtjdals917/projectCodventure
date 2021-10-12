@@ -24,7 +24,7 @@ function add_comment(uid){
  */
 $(function () {
 
-    
+
 });
  
 /**
@@ -51,9 +51,7 @@ function getCommentList(uid){
                     html += "<td>" + list[i].regDateTime + "</td>";
                     //html += "<td><button id='update_comment_btn" + list.comment_uid + "'>수정</button></td>";
 
-                    html += "<td><c:choose><c:when test='${list[0].member_uid == member.member_uid}'>";
-					html += "<button onclick='' id='delete_comment_btn" + list[i].comment_uid + "'>삭제</button>"
-					html += "</c:when></c:choose></td><tr>";
+                    html += "<td><button onclick='delete_comment(" + list[i].comment_uid + ")' id='delete_comment_btn" + list[i].comment_uid + "'>삭제</button></td></tr>";
 
                 }
                 html += "</table>"
@@ -74,3 +72,10 @@ function getCommentList(uid){
         
     });
 }
+
+
+
+
+
+
+

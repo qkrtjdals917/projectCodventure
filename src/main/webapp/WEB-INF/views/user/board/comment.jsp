@@ -15,9 +15,45 @@
 <c:forEach items="${list}" var="data">
 	<script>
 		getCommentList("${data.board_uid}");
+		
+		
 	</script>
 </c:forEach>
+<script>
+function delete_comment (uid) {
+	alert(uid);
+	if (${member_null}) {
+        not_Login_msg();
+        
+      }
+	Swal.fire({
+        title: '글 삭제',
+        text: "해당 글을 삭제하시겠습니까? 삭제 후 다시 복구 할 수 없습니다.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if ("${list[0].member_uid }" == "${member.member_uid}") {
+            
+        	  $.ajax();
+          } else {
+            Swal.fire(
+              '삭제 실패',
+              '해당 글의 작성자가 아닙니다.',
+              'error'
+            )
+          }
+        }
+      });
+}
 
+
+	
+</script>
 
 
 					
