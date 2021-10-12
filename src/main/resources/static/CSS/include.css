@@ -167,10 +167,12 @@ b {
 }
 
 .modal .modal-content {
+    position: relative;
 	background-color: #fefefe;
-	width: 80%;   
-	margin: 5%;
-	border: 1px solid #888;
+	width: 60%;   
+	left: 10%;
+    top: 5%;
+    border-radius: 15px;
 }
 
 .modal .logincontainer {
@@ -194,7 +196,31 @@ b {
 	cursor: pointer;
 }
 
-.modal input[type=text]{
+h3.title {
+    color: #7367f0;
+    font-size: 35px;
+}
+
+form .btn_join {
+    margin: 0 10px;
+}
+
+form .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+form .title_content {
+    display: flex;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.modal input{
 	width: 70%;
 	border: 1px solid #ccc;
 	margin: 8px 0;
@@ -203,6 +229,23 @@ b {
 	box-sizing: border-box;
 }
 
+.modal button {
+    background-color: #4F48EC;
+    color: #fff;
+    border-radius: 5px;
+    border-style: none;
+    padding: 10px;
+    font-size: 20px;
+    float: right;
+}
+
+.modal .joinbtn {
+    float: none;
+}
+
+.modal .btn_login .btn {
+    float: none;
+}
 
 .modal textarea {
 	width: 100%;
@@ -211,6 +254,15 @@ b {
 
 .title {
 	color: black;
+}
+
+@media (min-width: 800px) {
+    /* 큰 화면 전용 설정 */
+    .modal .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        width: 50%;
+    }
 }
 
 /* 푸터 */
