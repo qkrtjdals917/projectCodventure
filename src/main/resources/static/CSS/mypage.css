@@ -8,12 +8,35 @@
 	margin: 0;
 }
 
-table {
-	width: 100%;
-	border-collapse: collapse;
-	color: #100E34;
-	border: 1px solid black;
+.contentB {
+	padding: 80px 90px;
 }
+
+.contentB h2 {
+	font-size: 40px;
+}
+
+
+.contentB table {
+	width: 100%;
+	border: none;
+	color: black;
+	border-collapse: collapse;
+}
+
+.contentB tr,.contentB td {
+	border: 1px solid #757272;
+}
+
+.contentB table td {
+	text-align: center;
+	padding: 10px 0;
+}
+
+.contentB table td:nth-child(2n-1) {
+	background-color: rgba(115, 103, 240, 0.4);
+}
+
 .btn_update , .btn_pwChange , .btn_secession {
 	display: none;
 }

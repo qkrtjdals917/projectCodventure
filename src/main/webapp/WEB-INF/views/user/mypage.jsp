@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mypage</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/mypage.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/bb29575d31.js"></script>
@@ -14,12 +14,9 @@
 <body>
 <%@ include file = "../include/header.jsp" %> <%-- header --%>
 	<div style="clear:both; height:70px"></div>
-    <div class="contentA">
-        <img src='' alt="메인이미지" /> 
-    </div>
-
     <div class="contentB">
-       	<table border="">
+		<h2>마이페이지</h2>
+       	<table>
        		<tr>
        			<td>이메일</td>
        			<td>${member.email}</td>
@@ -37,11 +34,11 @@
        			<td>${member.memberBoardCnt}</td>
        		</tr>
        	</table>
-    </div>
-    <div class="contentC">
-    	<button type="button" id="btnUpdate" class="btn mypagebtn">정보수정</button>
-		<button type="button" id="btnPwChange" class="btn mypagebtn">비밀번호 변경</button>
-		<button type="button" id="btnSecession" class="btn mypagebtn">회원 탈퇴</button>
+	    <div class="contentC">
+	    	<button type="button" id="btnUpdate" class="btn mypagebtn">정보수정</button>
+			<button type="button" id="btnPwChange" class="btn mypagebtn">비밀번호 변경</button>
+			<button type="button" id="btnSecession" class="btn mypagebtn">회원 탈퇴</button>
+	    </div>
     </div>
     <br>
     

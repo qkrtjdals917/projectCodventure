@@ -3,31 +3,7 @@ var pageRows = 10;   // 페이지당 글의 개수
 var viewItem = undefined;   // 가장 최근에 view 한 글의 데이터
 
 $(document).ready(function() {
-	
-	$("#admNotice").click(function() {
-		saveRoute("notice")
-		viewPage("notice")
-		//loadPageNtc(page);
-	});
-	
-	$("#admBoard").click(function() {
-		saveRoute("board")
-		viewPage("board")
-		//loadPageCmt(page);
-		// communityList(1,10);
-	});
-	
-	$("#admReport").click(function() {
-		saveRoute("report")
-		viewPage("report")
-		
-	});
-	
-	$("#admMember").click(function() {
-		saveRoute("member")
-		viewPage("member")
-		//loadPageMb(page);
-	});
+
 	
 	$("#logobtn").click(function() {
 		saveRoute("main")
@@ -82,6 +58,22 @@ $(document).ready(function() {
 	});
 });
 
+function admNotice () {
+   saveRoute("notice")
+   viewPage("notice")
+}
+function admBoard () {
+   saveRoute("board")
+   viewPage("board")
+}
+function admReport () {
+   saveRoute("report")
+   viewPage("report")
+}
+function admMember () {
+   saveRoute("member")
+   viewPage("member")
+}
 
 function loadPage(page, type){
 	

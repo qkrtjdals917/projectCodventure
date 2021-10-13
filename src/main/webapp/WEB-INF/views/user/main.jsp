@@ -16,8 +16,7 @@
 		<div class="header">
 			<%@ include file = "../include/header.jsp" %> <%-- header --%>
 		</div>
-	
-		<div style="clear:both; height:70px"></div>
+		
 	    <div class="contentA">
 	        <img src='${pageContext.request.contextPath }/images/bitcoin.jpg' alt="메인이미지" />
 	    </div>

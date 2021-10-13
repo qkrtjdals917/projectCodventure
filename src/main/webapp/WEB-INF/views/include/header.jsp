@@ -24,7 +24,9 @@
 	<header>
         <div class="container">
             <div class="container-small"> <!-- 작은 화면의 배치를 위한 컨테이너-->
-                <a href="/modacon" class="headA">로고</a>
+                <a href="/modacon" class="headA">
+                	<img class="logo" alt="로고" src="${pageContext.request.contextPath }/images/logo.png">
+                </a>
                 
             	<!-- 작은 창 내비게이션 메뉴 -->
 	            <nav class="headB">

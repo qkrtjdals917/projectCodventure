@@ -24,14 +24,18 @@ header {
 }
 header .container {
     background: #100E34;
+    height: 80px;
 }
 
 .headA {
     color: #fff;
     display: inline-block;
-    line-height: 70px;
-    padding-left: 20px;
-    padding-right: 20px;
+}
+
+.logo {
+	width: 260px;
+	height: 60px;
+	padding: 10px 20px;
 }
 
 /* 헤더B: 네비게이션 메뉴 */
@@ -41,12 +45,12 @@ header .container {
     list-style: none;
 }
 
-.headB li {
+.headB li, .headE li {
 	color: #fff;
 	padding: 0 20px;
 }
 
-.headB a {
+.headB a, .headE a {
     text-align: center;
     display: block;
     padding: 15px;
@@ -54,7 +58,7 @@ header .container {
     text-decoration: none;
 }
 
-.headB a:hover {
+.headB a:hover, .headE a:hover {
     opacity: 0.3;
 }
 .headC span{
@@ -62,6 +66,11 @@ header .container {
 }
 .headD {
     float: right;
+}
+
+.headB button, .headD button {
+	border-style: none;
+	background-color: #100E34;
 }
 
 .headD button:hover {
@@ -96,6 +105,9 @@ header .container-small {
 
 /* 작은 화면에선 메뉴 감추기 */
 .headB {
+    display: none;
+}
+.headE{
     display: none;
 }
 
@@ -141,6 +153,10 @@ header .container-small {
     text-align : center;
     white-space: nowrap;
     cursor: pointer;
+}
+
+#join_form label {
+	float: left;
 }
 
 b {
@@ -348,3 +364,12 @@ footer .container{
     .footC {flex: 0 0 100%;} /* 저작권 100% */
 }
 
+
+/* 공통 버튼 */
+button {
+	background-color: #7367f0;
+	border: none;
+	border-radius: 5px;
+	padding: 8px;
+	color: #fff;
+}

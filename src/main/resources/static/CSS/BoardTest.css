@@ -5,6 +5,49 @@ table {
 }
 
 table, th, td {
-	border: 1px solid black;
+	border-bottom: 1px solid black;
+	text-align: center;
 	border-collapse: collapse;
+	font-size: 18px;
+}
+
+#middle_menu {
+	padding: 40px 50px;
+}
+
+#middle_menu h2 {
+	font-size: 40px;
+}
+
+.selectMenu {
+	margin: 20px 0;
+	float: right;
+}
+
+select, option {
+	font-size: 22px;
+}
+
+#middle_menu a:link, a:visited {
+	text-decoration: none;
+	color: black;
+	font-size: 18px;
+}
+
+td {
+	padding: 10px 0;
+}
+
+th {
+	padding: 10px 0;
+	font-size: 22px;
+}
+
+thead {
+	background-color: rgba(115, 103, 240, 0.4);
+}
+
+
+tbody {
+	background-color: rgba(218, 218, 218, 0.4);
 }

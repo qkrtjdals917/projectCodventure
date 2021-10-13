@@ -11,7 +11,7 @@
 <title>관리자 메인페이지 23, 28, 24, 26, 32</title>
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/CSS/test.css">
+	href="${pageContext.request.contextPath }/CSS/include.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -32,14 +32,18 @@
 		<div class="container">
 			<div class="container-small">
 				<!-- 작은 화면의 배치를 위한 컨테이너-->
-				<a id="logobtn" class="headA" style="cursor: pointer">로고</a>
+				<a href="/modacon" class="headA">
+                	<img class="logo" alt="로고" src="${pageContext.request.contextPath }/images/logo.png">
+                </a>
 
 				<!-- 내비게이션 메뉴 -->
 				<nav class="headB">
-					<button id="admNotice">공지사항</button>
-					<button id="admBoard">게시판관리</button>
-					<button id="admReport">신고접수</button>
-					<button id="admMember">회원관리</button>
+					<ul>
+						<li><a onclick="admNotice()">공지사항</a></li>
+						<li><a onclick="admBoard()">게시판관리</a></li>
+						<li><a onclick="admReport()">신고접수</a></li>
+						<li><a onclick="admMember()">회원관리</a></li>
+					</ul>
 				</nav>
 
 				<!-- 메뉴 토글 버튼 -->

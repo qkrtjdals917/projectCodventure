@@ -18,7 +18,7 @@
         <div class="container">
             <!-- 푸터A : 사이트 정보 -->
             <div class="footA">
-                <h2>LOGO</h2>
+                <h2>MODACON</h2>
                 <p>TEAM: Codeventure</p>
                 <p>권혁찬, 박성민, 박해연,</p> 
                 <p>이상빈, 정은수</p>
