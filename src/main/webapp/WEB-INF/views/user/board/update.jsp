@@ -4,38 +4,16 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:choose>
-  <c:when test="${not empty ERR}">
+  <c:when test="${empty list || fn:length(list) == 0 || not empty ERR}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <%-- SweetAlert2 --%>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="${pageContext.request.contextPath }/JS/BoardScript/update.js"></script>
     <script>
-      $().ready(function () {
-        Swal.fire({
-          icon: 'error',
-          title: '수정 오류',
-          text: '${ERR }'
-        }).then((result) => {
-          history.back();
-        });
-      });
+      var ERR = '${ERR}'
     </script>
-  </c:when>
 
-  <c:when test="${empty list || fn:length(list) == 0 }">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <%-- SweetAlert2 --%>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-      $().ready(function () {
-        Swal.fire({
-          icon: 'error',
-          title: '정보 오류',
-          text: '해당 글이 삭제됐거나 없습니다.'
-        }).then((result) => {
-          history.back();
-        });
-      });
-    </script>
+    <body onload="err_alert()"></body>
   </c:when>
 
   <c:otherwise>
@@ -46,41 +24,48 @@
       <meta charset="UTF-8">
       <title>게시판 글 수정</title>
 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <%-- SweetAlert2 --%>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="${pageContext.request.contextPath }/JS/BoardScript/update.js"></script>
     </head>
 
-    <body>
+    <script>
+      var board_type = '${list[0].type}';
+      var board_tag = '${list[0].tag}';
+    </script>
+
+    <body onload="select_set()">
       <div class="header">
         <%@ include file="../../include/header.jsp"%>
       </div>
       <div style="clear:both; height:70px"></div>
-      <form name="frm" action="updateOk" method="post">
-        <input type="hidden" name="member_uid" value="${member.member_uid }" />
-        <input type="hidden" name="board_uid" value="${list[0].board_uid }" />
-        <div class="selectMenu">
-          <select name="type">
-            <option value="정보">정보게시판</option>
-            <option value="자유">자유게시판</option>
+
+      <form id="frm" name="frm" method="PUT">
+        <input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid }" />
+        <input type="hidden" id="board_uid" name="board_uid" value="${list[0].board_uid }" />
+        <div name="selectMenu">
+          <select id="board_type" name="type" onchange="type_toggle()">
+            <option id="infoBoard_type" value="정보" selected>정보게시판</option>
+            <option id="freeBoard_type" value="자유">자유게시판</option>
           </select>
 
-          <select name="tag">
-            <option value="" selected>TAG선택</option>
-            <option value="코인">코인</option>
-            <option value="뉴스">뉴스</option>
-            <option value="팁과노하우">팁과노하우</option>
-            <option value="유머">유머</option>
-            <option value="잡담">잡담</option>
-            <option value="질문">질문</option>
+          <select id="board_tag" name="tag">
+            <option selected value="">태그없음</option>
+            <option class="info_sel" value="코인">코인</option>
+            <option class="info_sel" value="뉴스">뉴스</option>
+            <option class="info_sel" value="팁과노하우">팁과노하우</option>
+            <option class="free_sel" value="유머">유머</option>
+            <option class="free_sel" value="잡담">잡담</option>
+            <option class="free_sel" value="질문">질문</option>
           </select>
         </div>
 
-
-        제목 <input name="subject" type="text" value="${list[0].subject }" />
+        제목 <input id="subject" name="subject" type="text" placeholder="${list[0].subject }" />
         <hr>
-        <textarea name="content" id="" cols="100" rows="30">${list[0].content }</textarea>
+        <textarea id="content" name="content" id="" cols="100" rows="30" placeholder="${list[0].content }"></textarea>
         <br><br>
-        <button type="submit">수정</button>
+        <button type="button" onclick="update_chk()">수정</button>
         <button type="button" onclick="history.back()">취소</button>
       </form>
       <div class="footer">
