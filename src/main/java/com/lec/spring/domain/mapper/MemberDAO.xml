@@ -117,7 +117,6 @@
 	<select id="countMb" resultType="int">
 		SELECT count(*)
 		FROM mc_member
-		WHERE member_uid = #{member_uid}
 	</select>
 
 	<!--회원 리스트 from 부터 pageRows 개를 가져온다.-->

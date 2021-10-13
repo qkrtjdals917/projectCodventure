@@ -112,13 +112,7 @@ public class AdminService {
 	}
 
 
-	// 체크된 게시글 삭제 ?
-	// TODO
-	
-	// 게시글을 본다
-	
-	
-	
+
 	
 	// 신고접수 리스트 가져오기
 	public List<ReportDTO> admRpList() {
@@ -141,8 +135,13 @@ public class AdminService {
 		return Rdao.deleteReport(uid);
 	}
 	
-	// 글 삭제
-	// TODO
+	// 신고 접수 (글삭제까지
+	public int deleteReportWithBoard(int board_uid, int report_uid) {
+		int cnt = 0;
+		cnt += Rdao.deleteReport(report_uid);
+		cnt += Bdao.deleteUid(board_uid);
+		return cnt;
+	}
 	
 	// uid 받아서 정보하나 가져오기
 	public MemberDTO selectByUid (int member_uid) {
@@ -161,6 +160,11 @@ public class AdminService {
 	public List<MemberVO> mbUpdateList(int from, int pageRows){
 		return Mdao.selectFromRowMb(from, pageRows);
 	}
+	
+	public int mbDelete (int uid) {
+		return Mdao.deleteMember(uid);
+	}
+	
 	// 회원리스트를 본다
 	// TODO
 	// 강퇴기능

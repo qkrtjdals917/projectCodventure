@@ -22,8 +22,8 @@ public class MemberService {
 	}
 	
 	// 회원삭제
-	public int deleteMember(MemberDTO dto) {
-		int cnt = dao.deleteMember(dto);
+	public int deleteMember(int uid) {
+		int cnt = dao.deleteMember(uid);
 		return cnt;
 	}
 	

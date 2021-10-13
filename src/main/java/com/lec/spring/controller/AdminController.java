@@ -261,6 +261,43 @@ public class AdminController {
 			return result;
 		}
 		
+		// 글 삭제
+		@DeleteMapping("/board")  // URI: /board
+		@ResponseBody
+		public int deleteBoard(int uid) {
+			int count = 0;
+			count = adminService.deleteUid(uid);
+
+			return count;
+		}
+		
+		// 글 삭제
+		@DeleteMapping("/report")  // URI: /board
+		@ResponseBody
+		public int deleteReport(int uid) {
+			int count = 0;
+			count = adminService.deleteReport(uid);
+
+			return count;
+		}
+		// 글 삭제
+		@DeleteMapping("/report/{board_uid}")  // URI: /board
+		@ResponseBody
+		public int deleteReportWithBoard(int report_uid , @PathVariable int board_uid) {
+			int count = 0;
+			count = adminService.deleteReportWithBoard(board_uid, report_uid);
+
+			return count;
+		}
+		// 글 삭제
+		@DeleteMapping("/member")  // URI: /board
+		@ResponseBody
+		public int deleteMember(int uid) {
+			int count = 0;
+			count = adminService.mbDelete(uid);
+
+			return count;
+		}
 		
 		
 		
@@ -331,8 +368,6 @@ public class AdminController {
 			return result;		
 			
 		} // end admCommunityList
-		
-		
 		
 		
 		// 신고리스트 페이징

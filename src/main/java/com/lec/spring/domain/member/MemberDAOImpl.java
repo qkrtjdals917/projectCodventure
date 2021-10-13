@@ -58,8 +58,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int deleteMember(MemberDTO dto) {
-		return mapper.deleteMember(dto);
+	public int deleteMember(int uid) {
+		return mapper.deleteMember(uid);
 	}
 
 	@Override

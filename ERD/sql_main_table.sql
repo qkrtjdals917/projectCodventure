@@ -114,7 +114,7 @@ ALTER TABLE mc_like
 	ADD FOREIGN KEY (board_uid)
 	REFERENCES mc_board (board_uid)
 	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 ;
 
 
@@ -138,7 +138,7 @@ ALTER TABLE mc_comment
 	ADD FOREIGN KEY (member_uid)
 	REFERENCES mc_member (member_uid)
 	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 ;
 
 

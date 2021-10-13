@@ -4,10 +4,12 @@ var viewItem = undefined;   // 가장 최근에 view 한 글의 데이터
 
 $(document).ready(function() {
 
-	
+	//saveRoute("notice")
+	//viewPage("notice")
+		
 	$("#logobtn").click(function() {
-		saveRoute("main")
-		viewPage("main")
+		saveRoute("notice")
+		viewPage("notice")
 	});
 	
 	// 글작성 버튼 누르면 팝업
@@ -92,7 +94,17 @@ function loadPage(page, type){
 			}
 		}
 	}); 	
+	
+	
 } // end loadPage()
+function logout_btn () {
+	Swal.fire({
+		icon: 'success',
+		title: '로그아웃되었습니다.'
+		}).then((result) => {
+			location.href="/modaconAdmin/logout";
+   			});
+}
 
 function memberList (jsonObj , type) {
 	
@@ -106,6 +118,11 @@ function memberList (jsonObj , type) {
 			var items = jsonObj.list;
 			
 			if ( type == "notice") {	// 여기를 바꾸고 
+<<<<<<< HEAD
+=======
+				$("#admin_title").html("공지사항");
+				result += "<table>";
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
 				for(var i = 0; i < count; i++) {
 					result += "<tr>\n";
 	
@@ -121,6 +138,11 @@ function memberList (jsonObj , type) {
 				
 			}
 			else if (type == "community") {
+<<<<<<< HEAD
+=======
+				$("#admin_title").html("커뮤니티");
+				result += "<table>";
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
 				for(var i = 0; i < count; i++) {
 					result += "<tr>\n";
 					
@@ -135,6 +157,7 @@ function memberList (jsonObj , type) {
 				$("#contentBoard tbody").html(result);
 			}
 			else if (type == "report") {
+<<<<<<< HEAD
 				for(var i = 0; i < count; i++) {
 					result += "<tr>\n";
 					
@@ -160,8 +183,39 @@ function memberList (jsonObj , type) {
 				}
 				$("#contentReport tbody").html(result);
 				
+=======
+				$("#admin_title").html("신고 리스트");
+				for(var i = 0; i < count; i++) {
+					   result += "<tr>\n";
+					   
+					   result += "<td>" + items[i].report_uid + "</td>\n";
+					   if(items[i].reportTag == "report1") {
+					      result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[홍보 및 광고]" ;
+					   }
+					   else if (items[i].reportTag == "report2") {
+					      result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[청소년 유해글]" ;
+					   }
+					   else if (items[i].reportTag == "report3") {
+					      result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[욕설 비방 혐오]" ;
+					   }
+					   else if (items[i].reportTag == "report4") {
+					      result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[기타]" ;
+					   }
+					   result += items[i].reportContent + "</span></td>\n";
+					   result += "<td>" + items[i].board_uid + "</td>\n";
+					   result += "<td>" + items[i].nickname + "</td>\n";
+					   result += `<td><button type='button' onclick="delete_report(`
+					   result +=  items[i].report_uid + `,` + items[i].board_uid + `)" class='btn_delete'>신고취하</button></td> `;
+					   
+					   result += `<td><button type='button' onclick="delete_by_uid(`
+					   result +=  items[i].report_uid + `, '${type}' )" class='btn_delete'>삭제</button></td> `;
+					   result += "</tr>\n";
+	            }
+	            $("#contentReport tbody").html(result);
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
 			}
 			else if (type == "member") {
+				$("#admin_title").html("회원정보");
 				for(var i = 0 ; i < count ; i++) {
 					result += "<tr>\n";
 					
@@ -203,7 +257,6 @@ function memberList (jsonObj , type) {
 
 // [커뮤니티 페이징 생성]
 function buildPagination(writePages, totalPage, curPage, pageRows, type){
-	//alert(page +"페이지");
 	var str = "";   // 최종적으로 페이징에 나타날 HTML 문자열 <li> 태그로 구성
 	
 	// 페이징에 보여질 숫자들 (시작숫자 start_page ~ 끝숫자 end_page)
@@ -216,39 +269,39 @@ function buildPagination(writePages, totalPage, curPage, pageRows, type){
 
   //■ << 표시 여부
 	if(curPage > 1){
-		str += `<li><a onclick="loadPage(` + 1;
-		str += `, '${type}' )" class="tooltip-top" title="처음"><i class="fas fa-angle-double-left"></i></a></li>\n`;
+		str += `<li><a onclick="loadPage(` + 1 + `, '${type}' )" class="tooltip-top" title="처음"><i class="fas fa-angle-double-left"></i></a></li>\n`;
 	}
   	//■  < 표시 여부
     if (start_page > 1) 
 
+<<<<<<< HEAD
     	str += `<li><a onclick="loadPage(` + (start_page - 1);
 		str += `, '${type}' )" class="tooltip-top" title="이전"><i class="fas fa-angle-left"></i></a></li>\n`;
+=======
+    	str += `<li><a onclick="loadPage(` + (start_page - 1) + `, '${type}', '${type}' )" class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n`;
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
     
     //■  페이징 안의 '숫자' 표시	
 	if (totalPage > 1) {
 	    for (var k = start_page; k <= end_page; k++) {
 	        if (curPage != k) {
-	            str += `<li><a onclick="loadPage(` + k;
-				str += `, '${type}' )">` + k + `</a></li>\n`;
+	            str += `<li><a onclick="loadPage(` + k + `, '${type}' )">` + k + `</a></li>\n`;
 		
 			}
 	        else {
-	            str += "<li><a class='active tooltip-top' title='현재페이지'>" + k + "</a></li>\n";
+	            str += "<li><a class='active' title='현재페이지'>" + k + "</a></li>\n";
 			}
 	    }
 	}
 	
 	//■ > 표시
     if (totalPage > end_page){
-    	str += `<li><a onclick="loadPage(` + (end_page + 1) + `, '${type}'`;
-		str += `)" class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n`;
+    	str += `<li><a onclick="loadPage(` + (end_page + 1) + `, '${type}' )" class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n`;
     }
 
 	//■ >> 표시
     if (curPage < totalPage) {
-        str += `<li><a onclick='loadPage(` + totalPage + `, '${type}'`;
-		str += `)' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n`;
+        str += `<li><a onclick="loadPage(` + totalPage + `, '${type}' )" class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n`;
     }
     return str;
 	
@@ -273,18 +326,11 @@ function saveRoute (route) {
 }
 
 function viewPage (route) {
-	if(route=="main") {
-		$("#contentMain").show();
-		$("#adm_content").show();
-		$("#contentNotice").hide();
-		$("#contentBoard").hide();
-		$("#contentReport").hide();
-		$("#contentMember").hide();
-	}
+	window.page = 1;
+	window.pageRows = 10;
 	
 	if(route=="notice")  {
 		loadPage(page, "notice");
-		$("#contentMain").hide();
 		$("#adm_content").show();
 		$("#contentNotice").show();
 		$("#contentBoard").hide();
@@ -294,7 +340,6 @@ function viewPage (route) {
 	
 	if(route=="board")  {
 		loadPage(page, "community");
-		$("#contentMain").hide();
 		$("#adm_content").show();
 		$("#contentNotice").hide();
 		$("#contentBoard").show();
@@ -304,7 +349,10 @@ function viewPage (route) {
 	
 	if(route=="report")  {
 		loadPage(page, "report");
+<<<<<<< HEAD
 		$("#contentMain").hide();
+=======
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
 		$("#adm_content").show();
 		$("#contentNotice").hide();
 		$("#contentBoard").hide();
@@ -314,7 +362,6 @@ function viewPage (route) {
 	
 	if(route=="member")  {
 		loadPage(page, "member");
-		$("#contentMain").hide();
 		$("#adm_content").show();
 		$("#contentNotice").hide();
 		$("#contentBoard").hide();
@@ -404,8 +451,53 @@ function setPopup(mode) {
 
 // 해당 type 의 데이터를 uid로 골라 삭제 
 function delete_by_uid (uid, type) {
+<<<<<<< HEAD
 	alert(uid);
 	 //alert(type);
+=======
+	var url;
+	if ( type == "notice") {
+		url = "board";
+	}
+	else if (type == "community") {
+		url = "board";		
+	}
+	else if (type == "report") {
+		url = "report";				
+	}
+	else if (type == "member") {
+		url = "member";						
+	}
+	$.ajax({
+		url : "/modaconAdmin/" + url,
+		type : "DELETE",
+		data : "uid=" +uid,
+		cache : false,
+		success : function (data) {
+			alert(data + " 개의 데이터가 삭제되었습니다!");
+			location.reload();
+		}
+	
+	});
+}
+function delete_report (report_uid , board_uid) {
+	$.ajax({
+		url : "/modaconAdmin/report/" + board_uid,
+		type : "DELETE",
+		data : "report_uid" + report_uid,
+		cache : false,
+		success : function (data) {
+			
+		}
+	
+	});
+}
+
+/*
+// 특정 uid 의 글 삭제하기
+function deleteByChk(uid){
+	
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure.git
 	if(!confirm(uid + "글을 삭제하시겠습니까?")) return false;
 	
 	// DELETE 방식
