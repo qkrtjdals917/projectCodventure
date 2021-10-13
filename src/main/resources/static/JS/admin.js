@@ -79,6 +79,9 @@ $(document).ready(function() {
 });
 
 
+
+
+
 function loadPage(page, type){
 	
 	//alert(page + " 페이지 로딩");

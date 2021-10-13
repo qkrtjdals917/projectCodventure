@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,7 +21,6 @@
 
 <script src="https://kit.fontawesome.com/001c1f3b98.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/CSS/admin.css">
 <script src="${pageContext.request.contextPath }/JS/admin.js"></script>
@@ -73,6 +73,7 @@
 				<!-- 내용3 -->
 			</div>
 		</article>
+		
 	</div>
 
 	<div id="adm_content">

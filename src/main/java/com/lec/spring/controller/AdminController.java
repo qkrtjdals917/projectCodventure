@@ -233,7 +233,8 @@ public class AdminController {
 		}
 
 		// 글 삭제
-		@DeleteMapping("")  // URI: /board
+		@DeleteMapping("")
+		@ResponseBody// URI: /board
 		public ModaconAjaxResult deleteOk(int [] uid) {
 			int count = 0;
 			
