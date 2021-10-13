@@ -20,7 +20,6 @@
 	<select id="countRp" resultType="int">
 		SELECT count(*)
 		FROM mc_report
-		WHERE report_uid = #{report_uid}
 	</select>
 	
 	<!-- from부터 pageRows개 -->

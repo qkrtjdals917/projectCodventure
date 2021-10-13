@@ -4,8 +4,8 @@ var viewItem = undefined;   // 가장 최근에 view 한 글의 데이터
 
 $(document).ready(function() {
 
-	saveRoute("notice")
-	viewPage("notice")
+	//saveRoute("notice")
+	//viewPage("notice")
 		
 	$("#logobtn").click(function() {
 		saveRoute("notice")
@@ -226,7 +226,6 @@ function memberList (jsonObj , type) {
 
 // [커뮤니티 페이징 생성]
 function buildPagination(writePages, totalPage, curPage, pageRows, type){
-	//alert(page +"페이지");
 	var str = "";   // 최종적으로 페이징에 나타날 HTML 문자열 <li> 태그로 구성
 	
 	// 페이징에 보여질 숫자들 (시작숫자 start_page ~ 끝숫자 end_page)
@@ -239,39 +238,34 @@ function buildPagination(writePages, totalPage, curPage, pageRows, type){
 
   //■ << 표시 여부
 	if(curPage > 1){
-		str += `<li><a onclick="loadPage(` + 1;
-		str += `, '${type}' )" class="tooltip-top" title="처음"><i class="fas fa-angle-double-left"></i></a></li>\n`;
+		str += `<li><a onclick="loadPage(` + 1 + `, '${type}' )" class="tooltip-top" title="처음"><i class="fas fa-angle-double-left"></i></a></li>\n`;
 	}
   	//■  < 표시 여부
     if (start_page > 1) 
 
-    	str += `<li><a onclick="loadPage(` + (start_page - 1) + `, '${type}'`;
-		str += `)" class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n`;
+    	str += `<li><a onclick="loadPage(` + (start_page - 1) + `, '${type}', '${type}' )" class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n`;
     
     //■  페이징 안의 '숫자' 표시	
 	if (totalPage > 1) {
 	    for (var k = start_page; k <= end_page; k++) {
 	        if (curPage != k) {
-	            str += `<li><a onclick="loadPage(` + k;
-				str += `, '${type}' )">` + k + `</a></li>\n`;
+	            str += `<li><a onclick="loadPage(` + k + `, '${type}' )">` + k + `</a></li>\n`;
 		
 			}
 	        else {
-	            str += "<li><a class='active tooltip-top' title='현재페이지'>" + k + "</a></li>\n";
+	            str += "<li><a class='active' title='현재페이지'>" + k + "</a></li>\n";
 			}
 	    }
 	}
 	
 	//■ > 표시
     if (totalPage > end_page){
-    	str += `<li><a onclick="loadPage(` + (end_page + 1) + `, '${type}'`;
-		str += `)" class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n`;
+    	str += `<li><a onclick="loadPage(` + (end_page + 1) + `, '${type}' )" class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n`;
     }
 
 	//■ >> 표시
     if (curPage < totalPage) {
-        str += `<li><a onclick='loadPage(` + totalPage + `, '${type}'`;
-		str += `)' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n`;
+        str += `<li><a onclick="loadPage(` + totalPage + `, '${type}' )" class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n`;
     }
     return str;
 	
@@ -296,6 +290,9 @@ function saveRoute (route) {
 }
 
 function viewPage (route) {
+	window.page = 1;
+	window.pageRows = 10;
+	
 	if(route=="notice")  {
 		loadPage(page, "notice");
 		$("#adm_content").show();
@@ -436,7 +433,7 @@ function delete_report (report_uid , board_uid) {
 	$.ajax({
 		url : "/modaconAdmin/report/" + board_uid,
 		type : "DELETE",
-		data : report_uid,
+		data : "report_uid" + report_uid,
 		cache : false,
 		success : function (data) {
 			

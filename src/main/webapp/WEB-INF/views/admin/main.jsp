@@ -8,7 +8,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>관리자 메인페이지 23, 28, 24, 26, 32</title>
+<title>관리자 메인페이지</title>
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/CSS/include.css">
