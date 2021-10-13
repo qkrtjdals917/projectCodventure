@@ -4,8 +4,8 @@
 * {
 	margin: 0;
 	font-family: 'Do Hyeon', sans-serif;
-	font-size: 25px;
 }
+
 table {
 	width: 100%;
 }
@@ -16,54 +16,33 @@ table, th, td {
 	font-size: 18px;
 }
 
-.success {background-color: #0000a0;}
-.update {background-color: #2196F3;}
-.warning {background-color: #da190b;}
-
-.modal .modal-notice {
-	background-color: #fefefe;
-	width: 80%;   
-	margin: 5% auto 15% auto;
-	border: 1px solid #888;
-}
-
-.modal .container {
-	padding: 16px;
-	position: relative;
-}
-
-
-.modal .close { /* 닫기(x) 버튼 */
-	font-size: 35px;
-	font-weight: bold;
-	color: #000;
-	position: absolute;
-	right: 25px;
-	top: 0px;
-}
-
 
 #adm_content {
 	display: none;
 	padding: 15px;
 	height: auto;
-	position: relative;
 	margin: 70px auto;
 	boarder: gray solid 1px;
 	padding: 40px 50px;
 	
 }
-#adm_title {
+
+#admin_title {
 	color: black;
+	font-size: 40px;
 }
 
 #pageinfo {
-	margin: 20px 0;
 	float: right;
 }
 #pageRows {
-	margin: 20px 0;
+	margin-right: 20px;
 	float: left;
+}
+#board_type, #board_tag {
+	float: left;
+	margin-bottom: 8px;
+	margin-right: 5px;
 }
 
 td {
@@ -88,8 +67,6 @@ tbody {
 	height: auto;
 }
 
-
-
 .searchMember {
 	float: left;
 }
@@ -98,7 +75,41 @@ tbody {
 	float: right;
 }
 
+#ntcWrite {
+	background-color: #4F48EC;
+	border: none;
+	border-radius: 5px;
+	height: 40px;
+	padding: 8px;
+	color: #fff;
+}
 
+/* 모달 */
+
+.modal .modal-notice {
+	background-color: #fefefe;
+	width: 40%;   
+	margin: 5% auto 15% auto;
+	border-radius: 10px;
+}
+
+.modal .container {
+	padding: 16px;
+	position: relative;
+	height: 280px;
+}
+.modal .write {
+	margin-top: 5px;
+	padding-top: 5px;
+}
+.modal .close { /* 닫기(x) 버튼 */
+	font-size: 35px;
+	font-weight: bold;
+	color: #000;
+	position: absolute;
+	right: 25px;
+	top: 0px;
+}
 /* [페이징] */
 .center {
 	text-align: center;
