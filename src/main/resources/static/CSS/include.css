@@ -25,11 +25,11 @@ body {
 
 /* header style */
 header {
-    position: absolute;
     top: 0;
     left: 0;
     z-index: 100;
     width: 100%;
+    top: 80px;
 }
 header .container {
     background: #100E34;
