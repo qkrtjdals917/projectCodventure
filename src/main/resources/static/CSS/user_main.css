@@ -4,6 +4,7 @@
 
 /* 전체 적용 */
 * {
+	margin: 0;
     color: black;
     font-family: 'Do Hyeon', sans-serif;
     font-size: 25px;
@@ -24,8 +25,6 @@ img {
 	width: 100%;
 	height: auto;
 }
-
-
 
 /* Slideshow container */
 .slideshow-container {
