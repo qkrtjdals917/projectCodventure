@@ -56,12 +56,6 @@ public class MainController {
 			MemberDTO dto = new MemberDTO();
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
 
-			// 확인용 코드
-			System.out.println("Email정보 : " + userDetails.getUsername());
-			System.out.println("Nickname정보 : " + userDetails.getNickname());
-			System.out.println("Phonenum정보 : " + userDetails.getPhonNum());
-			System.out.println("cnt정보 : " + userDetails.getBordCnt());
-
 			dto.setEmail(userDetails.getUsername());
 			dto.setNickname(userDetails.getNickname());
 			dto.setPhoneNumber(userDetails.getPhonNum());

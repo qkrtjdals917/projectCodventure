@@ -189,7 +189,7 @@
 						<h3 class="title">공지 작성</h3>
 						<span class="close" title="Close Modal">&times;</span>
 						<%-- 닫기버튼 --%>
-						<input type="hidden" name="uid" value="0">
+						<input type="hidden" name="member_uid" value="${member.member_uid }">
 						<%-- 읽기, 삭제, 수정을 위해 필요 --%>
 						
 						<div class="a01 ntc_group_header">
@@ -204,6 +204,8 @@
 						
 						<label for="subject"><b>글제목</b></label>
 						<input type="text" placeholder="글제목(필수)" name="subject" required>
+						<label for="subject"><b>글쓴이</b></label>
+						<input type="text" name="nickname" value="${member.nickname}">
 						<label for="content"><b>내용</b></label>
 						<textarea placeholder="글내용" name="content"></textarea>
 						

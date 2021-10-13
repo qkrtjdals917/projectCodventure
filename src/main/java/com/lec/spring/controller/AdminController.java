@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lec.spring.config.PrincipalDetails;
 import com.lec.spring.domain.ajax.ModaconAjaxList;
 import com.lec.spring.domain.ajax.ModaconAjaxResult;
 import com.lec.spring.domain.board.BoardDTO;
+import com.lec.spring.domain.member.MemberDTO;
 import com.lec.spring.domain.member.MemberVO;
 import com.lec.spring.domain.report.ReportDTO;
 import com.lec.spring.service.AdminService;
@@ -35,8 +38,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping({"", "/"})
-	public String adminMain(HttpServletRequest request , Model model) {
+	public String adminMain(HttpServletRequest request , Model model
+			, Authentication authentication) {
+		
 		HttpSession session = request.getSession();
+		MemberDTO dto = new MemberDTO();
+		
 		if (session != null) {
             String redirectUrl = (String) session.getAttribute("admPrevPage");
             if (redirectUrl != null) {
@@ -47,6 +54,15 @@ public class AdminController {
         } else {
         	model.addAttribute("admPrevPage", "main");
         }
+		if (authentication != null) {
+			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+
+			dto.setEmail(userDetails.getUsername());
+			dto.setNickname(userDetails.getNickname());
+			dto.setMember_uid(userDetails.getUid());
+
+			model.addAttribute("member", dto);
+		}
 		
 		return "admin/main";
 	}
