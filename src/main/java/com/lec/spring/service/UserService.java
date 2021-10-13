@@ -80,6 +80,11 @@ public class UserService {
 		return dao.likeCount(uid);
 	}
 	
+	// 추천여부확인
+	public int likeChk(int board_uid, int member_uid) {
+		return dao.likeChk(board_uid, member_uid);
+	}
+	
 	// 신고
 	public int report(Map<String, Object> param) {
 		return dao.report(param);

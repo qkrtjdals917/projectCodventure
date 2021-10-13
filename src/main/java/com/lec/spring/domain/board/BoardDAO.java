@@ -46,6 +46,9 @@ public interface BoardDAO {
 	// 추천수 카운트
 	public abstract int likeCount(int uid);
 	
+	// 추천여부 확인
+	public abstract int likeChk(int board_uid, int member_uid);
+	
 	// 신고
 	public abstract int report(Map<String, Object> param);
 	
