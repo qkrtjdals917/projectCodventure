@@ -11,6 +11,8 @@ table, th, td {
 	font-size: 18px;
 }
 
+
+/* board list */
 #middle_menu {
 	padding: 40px 50px;
 }
@@ -60,3 +62,38 @@ tbody {
 	padding: 8px;
 	color: #fff;
 }
+
+
+/* board view */
+#board_view {
+	padding: 40px 50px;
+}
+
+.content_btn {
+	float: right;
+}
+
+.content_btn button {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 18px
+}
+
+.content_btn button:hover {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+#boardname {
+	font-size: 20px;
+	color: #888;
+}
+
+#content_name {
+	font-size: 35px;
+	margin-top: 15px;
+}
+
+#content {
+	padding: 30px 35px;
+}
+
