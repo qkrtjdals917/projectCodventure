@@ -33,7 +33,7 @@ public interface MemberDAO {
 		public Integer selectAuthoritiesById(int member_uid);
 		
 		// 회원탈퇴
-		public int deleteMember(MemberDTO dto);
+		public int deleteMember(int member_uid);
 		
 		// 정보변경
 		public int changeMember(MemberDTO dto);

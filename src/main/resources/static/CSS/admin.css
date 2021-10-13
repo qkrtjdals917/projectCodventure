@@ -59,7 +59,7 @@ table, th, td {
 #adm_content {
 	margin-top: 80px;
 	padding: 15px;
-	display: none;
+	
 }
 #contentNotice {
 	height: 600px;
@@ -73,6 +73,7 @@ table, th, td {
 	position: relative;
 	margin: 0 auto;
 	boarder: gray solid 1px;
+	display: none;
 }
 
 #contentReport {
@@ -80,6 +81,7 @@ table, th, td {
 	position: relative;
 	margin: 0 auto;
 	boarder: gray solid 1px;
+	display: none;
 }
 
 #contentMember {
@@ -87,6 +89,7 @@ table, th, td {
 	position: relative;
 	margin: 0 auto;
 	boarder: gray solid 1px;
+	display: none;
 }
 
 .searchMember {

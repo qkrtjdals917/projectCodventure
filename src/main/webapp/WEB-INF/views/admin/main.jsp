@@ -32,7 +32,7 @@
 		<div class="container">
 			<div class="container-small">
 				<!-- 작은 화면의 배치를 위한 컨테이너-->
-				<a href="/modacon" class="headA">
+				<a href="/modaconAdmin" class="headA">
                 	<img class="logo" alt="로고" src="${pageContext.request.contextPath }/images/logo.png">
                 </a>
 
@@ -53,31 +53,13 @@
 					</button>
 
 					<div class="headD">
-						<button type="button" id="btnJoin">로그아웃</button>
+						<button type="button" onclick="logout_btn()" id="btnLogout">로그아웃</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
 	</header>
-
-
-	<div id="contentMain">
-		<article>
-			<div>
-				내용1
-				<!-- 내용1 -->
-			</div>
-			<div>
-				내용2
-				<!-- 내용2 -->
-			</div>
-			<div>
-				내용3
-				<!-- 내용3 -->
-			</div>
-		</article>
-	</div>
 
 	<div id="adm_content">
 	

@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import com.lec.spring.domain.board.BoardDAO;
 import com.lec.spring.domain.board.BoardDTO;
 import com.lec.spring.domain.member.MemberDAO;
+import com.lec.spring.domain.member.MemberDTO;
 import com.lec.spring.domain.member.MemberVO;
 import com.lec.spring.domain.report.ReportDAO;
+import com.lec.spring.domain.report.ReportDTO;
 
 @Service
 public class AdminService {
@@ -110,27 +112,46 @@ public class AdminService {
 	}
 
 
-	// 체크된 게시글 삭제 ?
-	// TODO
-	
-	// 게시글을 본다
-	
-	
-	
+
 	
 	// 신고접수 리스트 가져오기
-	// TODO
+	public List<ReportDTO> admRpList() {
+		return Rdao.selectReport();
+	}
+	
+	// 신고접수 카운팅
+	public int countRp() {
+		return Rdao.countRp();
+	}
+	
+	// 리스트 from 부터 pageRows개를 가져온다
+	public List<ReportDTO> rpUpdateList(int from, int pageRows) {
+		return Rdao.selectFromRowRp(from, pageRows);
+	}
+	// 신고리스트를 본다
 	
 	// 신고취하
-	// TODO
+	public int deleteReport(int uid) {
+		return Rdao.deleteReport(uid);
+	}
 	
-	// 글 삭제
-	// TODO
+	// 신고 접수 (글삭제까지
+	public int deleteReportWithBoard(int board_uid, int report_uid) {
+		int cnt = 0;
+		cnt += Rdao.deleteReport(report_uid);
+		cnt += Bdao.deleteUid(board_uid);
+		return cnt;
+	}
+	
+	// uid 받아서 정보하나 가져오기
+	public MemberDTO selectByUid (int member_uid) {
+		return Mdao.selectByUid(member_uid);
+	}
 	
 	
-	
-	// 회원 리스트 가져오기 (페이징)
-	// TODO selectAll
+	public List<MemberDTO> admMbList(){
+		return Mdao.selectAll();
+	}
 	// 회원 리스트 카운팅
 	public int countMb() {
 		return Mdao.countMb();
@@ -139,6 +160,11 @@ public class AdminService {
 	public List<MemberVO> mbUpdateList(int from, int pageRows){
 		return Mdao.selectFromRowMb(from, pageRows);
 	}
+	
+	public int mbDelete (int uid) {
+		return Mdao.deleteMember(uid);
+	}
+	
 	// 회원리스트를 본다
 	// TODO
 	// 강퇴기능

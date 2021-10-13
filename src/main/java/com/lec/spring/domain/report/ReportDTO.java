@@ -9,5 +9,5 @@ public class ReportDTO {
 	private int member_uid;
 	private String reportTag;		//신고사유
 	private String reportContent;	//신고 자세한 내용
-	
+	private String nickname;
 }
