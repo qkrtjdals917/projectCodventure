@@ -19,7 +19,7 @@ function not_Login_msg() {
   });
 }
 
-// 3. 프론트 삭제 제약사항
+// 3. 글 삭제
 function chkDelete() {
   if (member_null) {
     not_Login_msg();
@@ -34,11 +34,40 @@ function chkDelete() {
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     confirmButtonText: '삭제',
-    cancelButtonText: '취소'
+    cancelButtonText: '취소',
   }).then((result) => {
     if (result.isConfirmed) {
-      if ("${list[0].member_uid }" == "${member.member_uid}") {
-        location.href = "delete?uid=" + "${list[0].board_uid}";
+      if (board_mem_uid == member_uid) {
+        $.ajax({
+          url: '',
+          type: 'DELETE',
+          data: {uid: board_uid},
+          cache: false,
+          success: function (data, status) {
+            if (status == "success") {
+              
+              if (data.status == "OK") {
+                Swal.fire({
+                  title: '삭제 성공',
+                  text: '해당글을 삭제했습니다.',
+                  icon: 'success',
+                  preConfirm: () => {
+                    location.href = '../board';
+                  }
+                });
+              } else {
+                Swal.fire({
+                  title: '삭제 실패',
+                  text: '실패 사유: ' + data.message,
+                  icon: 'error',
+                  preConfirm: () => {
+                    return false;
+                  }
+                });
+              }
+            }
+          }
+        });
       } else {
         Swal.fire(
           '삭제 실패',

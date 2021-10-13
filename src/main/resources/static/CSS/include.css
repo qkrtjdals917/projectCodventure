@@ -6,8 +6,21 @@
     font-size: 25px;
 }
 
+body {
+	min-width: 414px;
+}
+
 .clearAll {
 	clear: both;
+}
+
+/* 공통 버튼 */
+.container button {
+	border: none;
+	border-radius: 5px;
+	height: 40px;
+	padding: 8px;
+	color: #fff;
 }
 
 /* header style */
@@ -25,9 +38,12 @@ header .container {
 .headA {
     color: #fff;
     display: inline-block;
-    line-height: 70px;
-    padding-left: 10px;
-    padding-right: 20px;
+}
+
+.logo {
+	width: 260px;
+	height: 60px;
+	padding: 20px;
 }
 
 /* 헤더B: 네비게이션 메뉴 */
@@ -37,20 +53,21 @@ header .container {
     list-style: none;
 }
 
-.headB li {
+.headB li, .headE li {
 	color: #fff;
 	padding: 0 20px;
 }
 
-.headB a {
+.headB a, .headE a {
     text-align: center;
     display: block;
     padding: 15px;
     color: inherit;
+    font-size: 30px;
     text-decoration: none;
 }
 
-.headB a:hover {
+.headB a:hover, .headE a:hover {
     opacity: 0.3;
 }
 .headC span{
@@ -60,18 +77,18 @@ header .container {
     float: right;
 }
 
+.headB button, .headD button {
+	border-style: none;
+	background-color: #100E34;
+}
+
 .headD button:hover {
 	cursor: pointer;
 	opacity: 0.3;
 }
 
-button {
-    background: #100E34;
-    border: none;
-    color: #fff;
-}
 
-@media (min-width: 800px) {
+@media (min-width: 954px) {
     /* 800 이상 큰 화면에서는 */
 
     header .container {
@@ -99,6 +116,9 @@ header .container-small {
 .headB {
     display: none;
 }
+.headE{
+    display: none;
+}
 
 /* 토글 버튼 스타일 */
 .headC {
@@ -116,7 +136,7 @@ header .container-small {
     opacity: 0.3;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 954px) {
     /* 큰 화면 전용 설정 */
     .headC {
         display: none;
@@ -144,6 +164,10 @@ header .container-small {
     cursor: pointer;
 }
 
+#join_form label {
+	float: left;
+}
+
 b {
 	color: black;
 }
@@ -169,9 +193,8 @@ b {
 .modal .modal-content {
     position: relative;
 	background-color: #fefefe;
-	width: 60%;   
+	width: 70%;   
 	left: 10%;
-    top: 5%;
     border-radius: 15px;
 }
 
@@ -209,7 +232,7 @@ form .row {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
 form .title_content {
@@ -227,6 +250,10 @@ form .title_content {
 	padding: 12px 20px;
 	display: inline-block;
 	box-sizing: border-box;
+}
+
+.modal input[type=text].phoneNum {
+	width: 22%;
 }
 
 .modal button {
@@ -256,12 +283,10 @@ form .title_content {
 	color: black;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 954px) {
     /* 큰 화면 전용 설정 */
     .modal .modal-content {
-        position: relative;
-        background-color: #fefefe;
-        width: 50%;
+        width: 40%;
     }
 }
 
@@ -332,7 +357,7 @@ footer .container{
     font-family: 'Montserrat', sans-serif;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 954px) {
     /* 768px 이상의 화면에서는 */
     footer .container {
         display: flex;
@@ -347,4 +372,6 @@ footer .container{
     .footB {flex: 0 0 60%;}  /* 푸터 메뉴 60% */
     .footC {flex: 0 0 100%;} /* 저작권 100% */
 }
+
+
 

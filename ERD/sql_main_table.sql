@@ -122,7 +122,7 @@ ALTER TABLE mc_report
 	ADD FOREIGN KEY (board_uid)
 	REFERENCES mc_board (board_uid)
 	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 ;
 
 
@@ -154,7 +154,7 @@ ALTER TABLE mc_report
 	ADD FOREIGN KEY (member_uid)
 	REFERENCES mc_member (member_uid)
 	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 ;
 
 INSERT INTO mc_authority (authority, auth_name)
@@ -219,11 +219,43 @@ WHERE mb.member_uid = mm.member_uid
 AND mb.type <> "공지";
 
 -- 글 작성
+<<<<<<< HEAD
+
 INSERT INTO mc_board (type, subject, tag, content, member_uid)
 
+INSERT INTO mc_board (type, subject, tag, content, member_uid)
+=======
+INSERT INTO mc_board (type, subject, tag, content, member_uid)
+
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure
 VALUES ("자유", "글작성테스트sql", "" ,"이 글은 테스트 중입니다.", 52);
 
 SELECT *FROM mc_board mb ;
+<<<<<<< HEAD
+
+DESC mc_board ;
+
+-- 추천
+SELECT member_uid FROM mc_like WHERE board_uid = 226;
+SELECT member_uid FROM mc_like WHERE board_uid = 226 AND member_uid = 1;
+
+INSERT INTO mc_like (board_uid, member_uid)
+SELECT 226, 1 FROM DUAL WHERE NOT EXISTS (SELECT board_uid FROM mc_like WHERE board_uid = 226 AND member_uid = 1);
+
+SELECT * FROM mc_like;
+
+SELECT count(member_uid) FROM mc_like WHERE board_uid = 226;
+
+DELETE FROM mc_like WHERE board_uid = 226 AND member_uid = 1;
+
+-- 신고 확인
+SELECT * FROM mc_report mr ;
+-- -------------------------------------------------------------
+
+SELECT *FROM mc_board mb ;
+SELECT *FROM mc_board mb ;
+=======
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure
 		SELECT	
 			member_uid "member_uid",
 			email "email",

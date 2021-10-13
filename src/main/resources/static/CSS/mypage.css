@@ -8,15 +8,62 @@
 	margin: 0;
 }
 
-table {
-	width: 100%;
-	border-collapse: collapse;
-	color: #100E34;
-	border: 1px solid black;
+.contentB {
+	padding: 80px 90px;
 }
+
+.contentB h2 {
+	font-size: 40px;
+}
+
+
+.contentB table {
+	width: 100%;
+	border: none;
+	color: black;
+	border-collapse: collapse;
+}
+
+.contentB tr,.contentB td {
+	border: 1px solid #757272;
+}
+
+.contentB table td {
+	text-align: center;
+	padding: 10px 0;
+}
+
+.contentB table td:nth-child(2n-1) {
+	background-color: rgba(115, 103, 240, 0.4);
+}
+
+.contentC {
+	float: right;
+	margin-top: 40px;
+}
+
+.contentC ul {
+	list-style: none;
+}
+
+.contentC ul li {
+	margin-left: 10px; 
+	float: left;
+}
+
+.contentC button {
+	background-color: #4F48EC;
+	border: none;
+	border-radius: 5px;
+	height: 40px;
+	padding: 8px;
+	color: #fff;
+}
+
 .btn_update , .btn_pwChange , .btn_secession {
 	display: none;
 }
+
 /* 모달 팝업 */
 /* 참조: https://www.w3schools.com/howto/howto_css_login_form.asp */
 .modal {  /* 모달 전체 적용 */
@@ -37,15 +84,15 @@ table {
 }
 
 .modal .modal-content {
-	background-color: #fefefe;
+	top: 60px;
 	width: 80%;   
 	margin: 5% auto 15% auto;
-	border: 1px solid #888;
 }
 
 .modal .accountcontainer {
 	padding: 16px;
 	position: relative;  /* 아래 있는 요소들 absolute로 동작시키기 위해 */
+	text-align: center;
 }
 
 .modal .close { /* 닫기(x) 버튼 */
@@ -72,11 +119,19 @@ table {
 	box-sizing: border-box;
 }
 .modal input[type=text].phoneNum {
-	width: 20%;
+	width: 22%;
 }
 .modal textarea {
 	width: 100%;
 	border: 1px solid #ccc;
+}
+
+#nickname_check {
+	float: right;
+}
+
+.modal .accountcontainer .btn {
+	float: none;
 }
 
 .modal .fullbtn {

@@ -11,7 +11,7 @@ $().ready(function () {
 // 2. 페이지 로딩
 function pageload() {
   $.ajax({
-    url: 'board',
+    url: '',
     type: 'POST',
     cache: false,
     data: {
@@ -72,3 +72,9 @@ function tag_toggle() {
   board_tag = $('#board_tag option:selected').val();
   pageload();
 }
+
+// 5. 페이징
+var totalData;
+var dataPerPage;
+var pageCount = 10;
+var globalCurrentPage = 1;
