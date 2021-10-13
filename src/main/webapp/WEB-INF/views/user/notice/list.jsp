@@ -19,41 +19,40 @@
 	<div class="header">
 		<%@ include file="../../include/header.jsp"%>
 	</div>
-	<div style="clear:both; height:70px"></div>
-	
-	<div id="middle_menu">
-		<table>
-			<h2>공지사항</h2>
-		<table>
-		
-		<thead>
-			<th>글번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-			<th>조회수</th>
-		</thead>
-		
-		<c:choose>
-			<c:when test="${empty list || fn:length(list) == 0 }">
-			</c:when>
-			<c:otherwise>
-				<c:forEach var="dto" items="${list }">
-				<tr>
-					<td>${dto.board_uid }</td>
-					<td><a href="notice/view?uid=${dto.board_uid }">${dto.subject }</a></td>
-					<td>${dto.nickname }</td>
-					<td>${dto.regDateTime }</td> <%-- getRegDateTime() 사용 --%>
-					<td>${dto.count }</td>
-				</tr>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-		
-		</table>
-	<br>
+	<div class="content">
+		<div id="middle_menu">
+			<table>
+				<h2>공지사항</h2>
+			<table>
+			
+			<thead>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>조회수</th>
+			</thead>
+			
+			<c:choose>
+				<c:when test="${empty list || fn:length(list) == 0 }">
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="dto" items="${list }">
+					<tr>
+						<td>${dto.board_uid }</td>
+						<td><a href="notice/view?uid=${dto.board_uid }">${dto.subject }</a></td>
+						<td>${dto.nickname }</td>
+						<td>${dto.regDateTime }</td> <%-- getRegDateTime() 사용 --%>
+						<td>${dto.count }</td>
+					</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+			
+			</table>
+		<br>
+		</div>
 	</div>
-	
 	<div class="footer">
 		<%@ include file="../../include/footer.jsp"%>
 	</div>

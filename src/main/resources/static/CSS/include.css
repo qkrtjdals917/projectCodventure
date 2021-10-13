@@ -148,6 +148,7 @@ header .container-small {
     }
 
 }
+
 #join_form #email_check , #join_form #nickname_check {
 	width : 130px;
 	height : 49px;
@@ -288,6 +289,11 @@ form .title_content {
     .modal .modal-content {
         width: 40%;
     }
+}
+
+/* content */
+.content {
+	height: auto;
 }
 
 /* 푸터 */

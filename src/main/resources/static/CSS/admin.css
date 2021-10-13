@@ -61,14 +61,14 @@ table, th, td {
 	
 }
 #contentNotice {
-	height: 600px;
+	height: auto;
 	position: relative;
 	margin: 0 auto;
 	boarder: gray solid 1px;
 }
 
 #contentBoard {
-	height: 600px;
+	height: auto;
 	position: relative;
 	margin: 0 auto;
 	boarder: gray solid 1px;
@@ -76,7 +76,7 @@ table, th, td {
 }
 
 #contentReport {
-	height: 700px;
+	height: auto;
 	position: relative;
 	margin: 0 auto;
 	boarder: gray solid 1px;
@@ -84,12 +84,19 @@ table, th, td {
 }
 
 #contentMember {
-	height: 600px;
+	height: auto;
 	position: relative;
 	margin: 0 auto;
 	boarder: gray solid 1px;
 	display: none;
 }
+
+/* table 영역 Container */
+#NoticeContainer {
+	height: auto;
+}
+
+
 
 .searchMember {
 	float: left;

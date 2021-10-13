@@ -37,7 +37,7 @@
       var board_uid = "${list[0].board_uid}";
     </script>
 
-    <body>
+    <body onload="btn_toggle()">
       <div class="header">
         <%@ include file="../../include/header.jsp"%>
       </div>
@@ -47,9 +47,9 @@
 
       <div class="content_btn"> <%-- 상단 버튼 모음 --%>
         <button id="back_btn" onclick="history.back()">돌아가기</button>
-        <button id="report_btn" onclick="chkReport()">신고</button>
-        <button id="update_btn" onclick="chkUpdate()">수정</button>
-        <button id="del_btn" onclick="chkDelete()">삭제</button>
+        <button style="display: none;" id="report_btn" onclick="chkReport()">신고</button>
+        <button style="display: none;" id="update_btn" onclick="chkUpdate()">수정</button>
+        <button style="display: none;" id="del_btn" onclick="chkDelete()">삭제</button>
       </div>
 
       <h2 id="boardname">${list[0].type }게시판</h2> <%-- 게시판 이름 기재. 접속한 게시판 별로 이름이 변하게 처리해줘야함 --%>
@@ -75,8 +75,8 @@
       <div class="content_btn"> <%-- 하단 버튼 모음 --%>
         <button id="like_btn" onclick="chkLike()">추천</button>
         <button id="comment_btn" onclick="comment_toggle()">댓글</button> <%-- 댓글 버튼 누르면 밑의 comment_area가 뜨도록 처리 --%>
-        <button id="update_btn" onclick="chkUpdate()">수정</button>
-        <button id="del_btn" onclick="chkDelete()">삭제</button>
+        <button style="display: none;" id="update_btn" onclick="chkUpdate()">수정</button>
+        <button style="display: none;" id="del_btn" onclick="chkDelete()">삭제</button>
       </div>
       <hr>
       <div id="comment_area" style="display: none;">
