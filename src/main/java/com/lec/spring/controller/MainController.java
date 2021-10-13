@@ -384,6 +384,14 @@ public class MainController {
 		loginCheck(model, authentication);
 		userService.likeUp(dto);
 	}
+	
+	// 추천취소
+	@DeleteMapping("board/like")
+	@ResponseBody
+	public void likeDown(Model model, BoardDTO dto, Authentication authentication) {
+		loginCheck(model, authentication);
+		userService.likeDown(dto);
+	}
 
 	// 추천수 카운트
 	@PostMapping("board/likeCount")
@@ -393,6 +401,20 @@ public class MainController {
 		System.out.println(uid);
 		count = userService.likeCount(uid);
 		return count;
+	}
+	
+	// 추천여부 확인
+	@PostMapping("board/likeChk")
+	@ResponseBody
+	public int likeCnt(Model model, int board_uid, Authentication authentication) {
+		MemberDTO m_dto = loginCheck(model, authentication);
+		
+		int likecheck = 0;
+		
+		likecheck = userService.likeChk(board_uid, m_dto.getMember_uid());
+		
+		return likecheck;
+		
 	}
 
 	// 신고
