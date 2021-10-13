@@ -6,7 +6,7 @@ function view_chk() {
     title: '정보 오류',
     text: '해당 글이 삭제됐거나 없습니다.'
   }).then((result) => {
-    history.back();
+    location.href='../board';
   });
 };
 
@@ -228,4 +228,17 @@ function chkReport() {
 // 7. 댓글 토글
 function comment_toggle() {
   $('#comment_area').toggle();
+}
+
+// 8. view 페이지 진입시 아이디 확인해후 수정, 삭제 버튼등 조정
+function btn_toggle() {
+  if (board_mem_uid == member_uid) {
+    $('#update_btn').show();
+    $('#del_btn').show();
+    $('#report_btn').hide();
+  } else {
+    $('#update_btn').hide();
+    $('#del_btn').hide();
+    $('#report_btn').show();
+  }
 }
