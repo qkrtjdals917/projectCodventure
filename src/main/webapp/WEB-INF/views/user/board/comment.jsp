@@ -91,7 +91,7 @@
 <div class="container">
     <form id="commentForm" name="commentForm" method="post">
         <div>
-			<textarea style="width: 1100px" rows="3" cols="30" id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
+			<textarea style="width: 90%" padding="10px" rows="3" cols="30" id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
 			<br>
 			<a href='' onClick="add_comment(${list[0].board_uid})" id="comment_btn">등록</a>
         </div>

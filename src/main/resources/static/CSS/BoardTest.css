@@ -44,12 +44,12 @@ th {
 }
 
 thead {
-	background-color: rgba(115, 103, 240, 0.4);
+	background-color: rgba(115, 103, 240, 0.1);
 }
 
 
 tbody {
-	background-color: rgba(218, 218, 218, 0.4);
+	background-color: rgba(218, 218, 218, 0.9);
 }
 
 #middle_menu button {
