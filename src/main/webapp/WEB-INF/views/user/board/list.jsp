@@ -32,8 +32,8 @@
           <option id="freeBoard_type" value="자유">자유게시판</option>
         </select>
 
-        <select id="board_tag" name="tag">
-          <option class="tag_default_sel" value="" selected>전체</option>
+        <select id="board_tag" name="tag" onchange="tag_toggle()">
+          <option class="tag_default_sel" value="전체">전체</option>
           <option class="info_sel" value="코인">코인</option>
           <option class="info_sel" value="뉴스">뉴스</option>
           <option class="info_sel" value="팁과노하우">팁과노하우</option>

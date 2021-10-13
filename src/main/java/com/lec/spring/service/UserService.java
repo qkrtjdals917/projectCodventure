@@ -31,12 +31,12 @@ public class UserService {
 		return dao.selectNotice();
 	}
 	
-	public List<BoardDTO> freeList(){
-		return dao.selectFree();
+	public List<BoardDTO> typeList(String type){
+		return dao.selectType(type);
 	}
 	
-	public List<BoardDTO> infoList(){
-		return dao.selectInfo();
+	public List<BoardDTO> tagList(String tag){
+		return dao.selectTag(tag);
 	}
 	
 	// 글 하나 선택. delete, update 시 uid 비교

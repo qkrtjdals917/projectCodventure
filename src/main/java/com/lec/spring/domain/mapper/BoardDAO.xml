@@ -41,28 +41,28 @@
 		]]>
 	</select>	
 	
-	<!-- 자유 글 리스트 -->
-	<select id="selectFree" resultType="com.lec.spring.domain.board.BoardDTO">
+	<!-- Type에 따른 리스트 -->
+	<select id="selectType" resultType="com.lec.spring.domain.board.BoardDTO">
 		<![CDATA[
 			SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname, 
 			mb.regDate regDate, mb.count count, mb.content content, 
 			mb.type type, mb.tag tag, (SELECT count(*) FROM mc_like ml WHERE ml.board_uid = mb.board_uid) likeCnt
 			FROM mc_board mb , mc_member mm 
 			WHERE mb.member_uid = mm.member_uid
-			AND mb.type = "자유"
+			AND mb.type = #{type}
 			ORDER BY board_uid DESC
 		]]>
 	</select>
-
-	<!-- 정보 글 전체 리스트 -->
-	<select id="selectInfo" resultType="com.lec.spring.domain.board.BoardDTO">
+	
+	<!-- Tag에 따른 리스트 -->
+	<select id="selectTag" resultType="com.lec.spring.domain.board.BoardDTO">
 		<![CDATA[
 			SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname, 
 			mb.regDate regDate, mb.count count, mb.content content, 
 			mb.type type, mb.tag tag, (SELECT count(*) FROM mc_like ml WHERE ml.board_uid = mb.board_uid) likeCnt 
 			FROM mc_board mb , mc_member mm 
 			WHERE mb.member_uid = mm.member_uid
-			AND mb.type = "정보"
+			AND mb.tag = #{tag}
 			ORDER BY board_uid DESC
 		]]>
 	</select>
