@@ -19,9 +19,8 @@ table, th, td {
 
 #adm_content {
 	display: none;
-	padding: 15px;
+	padding: 40px 50px;
 	height: auto;
-	margin: 70px auto;
 	boarder: gray solid 1px;
 	padding: 40px 50px;
 	

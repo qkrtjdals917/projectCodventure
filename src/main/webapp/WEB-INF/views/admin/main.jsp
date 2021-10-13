@@ -34,7 +34,7 @@
             <!-- 작은 화면의 배치를 위한 컨테이너-->
             <a href="/modaconAdmin" class="headA">
                    <img class="logo" alt="로고" src="${pageContext.request.contextPath }/images/logo.png">
-                </a>
+            </a>
 
             <!-- 내비게이션 메뉴 -->
             <nav class="headB">

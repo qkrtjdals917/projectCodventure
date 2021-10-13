@@ -7,20 +7,20 @@
 }
 
 body {
-	min-width: 414px;
+   min-width: 414px;
 }
 
 .clearAll {
-	clear: both;
+   clear: both;
 }
 
 /* 공통 버튼 */
 .container button {
-	border: none;
-	border-radius: 5px;
-	height: 40px;
-	padding: 8px;
-	color: #fff;
+   border: none;
+   border-radius: 5px;
+   height: 40px;
+   padding: 8px;
+   color: #fff;
 }
 
 /* header style */
@@ -29,7 +29,6 @@ header {
     left: 0;
     z-index: 100;
     width: 100%;
-    top: 80px;
 }
 header .container {
     background: #100E34;
@@ -41,19 +40,14 @@ header .container {
 }
 
 .logo {
-	width: 260px;
-	height: 60px;
-	padding: 20px;
+   width: 260px;
+   height: 60px;
+   padding: 10px;
 }
 
 /* 헤더B: 네비게이션 메뉴 */
-.headB ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
 .headB li, .headE li {
+	list-style: none;
 	color: #fff;
 	padding: 0 20px;
 }
@@ -71,20 +65,20 @@ header .container {
     opacity: 0.3;
 }
 .headC span{
-	color: #fff;
+   color: #fff;
 }
 .headD {
     float: right;
 }
 
 .headB button, .headD button {
-	border-style: none;
-	background-color: #100E34;
+   border-style: none;
+   background-color: #100E34;
 }
 
 .headD button:hover {
-	cursor: pointer;
-	opacity: 0.3;
+   cursor: pointer;
+   opacity: 0.3;
 }
 
 
@@ -122,7 +116,7 @@ header .container-small {
 
 /* 토글 버튼 스타일 */
 .headC {
-	color: fff;
+   color: fff;
     margin-right: 10px;
     padding: 0;
     border: none;
@@ -150,8 +144,8 @@ header .container-small {
 }
 
 #join_form #email_check , #join_form #nickname_check {
-	width : 130px;
-	height : 49px;
+   width : 130px;
+   height : 49px;
 
     border: 0;
     border-radius: 0.1875em;
@@ -166,59 +160,59 @@ header .container-small {
 }
 
 #join_form label {
-	float: left;
+   float: left;
 }
 
 b {
-	color: black;
+   color: black;
 }
 
 /* 모달 팝업 */
 /* 참조: https://www.w3schools.com/howto/howto_css_login_form.asp */
 .modal {  /* 모달 전체 적용 */
-	background-color: rgba(0, 0, 0, 0.4);
-	position: fixed;
-	top: 0;
-	left: 0;
-	
-	width: 100%;
-	height: 100%;
-	
-	z-index: 1;
-	padding-top: 40px;
-	overflow: auto;
-	
-	display: none; /* 기본적으로 안보이기 */
-	
+   background-color: rgba(0, 0, 0, 0.4);
+   position: fixed;
+   top: 0;
+   left: 0;
+   
+   width: 100%;
+   height: 100%;
+   
+   z-index: 1;
+   padding-top: 40px;
+   overflow: auto;
+   
+   display: none; /* 기본적으로 안보이기 */
+   
 }
 
 .modal .modal-content {
     position: relative;
-	background-color: #fefefe;
-	width: 70%;   
-	left: 10%;
+   background-color: #fefefe;
+   width: 70%;   
+   left: 10%;
     border-radius: 15px;
 }
 
 .modal .logincontainer {
-	padding: 16px;
-	position: relative;  /* 아래 있는 요소들 absolute로 동작시키기 위해 */
-	text-align: center;
+   padding: 16px;
+   position: relative;  /* 아래 있는 요소들 absolute로 동작시키기 위해 */
+   text-align: center;
 }
 
 .modal .close { /* 닫기(x) 버튼 */
-	font-size: 35px;
-	font-weight: bold;
-	color: #000;
-	position: absolute;
-	right: 25px;
-	top: 0px;
+   font-size: 35px;
+   font-weight: bold;
+   color: #000;
+   position: absolute;
+   right: 25px;
+   top: 0px;
 }
 
 .modal .close:hover,
 .modal .close:focus {
-	color: red;
-	cursor: pointer;
+   color: red;
+   cursor: pointer;
 }
 
 h3.title {
@@ -246,16 +240,16 @@ form .title_content {
 }
 
 .modal input{
-	width: 70%;
-	border: 1px solid #ccc;
-	margin: 8px 0;
-	padding: 12px 20px;
-	display: inline-block;
-	box-sizing: border-box;
+   width: 70%;
+   border: 1px solid #ccc;
+   margin: 8px 0;
+   padding: 12px 20px;
+   display: inline-block;
+   box-sizing: border-box;
 }
 
 .modal input[type=text].phoneNum {
-	width: 22%;
+   width: 22%;
 }
 
 .modal button {
@@ -277,12 +271,12 @@ form .title_content {
 }
 
 .modal textarea {
-	width: 100%;
-	border: 1px solid #ccc;
+   width: 100%;
+   border: 1px solid #ccc;
 }
 
 .title {
-	color: black;
+   color: black;
 }
 
 @media (min-width: 954px) {
@@ -294,7 +288,7 @@ form .title_content {
 
 /* content */
 .content {
-	height: auto;
+   height: auto;
 }
 
 /* 푸터 */
@@ -315,7 +309,7 @@ footer .container{
     margin-bottom: 30px;
 }
 .footA h2 , p{
-	color: #fff;
+   color: #fff;
 }
 
 /* 푸터B : 푸터 메뉴 */
@@ -330,7 +324,7 @@ footer .container{
 }
 
 .footB a {
-	color: #fff;
+   color: #fff;
     font-size: 25px;
     margin-bottom: 10px;
     border-bottom: solid 2px currentColor;
@@ -358,7 +352,7 @@ footer .container{
 }
 
 .footC {
-	color: #fff;
+   color: #fff;
     font-size: 12px;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
@@ -379,6 +373,5 @@ footer .container{
     .footB {flex: 0 0 60%;}  /* 푸터 메뉴 60% */
     .footC {flex: 0 0 100%;} /* 저작권 100% */
 }
-
 
 

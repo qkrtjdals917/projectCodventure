@@ -1,6 +1,17 @@
-// 1. 게시판 토글
+// 1. 업데이트 페이지 접속 시 오류
+function err_alert() {
+  Swal.fire({
+    icon: 'error',
+    title: '정보 오류',
+    text: ERR
+  }).then((result) => {
+    history.back();
+  });
+}
+
+// 2. 게시판 토글
 function type_toggle() {
-  var board_type = $('#board_type option:selected').val();
+  board_type = $('#board_type option:selected').val();
   if (board_type == '정보') {
     $('#board_tag').val("").prop("selected", true);
     $('.info_sel').show();
@@ -14,8 +25,21 @@ function type_toggle() {
   }
 }
 
-// 2. 글쓰기
-function write_chk() {
+// 3. 페이지 실행시 셀렉터 세팅
+function select_set() {
+  if (board_type == '정보') {
+    $('.info_sel').show();
+    $('.free_sel').hide();
+  } else {
+    $('.info_sel').hide();
+    $('.free_sel').show();
+  }
+  $('#board_type').val(board_type).prop("selected", true);
+  $('#board_tag').val(board_tag).prop("selected", true);
+}
+
+// 4. 게시글 수정
+function update_chk() {
   var content = $('#content').val().trim();
   var subject = $('#subject').val().trim();
   var member_uid = $('#member_uid').val();
@@ -46,15 +70,15 @@ function write_chk() {
 
   $.ajax({
     url: "",
-    type: "POST",
+    type: "PUT",
     cache: false,
     data: data,
     success: function (data, status) {
       if (status == "success") {
         if (data.status == "OK") {
           Swal.fire({
-            title: '글 작성 완료',
-            text: '글 작성을 완료했습니다.',
+            title: '글 수정 완료',
+            text: '글 수정을 완료했습니다.',
             icon: 'success',
             preConfirm: () => {
               location.href = 'view?uid=' + data.uid;
@@ -62,12 +86,13 @@ function write_chk() {
           });
         } else {
           Swal.fire({
-            title: '글 작성 오류',
-            text: '글 작성 실패 : ' + data.message,
+            title: '글 수정 오류',
+            text: '글 수정 실패 : ' + data.message,
             icon: 'error'
           });
         }
       }
     }
   });
+
 }
