@@ -122,7 +122,7 @@ ALTER TABLE mc_report
 	ADD FOREIGN KEY (board_uid)
 	REFERENCES mc_board (board_uid)
 	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 ;
 
 
@@ -154,7 +154,7 @@ ALTER TABLE mc_report
 	ADD FOREIGN KEY (member_uid)
 	REFERENCES mc_member (member_uid)
 	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 ;
 
 INSERT INTO mc_authority (authority, auth_name)

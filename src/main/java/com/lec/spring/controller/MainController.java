@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import com.lec.spring.config.PrincipalDetails;
 import com.lec.spring.domain.ajax.ModaconAjaxList;
 import com.lec.spring.domain.board.BoardDTO;
 import com.lec.spring.domain.board.BoardList;
+import com.lec.spring.domain.board.BoardResult;
 import com.lec.spring.domain.coin.CoinDTO;
 import com.lec.spring.domain.member.MemberDTO;
 import com.lec.spring.service.UserService;
@@ -201,27 +203,40 @@ public class MainController {
 	}
 	
 	// 게시글 삭제
-	@RequestMapping("/board/delete")
-	public String delete(int uid, Model model, Authentication authentication) {
+	@DeleteMapping("/board/view")
+	@ResponseBody
+	public BoardResult delete(int uid, Model model, Authentication authentication) {
 		MemberDTO m_dto = loginCheck(model, authentication);
+		BoardResult result = new BoardResult();
+		StringBuffer message = new StringBuffer();
+		String status = "FAIL";
+		int count = 0;
 		
 		if (userService.selectOne(uid).isEmpty()) { // 보드 uid가 존재하지 않는다면
-			model.addAttribute("result", 0 );
-			return "user/board/delete";
+			message.append("해당 게시글이 이미 존재하지 않습니다.");
 		}
 
 		String board_m_uid = userService.selectOne(uid).get(0).getMember_uid().trim();
 		String m_dto_uid = String.valueOf(m_dto.getMember_uid()).trim();
 		
 		// 보드의 멤버 아이디와 로그인 된 멤버아이디가 같을 경우
-		if (board_m_uid.equals(m_dto_uid)) {	
-			model.addAttribute("result", userService.delete(uid));
-			return "user/board/delete";
-		} else {
-			model.addAttribute("result", 0);
-			return "user/board/delete";
+		try {
+			if (board_m_uid.equals(m_dto_uid)) {
+				count = userService.delete(uid);
+				status = "OK";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			message.append("트랜잭션 에러: " + e.getMessage());
 		}
 		
+		result.setCount(count);
+		result.setStatus(status);
+		result.setMessage(message.toString());
+		
+		System.out.println(result);
+		
+		return result;
 	}
 	
 	// 게시글 수정
