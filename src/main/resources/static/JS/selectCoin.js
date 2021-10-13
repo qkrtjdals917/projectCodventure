@@ -27,34 +27,111 @@ var korbit_coinlist = [];
 //갱신 타이머 
 var timer = undefined;
 
-$(function () {
-	getCoinList();
-	$('#select_all').show();
-	proc(0);	// 전체 데이터를 일정 주기로 가져옴 
-	// 2개 1: data 를 채우는 부분 (전체 가져와서)
-	// 	   2: data 에서 1번 코인의 정보를 select_coin 에다가 채움 
+	$(function () {
+		getCoinList();
+		$('#select_all').show();
+		proc(0);	// 전체 데이터를 일정 주기로 가져옴 
+		// 2개 1: data 를 채우는 부분 (전체 가져와서)
+		// 	   2: data 에서 1번 코인의 정보를 select_coin 에다가 채움 
+		
+		$('#targetTrade').change(function() {
+			
+			var result = $('#targetTrade option:selected').val();
+			//alert(result);
+			
+			if (result == 0) {
+				$('#select_coin').hide();
+				$('#select_all').show();
+				$('#bar-chart').hide();
+			}
+			else {
+				proc(Number(result)-1);
+				// 가져온 전체 데이터에서 원하는 부분만 뽑아서 보내는 함수 
+			    $('#select_coin').show();
+				$('#select_all').hide();
+				$('#bar-chart').show();
+				
+				//alert(result);
+				//var upbit_ChangePercent = $("#upbit_Change_Rate").val();
+				//alert(upbit_ChangePercent);
+				//$("#korbit_changePercent").css("color","blue");
+				var bitdata=0;
+				var upbitdata=0;
+				var coinonedata=0;
+				var korbitdata=0;
+				var coinsum=0;
+				var coincnt=0;
+				if(!bithumb_data){
+					bitdata=0;
+				}
+				else{
+					bitdata=parseFloat( bithumb_data[Number(result)-1]['closing_price']);
+					coincnt++;
+				}
+				
+				
+				if(!upbit_data){
+					upbitdata=0;
+				}
+				else{
+					upbitdata=parseFloat( upbit_data[Number(result)-1]['trade_price']);
+					coincnt++;
+				}	
+				if(!coinone_data){
+					coinonedata=0;
+				}
+				else{
+					coinonedata=parseFloat( upbit_data[Number(result)-1]['trade_price']);
+					coincnt++;
+				}
+				if(!korbit_data){
+					korbitdata=0;
+				}
+				else{
+					korbitdata=parseFloat( korbit_data[Number(result)-1]['last']);
+					coincnt++;
+				}
+				coinsum=bitdata+upbitdata+coinonedata+korbitdata;
+				//alert(coinsum);
+		//차트 중복현상 방지 	 
+	  	$("#bar-chart").remove();
+		var canvasHtml = '<canvas id="bar-chart" width="300" height="230"></canvas>';
+		$("#bar_div").append(canvasHtml);
 	
-	$('#targetTrade').change(function() {
-		
-		var result = $('#targetTrade option:selected').val();
-		//alert(result);
-		
-		if (result == 0) {
-			$('#select_coin').hide();
-			$('#select_all').show();
-		}
-		else {
-			proc(Number(result)-1);
-			// 가져온 전체 데이터에서 원하는 부분만 뽑아서 보내는 함수 
-		    $('#select_coin').show();
-			$('#select_all').hide();
-			//var upbit_ChangePercent = $("#upbit_Change_Rate").val();
-			//alert(upbit_ChangePercent);
-			//$("#korbit_changePercent").css("color","blue");
-		}
-		
-  }); 	
-});
+		var input = document.getElementById("bar-chart");
+		var chart =new Chart(document.getElementById("bar-chart"), {
+	       	
+			type: 'bar', 				
+			  data: {
+		      labels: ["평균거래가", "빗썸", "업비트", "코인원", "코빗"],
+		      datasets: [
+		        {
+		          label: "거래대금",
+		          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+		          data: [(coinsum/coincnt), bitdata,
+						upbitdata,
+						coinonedata,
+						korbitdata]
+		        }
+		      ]
+		    },
+		    options: { 	
+		      legend: { display: false },
+		      title: {
+		        display: true,
+		        text: '평균거래비 시각자료'
+		      }
+		    }
+		});
+				
+			
+			}
+			
+	  }); 
+	});
+	
+	
+
 
 function getCoinList () {
 	$.ajax ({
@@ -123,7 +200,7 @@ function proc(coinNumber) {
     } finally {
         timer = setTimeout(function () {
             proc(coinNumber);
-        }, 10000); //1초후 재시작
+        }, 10000); //10초후 재시작
     }
 	
 }
@@ -200,7 +277,7 @@ function set_main_sun (coin) {
 function set_select_coin (coinNumber) {
 
 	// 값 체크해서 스타일까지 변경 if문으로 구분
-    $('#bithumb_Price').html('\\ ' + numberWithCommas( parseFloat(bithumb_data[coinNumber]['closing_price'])  )); 
+    $('#bithumb_Price').html(numberWithCommas( parseFloat(bithumb_data[coinNumber]['closing_price'])  )); 
     var bithumb_ChangePrice = parseFloat(bithumb_data[coinNumber]['fluctate_24H']);
 	if (bithumb_ChangePrice >= 0 ) {
 			$("#bithumb_fluctate_24H").css("color","red");
@@ -208,7 +285,7 @@ function set_select_coin (coinNumber) {
 	else {
 			$("#bithumb_fluctate_24H").css("color","blue");
 		}
-	$('#bithumb_fluctate_24H').html('\\ ' + numberWithCommas(bithumb_ChangePrice));
+	$('#bithumb_fluctate_24H').html(numberWithCommas(bithumb_ChangePrice));
 	var bithumb_ChangePercent = (parseFloat(bithumb_data[coinNumber]['fluctate_rate_24H']));
 	if (bithumb_ChangePercent >= 0 ) {
 			$("#bithumb_fluctate_rate_24H").css("color","red");
@@ -227,7 +304,7 @@ function set_select_coin (coinNumber) {
 		// 비어있다면 = 값이 없다 -> 공백
 	}
 	else {
-		$('#upbit_Price').html('\\ ' + numberWithCommas( parseFloat(upbit_data[coinNumber]['trade_price']) ));
+		$('#upbit_Price').html(numberWithCommas( parseFloat(upbit_data[coinNumber]['trade_price']) ));
 		var upbit_ChangePrice =  (parseFloat(upbit_data[coinNumber]['change_price']));
 		if (upbit_ChangePrice >= 0 ) {
 			$("#upbit_Change_price").css("color","red");
@@ -235,7 +312,7 @@ function set_select_coin (coinNumber) {
 		else {
 			$("#upbit_Change_price").css("color","blue");
 		}
-		$('#upbit_Change_price').html('\\ ' + numberWithCommas(upbit_ChangePrice));
+		$('#upbit_Change_price').html(numberWithCommas(upbit_ChangePrice));
 		var upbit_ChangePercent = ((parseFloat(upbit_data[coinNumber]['change_rate']) ) * 100).toFixed(2); 
 		if (upbit_ChangePercent >= 0 ) {
 			$("#upbit_Change_Rate").css("color","red");
@@ -260,7 +337,7 @@ function set_select_coin (coinNumber) {
 		var coinone_btc_last = parseFloat(coinone_data[coinNumber]['last']);
 		var coinone_btc_change = parseFloat((coinone_data[coinNumber]['last']) - coinone_data[coinNumber]['yesterday_last']);
 	
-	    $('#coinone_BTC_last').html('\\ ' + numberWithCommas( coinone_btc_last ));
+	    $('#coinone_BTC_last').html(  numberWithCommas( coinone_btc_last ));
 	    var coinone_ChangePrice = coinone_btc_change;
 		if (coinone_ChangePrice >= 0 ) {
 			$("#coinone_BTC_change").css("color","red");
@@ -268,7 +345,7 @@ function set_select_coin (coinNumber) {
 		else {
 			$("#coinone_BTC_change").css("color","blue");
 		}
-		$('#coinone_BTC_change').html('\\ ' + numberWithCommas( coinone_btc_change ));
+		$('#coinone_BTC_change').html( numberWithCommas( coinone_btc_change ));
 		var coinone_ChangePercent = ((coinone_btc_change / coinone_btc_last) * 100).toFixed(2);
 		if (coinone_ChangePercent >= 0 ) {
 			$("#coinone_BTC_changePercent").css("color","red");
@@ -291,7 +368,7 @@ function set_select_coin (coinNumber) {
 	}
 	else {
 
-		$('#korbit_last').html('\\ ' + numberWithCommas( parseFloat( korbit_data[coinNumber]['last']) ));
+		$('#korbit_last').html(numberWithCommas( parseFloat( korbit_data[coinNumber]['last']) ));
 		var korbit_ChangePrice = parseFloat( korbit_data[coinNumber]['change']);
 		if (korbit_ChangePrice >= 0 ) {
 			$("#korbit_change").css("color","red");
@@ -299,7 +376,7 @@ function set_select_coin (coinNumber) {
 		else {
 			$("#korbit_change").css("color","blue");
 		}
-		$('#korbit_change').html('\\ ' + numberWithCommas(korbit_ChangePrice));
+		$('#korbit_change').html(numberWithCommas(korbit_ChangePrice));
 		var korbit_ChangePercent = parseFloat(korbit_data[coinNumber]['changePercent']);
 		if (korbit_ChangePrice >= 0 ) {
 			$("#korbit_changePercent").css("color","red");
@@ -317,7 +394,7 @@ function set_select_coin (coinNumber) {
 function set_select_all() {
 	//평균거래가 
 		
-    var table = "<tr><th>--</th><th>평균거래가</th><th>빗썸</th><th>업비트</th><th>코인원</th><th>코빗</th></tr>";
+    var table = "<tr><th>코인명</th><th>평균거래가</th><th>빗썸</th><th>업비트</th><th>코인원</th><th>코빗</th></tr>";
 	for (i = 0; i < 100; i++) {
  		table += "<tr>";
 		
@@ -328,7 +405,7 @@ function set_select_all() {
 		// BTC 등 코인 이름
         table += "<td id>" + bithumb_coinlist[i] + "</td>";
 
-
+		
 
 		table += "<td>"+ numberWithCommas((avgcoin(i)).toFixed(0)) +"</td>";
 		
@@ -497,4 +574,5 @@ function korbit_all() {
 }
 
 
-//
+// 차트
+
