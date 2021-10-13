@@ -43,7 +43,7 @@ function write_chk() {
   }
 
   var data = $('#frm').serialize();
-  console.log(data);
+
   $.ajax({
     url: "",
     type: "POST",
@@ -53,11 +53,11 @@ function write_chk() {
       if(status == "success"){
         if(data.status == "OK"){
           Swal.fire({
-              title: '삭제 성공',
-              text: '해당글을 삭제했습니다.',
+              title: '글 작성 완료',
+              text: '글 작성을 완료했습니다.',
               icon: 'success',
               preConfirm: () => {
-                location.href = 'view?uid=' + data.board_uid;
+                location.href = 'view?uid=' + data.uid;
               }
           });
         }
