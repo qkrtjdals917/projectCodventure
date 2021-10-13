@@ -113,7 +113,7 @@ function chkUpdate() {
 }
 
 // 5. 추천 버튼
-function chkLike() {
+function chkLikeUp() {
   if (member_null) {
     not_Login_msg();
     return;
@@ -139,11 +139,48 @@ function chkLike() {
         },
         success: function () {
           likeCount();
+          likeChk();
         },
       })
     }
   });
 }
+
+// 추천취소
+function chkLikeDown(){
+  if (member_null) {
+    not_Login_msg();
+    return;
+  }
+
+  Swal.fire({
+    title: '추천 취소',
+    text: "해당 글을 추천 취소 하시겠습니까?",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '추천취소',
+    cancelButtonText: '취소'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "like",
+        type: "DELETE",
+        data: {
+          board_uid: board_uid,
+          member_uid: member_uid
+        },
+        success: function () {
+          likeCount();
+          likeChk();
+        },
+      })
+    }
+  });
+
+}
+
 // 추천수
 function likeCount() {
   $.ajax({
@@ -155,6 +192,26 @@ function likeCount() {
     success: function (count) {
       $("#likeCount").html(count);
     },
+  })
+}
+
+// 추천여부 확인, 추천버튼 변경
+function likeChk() {
+  $.ajax({
+    url: "likeChk",
+    type: "POST",
+    data: {
+      board_uid: board_uid
+    },
+    success: function (data) {
+      if (data == 1) {
+        $('#like_up_btn').hide();
+        $('#like_down_btn').show();
+      } else {
+        $('#like_up_btn').show();
+        $('#like_down_btn').hide();
+      }
+    }
   })
 }
 
@@ -243,4 +300,6 @@ function btn_toggle() {
     $('#del_btn').hide();
     $('#report_btn').show();
   }
+
+  likeChk();
 }
