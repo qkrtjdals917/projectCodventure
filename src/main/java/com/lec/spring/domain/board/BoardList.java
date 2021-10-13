@@ -12,4 +12,6 @@ import lombok.Setter;
 public class BoardList extends BoardResult{
 	@JsonProperty("data")
 	List<BoardDTO> list;
+	
+	int uid;
 }
