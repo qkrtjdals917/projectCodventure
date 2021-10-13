@@ -38,7 +38,7 @@
        		</tr>
        	</table>
     </div>
-    <div class="contentC">
+    <div class="contentC" >
     	<button type="button" id="btnUpdate" class="btn">정보수정</button>
 		<button type="button" id="btnPwChange" class="btn">비밀번호 변경</button>
 		<button type="button" id="btnSecession" class="btn">회원 탈퇴</button>

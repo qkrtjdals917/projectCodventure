@@ -65,11 +65,6 @@ header .container {
 	opacity: 0.3;
 }
 
-button {
-    background: #100E34;
-    border: none;
-    color: #fff;
-}
 
 @media (min-width: 800px) {
     /* 800 이상 큰 화면에서는 */
