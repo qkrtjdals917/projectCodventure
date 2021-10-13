@@ -151,32 +151,20 @@
 
 	<div id="contentReport">
 
+	<form id="ReportForm" name="ReportForm" method="GET">
 		<table>
-			<tr>
+			<thead>
 				<th>글번호</th>
 				<th>'log'제목</th>
-				<th>작성자</th>
-				<th>신고자</th>
+				<th>작성글 uid</th>
+				<th>신고자 uid</th>
 				<th>신고취하</th>
 				<th>DELETE</th>
-			</tr>
-
-			<c:choose>
-				<c:when test="#"></c:when>
-				<c:otherwise>
-					<c:forEach var="dto" items="#">
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><input type="button" id="reportBack_button" value="신고취하"></td>
-							<td><input type="button" class="delete_button" value="삭제"></td>
-						</tr>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
+			</thead>
+			<tbody>
+			</tbody>
 		</table>
+	</form>
 
 	</div>
 
@@ -226,13 +214,13 @@
 		<form class="modal-notice anitmate" id="noticeFrm" name="noticeFrm"
 			method="post">
 			<div class="container">
-				<h3 class="title">공지 작성</h3>
-				<span class="close" title="Close Modal">&times;</span>
-				<%-- 닫기버튼 --%>
-				<input type="hidden" name="uid" value="0">
-				<%-- 읽기, 삭제, 수정을 위해 필요 --%>
+					<h3 class="title">공지 작성</h3>
+					<span class="close" title="Close Modal">&times;</span>
+					<%-- 닫기버튼 --%>
+					<input type="hidden" name="uid" value="0">
+					<%-- 읽기, 삭제, 수정을 위해 필요 --%>
 
-				<div class="a01 ntc_group_header">
+				<div class="ntc_group_header">
 					<div class="ntcLeft">
 						<p id="viewcnt"></p>
 					</div>
@@ -242,20 +230,22 @@
 					<div class="clear"></div>
 				</div>
 
-				<label for="subject"><b>글제목</b></label> <input type="text"
-					placeholder="글제목(필수)" name="subject" required> <label
-					for="ntc_uid"><b>작성자</b></label> <input type="text"
-					placeholder="UID" name="member_uid" required> <label
-					for="content"><b>내용</b></label>
-				<textarea placeholder="글내용" name="content"></textarea>
+					<!-- type -->
+					<!-- tag -->
+					<label for="subject"><b>글제목</b></label> 
+					<input type="text" placeholder="글제목(필수)" name="subject" required> 
+					<label for="ntc_uid"><b>작성자</b></label> 
+					<input type="text" placeholder="UID" name="member_uid" required> 
+					<label for="content"><b>내용</b></label>
+					<textarea placeholder="글내용" name="content"></textarea>
 
 				<%-- 하단 버튼 : 글 작성 --%>
-				<div class="a01 ntc_group_write">
+				<div class="ntc_group_write">
 					<button type="submit" class="ntc write fullntc">공지 작성</button>
 				</div>
 
 				<%-- 하단 버튼 : 글 조회 --%>
-				<div class="a01 ntc_group_view">
+				<div class="ntc_group_view">
 					<div class="left">
 						<button type="button" class="ntc danger" id="viewDelete">삭제</button>
 					</div>
@@ -266,7 +256,7 @@
 				</div>
 
 				<%-- 하단 버튼 : 글 수정 --%>
-				<div class="a01 ntc_group_update">
+				<div class="ntc_group_update">
 					<div>
 						<button type="button" class="ntc update fullbtn" id="updateOk">수정완료</button>
 					</div>

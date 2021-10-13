@@ -58,9 +58,9 @@ $(document).ready(function() {
 	});
 	
 	// 글 삭제 버튼 누르면
-	$("#ntcDle").click(function(){
-		chkDelete();
-	});
+	//$("#ntcDle").click(function(){
+	//	chkDelete();
+	//});
 		
 		
 	// 글 읽기(view) 대화상자에서 '삭제' 버튼 누르면 해당 글 (uid) 삭제 진행
@@ -115,39 +115,59 @@ function memberList (jsonObj , type) {
 			var items = jsonObj.list;
 			
 			if ( type == "notice") {	// 여기를 바꾸고 
-				result += "<table>";
 				for(var i = 0; i < count; i++) {
 					result += "<tr>\n";
 	
 					result += "<td>" + items[i].board_uid + "</td>\n";
 					result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>" + items[i].subject + "</span></td>\n";
 					result += "<td>" + items[i].nickname + "</td>\n";
-					result += "<td>" + items[i].regDateTime + "</td>\n";
+					result += "<td>" + items[i].regDate + "</td>\n";
 					result += `<td><button type='button' onclick="delete_by_uid(`
 					result +=  items[i].board_uid + `, '${type}' )" class='btn_delete'>삭제</button></td> `;
 					result += "</tr>\n";
 				}
-				result += "</table>";
 				$("#contentNotice tbody").html(result);
 				
 			}
 			else if (type == "community") {
-				result += "<table>";
 				for(var i = 0; i < count; i++) {
 					result += "<tr>\n";
 					
 					result += "<td>" + items[i].board_uid + "</td>\n";
 					result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[" + items[i].tag + "]" + items[i].subject + "</span></td>\n";
 					result += "<td>" + items[i].nickname + "</td>\n";
-					result += "<td>" + items[i].regDateTime + "</td>\n";
+					result += "<td>" + items[i].regDate + "</td>\n";
 					result += `<td><button type='button' onclick="delete_by_uid(`
 					result +=  items[i].board_uid + `, '${type}' )" class='btn_delete'>삭제</button></td> `;
 					result += "</tr>\n";
 				}
-				result += "</table>";
 				$("#contentBoard tbody").html(result);
 			}
 			else if (type == "report") {
+				for(var i = 0; i < count; i++) {
+					result += "<tr>\n";
+					
+					result += "<td>" + items[i].report_uid + "</td>\n";
+					if(items[i].reportTag == "report1") {
+						result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[홍보 및 광고]" ;
+					}
+					else if (items[i].reportTag == "report2") {
+						result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[청소년 유해글]" ;
+					}
+					else if (items[i].reportTag == "report3") {
+						result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[욕설 비방 혐오]" ;
+					}
+					else if (items[i].reportTag == "report4") {
+						result += "<td><span class='subject' data-uid='" + items[i].board_uid +"'>[기타]" ;
+					}
+					result += items[i].reportContent + "</span></td>\n";
+					result += "<td>" + items[i].board_uid + "</td>\n";
+					result += "<td>" + items[i].nickname + "</td>\n";
+					result += `<td><button type='button' onclick="delete_by_uid(`
+					result +=  items[i].report_uid + `, '${type}' )" class='btn_delete'>삭제</button></td> `;
+					result += "</tr>\n";
+				}
+				$("#contentReport tbody").html(result);
 				
 			}
 			else if (type == "member") {
@@ -211,8 +231,8 @@ function buildPagination(writePages, totalPage, curPage, pageRows, type){
   	//■  < 표시 여부
     if (start_page > 1) 
 
-    	str += `<li><a onclick="loadPage(` + (start_page - 1) + `, '${type}'`;
-		str += `)" class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n`;
+    	str += `<li><a onclick="loadPage(` + (start_page - 1);
+		str += `, '${type}' )" class="tooltip-top" title="이전"><i class="fas fa-angle-left"></i></a></li>\n`;
     
     //■  페이징 안의 '숫자' 표시	
 	if (totalPage > 1) {
@@ -292,7 +312,7 @@ function viewPage (route) {
 	}
 	
 	if(route=="report")  {
-		
+		loadPage(page, "report");
 		$("#contentMain").hide();
 		$("#adm_content").show();
 		$("#contentNotice").hide();
@@ -328,10 +348,17 @@ function setPopup(mode) {
 		$("#noticeWrite .ntc_group_view").hide();
 		$("#noticeWrite .ntc_group_update").hide();
 		
+		/*
+		$("#noticeWrite input[name='type']").attr("readonly", true);
+		$("#noticeWrite input[name='type']").css("border", "1px solid #ccc");
+		$("#noticeWrite input[name='tag']").attr("disabled", false);
+		$("#noticeWrite input[name='tag']").css("border", "1px solid #ccc");
+		*/
+		
 		$("#noticeWrite input[name='subject']").attr("readonly", false);
 		$("#noticeWrite input[name='subject']").css("border", "1px solid #ccc");
-		$("#noticeWrite input[name='nickname']").attr("readonly", false);
-		$("#noticeWrite input[name='nickname']").css("border", "1px solid #ccc");
+		$("#noticeWrite input[name='member_uid']").attr("disabled", true);
+		$("#noticeWrite input[name='member_uid']").css("border", "1px solid #ccc");
 		$("#noticeWrite textarea[name='content']").attr("readonly", false);
 		$("#noticeWrite textarea[name='content']").css("border", "1px solid #ccc");
 	}
@@ -387,20 +414,12 @@ function setPopup(mode) {
 // 해당 type 의 데이터를 uid로 골라 삭제 
 function delete_by_uid (uid, type) {
 	alert(uid);
-	alert(type);
-	
-}
-
-
-/*
-// 특정 uid 의 글 삭제하기
-function deleteByChk(uid){
-	
-	if(!confirm(uid + "글을 삭제하시겠습니까?")) return false;
+	 //alert(type);
+if(!confirm(uid + "글을 삭제하시겠습니까?")) return false;
 	
 	// DELETE 방식
 	$.ajax({
-		url : ".",  // URL : /board
+		url : "/modaconAdmin",  // URL : /modaconAdmin
 		type : "DELETE",
 		data : "uid=" + uid,
 		cache : false,
@@ -418,9 +437,8 @@ function deleteByChk(uid){
 	});
 	
 	return true;
-} // end deleteUid()
-
-*/
+	
+}
 
 /*
 

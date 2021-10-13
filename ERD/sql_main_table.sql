@@ -169,6 +169,7 @@ UPDATE mc_member
 		SET authority = 2
 		WHERE member_uid = 57;
 		
+SELECT * FROM mc_report;
 SELECT * FROM mc_board;
 SELECT * FROM mc_comment;
 SELECT * FROM mc_member WHERE email = "test3@email.com";

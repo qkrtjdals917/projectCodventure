@@ -1,6 +1,6 @@
 package com.lec.spring;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -58,6 +58,11 @@ class DummyData {
 	public static final String SQL_NOTICE_DUMMY = 
 			"INSERT INTO mc_board (type, subject, content, member_uid)"
 			+ "VALUES ('공지', ?, ?, 1)";
+	
+	public static final String SQL_REPORT_DUMMY =
+			"INSERT INTO mc_report" +
+					"(board_uid, report_uid, report_tag, report_content, member_uid)"
+					+ "VALUES(?, ?, ?, ?, ?)";
 	
 	
 	public static final String [] TYPE = {"자유", "정보"};
@@ -168,6 +173,30 @@ class DummyData {
 			for (int i = 0; i < num; i++) {
 				pstmt.setString(1, "noticesubject" + i);
 				pstmt.setString(2, "noticeContent" + i);
+				pstmt.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	@Test
+	void reportData() {
+		try {
+			Class.forName(DRIVER);
+			conn = DriverManager.getConnection(URL, USERID, USERPW);
+			pstmt = conn.prepareStatement(SQL_REPORT_DUMMY);
+			
+			int num = 10;
+			for (int i = 0; i < num; i++) {
+				pstmt.setString(1, "reportContent" + i);
+				pstmt.setString(2, "reportContent" + i);
 				pstmt.executeUpdate();
 			}
 		} catch (Exception e) {
