@@ -114,7 +114,7 @@ ALTER TABLE mc_like
 	ADD FOREIGN KEY (board_uid)
 	REFERENCES mc_board (board_uid)
 	ON UPDATE RESTRICT
-	ON DELETE CASCADE
+	ON DELETE RESTRICT
 ;
 
 
@@ -145,8 +145,8 @@ ALTER TABLE mc_comment
 ALTER TABLE mc_like
 	ADD FOREIGN KEY (member_uid)
 	REFERENCES mc_member (member_uid)
-	ON UPDATE CASCADE
-	ON DELETE CASCADE
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
 ;
 
 
@@ -207,16 +207,30 @@ SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname,
 		WHERE mb.member_uid = mm.member_uid
 		AND mb.type <> "공지";
 
-SELECT * FROM mc_like;
+SELECT count(*), board_uid, member_uid FROM mc_like GROUP BY board_uid ;
+
+-- 글 리스트 (추천수까지)
+SELECT mb.board_uid board_uid, mb.subject subject, mm.nickname nickname, 
+		mb.regDate regDate, mb.count count, mb.content content, 
+		mb.type type, mb.tag tag, (SELECT count(*) FROM mc_like ml WHERE ml.board_uid = mb.board_uid)
+FROM mc_board mb, mc_member mm
+WHERE mb.member_uid = mm.member_uid
+AND mb.type <> "공지";
 
 -- 글 작성
+<<<<<<< HEAD
 
 INSERT INTO mc_board (type, subject, tag, content, member_uid)
 
 INSERT INTO mc_board (type, subject, tag, content, member_uid)
+=======
+INSERT INTO mc_board (type, subject, tag, content, member_uid)
+
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure
 VALUES ("자유", "글작성테스트sql", "" ,"이 글은 테스트 중입니다.", 52);
 
 SELECT *FROM mc_board mb ;
+<<<<<<< HEAD
 
 DESC mc_board ;
 
@@ -239,6 +253,8 @@ SELECT * FROM mc_report mr ;
 
 SELECT *FROM mc_board mb ;
 SELECT *FROM mc_board mb ;
+=======
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure
 		SELECT	
 			member_uid "member_uid",
 			email "email",
@@ -272,6 +288,7 @@ WHERE email = "aaa5@aaa.com";
 SELECT *FROM mc_board mb ;
 
 SELECT * FROM mc_coin;
+
 
 INSERT INTO mc_coin (bithumb_name,upbit_name,coinone_name,korbit_name)
 VALUES ("BTC","BTC","btc","btc_krw"),

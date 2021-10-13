@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -46,6 +44,9 @@
     <button type="button" onclick="history.back()">취소</button>
   </form>
 
+  <div class="footer">
+    <%@ include file="../../include/footer.jsp"%>
+  </div>
 </body>
 
 </html>

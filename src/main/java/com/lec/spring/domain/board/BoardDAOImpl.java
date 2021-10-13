@@ -97,8 +97,7 @@ public class BoardDAOImpl implements BoardDAO {
 		return mapper.report(param);
 	}
 
-	// ↓ 해연추가 
-
+	// ↓ 해연추가
 	// 공지사항 정보 가져오기
 	// 공지사항 카운트
 	@Override
@@ -137,11 +136,7 @@ public class BoardDAOImpl implements BoardDAO {
 	// (정보게시판 페이징)
 	// (자유게시판 정보 가져오기)
 	// (자유게시판 페이징)
-	
-	
-
 	// (커뮤니티 삭제)
-
 	@Override
 	public List<CoinDTO> selectCoinList () {
 		return mapper.selectCoinList();
