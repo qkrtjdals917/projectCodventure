@@ -192,7 +192,7 @@ function proc(coinNumber) {
         korbit_all(); 	// 코빗
         CurrentTime(); 		// 갱신 시간
 		set_select_all();
-		
+		set_main_coin();
 		set_select_coin (coinNumber);
 		// 전체 데이터에서 coinNumber번째 데이터의 정보를 jsp에 추가함
     } catch (e) {
@@ -204,6 +204,76 @@ function proc(coinNumber) {
     }
 	
 }
+
+function set_main_coin () {
+	set_main_sun(0);
+	set_main_sun(1);
+	set_main_sun(2);
+	set_main_sun(3);
+	set_main_sun(4);
+	
+}
+
+function set_main_sun (coin) {
+		var result = "";
+	result += "<tr><td>빗썸</td>"
+	result += "<td>" + numberWithCommas( parseFloat(bithumb_data[coin]['closing_price'])) + " ( " ; 
+	
+	var bithumb_ChangePrice = parseFloat(bithumb_data[coin]['fluctate_24H']);
+	if (bithumb_ChangePrice >= 0 ) {
+			result += "<span style='color:red'> " + bithumb_ChangePrice + " </span>"
+		}
+	else {
+			result += "<span style='color:blue'> " + bithumb_ChangePrice + " </span>"
+		}
+		
+
+	result +=  " ) </td></tr>";
+	
+	result += "<tr><td>업비트</td>"
+	result += "<td>" + numberWithCommas( parseFloat(upbit_data[coin]['trade_price'])) + " ( " ; 
+	
+	var upbit_ChangePrice = parseFloat(upbit_data[coin]['change_price']);
+	if (upbit_ChangePrice >= 0 ) {
+			result += "<span style='color:red'> " + upbit_ChangePrice + " </span>"
+		}
+	else {
+			result += "<span style='color:blue'> " + upbit_ChangePrice + " </span>"
+		}
+		
+
+	result +=  " ) </td></tr>";
+	
+	
+	result += "<tr><td>코인원</td>"
+	result += "<td>" + numberWithCommas( parseFloat(coinone_data[coin]['last'])) + " ( " ; 
+	
+	var coinone_ChangePrice = parseFloat( (coinone_data[coin]['last']) - coinone_data[coin]['yesterday_last'] );
+	if (coinone_ChangePrice >= 0 ) {
+			result += "<span style='color:red'> " + coinone_ChangePrice + " </span>"
+		}
+	else {
+			result += "<span style='color:blue'> " + coinone_ChangePrice + " </span>"
+		}
+	result +=  " ) </td></tr>";
+	
+	result += "<tr><td>코빗</td>"
+	result += "<td>" + numberWithCommas( parseFloat(korbit_data[coin]['last'])) + " ( " ; 
+	
+	var korbit_ChangePrice = parseFloat(korbit_data[coin]['change']);
+	if (korbit_ChangePrice >= 0 ) {
+			result += "<span style='color:red'> " + korbit_ChangePrice + " </span>"
+		}
+	else {
+			result += "<span style='color:blue'> " + korbit_ChangePrice + " </span>"
+		}
+		
+
+	result +=  " ) </td></tr>";
+	
+	$('#main_' + coin).html(result);
+}
+
 function set_select_coin (coinNumber) {
 
 	// 값 체크해서 스타일까지 변경 if문으로 구분

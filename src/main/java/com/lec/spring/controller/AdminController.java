@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -18,6 +20,7 @@ import com.lec.spring.domain.ajax.ModaconAjaxList;
 import com.lec.spring.domain.ajax.ModaconAjaxResult;
 import com.lec.spring.domain.board.BoardDTO;
 import com.lec.spring.domain.member.MemberVO;
+import com.lec.spring.domain.report.ReportDTO;
 import com.lec.spring.service.AdminService;
 
 @Controller	
@@ -173,90 +176,128 @@ public class AdminController {
 			return result;		
 		}
 		
-//		// 글 작성
-//		@PostMapping("/noticeWrite")  // URI: /board
-//		public ModaconAjaxResult ntcWriteOk(BoardDTO dto) {
-//			int count = 0;
-//					
-//			// message 
-//			StringBuffer message = new StringBuffer();
-//			String status = "FAIL";
-//			
-//			try {
-//				count = adminService.write(dto);
-//				if(count == 0) {
-//					message.append("[트랜잭션 실패 : 0 insert]");
-//				} else {
-//					status = "OK";
-//				}
-//			} catch(Exception e) {
-//				e.printStackTrace();
-//				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
-//			}
-//			
-//			ModaconAjaxResult result = new ModaconAjaxResult();
-//			result.setStatus(status);
-//			result.setMessage(message.toString());
-//			result.setCount(count);
-//			return result;
-//		}
+		// 글 작성
+		@PostMapping("")  // URI: /board
+		public ModaconAjaxResult ntcWriteOk(BoardDTO dto) {
+			int count = 0;
+					
+			// message 
+			StringBuffer message = new StringBuffer();
+			String status = "FAIL";
+			
+			try {
+				count = adminService.write(dto);
+				if(count == 0) {
+					message.append("[트랜잭션 실패 : 0 insert]");
+				} else {
+					status = "OK";
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+			}
+			
+			ModaconAjaxResult result = new ModaconAjaxResult();
+			result.setStatus(status);
+			result.setMessage(message.toString());
+			result.setCount(count);
+			return result;
+		}
 		
-//		// 글 수정
-//		@PutMapping("")  // URI: /board
-//		public ModaconAjaxResult ntcUpdateOk(BoardDTO dto) {
-//			int count = 0;
-//				
-//			// message 
-//			StringBuffer message = new StringBuffer();
-//			String status = "FAIL";
-//			
-//			try {
-//				count = adminService.update(dto);
-//				if(count == 0) {
-//					message.append("[트랜잭션 실패 : 0 update]");
-//				} else {
-//					status = "OK";
-//				}
-//			} catch(Exception e) {
-//				e.printStackTrace();
-//				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
-//			}
-//			
-//			ModaconAjaxResult result = new ModaconAjaxResult();
-//			result.setStatus(status);
-//			result.setMessage(message.toString());
-//			result.setCount(count);
-//			return result;
-//		}
+		// 글 수정
+		@PutMapping("")  // URI: /board
+		public ModaconAjaxResult ntcUpdateOk(BoardDTO dto) {
+			int count = 0;
+				
+			// message 
+			StringBuffer message = new StringBuffer();
+			String status = "FAIL";
+			
+			try {
+				count = adminService.update(dto);
+				if(count == 0) {
+					message.append("[트랜잭션 실패 : 0 update]");
+				} else {
+					status = "OK";
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+			}
+			
+			ModaconAjaxResult result = new ModaconAjaxResult();
+			result.setStatus(status);
+			result.setMessage(message.toString());
+			result.setCount(count);
+			return result;
+		}
 
 		// 글 삭제
-//		@DeleteMapping("")  // URI: /board
-//		public ModaconAjaxResult deleteOk(int [] uid) {
-//			int count = 0;
-//			
-//			// message 
-//			StringBuffer message = new StringBuffer();
-//			String status = "FAIL";
-//			
-//			try {
-//				
-//				if(uid != null) {
-//					count = adminService.deleteByChk(uid);
-//					status = "OK";
-//				}
-//				
-//			} catch(Exception e) {
-//				e.printStackTrace();
-//				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
-//			}
-//			
-//			ModaconAjaxResult result = new ModaconAjaxResult();
-//			result.setStatus(status);
-//			result.setMessage(message.toString());
-//			result.setCount(count);
-//			return result;
-//		}
+		@DeleteMapping("")
+		@ResponseBody// URI: /board
+		public ModaconAjaxResult deleteOk(int [] uid) {
+			int count = 0;
+			
+			// message 
+			StringBuffer message = new StringBuffer();
+			String status = "FAIL";
+			
+			try {
+				
+				if(uid != null) {
+					count = adminService.deleteByChk(uid);
+					status = "OK";
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+			}
+			
+			ModaconAjaxResult result = new ModaconAjaxResult();
+			result.setStatus(status);
+			result.setMessage(message.toString());
+			result.setCount(count);
+			return result;
+		}
 		
+		// 글 삭제
+		@DeleteMapping("/board")  // URI: /board
+		@ResponseBody
+		public int deleteBoard(int uid) {
+			int count = 0;
+			count = adminService.deleteUid(uid);
+
+			return count;
+		}
+		
+		// 글 삭제
+		@DeleteMapping("/report")  // URI: /board
+		@ResponseBody
+		public int deleteReport(int uid) {
+			int count = 0;
+			count = adminService.deleteReport(uid);
+
+			return count;
+		}
+		// 글 삭제
+		@DeleteMapping("/report/{board_uid}")  // URI: /board
+		@ResponseBody
+		public int deleteReportWithBoard(int report_uid , @PathVariable int board_uid) {
+			int count = 0;
+			count = adminService.deleteReportWithBoard(board_uid, report_uid);
+
+			return count;
+		}
+		// 글 삭제
+		@DeleteMapping("/member")  // URI: /board
+		@ResponseBody
+		public int deleteMember(int uid) {
+			int count = 0;
+			count = adminService.mbDelete(uid);
+
+			return count;
+		}
 		
 		
 		
@@ -329,6 +370,73 @@ public class AdminController {
 		} // end admCommunityList
 		
 		
+		// 신고리스트 페이징
+		@GetMapping("/reportList/{page}/{pageRows}")
+		@ResponseBody
+		public ModaconAjaxList<ReportDTO> admReportList(
+				@PathVariable int page,
+				@PathVariable int pageRows
+				) {
+			
+			List<ReportDTO> list = null;
+			
+			// message 
+			StringBuffer message = new StringBuffer();
+			String status = "FAIL";
+			
+			// 페이징 관련 세팅 값들
+			//page : 현재 페이지
+			//pageRows : 한 '페이지'에 몇개의 글을 리스트 할것인가?
+			int writePages = 10;    // 한 [페이징] 에 몇개의 '페이지'를 표현할 것인가?
+			int totalPage = 0; // 총 몇 '페이지' 분량인가? 
+			int totalCnt = 0;  // 글은 총 몇개인가?
+			
+			
+			try {			
+				// 글 전체 개수 구하기
+				totalCnt = adminService.countRp();
+				
+				// 총 몇페이지 분량?
+				totalPage = (int)Math.ceil(totalCnt / (double)pageRows);
+				
+				// from: 몇번째 row 부터?
+				int from = (page - 1) * pageRows;  // MySQL 의 Limit 는 0-base 
+				
+				list = adminService.rpUpdateList(from, pageRows);
+				
+				if(list == null) {
+					message.append("[리스트할 데이터가 없습니다]");
+				} else {
+					status = "OK";
+					for(int i = 0 ; i < list.size() ; i++) {
+						list.get(i).setNickname( adminService.selectByUid( list.get(i).getMember_uid() ).getNickname());
+					}
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+			}
+			
+			ModaconAjaxList<ReportDTO> result = new ModaconAjaxList<ReportDTO>();
+			
+			result.setStatus(status);
+			result.setMessage(message.toString());
+			
+			if(list != null) {
+				result.setCount(list.size());
+				result.setList(list);
+			}
+			
+			result.setDataType("rp");
+			result.setPage(page);
+			result.setTotalPage(totalPage);
+			result.setWritePages(writePages);
+			result.setPageRows(pageRows);
+			result.setTotalCnt(totalCnt);
+			
+			return result;		
+			
+		} // end admReportList
 		
 		
 		// 회원리스트 페이징

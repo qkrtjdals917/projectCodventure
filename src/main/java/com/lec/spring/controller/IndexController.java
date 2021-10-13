@@ -146,7 +146,8 @@ public class IndexController {
 	//(/deleteOk)
 	@PostMapping("/deleteOk")
 	public String deleteOk(MemberDTO dto) {		
-		System.out.println(MemberService.deleteMember(dto));
+		
+		System.out.println(MemberService.deleteMember(dto.getMember_uid()));
 			
 		return "redirect:/modacon/logout";	// 로그아웃 실행
 	}

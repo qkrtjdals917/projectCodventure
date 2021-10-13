@@ -6,7 +6,7 @@ function view_chk() {
     title: '정보 오류',
     text: '해당 글이 삭제됐거나 없습니다.'
   }).then((result) => {
-    history.back();
+    location.href = '../board';
   });
 };
 
@@ -41,11 +41,13 @@ function chkDelete() {
         $.ajax({
           url: '',
           type: 'DELETE',
-          data: {uid: board_uid},
+          data: {
+            uid: board_uid
+          },
           cache: false,
           success: function (data, status) {
             if (status == "success") {
-              
+
               if (data.status == "OK") {
                 Swal.fire({
                   title: '삭제 성공',
@@ -111,7 +113,7 @@ function chkUpdate() {
 }
 
 // 5. 추천 버튼
-function chkLike() {
+function chkLikeUp() {
   if (member_null) {
     not_Login_msg();
     return;
@@ -137,11 +139,48 @@ function chkLike() {
         },
         success: function () {
           likeCount();
+          likeChk();
         },
       })
     }
   });
 }
+
+// 추천취소
+function chkLikeDown(){
+  if (member_null) {
+    not_Login_msg();
+    return;
+  }
+
+  Swal.fire({
+    title: '추천 취소',
+    text: "해당 글을 추천 취소 하시겠습니까?",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '추천취소',
+    cancelButtonText: '취소'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "like",
+        type: "DELETE",
+        data: {
+          board_uid: board_uid,
+          member_uid: member_uid
+        },
+        success: function () {
+          likeCount();
+          likeChk();
+        },
+      })
+    }
+  });
+
+}
+
 // 추천수
 function likeCount() {
   $.ajax({
@@ -153,6 +192,26 @@ function likeCount() {
     success: function (count) {
       $("#likeCount").html(count);
     },
+  })
+}
+
+// 추천여부 확인, 추천버튼 변경
+function likeChk() {
+  $.ajax({
+    url: "likeChk",
+    type: "POST",
+    data: {
+      board_uid: board_uid
+    },
+    success: function (data) {
+      if (data == 1) {
+        $('#like_up_btn').hide();
+        $('#like_down_btn').show();
+      } else {
+        $('#like_up_btn').show();
+        $('#like_down_btn').hide();
+      }
+    }
   })
 }
 
@@ -228,4 +287,19 @@ function chkReport() {
 // 7. 댓글 토글
 function comment_toggle() {
   $('#comment_area').toggle();
+}
+
+// 8. view 페이지 진입시 아이디 확인해후 수정, 삭제 버튼등 조정
+function btn_toggle() {
+  if (board_mem_uid == member_uid) {
+    $('#update_btn').show();
+    $('#del_btn').show();
+    $('#report_btn').hide();
+  } else {
+    $('#update_btn').hide();
+    $('#del_btn').hide();
+    $('#report_btn').show();
+  }
+
+  likeChk();
 }

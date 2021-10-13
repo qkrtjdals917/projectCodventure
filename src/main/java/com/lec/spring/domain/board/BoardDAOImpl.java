@@ -91,6 +91,11 @@ public class BoardDAOImpl implements BoardDAO {
 		return mapper.likeCount(uid);
 	}
 
+	@Override
+	public int likeChk(int board_uid, int member_uid) {
+		return mapper.likeChk(board_uid, member_uid);
+	}
+
 	// 신고
 	@Override
 	public int report(Map<String, Object> param) {
@@ -141,5 +146,7 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<CoinDTO> selectCoinList () {
 		return mapper.selectCoinList();
 	}
+
+
 
 }

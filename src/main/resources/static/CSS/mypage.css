@@ -38,7 +38,7 @@
 }
 
 .contentC {
-	float: right;
+	float: left;
 	margin-top: 40px;
 }
 
@@ -49,6 +49,15 @@
 .contentC ul li {
 	margin-left: 10px; 
 	float: left;
+}
+
+@media (min-width: 954px) {
+    /* 큰 화면 전용 설정 */
+    .contentC {
+	float: right;
+	margin-top: 40px;
+}
+
 }
 
 .contentC button {
