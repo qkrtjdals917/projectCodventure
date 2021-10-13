@@ -212,7 +212,7 @@ function set_select_coin (coinNumber) {
 		// 값이 있으니까 그대로 
 	}
 	
-	if (!korbit_data[coinNumber]) {	// 데이터 있으면 { 오브젝트} 	없으면 "" empty 
+	if (!korbit_data[coinNumber] ) {	// 데이터 있으면 { 오브젝트} 	없으면 "" empty 
 		$('#korbit_last').html("");
 		$('#korbit_change').html("");
 		$('#korbit_changePercent').html("");
@@ -245,12 +245,26 @@ function set_select_coin (coinNumber) {
 
 }
 function set_select_all() {
+	//평균거래가 
 		
-    var table = "<tr><th>--</th><th>빗썸</th><th>업비트</th><th>코인원</th><th>코빗</th></tr>";
+    var table = "<tr><th>--</th><th>평균거래가</th><th>빗썸</th><th>업비트</th><th>코인원</th><th>코빗</th></tr>";
 	for (i = 0; i < 100; i++) {
-        table += "<tr>";
+ 		table += "<tr>";
+		
+		//bithumb_data[i]['closing_price'] +  
+		//(upbit_data[i]['trade_price']) + (coinone_data[i]['last']) + ( korbit_data[i]['last']);
+		//alert(avgCoin);
+		
+		// BTC 등 코인 이름
         table += "<td id>" + bithumb_coinlist[i] + "</td>";
-        table += "<td id>" + numberWithCommas(parseFloat( bithumb_data[i]['closing_price'])) + "</td>";
+
+
+
+		table += "<td>"+ numberWithCommas((avgcoin(i)).toFixed(0)) +"</td>";
+		
+		
+		// 빗썸 가격
+		table += "<td id>" + numberWithCommas(parseFloat( bithumb_data[i]['closing_price'])) + "</td>";
 		
 		//alert(JSON.stringify(upbit_data[i]));
 		
@@ -284,7 +298,29 @@ function set_select_all() {
 
 
 
-
+function avgcoin (coinNumber) {
+	var sum = 0;
+	var cntCoin = 0; 
+	// 먼저 빗썸 가격 더해줌 
+	sum += parseFloat( bithumb_data[i]['closing_price']);
+	cntCoin ++;
+	if (upbit_data[i]) {
+		sum += parseFloat( upbit_data[i]['trade_price'])
+		cntCoin++;	
+	}   
+	if (coinone_data[i]) {
+		sum += parseFloat( coinone_data[i]['last'])
+		cntCoin++;	
+	}
+	if (korbit_data[i]) {
+		sum += parseFloat(  korbit_data[i]['last'])
+		cntCoin++;	
+	}
+	   
+	
+	var avg = sum / cntCoin;
+	return avg;
+}
 
 
 // 빗썸 함수

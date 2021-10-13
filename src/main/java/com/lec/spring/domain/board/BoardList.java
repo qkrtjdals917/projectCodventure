@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BoardList {
+public class BoardList extends BoardResult{
 	@JsonProperty("data")
 	List<BoardDTO> list;
 }

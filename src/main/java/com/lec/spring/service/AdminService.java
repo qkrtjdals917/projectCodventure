@@ -96,14 +96,14 @@ public class AdminService {
 	}
 	// 정보 게시판 리스트 가져오기
 	public List<BoardDTO> admInfoList(){
-		return Bdao.selectInfo();
+		return Bdao.selectType("정보");
 	}
 	
 	// 자유 게시판 리스트 가져오기
 	public List<BoardDTO> admFreeList(){
-		return Bdao.selectFree();
+		return Bdao.selectType("자유");
 	}
-	
+
 	// 커뮤니티 게시글을 삭제한다
 	public int deleteByCmt(int uid) {
 		return Bdao.deleteUid(uid);

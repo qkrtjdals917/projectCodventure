@@ -57,16 +57,16 @@ public class BoardDAOImpl implements BoardDAO {
 		return mapper.selectNotice();
 	}
 
-	// 자유게시판 글 리스트
+	// Type 리스트
 	@Override
-	public List<BoardDTO> selectFree() {
-		return mapper.selectFree();
+	public List<BoardDTO> selectType(String type) {
+		return mapper.selectType(type);
 	}
-
-	// 정보게시판 글 리스트
+	
+	// Tag 리스트
 	@Override
-	public List<BoardDTO> selectInfo() {
-		return mapper.selectInfo();
+	public List<BoardDTO> selectTag(String tag) {
+		return mapper.selectTag(tag);
 	}
 
 	// 글 작성

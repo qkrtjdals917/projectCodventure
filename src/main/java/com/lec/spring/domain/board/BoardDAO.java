@@ -16,11 +16,11 @@ public interface BoardDAO {
 	// 공지글 list
 	public abstract List<BoardDTO> selectNotice();
 	
-	// 자유글 list
-	public abstract List<BoardDTO> selectFree();
+	// Type list
+	public abstract List<BoardDTO> selectType(String type);
 	
-	// 정보글 list
-	public abstract List<BoardDTO> selectInfo();
+	// Tag list
+	public abstract List<BoardDTO> selectTag(String tag);
 	
 	// 특정 글 하나 선택
 	public abstract List<BoardDTO> selectOne(int uid);

@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <%-- SweetAlert2 --%>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="${pageContext.request.contextPath }/JS/BoardScript/board.js"></script>
+    <script src="${pageContext.request.contextPath }/JS/BoardScript/view.js"></script>
 
     <body onload="view_chk()"></body>
   </c:when>
@@ -27,7 +27,7 @@
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/BoardTest.css">
       <%-- SweetAlert2 --%>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      <script src="${pageContext.request.contextPath }/JS/BoardScript/board.js"></script>
+      <script src="${pageContext.request.contextPath }/JS/BoardScript/view.js"></script>
     </head>
 
     <script type="text/javascript">
