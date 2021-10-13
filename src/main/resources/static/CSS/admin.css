@@ -61,32 +61,39 @@ table, th, td {
 	display: none;
 }
 #contentNotice {
-	height: 600px;
+	height: auto;
 	position: relative;
 	margin: 0 auto;
 	boarder: gray solid 1px;
 }
 
 #contentBoard {
-	height: 600px;
+	height: auto;
 	position: relative;
 	margin: 0 auto;
 	boarder: gray solid 1px;
 }
 
 #contentReport {
-	height: 700px;
+	height: auto;
 	position: relative;
 	margin: 0 auto;
 	boarder: gray solid 1px;
 }
 
 #contentMember {
-	height: 600px;
+	height: auto;
 	position: relative;
 	margin: 0 auto;
 	boarder: gray solid 1px;
 }
+
+/* table 영역 Container */
+#NoticeContainer {
+	height: auto;
+}
+
+
 
 .searchMember {
 	float: left;
