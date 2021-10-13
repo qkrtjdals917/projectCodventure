@@ -99,45 +99,47 @@ function type_toggle() {
     $('.free_sel').show();
     board_tag = $('#board_tag option:selected').val();
   }
-  pageload();
+	loadPage(page, "community")
 }
 
 // 4. 게시판 태그 토글
 function tag_toggle() {
   board_tag = $('#board_tag option:selected').val();
-  pageload();
+	loadPage(page, "community")
 }
 
+function logout_btn () {
+	Swal.fire({
+		icon: 'success',
+		title: '로그아웃되었습니다.'
+		}).then((result) => {
+			location.href="/modaconAdmin/logout";
+   			});
+}
 
 function loadPage(page, type){
-   
-   //alert(page + " 페이지 로딩");
-   if(type == 1) {
-      
-   }
-   $.ajax({
-      type : "GET",
-      url : "/modaconAdmin/" + type + "List/" + page + "/" + pageRows,
-      cache : false,
-      success : function(list, status){
-         if(status == "success"){
-
-            memberList(list, type);
-            //alert("목록 가져오기 성공:  뿌~~")
+	
+	if(type == 1) {
+		
+	}
+	$.ajax({
+		type : "GET",
+		url : "/modaconAdmin/" + type + "List/" + page + "/" + pageRows,
+		cache : false,
+		data: {
+	      type: board_type,
+	      tag: board_tag
+	    },
+		success : function(list, status){
+			if(status == "success"){
+	            memberList(list, type);
+	            //alert("목록 가져오기 성공:  뿌~~")
          }
       }
    });    
    
    
 } // end loadPage()
-function logout_btn () {
-   Swal.fire({
-      icon: 'success',
-      title: '로그아웃되었습니다.'
-      }).then((result) => {
-         location.href="/modaconAdmin/logout";
-            });
-}
 
 function memberList (jsonObj , type) {
    
