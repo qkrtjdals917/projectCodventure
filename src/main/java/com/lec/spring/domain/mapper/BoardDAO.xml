@@ -67,12 +67,25 @@
 		]]>
 	</select>
 	
+	
 	<!-- 글작성 로그인 연계-->
 	<insert id="insert" flushCache="true" parameterType="com.lec.spring.domain.board.BoardDTO"
 	keyProperty="board_uid" keyColumn="board_uid" useGeneratedKeys="true">
 		INSERT INTO mc_board (type, subject, tag, content, member_uid)
 		VALUES (#{type}, #{subject}, #{tag, jdbcType=VARCHAR}, #{content}, #{member_uid})
 	</insert>
+	
+	<!-- 글삭제 -->
+	<delete id="deleteUid" flushCache="true">
+		DELETE FROM mc_board WHERE board_uid = #{board_uid}
+	</delete>
+
+	
+	<!-- 글 수정 -->
+	<update id="update" flushCache="true" parameterType="com.lec.spring.domain.board.BoardDTO">
+		UPDATE mc_board SET type = #{type}, tag = #{tag, jdbcType=VARCHAR}, subject = #{subject}, content = #{content}
+		WHERE board_uid = #{board_uid}
+	</update>
 	
 	<!-- 추천 하기 -->
 	<insert id="likeUp" flushCache="true">
@@ -90,6 +103,11 @@
 	<!-- 추천수 카운트 -->
 	<select id="likeCount" resultType="int">
 		SELECT count(member_uid) FROM mc_like WHERE board_uid=#{board_uid}
+	</select>
+	
+	<!-- 추천여부 확인 -->
+	<select id="likeChk" resultType="int">
+		SELECT count(*) FROM mc_like WHERE board_uid = #{board_uid} AND member_uid = #{member_uid}
 	</select>
 	
 	<!-- 신고 -->
@@ -194,18 +212,6 @@
 	<!-- 게시글을 본다 -->
 	
 	
-	
-	<!-- 글삭제 -->
-	<delete id="deleteUid" flushCache="true">
-		DELETE FROM mc_board WHERE board_uid = #{board_uid}
-	</delete>
-
-	
-	<!-- 글 수정 -->
-	<update id="update" flushCache="true" parameterType="com.lec.spring.domain.board.BoardDTO">
-		UPDATE mc_board SET type = #{type}, tag = #{tag, jdbcType=VARCHAR}, subject = #{subject}, content = #{content}
-		WHERE board_uid = #{board_uid}
-	</update>
 	
 	<!-- Coin List 가져오기 -->
 	<select id="selectCoinList" resultType="com.lec.spring.domain.coin.CoinDTO">

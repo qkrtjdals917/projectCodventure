@@ -146,7 +146,7 @@ ALTER TABLE mc_like
 	ADD FOREIGN KEY (member_uid)
 	REFERENCES mc_member (member_uid)
 	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 ;
 
 
@@ -181,6 +181,9 @@ UPDATE mc_member SET authority = 2 WHERE email = 'root99@email.com';
 	SET authority = 2
 	WHERE member_uid = 61;
 
+UPDATE mc_member 
+SET authority = 2
+WHERE member_uid = 52;
 
 -- 글 조회수 증가
 UPDATE mc_board SET count = count + 1 WHERE board_uid = 1;
@@ -238,6 +241,8 @@ DESC mc_board ;
 -- 추천
 SELECT member_uid FROM mc_like WHERE board_uid = 226;
 SELECT member_uid FROM mc_like WHERE board_uid = 226 AND member_uid = 1;
+
+SELECT count(*) FROM mc_like WHERE board_uid = 196 AND member_uid=52;
 
 INSERT INTO mc_like (board_uid, member_uid)
 SELECT 226, 1 FROM DUAL WHERE NOT EXISTS (SELECT board_uid FROM mc_like WHERE board_uid = 226 AND member_uid = 1);
