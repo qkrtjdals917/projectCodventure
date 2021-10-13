@@ -6,23 +6,14 @@
 	font-family: 'Do Hyeon', sans-serif;
 	font-size: 25px;
 }
-
 table {
 	width: 100%;
 }
-
 table, th, td {
-	position: relative;
-	border: 1px solid black;
+	border-bottom: 1px solid black;
+	text-align: center;
 	border-collapse: collapse;
-}
-
-.ntc {
-	border: none;
-	color: white;
-	padding: 14px 28px;
-	font-size: 16px;
-	cursor: pointer;
+	font-size: 18px;
 }
 
 .success {background-color: #0000a0;}
@@ -51,41 +42,44 @@ table, th, td {
 	top: 0px;
 }
 
-#contentMain {
-	margin-top: 80px;
-	padding: 15px;
-}
 
 #adm_content {
-	padding: 15px;
 	display: none;
-}
-#contentNotice {
 	height: auto;
 	position: relative;
-	margin: 0 auto;
+	margin: 70px auto;
 	boarder: gray solid 1px;
-}
-
-#contentBoard {
-	height: auto;
-	position: relative;
-	margin: 0 auto;
-	boarder: gray solid 1px;
+	padding: 40px 50px;
 }
 
-#contentReport {
-	height: auto;
-	position: relative;
-	margin: 0 auto;
-	boarder: gray solid 1px;
+#adm_title {
+	color: black;
 }
 
-#contentMember {
-	height: auto;
-	position: relative;
-	margin: 0 auto;
-	boarder: gray solid 1px;
+#pageinfo {
+	margin: 20px 0;
+	float: right;
+}
+#pageRows {
+	margin: 20px 0;
+	float: left;
+}
+
+td {
+	padding: 10px 0;
+}
+
+th {
+	padding: 10px 0;
+	font-size:22px;
+}
+
+thead {
+	background-color: rgba(115, 103, 240, 0.4);
+}
+
+tbody {
+	background-color: rgba(218, 218, 218, 0.4);
 }
 
 /* table 영역 Container */

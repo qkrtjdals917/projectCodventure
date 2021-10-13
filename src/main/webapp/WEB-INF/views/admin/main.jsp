@@ -128,14 +128,16 @@
          <div id="contentReport">
          
          <table>
-            <tr>
+        	<thead>
                <th>글번호</th>
                <th>'log'제목</th>
                <th>작성자</th>
                <th>신고자</th>
                <th>신고취하</th>
                <th>DELETE</th>
-            </tr>
+            </thead>
+             <tbody>
+             </tbody>
             
             <c:choose>
                <c:when test="#"></c:when>
@@ -171,14 +173,12 @@
                   <div id="memberContainer">
                   <table>
                      <thead>
-                        <tr>
                            <th>uid</th>
                            <th>이메일</th>
                            <th>닉네임</th>
                            <th>전화번호</th>
                            <th>권한</th>
                            <th>상태</th>
-                        </tr>
                      </thead>
                      <tbody>
                      </tbody>
