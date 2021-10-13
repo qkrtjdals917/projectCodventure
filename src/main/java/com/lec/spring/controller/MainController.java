@@ -194,14 +194,53 @@ public class MainController {
 		MemberDTO m_dto = loginCheck(model, authentication);
 		BoardList list = new BoardList();
 		StringBuffer message = new StringBuffer();
+		String status = "FAIL";
+		int count = 0;
 		
 		// 태그의 문자열이 빈 문자열이면 null 값으로 처리
 		if (dto.getTag().isEmpty()) {
 			dto.setTag(null);
 		}
+				
+		String m_dto_uid = String.valueOf(m_dto.getMember_uid()).trim();
 		
-		model.addAttribute("result", userService.write(dto));
-		model.addAttribute("dto", dto);
+		if (m_dto_uid.isEmpty()) {
+			message.append("로그인 해주세요.");
+			list.setMessage(message.toString());
+			list.setStatus(status);
+			return list;
+		}
+		
+		if (dto.getSubject().trim().isEmpty()) {
+			message.append("제목을 입력해주세요.");
+			list.setMessage(message.toString());
+			list.setStatus(status);
+			return list;
+		}
+		
+		if (dto.getContent().trim().isEmpty()) {
+			message.append("내용을 입력해주세요.");
+			list.setMessage(message.toString());
+			list.setStatus(status);
+			return list;
+		}
+		
+		try {
+			count =	userService.write(dto);
+			if(count == 0) {
+				message.append("트랜잭션 실패");
+			} else {
+				status = "OK";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			message.append("트랜잭션 에러: " + e.getMessage());
+		}
+		
+		list.setUid(dto.getBoard_uid());
+		list.setCount(count);
+		list.setMessage(message.toString());
+		list.setStatus(status);
 		return list;
 	}
 	
