@@ -33,17 +33,13 @@ $(document).ready(function() {
 		saveRoute("main")
 		viewPage("main")
 	});
-});
-
-
-
-
-$(document).ready(function() {
+	
 	// 글작성 버튼 누르면 팝업
 	$("#ntcWrite").click(function(){
 		setPopup("write");    // 글 작성 용으로 모달 팝업 셋업
 		$("#noticeWrite").show();
 	});
+
 	
 	// 모달 대화상자 close 버튼 누르면
 	$(".modal .close").click(function(){
@@ -357,7 +353,7 @@ function setPopup(mode) {
 		
 		$("#noticeWrite input[name='subject']").attr("readonly", false);
 		$("#noticeWrite input[name='subject']").css("border", "1px solid #ccc");
-		$("#noticeWrite input[name='member_uid']").attr("disabled", true);
+		$("#noticeWrite input[name='member_uid']").attr("readonly", true);
 		$("#noticeWrite input[name='member_uid']").css("border", "1px solid #ccc");
 		$("#noticeWrite textarea[name='content']").attr("readonly", false);
 		$("#noticeWrite textarea[name='content']").css("border", "1px solid #ccc");
@@ -415,7 +411,7 @@ function setPopup(mode) {
 function delete_by_uid (uid, type) {
 	alert(uid);
 	 //alert(type);
-if(!confirm(uid + "글을 삭제하시겠습니까?")) return false;
+	if(!confirm(uid + "글을 삭제하시겠습니까?")) return false;
 	
 	// DELETE 방식
 	$.ajax({
