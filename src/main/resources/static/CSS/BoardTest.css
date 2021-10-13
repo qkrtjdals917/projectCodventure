@@ -5,7 +5,7 @@ table {
 }
 
 table, th, td {
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #c0c0c0;
 	text-align: center;
 	border-collapse: collapse;
 	font-size: 18px;
@@ -44,12 +44,12 @@ th {
 }
 
 thead {
-	background-color: rgba(115, 103, 240, 0.1);
+	background-color: rgba(115, 103, 240, 0.4);
 }
 
 
 tbody {
-	background-color: rgba(218, 218, 218, 0.9);
+	background-color: #f2f2f2;
 }
 
 #middle_menu button {
