@@ -6,7 +6,7 @@ function view_chk() {
     title: '정보 오류',
     text: '해당 글이 삭제됐거나 없습니다.'
   }).then((result) => {
-    location.href='../board';
+    location.href = '../board';
   });
 };
 
@@ -41,11 +41,13 @@ function chkDelete() {
         $.ajax({
           url: '',
           type: 'DELETE',
-          data: {uid: board_uid},
+          data: {
+            uid: board_uid
+          },
           cache: false,
           success: function (data, status) {
             if (status == "success") {
-              
+
               if (data.status == "OK") {
                 Swal.fire({
                   title: '삭제 성공',

@@ -15,7 +15,7 @@
   <script src="${pageContext.request.contextPath }/JS/BoardScript/write.js"></script>
 </head>
 
-<body>
+<body onload="type_toggle()">
   <div class="header">
     <%@ include file="../../include/header.jsp"%>
   </div>
@@ -26,7 +26,7 @@
     <input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid }">
     <div name="selectMenu">
       <select id="board_type" name="type" onchange="type_toggle()">
-        <option id="infoBoard_type" value="정보">정보게시판</option>
+        <option id="infoBoard_type" value="정보" selected>정보게시판</option>
         <option id="freeBoard_type" value="자유">자유게시판</option>
       </select>
 
