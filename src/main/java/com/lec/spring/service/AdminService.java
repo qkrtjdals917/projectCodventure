@@ -156,7 +156,7 @@ public class AdminService {
 		return Mdao.selectByUid(member_uid);
 	}
 	
-	
+	// 회원 리스트 가져오기 (페이징)
 	public List<MemberDTO> admMbList(){
 		return Mdao.selectAll();
 	}
