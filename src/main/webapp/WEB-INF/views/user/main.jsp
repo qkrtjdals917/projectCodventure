@@ -120,26 +120,18 @@
 	    <br>
 	    <div class="contentC">
 	       	<table border="">
-	       		<tr>
-	       			<td>최근공지</td>
-	       		</tr>
-	       		<tr>
-	       			<td>공지1</td>
-	                <td>내용 ~~~~~~~~~</td>
-	       		</tr>
-	       		<tr>
-	       			<td>공지2</td>
-	                <td>내용 ~~~~~~~~~</td>
-	       		</tr>
-	       		<tr>
-	       			<td>공지3</td>
-	                <td>내용 ~~~~~~~~~</td>
-	       		</tr>
+	       		<thead>
+	       			<th>최근공지</th>
+	       			<th><a href="/modacon/notice">더보기</a>
+	       		</thead>
+	       		<tbody>
+	       		</tbody>
 	       	</table>
 	    </div>
 <script>
 var slideIndex = 1;
 showSlides(slideIndex);
+showNtc();
 
 function plusSlides(n) {
 	showSlides(slideIndex += n);	
@@ -168,7 +160,31 @@ function showSlides(n) {
 	dots[slideIndex-1].className += " active";
 }
 
+function showNtc () {
+	alert("테스트");
 	
+	$.ajax({
+	    url: '/modacon/mainNtc',
+	    type: 'GET',
+	    cache: false,
+	    success: function (data) {
+	    	
+	    	var result = "";
+	    	
+	    	for ( var i = 0 ; i < 5 ; i++) {
+	    		
+	    		result += "<tr><td>" + data[i]['subject'] + "</td>";
+	    		result += "<td>" + data[i]['regDate'] + "</td></tr>";
+	    		
+	    	}
+	    	alert(result);
+	    	$(".contentC tbody").html(result);
+	    	
+	    }
+	  });
+	
+}
+
 </script>
 
 	    <div class="footer">

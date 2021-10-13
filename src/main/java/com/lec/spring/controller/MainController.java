@@ -94,7 +94,17 @@ public class MainController {
 		return "user/main";
 	}
 
-
+	@RequestMapping("/mainNtc")
+	@ResponseBody
+	public List<BoardDTO> mainNotice() {
+		List<BoardDTO> list = null;
+		
+		list = userService.selectNotice();
+		list = list.subList(0, 5);
+		return list;
+	}
+	
+	
 	// 마이페이지
 	@RequestMapping("/mypage")
 	public String hy_myPage(Model model, Authentication authentication) {

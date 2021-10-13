@@ -59,7 +59,6 @@
          </div>
       </div>
 
-<<<<<<< HEAD
 	</header><%-- header 영역끝 --%>
 
 		<div id="adm_content">
