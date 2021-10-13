@@ -1,6 +1,7 @@
 // list
 // 전역변수
 var board_type = '전체';
+var board_tag = '전체';
 
 // 1. 시작함수
 $().ready(function () {
@@ -14,7 +15,8 @@ function pageload() {
     type: 'POST',
     cache: false,
     data: {
-      type: board_type
+      type: board_type,
+      tag: board_tag
     },
     success: function (data) {
       pageset(data);
@@ -30,7 +32,10 @@ function pageset(data) {
     viewLink = 'board/view?uid='.concat(items[i].board_uid);
     result += "<tr>\n";
     result += "<td>" + items[i].board_uid + "</td>\n";
-    result += "<td><a href='" + viewLink + "'>[" + items[i].tag + "]" + items[i].subject + "</a></td>\n";
+    if (items[i].tag == null) {
+      result += "<td><a href='" + viewLink + "'>" + items[i].subject + "</a></td>\n";
+    } else {
+    result += "<td><a href='" + viewLink + "'>[" + items[i].tag + "]" + items[i].subject + "</a></td>\n";}
     result += "<td>" + items[i].nickname + "</td>\n";
     result += "<td>" + items[i].regDate + "</td>\n";
     result += "<td>" + items[i].likeCnt + "</td>\n";
@@ -40,23 +45,30 @@ function pageset(data) {
   $("#tbody").html(result);
 }
 
-// 3. 메뉴 토글
+// 3. 게시판 타입 토글
 function type_toggle() {
   board_type = $('#board_type option:selected').val();
   if (board_type == '정보') {
-    $('#board_tag').val("").prop("selected", true);
+    $('#board_tag').val("전체").prop("selected", true);
     $('.info_sel').show();
     $('.free_sel').hide();
-    pageload();
+    board_tag = $('#board_tag option:selected').val();
   } else if (board_type == '자유') {
-    $('#board_tag').val("").prop("selected", true);
+    $('#board_tag').val("전체").prop("selected", true);
     $('.info_sel').hide();
     $('.free_sel').show();
-    pageload();
+    board_tag = $('#board_tag option:selected').val();
   } else if (board_type == '전체') {
-    $('#board_tag').val("").prop("selected", true);
+    $('#board_tag').val("전체").prop("selected", true);
     $('.info_sel').show();
     $('.free_sel').show();
-    pageload();
+    board_tag = $('#board_tag option:selected').val();
   }
+  pageload();
+}
+
+// 4. 게시판 태그 토글
+function tag_toggle() {
+  board_tag = $('#board_tag option:selected').val();
+  pageload();
 }

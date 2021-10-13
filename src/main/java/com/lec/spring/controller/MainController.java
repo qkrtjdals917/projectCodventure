@@ -144,19 +144,27 @@ public class MainController {
 	// 게시판 변경
 	@PostMapping("/board")
 	@ResponseBody
-	public BoardList infoBoard(String type, Model model, Authentication authentication) {
+	public BoardList infoBoard(String type, String tag, Model model, Authentication authentication) {
 		loginCheck(model, authentication);
 		
 		List<BoardDTO> list = null;
 		
-		if (type.equals("전체")) {
-			list = userService.communityList();
-		} else if (type.equals("정보")) {
-			list = userService.infoList();
-		} else if (type.equals("자유")) {
-			list = userService.freeList();
+		switch(type) {
+		case "전체":
+			if(tag.equals("전체")) {
+				list = userService.communityList();
+			} else {
+				list = userService.tagList(tag);
+			}
+			break;
+		default:
+			if(tag.equals("전체")) {
+				list = userService.typeList(type);
+			} else {
+				list = userService.tagList(tag);
+			}
 		}
-				
+		
 		BoardList result = new BoardList();
 		result.setList(list);
 		return result;
