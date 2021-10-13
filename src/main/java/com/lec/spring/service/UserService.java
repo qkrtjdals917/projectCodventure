@@ -94,4 +94,10 @@ public class UserService {
 		return dao.selectCoinList();
 	}
 	
+	// 공지사항 가져오기
+	public List<BoardDTO> selectNotice () {
+		return dao.selectNotice();
+	}
+	
+	
 }

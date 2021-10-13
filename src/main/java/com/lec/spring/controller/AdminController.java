@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lec.spring.config.PrincipalDetails;
 import com.lec.spring.domain.ajax.ModaconAjaxList;
 import com.lec.spring.domain.ajax.ModaconAjaxResult;
 import com.lec.spring.domain.board.BoardDTO;
+import com.lec.spring.domain.member.MemberDTO;
 import com.lec.spring.domain.member.MemberVO;
 import com.lec.spring.domain.report.ReportDTO;
 import com.lec.spring.service.AdminService;
@@ -35,8 +38,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping({"", "/"})
-	public String adminMain(HttpServletRequest request , Model model) {
+	public String adminMain(HttpServletRequest request , Model model
+			, Authentication authentication) {
+		
 		HttpSession session = request.getSession();
+		MemberDTO dto = new MemberDTO();
+		
 		if (session != null) {
             String redirectUrl = (String) session.getAttribute("admPrevPage");
             if (redirectUrl != null) {
@@ -47,6 +54,15 @@ public class AdminController {
         } else {
         	model.addAttribute("admPrevPage", "main");
         }
+		if (authentication != null) {
+			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+
+			dto.setEmail(userDetails.getUsername());
+			dto.setNickname(userDetails.getNickname());
+			dto.setMember_uid(userDetails.getUid());
+
+			model.addAttribute("member", dto);
+		}
 		
 		return "admin/main";
 	}
@@ -299,19 +315,14 @@ public class AdminController {
 			return count;
 		}
 		
-		
-		
-		
-		
-		
 		// 커뮤니티 페이징
 		@GetMapping("/communityList/{page}/{pageRows}")
 		@ResponseBody
 		public ModaconAjaxList<BoardDTO> admCommunityList(
 				@PathVariable int page,
-				@PathVariable int pageRows
+				@PathVariable int pageRows,
+				String type, String tag
 				) {
-			
 			List<BoardDTO> list = null;
 			
 			// message 
@@ -325,27 +336,83 @@ public class AdminController {
 			int totalPage = 0; // 총 몇 '페이지' 분량인가? 
 			int totalCnt = 0;  // 글은 총 몇개인가?
 			
-			
-			try {			
-				// 글 전체 개수 구하기
-				totalCnt = adminService.countCmt();
-				
-				// 총 몇페이지 분량?
-				totalPage = (int)Math.ceil(totalCnt / (double)pageRows);
-				
-				// from: 몇번째 row 부터?
-				int from = (page - 1) * pageRows;  // MySQL 의 Limit 는 0-base 
-				
-				list = adminService.cmtUpdateList(from, pageRows);
-				
-				if(list == null) {
-					message.append("[리스트할 데이터가 없습니다]");
+			switch(type) {
+			case "전체":
+				if(tag.equals("전체")) {
+					try {			
+						// 글 전체 개수 구하기
+						totalCnt = adminService.countCmt();
+						
+						// 총 몇페이지 분량?
+						totalPage = (int)Math.ceil(totalCnt / (double)pageRows);
+						
+						// from: 몇번째 row 부터?
+						int from = (page - 1) * pageRows;  // MySQL 의 Limit 는 0-base 
+						
+						list = adminService.cmtUpdateList(from, pageRows);
+						
+						if(list == null) {
+							message.append("[리스트할 데이터가 없습니다]");
+						} else {
+							status = "OK";
+						}
+					} catch(Exception e) {
+						e.printStackTrace();
+						message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+					}
 				} else {
-					status = "OK";
+					list = adminService.tagList(tag);
+					totalCnt = list.size();
+					totalPage = (int)Math.ceil(totalCnt / (double)pageRows);
+					int from = (page - 1) * pageRows;
+					if((from + pageRows) > list.size() ) {
+						list = list.subList(from, list.size());						
+					}
+					else {				
+						list = list.subList(from, from +pageRows);
+					}
+					if(list == null) {
+						message.append("[리스트할 데이터가 없습니다]");
+					} else {
+						status = "OK";
+					}
 				}
-			} catch(Exception e) {
-				e.printStackTrace();
-				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+				break;
+			default:
+				if(tag.equals("전체")) {
+					list = adminService.typeList(type);
+					totalCnt = list.size();
+					totalPage = (int)Math.ceil(totalCnt / (double)pageRows);
+					int from = (page - 1) * pageRows;
+					if((from + pageRows) > list.size() ) {
+						list = list.subList(from, list.size());						
+					}
+					else {				
+						list = list.subList(from, from +pageRows);
+					}
+					if(list == null) {
+						message.append("[리스트할 데이터가 없습니다]");
+					} else {
+						status = "OK";
+					}
+					
+				} else {
+					list = adminService.tagList(tag);
+					totalCnt = list.size();
+					totalPage = (int)Math.ceil(totalCnt / (double)pageRows);
+					int from = (page - 1) * pageRows;
+					if((from + pageRows) > list.size() ) {
+						list = list.subList(from, list.size());						
+					}
+					else {				
+						list = list.subList(from, from +pageRows);
+					}
+					if(list == null) {
+						message.append("[리스트할 데이터가 없습니다]");
+					} else {
+						status = "OK";
+					}
+				}
 			}
 			
 			ModaconAjaxList<BoardDTO> result = new ModaconAjaxList<BoardDTO>();

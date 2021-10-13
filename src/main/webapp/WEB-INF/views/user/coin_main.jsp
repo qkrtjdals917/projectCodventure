@@ -20,6 +20,7 @@
 
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/coin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 	<script src="${pageContext.request.contextPath }/JS/selectCoin.js"></script>
 </head>
 
@@ -148,7 +149,7 @@
 			    <table border=1>
 			        <tr>
 			            <th>거래소</th>
-			            <td>시세</td>
+			            <td>시세(원화)</td>
 			            <td>변동(24h)</td>
 			            <td>변동률(24h)</td>
 			            <td>거래량(개)</td>
@@ -189,7 +190,10 @@
 			    </table>
 			</div>
 		</div>
-		
+		<div id="bar_div">
+		<canvas id="bar-chart" width="300" height="230"></canvas>
+		</div>
+		<button id="delData">데이터삭제</button>
 		
 		<div class="footer">
 	    	<%@ include file="../include/footer.jsp"%>

@@ -88,6 +88,14 @@ public class AdminService {
 		return Bdao.selectCommunity();
 	}
 	
+	public List<BoardDTO> typeList(String type){
+		return Bdao.selectType(type);
+	}
+	
+	public List<BoardDTO> tagList(String tag){
+		return Bdao.selectTag(tag);
+	}
+	
 	// 커뮤티니 게시판 글의 개수를 카운트해서 가져온다.
 	public int countCmt() {
 		return Bdao.countAll();

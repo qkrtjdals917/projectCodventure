@@ -11,15 +11,32 @@
 }
 
 table {
-	width: 100%;
-	border-collapse: collapse;
-	border: 1px solid black;
+
 }
 
 /* main.jsp */
 .contentA { 
     margin : 0 auto;
 }
+
+td {
+	padding: 10px 0;
+}
+
+th {
+	padding: 10px 0;
+	font-size: 22px;
+}
+
+thead {
+	background-color: rgba(115, 103, 240, 0.4);
+}
+
+
+tbody {
+	background-color: rgba(218, 218, 218, 0.4);
+}
+
 
 img {
 	width: 100%;
@@ -28,7 +45,8 @@ img {
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
+	width: 70%;
+
   position: relative;
   margin: auto;
 }
@@ -36,6 +54,15 @@ img {
 /* Hide the images by default */
 .mySlides {
   display: none;
+}
+.content_table {
+	text-align: center;
+	display: flex;
+  justify-content: center;
+}
+
+.content_table table {
+	width: 70%;
 }
 
 /* Next & previous buttons */
@@ -46,7 +73,7 @@ img {
   width: auto;
   margin-top: -22px;
   padding: 16px;
-  color: white;
+  color: gray;
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
@@ -67,11 +94,11 @@ img {
 
 /* Caption text */
 .text {
-  color: #f2f2f2;
-  font-size: 15px;
+  color: #000;
+  font-size: 34px;
   padding: 8px 12px;
   position: absolute;
-  bottom: 8px;
+	bottom: -50px;
   width: 100%;
   text-align: center;
 }
@@ -103,6 +130,7 @@ img {
 
 /* Fading animation */
 .fade {
+
   -webkit-animation-name: fade;
   -webkit-animation-duration: 1.5s;
   animation-name: fade;
@@ -118,3 +146,14 @@ img {
   from {opacity: .4}
   to {opacity: 1}
 }
+
+.contentC {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+}
+.Cheader {
+	display: flex;
+}
+
+

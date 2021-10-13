@@ -77,30 +77,30 @@
 
 					
 <div class="comment">					
-<div class="commentTitle">
-    <form id="commentListForm" name="commentListForm" method="post">
-    	<div>
-    		<span><strong>Comments</strong></span> <span id="cCnt"></span>
-		</div>
-        <div id="commentList">
+	<div class="commentTitle">
+	    <form id="commentListForm" name="commentListForm" method="post">
+	    	<div>
+	    		<span><strong>Comments</strong></span> <span id="cCnt"></span>
+			</div>
+	        <div id="commentList">
+	
+	        </div>
+	        
+	    </form>
+	</div>
 
-        </div>
-        
-    </form>
-</div>
-
-<div class="commentArea">
-    <form id="commentForm" name="commentForm" method="post">
-        <div>
-			<textarea id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
-			<br>
-			<button type="button" onClick="add_comment(${list[0].board_uid})" id="comment_btn">등록</button>
-        </div>
-        <!--  <input type="hidden" id="b_code" name="b_code" value="${result.code }" />    -->     
-    	<div class="clearAll"></div>
-    </form>
-
-</div>
+	<div class="commentArea">
+	    <form id="commentForm" name="commentForm" method="post">
+	        <div>
+				<textarea id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
+				<br>
+				<button type="button" onClick="add_comment(${list[0].board_uid})" id="comment_btn">등록</button>
+	        </div>
+	        <!--  <input type="hidden" id="b_code" name="b_code" value="${result.code }" />    -->     
+	    	<div class="clearAll"></div>
+	    </form>
+	
+	</div>
 </div>
  
 </body>

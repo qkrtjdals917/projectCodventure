@@ -30,7 +30,6 @@
 					<div class="numbertext">1 / 5</div>
 					<div class="content_table">
 						<table>
-							<tr><td>BTC</td></tr>
 							<tr>
 								<td>거래소명</td>
 								<td>코인시세</td>
@@ -40,14 +39,13 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="text">Caption Text</div>
+					<div class="text">BTC</div>
 				</div>
 				
 				<div class="mySlides fade">
 					<div class="numbertext">2 / 5</div>
 					<div class="content_table">
 						<table>
-							<tr><td>ETH</td></tr>
 							<tr>
 								<td>거래소명</td>
 								<td>코인시세</td>
@@ -55,14 +53,13 @@
 							<tbody id="main_1"></tbody>
 						</table>
 					</div>
-					<div class="text">Caption Two</div>
+					<div class="text">ETH</div>
 				</div>
 				
 				<div class="mySlides fade">
 					<div class="numbertext">3 / 5</div>
 					<div class="content_table">
 						<table>
-							<tr><td>LTC</td></tr>
 							<tr>
 								<td>거래소명</td>
 								<td>코인시세</td>
@@ -70,14 +67,13 @@
 							<tbody id="main_2"></tbody>
 						</table>
 					</div>
-					<div class="text">Caption Three</div>
+					<div class="text">LTC</div>
 				</div>
 				
 				<div class="mySlides fade">
 					<div class="numbertext">4 / 5</div>
 					<div class="content_table">
 						<table>
-							<tr><td>ETC</td></tr>
 							<tr>
 								<td>거래소명</td>
 								<td>코인시세</td>
@@ -85,14 +81,13 @@
 							<tbody id="main_3"></tbody>
 						</table>
 					</div>
-					<div class="text">Caption Three</div>
+					<div class="text">ETC</div>
 				</div>
 				
 				<div class="mySlides fade">
 					<div class="numbertext">5 / 5</div>
 					<div class="content_table">
 						<table>
-							<tr><td>XRP</td></tr>
 							<tr>
 								<td>거래소명</td>
 								<td>코인시세</td>
@@ -100,7 +95,7 @@
 							<tbody id="main_4"></tbody>
 						</table>
 					</div>
-					<div class="text">Caption Three</div>
+					<div class="text">XRP</div>
 				</div>
 				<!-- Next and previous buttons -->
 				<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -119,27 +114,23 @@
 	    </div>
 	    <br>
 	    <div class="contentC">
+	    	<div class="Cheader">
+		    	<h2>공지 사항 </h2>
+		    	<a href="/modacon/notice">더보기</a>
+	    	</div>
 	       	<table border="">
-	       		<tr>
-	       			<td>최근공지</td>
-	       		</tr>
-	       		<tr>
-	       			<td>공지1</td>
-	                <td>내용 ~~~~~~~~~</td>
-	       		</tr>
-	       		<tr>
-	       			<td>공지2</td>
-	                <td>내용 ~~~~~~~~~</td>
-	       		</tr>
-	       		<tr>
-	       			<td>공지3</td>
-	                <td>내용 ~~~~~~~~~</td>
-	       		</tr>
+	       		<thead>
+	       			<th>최근공지</th>
+	       			<th>작성일</th>
+	       		</thead>
+	       		<tbody>
+	       		</tbody>
 	       	</table>
 	    </div>
 <script>
 var slideIndex = 1;
 showSlides(slideIndex);
+showNtc();
 
 function plusSlides(n) {
 	showSlides(slideIndex += n);	
@@ -168,7 +159,29 @@ function showSlides(n) {
 	dots[slideIndex-1].className += " active";
 }
 
+function showNtc () {
 	
+	$.ajax({
+	    url: '/modacon/mainNtc',
+	    type: 'GET',
+	    cache: false,
+	    success: function (data) {
+	    	
+	    	var result = "";
+	    	
+	    	for ( var i = 0 ; i < 5 ; i++) {
+	    		
+	    		result += "<tr><td>" + data[i]['subject'] + "</td>";
+	    		result += "<td>" + data[i]['regDate'] + "</td></tr>";
+	    		
+	    	}
+	    	$(".contentC tbody").html(result);
+	    	
+	    }
+	  });
+	
+}
+
 </script>
 
 	    <div class="footer">
