@@ -99,7 +99,6 @@ function loadPage(page, type){
 	
 } // end loadPage()
 function logout_btn () {
-	alert("동작함?");
 	Swal.fire({
 		icon: 'success',
 		title: '로그아웃되었습니다.'
@@ -427,7 +426,8 @@ function delete_by_uid (uid, type) {
 		data : "uid=" +uid,
 		cache : false,
 		success : function (data) {
-			
+			alert(data + " 개의 데이터가 삭제되었습니다!");
+			location.reload();
 		}
 	
 	});
