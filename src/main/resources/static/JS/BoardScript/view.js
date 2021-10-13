@@ -52,7 +52,7 @@ function chkDelete() {
                   text: '해당글을 삭제했습니다.',
                   icon: 'success',
                   preConfirm: () => {
-                    location.href = './';
+                    location.href = '../board';
                   }
                 });
               } else {

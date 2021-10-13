@@ -29,7 +29,7 @@ function pageset(data) {
   var items = data.data;
 
   for (var i = 0; i < items.length; i++) {
-    viewLink = 'view?uid='.concat(items[i].board_uid);
+    viewLink = 'board/view?uid='.concat(items[i].board_uid);
     result += "<tr>\n";
     result += "<td>" + items[i].board_uid + "</td>\n";
     if (items[i].tag == null) {

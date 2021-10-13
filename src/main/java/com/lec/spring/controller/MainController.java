@@ -180,17 +180,20 @@ public class MainController {
 		return "user/board/view";
 	}
 
-	// 게시판 글 작성
+	// 글작성 뷰
 	@RequestMapping("/board/write")
 	public String write(Model model, Authentication authentication) {
 		loginCheck(model, authentication);
 		return "user/board/write";
 	}
 	
-	// 게시판 글 작성 완료
-	@PostMapping("/board/writeOk")
-	public String writeOk(BoardDTO dto, Model model, Authentication authentication) {
-		loginCheck(model, authentication);
+	// 게시판 글 작성
+	@PostMapping("/board/write")
+	@ResponseBody
+	public BoardList writeOk(BoardDTO dto, Model model, Authentication authentication) {
+		MemberDTO m_dto = loginCheck(model, authentication);
+		BoardList list = new BoardList();
+		StringBuffer message = new StringBuffer();
 		
 		// 태그의 문자열이 빈 문자열이면 null 값으로 처리
 		if (dto.getTag().isEmpty()) {
@@ -199,7 +202,7 @@ public class MainController {
 		
 		model.addAttribute("result", userService.write(dto));
 		model.addAttribute("dto", dto);
-		return "user/board/writeOk";
+		return list;
 	}
 	
 	// 게시글 삭제
