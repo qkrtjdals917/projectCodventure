@@ -295,19 +295,14 @@ public class AdminController {
 			return count;
 		}
 		
-		
-		
-		
-		
-		
 		// 커뮤니티 페이징
 		@GetMapping("/communityList/{page}/{pageRows}")
 		@ResponseBody
 		public ModaconAjaxList<BoardDTO> admCommunityList(
 				@PathVariable int page,
-				@PathVariable int pageRows
+				@PathVariable int pageRows,
+				String type, String tag
 				) {
-			
 			List<BoardDTO> list = null;
 			
 			// message 
@@ -321,27 +316,83 @@ public class AdminController {
 			int totalPage = 0; // 총 몇 '페이지' 분량인가? 
 			int totalCnt = 0;  // 글은 총 몇개인가?
 			
-			
-			try {			
-				// 글 전체 개수 구하기
-				totalCnt = adminService.countCmt();
-				
-				// 총 몇페이지 분량?
-				totalPage = (int)Math.ceil(totalCnt / (double)pageRows);
-				
-				// from: 몇번째 row 부터?
-				int from = (page - 1) * pageRows;  // MySQL 의 Limit 는 0-base 
-				
-				list = adminService.cmtUpdateList(from, pageRows);
-				
-				if(list == null) {
-					message.append("[리스트할 데이터가 없습니다]");
+			switch(type) {
+			case "전체":
+				if(tag.equals("전체")) {
+					try {			
+						// 글 전체 개수 구하기
+						totalCnt = adminService.countCmt();
+						
+						// 총 몇페이지 분량?
+						totalPage = (int)Math.ceil(totalCnt / (double)pageRows);
+						
+						// from: 몇번째 row 부터?
+						int from = (page - 1) * pageRows;  // MySQL 의 Limit 는 0-base 
+						
+						list = adminService.cmtUpdateList(from, pageRows);
+						
+						if(list == null) {
+							message.append("[리스트할 데이터가 없습니다]");
+						} else {
+							status = "OK";
+						}
+					} catch(Exception e) {
+						e.printStackTrace();
+						message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+					}
 				} else {
-					status = "OK";
+					list = adminService.tagList(tag);
+					totalCnt = list.size();
+					totalPage = (int)Math.ceil(totalCnt / (double)pageRows);
+					int from = (page - 1) * pageRows;
+					if((from + pageRows) > list.size() ) {
+						list = list.subList(from, list.size());						
+					}
+					else {				
+						list = list.subList(from, from +pageRows);
+					}
+					if(list == null) {
+						message.append("[리스트할 데이터가 없습니다]");
+					} else {
+						status = "OK";
+					}
 				}
-			} catch(Exception e) {
-				e.printStackTrace();
-				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+				break;
+			default:
+				if(tag.equals("전체")) {
+					list = adminService.typeList(type);
+					totalCnt = list.size();
+					totalPage = (int)Math.ceil(totalCnt / (double)pageRows);
+					int from = (page - 1) * pageRows;
+					if((from + pageRows) > list.size() ) {
+						list = list.subList(from, list.size());						
+					}
+					else {				
+						list = list.subList(from, from +pageRows);
+					}
+					if(list == null) {
+						message.append("[리스트할 데이터가 없습니다]");
+					} else {
+						status = "OK";
+					}
+					
+				} else {
+					list = adminService.tagList(tag);
+					totalCnt = list.size();
+					totalPage = (int)Math.ceil(totalCnt / (double)pageRows);
+					int from = (page - 1) * pageRows;
+					if((from + pageRows) > list.size() ) {
+						list = list.subList(from, list.size());						
+					}
+					else {				
+						list = list.subList(from, from +pageRows);
+					}
+					if(list == null) {
+						message.append("[리스트할 데이터가 없습니다]");
+					} else {
+						status = "OK";
+					}
+				}
 			}
 			
 			ModaconAjaxList<BoardDTO> result = new ModaconAjaxList<BoardDTO>();

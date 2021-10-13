@@ -98,14 +98,23 @@
 				<!--  모달 위치 -->
 				</div>
 			
-				<div id="contentBoard">
-				<a href="#">정보</a> | <a href="#">자유</a>
-				<select name="" id="">
-					<option value="">전체</option>
-					<option value="">코인정보</option>
-					<option value="">뉴스</option>
-					<option value="">팁과 노하우</option>
-				</select> 
+			<div id="contentBoard">
+            <select id="board_type" name="type" onchange="type_toggle()">
+               <option id="all_type" value="전체" selected>전체게시판</option>
+               <option id="infoBoard_type" value="정보">정보게시판</option>
+               <option id="freeBoard_type" value="자유">자유게시판</option>
+            </select>
+         
+            <select id="board_tag" name="tag" onchange="tag_toggle()">
+               <option class="tag_default_sel" value="전체" selected>전체</option>
+               <option class="info_sel" value="코인">코인</option>
+               <option class="info_sel" value="뉴스">뉴스</option>
+               <option class="info_sel" value="팁과노하우">팁과노하우</option>
+               <option class="free_sel" value="유머">유머</option>
+               <option class="free_sel" value="잡담">잡담</option>
+               <option class="free_sel" value="질문">질문</option>
+            </select>
+            <div class="clearAll"></div>
 				<%-- 커뮤니티 목록 --%>
 					<form id="CommunityForm" name="CommunityForm" method="GET">
 						<div id="communityContainer">
@@ -144,7 +153,6 @@
 			
 				<%-- 회원권리 --%>
 				<div id="contentMember">
-
 					
 					<!-- table -->
 					<form id="MemberForm" name="MemberForm" method="GET">
@@ -196,8 +204,6 @@
 						
 						<label for="subject"><b>글제목</b></label>
 						<input type="text" placeholder="글제목(필수)" name="subject" required>
-						<label for="ntc_uid"><b>작성자</b></label>
-						<input type="text" placeholder="UID" name="member_uid" required>
 						<label for="content"><b>내용</b></label>
 						<textarea placeholder="글내용" name="content"></textarea>
 						
