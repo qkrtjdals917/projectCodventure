@@ -61,7 +61,8 @@
 
 	</header>
 
-
+<div id="body-wrapper">
+	<div id="body-content">
 	<div id="contentMain">
 		<article>
 			<div>
@@ -282,7 +283,7 @@
 			</script>
 		</c:when>
 	</c:choose>
-
+</div>
 
 	<footer>
 		<div class="container">
@@ -312,5 +313,6 @@
 
 		</div>
 	</footer>
+	</div>
 </body>
 </html>

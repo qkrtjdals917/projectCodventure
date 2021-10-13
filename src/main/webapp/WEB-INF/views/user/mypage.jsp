@@ -37,7 +37,7 @@
 
 	    <div class="contentC">
 	    	<ul>
-		    	<li><button type="button" id="btnUpdate" class="btn mypagebtn">정보수정</button></li>
+		    	<li><button type="button" id="btnUpdate" class="btn mypagebtn">정보 수정</button></li>
 				<li><button type="button" id="btnPwChange" class="btn mypagebtn">비밀번호 변경</button></li>
 				<li><button type="button" id="btnSecession" class="btn mypagebtn">회원 탈퇴</button></li>
 	    	</ul>
