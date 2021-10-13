@@ -74,12 +74,12 @@
       
          <div class="content_btn"> <%-- 하단 버튼 모음 --%>
             <button style="display: none;" id="like_up_btn" onclick="chkLikeUp()">추천하기</button>
-              <button style="display: none;" id="like_down_btn" onclick="chkLikeDown()">추천취소</button>
+            <button style="display: none;" id="like_down_btn" onclick="chkLikeDown()">추천취소</button>
             <button id="comment_btn" onclick="comment_toggle()">댓글</button> <%-- 댓글 버튼 누르면 밑의 comment_area가 뜨도록 처리 --%>
             <button style="display: none;" id="update_btn" onclick="chkUpdate()">수정</button>
             <button style="display: none;" id="del_btn" onclick="chkDelete()">삭제</button>
          </div>
-         <hr>
+         
          <div id="comment_area" style="display: none;">
             <%@ include file="./comment.jsp" %>
          </div>

@@ -76,7 +76,7 @@ tbody {
 .content_btn button {
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	font-size: 18px
+	font-size: 18px;
 }
 
 .content_btn button:hover {
@@ -84,16 +84,46 @@ tbody {
 }
 
 #boardname {
-	font-size: 20px;
-	color: #888;
+	font-size: 23px;
+	color: #FFBF18;
 }
 
 #content_name {
 	font-size: 35px;
-	margin-top: 15px;
+	margin-top: 25px;
 }
 
 #content {
 	padding: 30px 35px;
 }
 
+#comment_area {
+	margin-top: 30px;
+}
+
+
+/* comment */
+
+.comment {
+	padding: 20px 0;
+}
+
+#content {
+	width: 92%;
+}
+
+#commentForm button {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 18px;
+	float: right;
+}
+
+#commentForm button:hover {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.footer {
+	margin-top: 50px;
+}

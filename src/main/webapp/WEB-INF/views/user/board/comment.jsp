@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/BoardTest.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath }/JS/comment.js"></script>
 </head>
@@ -75,8 +76,8 @@
 
 
 					
-					
-<div class="container">
+<div class="comment">					
+<div class="commentTitle">
     <form id="commentListForm" name="commentListForm" method="post">
     	<div>
     		<span><strong>Comments</strong></span> <span id="cCnt"></span>
@@ -88,23 +89,18 @@
     </form>
 </div>
 
-<div class="container">
+<div class="commentArea">
     <form id="commentForm" name="commentForm" method="post">
         <div>
-			<textarea style="width: 1100px" rows="3" cols="30" id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
+			<textarea id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
 			<br>
-			<a href='' onClick="add_comment(${list[0].board_uid})" id="comment_btn">등록</a>
+			<button type="button" onClick="add_comment(${list[0].board_uid})" id="comment_btn">등록</button>
         </div>
         <!--  <input type="hidden" id="b_code" name="b_code" value="${result.code }" />    -->     
+    	<div class="clearAll"></div>
     </form>
 
-        <c:choose>
-			<c:when test="${list[0].member_uid == member.member_uid}">
-				
-				<button onclick='' id='delete_comment_btn" + list[i].comment_uid + "'>삭제</button>
-			</c:when>
-</c:choose>
-
+</div>
 </div>
  
 </body>
