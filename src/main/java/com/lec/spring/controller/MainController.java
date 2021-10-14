@@ -189,7 +189,7 @@ public class MainController {
 			} else {
 				try {
 					// 글 전체 개수 구하기
-					totalCnt = userService.countBoard();
+					totalCnt = userService.countTag(tag);
 
 					// 총 몇페이지 분량?
 					totalPage = (int) Math.ceil(totalCnt / (double) pageRows);
@@ -214,7 +214,7 @@ public class MainController {
 			if (tag.equals("전체")) {
 				try {
 					// 글 전체 개수 구하기
-					totalCnt = userService.countBoard();
+					totalCnt = userService.countType(type);
 
 					// 총 몇페이지 분량?
 					totalPage = (int) Math.ceil(totalCnt / (double) pageRows);
@@ -236,7 +236,7 @@ public class MainController {
 			} else {
 				try {
 					// 글 전체 개수 구하기
-					totalCnt = userService.countBoard();
+					totalCnt = userService.countTag(tag);
 
 					// 총 몇페이지 분량?
 					totalPage = (int) Math.ceil(totalCnt / (double) pageRows);
