@@ -82,12 +82,6 @@ public class AdminService {
 	}
 	
 	
-	
-	// 게시판 정보를 가져온다
-	public List<BoardDTO> admCmtList(){
-		return Bdao.selectCommunity();
-	}
-	
 	public List<BoardDTO> typeList(String type){
 		return Bdao.selectType(type);
 	}

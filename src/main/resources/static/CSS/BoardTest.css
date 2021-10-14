@@ -214,8 +214,8 @@ tbody {
 	padding: 20px 0;
 }
 
-.writecontent #content {
-	width: 92%;
+.commentArea2 #content {
+	width: 100%;
 }
 
 #commentForm button {
@@ -232,7 +232,33 @@ tbody {
 
 /* board write */
 
-
-.footer {
-
+/* [페이징] */
+.center {
+	text-align: center;
 }
+
+ul.pagination{
+	list-style-type: none;
+	color: black;
+}
+
+ul.pagination li{
+	display: inline-block;
+}
+
+ul.pagination a {
+	color: black;
+	float: left;
+	padding: 4px 8px;
+	text-decoration: none;
+	transition: background-color .3s;
+	margin: 0px;
+}
+
+ul.pagination a.active {
+	background-color: #847ef1;
+	color: white;
+	border: 1px solid #847ef1;
+}
+
+ul.pagination a:hover:not(.active) {background-color: #ddd;}

@@ -23,8 +23,8 @@ public class UserService {
 	}
 	
 	// 게시판들
-	public List<BoardDTO> communityList(){
-		return dao.selectCommunity();
+	public List<BoardDTO> communityList(int from , int pageRows){
+		return dao.selectCommunity(from, pageRows);
 	}
 	
 	public List<BoardDTO> noticeList(){
@@ -35,8 +35,16 @@ public class UserService {
 		return dao.selectType(type);
 	}
 	
+	public List<BoardDTO> typeListPage(int from , int pageRows, String type){
+		return dao.selectTypePaging(from, pageRows, type);
+	}
+	
 	public List<BoardDTO> tagList(String tag){
 		return dao.selectTag(tag);
+	}
+	
+	public List<BoardDTO> tagListPage(int from , int pageRows, String tag){
+		return dao.selectTagPaging(from, pageRows, tag);
 	}
 	
 	// 글 하나 선택. delete, update 시 uid 비교
@@ -93,11 +101,20 @@ public class UserService {
 	public List<CoinDTO> selectCoinList () {
 		return dao.selectCoinList();
 	}
-	
+
+	// 페이징관련
+	public int countBoard() {
+		return dao.countBoard();
+	}
+	public int countType(String type) {
+		return dao.countType(type);
+	}
+	public int countTag(String tag) {
+		return dao.countTag(tag);
+	}
+
 	// 공지사항 가져오기
 	public List<BoardDTO> selectNotice () {
 		return dao.selectNotice();
 	}
-	
-	
 }

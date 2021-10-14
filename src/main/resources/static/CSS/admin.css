@@ -87,15 +87,16 @@ tbody {
 
 .modal .modal-notice {
 	background-color: #fefefe;
-	width: 40%;   
+	width: 40%;
+	height: auto;  
 	margin: 5% auto 15% auto;
 	border-radius: 10px;
 }
 
 .modal .container {
+	height: 350px;
 	padding: 16px;
 	position: relative;
-	height: 280px;
 }
 .modal .write {
 	margin-top: 5px;
@@ -134,9 +135,9 @@ ul.pagination a {
 }
 
 ul.pagination a.active {
-	background-color: #4CAF50;
+	background-color: #847ef1;
 	color: white;
-	border: 1px solid #4CAF50;
+	border: 1px solid #847ef1;
 }
 
 ul.pagination a:hover:not(.active) {background-color: #ddd;}

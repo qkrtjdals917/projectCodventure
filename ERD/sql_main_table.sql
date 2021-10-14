@@ -165,13 +165,11 @@ VALUES( 'root@root.com', 'root', 'root', '010-1234-1234', 2);
 
 SELECT * FROM mc_authority;
 SELECT * FROM mc_member ORDER BY member_uid DESC;
-UPDATE mc_member 
-		SET authority = 2
-		WHERE member_uid = 57;
-		
+
 SELECT * FROM mc_report;
 SELECT * FROM mc_board;
 SELECT * FROM mc_comment;
+<<<<<<< HEAD
 SELECT * FROM mc_member WHERE email = "test11@email.com";
 SELECT count(subject) FROM mc_board WHERE member_uid = 77;
 UPDATE mc_member SET authority = 2 WHERE email = 'root99@email.com';
@@ -294,6 +292,8 @@ WHERE email = "aaa5@aaa.com";
 SELECT *FROM mc_board mb ;
 
 SELECT * FROM mc_coin;
+=======
+>>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure
 
 
 INSERT INTO mc_coin (bithumb_name,upbit_name,coinone_name,korbit_name)
