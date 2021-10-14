@@ -536,6 +536,7 @@ function chkWrite(){
 			if(status == "success"){
 				if(data) {
 					alert("글 작성 완료!");
+					loadPage(1, "notice");
 				}
 				else {
 					alert("글 작성 실패");
@@ -552,8 +553,8 @@ function chkWrite(){
 // 글 수정
 function chkUpdate(){
    
-   var data = $("#noticeWrite").serialize();
-   
+   var data = $("#noticeFrm").serialize();
+   data = data + "&board_uid=" + view_uid;
    // PUT 방식 
    $.ajax({
       url : "/modaconAdmin/board",  // URL: /board
@@ -563,6 +564,7 @@ function chkUpdate(){
       success : function(data){
 			if(data) {
 				alert("글 수정 완료!");
+				loadPage(1, "notice");
 			}
 			else {
 				alert("글 수정 실패");

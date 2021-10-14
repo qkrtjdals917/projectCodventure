@@ -194,6 +194,7 @@ public class AdminController {
 		
 		// 글 작성
 		@PostMapping("/board")  // URI: /board
+		@ResponseBody
 		public int ntcWriteOk(BoardDTO dto) {
 			dto.setType("공지");
 			int count = 0;
@@ -206,8 +207,8 @@ public class AdminController {
 		@PutMapping("/board")  // URI: /board
 		@ResponseBody
 		public int ntcUpdateOk(BoardDTO dto) {
+			dto.setType("공지");
 			int count = 0;
-
 			count = adminService.update(dto);
 
 			return count;
