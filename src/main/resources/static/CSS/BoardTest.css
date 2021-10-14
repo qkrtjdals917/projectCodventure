@@ -110,7 +110,11 @@ tbody {
 }
 
 #comment_area {
-	margin-top: 30px;
+	margin-top: 40px;
+}
+
+.boardVw {
+	margin-top: 20px;
 }
 
 /* board write *//* board-update */

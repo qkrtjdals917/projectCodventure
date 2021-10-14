@@ -84,7 +84,7 @@
             <%@ include file="./comment.jsp" %>
          </div>
       </div>
-      <div class="footer">
+      <div class="footer boardVw">
          <%@ include file="../../include/footer.jsp"%>
       </div>
    
