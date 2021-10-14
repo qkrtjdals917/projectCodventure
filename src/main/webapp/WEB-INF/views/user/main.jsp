@@ -115,10 +115,11 @@
 	    <br>
 	    <div class="contentC">
 	    	<div class="Cheader">
-		    	<h2>공지 사항 </h2>
-		    	<a href="/modacon/notice">더보기</a>
+		    	<b>공지 사항 </b>
+		    	<span><a href="/modacon/notice">&plus;더보기</a></span>
+	    		<div class="clearAll"></div>
 	    	</div>
-	       	<table border="">
+	       	<table>
 	       		<thead>
 	       			<th>최근공지</th>
 	       			<th>작성일</th>
