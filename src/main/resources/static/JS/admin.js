@@ -14,12 +14,7 @@ $(document).ready(function() {
       saveRoute("notice")
       viewPage("notice")
    });
-});
 
-
-
-
-$(document).ready(function() {
    // 글작성 버튼 누르면 팝업
    $("#ntcWrite").click(function(){
       setPopup("write");    // 글 작성 용으로 모달 팝업 셋업
@@ -382,8 +377,10 @@ function setPopup(mode) {
       
       $("#noticeWrite input[name='subject']").attr("readonly", false);
       $("#noticeWrite input[name='subject']").css("border", "1px solid #ccc");
-      $("#noticeWrite input[name='nickname']").attr("readonly", false);
-      $("#noticeWrite input[name='nickname']").css("border", "1px solid #ccc");
+
+      $("#noticeWrite input[name='nickname']").attr("readonly", true);
+      $("#noticeWrite input[name='nickname']").css("border", "none");
+
       $("#noticeWrite textarea[name='content']").attr("readonly", false);
       $("#noticeWrite textarea[name='content']").css("border", "1px solid #ccc");
    }
@@ -475,8 +472,37 @@ function delete_report (report_uid , board_uid) {
    
    });
 }
+// 새글 등록 처리
+function chkWrite(){
+	
+	// 특정 form 의 name 달린 form element 들의 value 들을 string 으로 묶기
+	// ex) name=aaa&subject=bbb&content=ccc   <-- string 타입이다
+	var data = $("#frmWrite").serialize();
+	//alert(data);
+	
+	$.ajax({
+		url : ".",  // url : /board
+		type : "POST",
+		cache : false,
+		data : data,  // POST 로 ajax request 할 경우 data 에 parameter 넘기기
+		
+		success : function(data, status){
+			if(status == "success"){
+				if(data.status == "OK"){
+					alert("INSERT 성공 " + data.status + " : " + data.message);
+					loadPage(1);  // 첫페이지 다시 로딩
+				} else {
+					alert("INSERT 실패 " + data.status + " : " + data.message);
+				}
+			}
+		}
+	});
+	
+	return false;
+	
+} // end chkWrite()
 
-/*
+
 // 특정 uid 의 글 삭제하기
 function deleteByChk(uid){
    
@@ -503,10 +529,6 @@ function deleteByChk(uid){
    
    return true;
 } // end deleteUid()
-
-*/
-
-/*
 
 // 글 수정
 function chkUpdate(){
@@ -536,4 +558,3 @@ function chkUpdate(){
    });
 }
 
-*/

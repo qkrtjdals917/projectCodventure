@@ -158,7 +158,7 @@ public class AdminController {
 	} // end admNoticeList
 	
 	// 특정 uid 글 읽기
-		@GetMapping("/{uid}")   // URI:  /board/{uid}
+		@GetMapping("/board/{uid}")   // URI:  /board/{uid}
 		public ModaconAjaxList<BoardDTO> admView(@PathVariable int uid) {
 			List<BoardDTO> list = null;
 			
@@ -193,35 +193,16 @@ public class AdminController {
 		}
 		
 		// 글 작성
-		@PostMapping("")  // URI: /board
-		public ModaconAjaxResult ntcWriteOk(BoardDTO dto) {
+		@PostMapping("/board")  // URI: /board
+		public int ntcWriteOk(BoardDTO dto) {
 			int count = 0;
-					
-			// message 
-			StringBuffer message = new StringBuffer();
-			String status = "FAIL";
+			count = adminService.write(dto);
 			
-			try {
-				count = adminService.write(dto);
-				if(count == 0) {
-					message.append("[트랜잭션 실패 : 0 insert]");
-				} else {
-					status = "OK";
-				}
-			} catch(Exception e) {
-				e.printStackTrace();
-				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
-			}
-			
-			ModaconAjaxResult result = new ModaconAjaxResult();
-			result.setStatus(status);
-			result.setMessage(message.toString());
-			result.setCount(count);
-			return result;
+			return count;
 		}
 		
 		// 글 수정
-		@PutMapping("")  // URI: /board
+		@PutMapping("/board")  // URI: /board
 		public ModaconAjaxResult ntcUpdateOk(BoardDTO dto) {
 			int count = 0;
 				
@@ -236,35 +217,6 @@ public class AdminController {
 				} else {
 					status = "OK";
 				}
-			} catch(Exception e) {
-				e.printStackTrace();
-				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
-			}
-			
-			ModaconAjaxResult result = new ModaconAjaxResult();
-			result.setStatus(status);
-			result.setMessage(message.toString());
-			result.setCount(count);
-			return result;
-		}
-
-		// 글 삭제
-		@DeleteMapping("")
-		@ResponseBody// URI: /board
-		public ModaconAjaxResult deleteOk(int [] uid) {
-			int count = 0;
-			
-			// message 
-			StringBuffer message = new StringBuffer();
-			String status = "FAIL";
-			
-			try {
-				
-				if(uid != null) {
-					count = adminService.deleteByChk(uid);
-					status = "OK";
-				}
-				
 			} catch(Exception e) {
 				e.printStackTrace();
 				message.append("[트랜잭션 에러: " + e.getMessage() + "]");

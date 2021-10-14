@@ -17,7 +17,10 @@
 <link
    href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
    rel="stylesheet">
-
+   
+<%-- SweetAlert2 --%>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
 <script src="https://kit.fontawesome.com/001c1f3b98.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -204,7 +207,7 @@
 						
 						<label for="subject"><b>글제목</b></label>
 						<input type="text" placeholder="글제목(필수)" name="subject" required>
-						<label for="subject"><b>글쓴이</b></label>
+						<label for="nickname"><b>글쓴이</b></label>
 						<input type="text" name="nickname" value="${member.nickname}">
 						<label for="content"><b>내용</b></label>
 						<textarea placeholder="글내용" name="content"></textarea>
