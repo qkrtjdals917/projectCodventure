@@ -80,13 +80,14 @@ public class MainController {
 	public List<BoardDTO> mainNotice() {
 		List<BoardDTO> list = null;
 		list = userService.selectNotice();
-		if (list.size() < 5) {
-			list = list.subList(0, list.size());
+
+		if(list.size() < 5) {
+			list.subList(0, list.size());
 		}
-		else {
+		else {			
 			list = list.subList(0, 5);
 		}
-
+		
 		return list;
 	}
 		// 마이페이지
