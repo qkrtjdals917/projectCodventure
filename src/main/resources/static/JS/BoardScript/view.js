@@ -6,7 +6,7 @@ function view_chk() {
     title: '정보 오류',
     text: '해당 글이 삭제됐거나 없습니다.'
   }).then((result) => {
-    location.href = '../board';
+    location.href = '/modacon/board';
   });
 };
 
@@ -39,7 +39,7 @@ function chkDelete() {
     if (result.isConfirmed) {
       if (board_mem_uid == member_uid) {
         $.ajax({
-          url: '',
+          url: '/modacon/board/view',
           type: 'DELETE',
           data: {
             uid: board_uid
@@ -54,7 +54,7 @@ function chkDelete() {
                   text: '해당글을 삭제했습니다.',
                   icon: 'success',
                   preConfirm: () => {
-                    location.href = '../board';
+                    location.href = '/modacon/board';
                   }
                 });
               } else {
@@ -100,7 +100,7 @@ function chkUpdate() {
   }).then((result) => {
     if (result.isConfirmed) {
       if (board_mem_uid == member_uid) {
-        location.href = "update?uid=" + board_uid;
+        location.href = "/modacon/board/update?uid=" + board_uid;
       } else {
         Swal.fire(
           '수정 실패',
@@ -131,7 +131,7 @@ function chkLikeUp() {
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax({
-        url: "like",
+        url: "/modacon/board/like",
         type: "POST",
         data: {
           board_uid: board_uid,
@@ -147,7 +147,7 @@ function chkLikeUp() {
 }
 
 // 추천취소
-function chkLikeDown(){
+function chkLikeDown() {
   if (member_null) {
     not_Login_msg();
     return;
@@ -165,7 +165,7 @@ function chkLikeDown(){
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax({
-        url: "like",
+        url: "/modacon/board/like",
         type: "DELETE",
         data: {
           board_uid: board_uid,
@@ -184,7 +184,7 @@ function chkLikeDown(){
 // 추천수
 function likeCount() {
   $.ajax({
-    url: "likeCount",
+    url: "/modacon/board/likeCount",
     type: "POST",
     data: {
       uid: board_uid
@@ -198,7 +198,7 @@ function likeCount() {
 // 추천여부 확인, 추천버튼 변경
 function likeChk() {
   $.ajax({
-    url: "likeChk",
+    url: "/modacon/board/likeChk",
     type: "POST",
     data: {
       board_uid: board_uid
@@ -264,7 +264,7 @@ function chkReport() {
       }
 
       $.ajax({
-        url: "report",
+        url: "/modacon/board/report",
         type: "POST",
         data: {
           board_uid: board_uid,

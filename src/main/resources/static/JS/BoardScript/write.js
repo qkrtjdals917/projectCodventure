@@ -45,7 +45,7 @@ function write_chk() {
   var data = $('#frm').serialize();
 
   $.ajax({
-    url: "",
+    url: "/modacon/board/write",
     type: "POST",
     cache: false,
     data: data,
@@ -57,7 +57,7 @@ function write_chk() {
             text: '글 작성을 완료했습니다.',
             icon: 'success',
             preConfirm: () => {
-              location.href = 'view?uid=' + data.uid;
+              location.href = '/modacon/board/view?uid=' + data.uid;
             }
           });
         } else {

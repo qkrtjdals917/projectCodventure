@@ -171,6 +171,7 @@ SELECT * FROM mc_board;
 SELECT * FROM mc_comment;
 
 
+
 INSERT INTO mc_coin (bithumb_name,upbit_name,coinone_name,korbit_name)
 VALUES ("BTC","BTC","btc","btc_krw"),
 	   ("ETH","ETH","eth","eth_krw"),

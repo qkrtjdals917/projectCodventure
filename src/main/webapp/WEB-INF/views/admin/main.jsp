@@ -206,9 +206,9 @@
 						</div>
 						
 						<label for="subject"><b>글제목</b></label>
-						<input type="text" placeholder="글제목(필수)" name="subject" required>
-						<label for="nickname"><b>글쓴이</b></label>
-						<input type="text" name="nickname" value="${member.nickname}">
+						<input type="text" placeholder="글제목(필수)" name="subject" required><br>
+						<label for="subject"><b>글쓴이</b></label>
+						<input type="text" name="nickname" value="${member.nickname}"><br>
 						<label for="content"><b>내용</b></label>
 						<textarea placeholder="글내용" name="content"></textarea>
 						
@@ -256,7 +256,7 @@
       <div class="container">
          <!-- 푸터A : 사이트 정보 -->
          <div class="footA">
-            <h2>LOGO</h2>
+            <h2>MODACON</h2>
             <p>TEAM: Codeventure</p>
             <p>권혁찬, 박성민, 박해연,</p>
             <p>이상빈, 정은수</p>

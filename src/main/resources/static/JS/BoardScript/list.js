@@ -37,7 +37,7 @@ function pageset(data) {
     window.pageRows = data.pagerows;
 
     for (var i = 0; i < count; i++) {
-      viewLink = 'board/view?uid='.concat(items[i].board_uid);
+      viewLink = '/modacon/board/view?uid='.concat(items[i].board_uid);
       result += "<tr>\n";
       result += "<td>" + items[i].board_uid + "</td>\n";
       if (items[i].tag == null) {
