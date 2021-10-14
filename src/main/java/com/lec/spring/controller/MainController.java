@@ -269,21 +269,6 @@ public class MainController {
 		return result;
 	}
 
-//	// 게시판 변경
-//	@PostMapping("/board")
-//	@ResponseBody
-//	public BoardList infoBoard(String type, String tag, Model model, Authentication authentication) {
-//		loginCheck(model, authentication);
-//
-//		List<BoardDTO> list = null;
-//
-//		
-//
-//		BoardList result = new BoardList();
-//		result.setList(list);
-//		return result;
-//	}
-
 	// 커뮤니티 뷰
 	@RequestMapping("/board/view")
 	public String communityView(int uid, Model model, Authentication authentication) {
@@ -477,10 +462,70 @@ public class MainController {
 	@RequestMapping("/notice")
 	public String notice(Model model, Authentication authentication) {
 		loginCheck(model, authentication);
-		model.addAttribute("list", userService.noticeList());
 		return "user/notice/list";
 	}
 
+	// 공지사항 리스트 페이징
+	@GetMapping("/notice/{page}/{pageRows}")
+	@ResponseBody
+	public BoardList<BoardDTO> boardList(@PathVariable int page, @PathVariable int pageRows, Model model, Authentication authentication) {
+		loginCheck(model, authentication);
+		List<BoardDTO> list = null;
+
+		// message
+		StringBuffer message = new StringBuffer();
+		String status = "FAIL";
+
+		// 페이징 관련 세팅 값들
+		// page : 현재 페이지
+		// pageRows : 한 '페이지'에 몇개의 글을 리스트 할것인가?
+		int writePages = 10; // 한 [페이징] 에 몇개의 '페이지'를 표현할 것인가?
+		int totalPage = 0; // 총 몇 '페이지' 분량인가?
+		int totalCnt = 0; // 글은 총 몇개인가?
+		
+		try {
+			// 글 전체 개수 구하기
+			totalCnt = userService.countNotice();
+
+			// 총 몇페이지 분량?
+			totalPage = (int) Math.ceil(totalCnt / (double) pageRows);
+
+			// from: 몇번째 row 부터?
+			int from = (page - 1) * pageRows; // MySQL 의 Limit 는 0-base
+
+			list = userService.noticeList(from, pageRows);
+
+			if (list == null) {
+				message.append("[리스트할 데이터가 없습니다]");
+			} else {
+				status = "OK";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+		}
+		
+		BoardList<BoardDTO> result = new BoardList<BoardDTO>();
+
+		result.setStatus(status);
+		result.setMessage(message.toString());
+
+		if (list != null) {
+			result.setCount(list.size());
+			result.setList(list);
+		}
+
+		result.setPage(page);
+		result.setTotalPage(totalPage);
+		result.setWritePages(writePages);
+		result.setPageRows(pageRows);
+		result.setTotalCnt(totalCnt);
+		
+		System.out.println(result.getList().get(1));
+		
+		return result;
+	}
+	
 	// 공지 뷰
 	@RequestMapping("notice/view")
 	public String noticeView(int uid, Model model, Authentication authentication) {
