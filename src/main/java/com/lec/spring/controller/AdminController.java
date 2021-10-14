@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lec.spring.config.PrincipalDetails;
 import com.lec.spring.domain.ajax.ModaconAjaxList;
-import com.lec.spring.domain.ajax.ModaconAjaxResult;
 import com.lec.spring.domain.board.BoardDTO;
 import com.lec.spring.domain.member.MemberDTO;
 import com.lec.spring.domain.member.MemberVO;
@@ -49,10 +48,10 @@ public class AdminController {
             if (redirectUrl != null) {
             	model.addAttribute("admPrevPage", redirectUrl);
             } else {
-            	model.addAttribute("admPrevPage", "main");
+            	model.addAttribute("admPrevPage", "notice");
             }
         } else {
-        	model.addAttribute("admPrevPage", "main");
+        	model.addAttribute("admPrevPage", "notice");
         }
 		if (authentication != null) {
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
@@ -158,7 +157,8 @@ public class AdminController {
 	} // end admNoticeList
 	
 	// 특정 uid 글 읽기
-		@GetMapping("/{uid}")   // URI:  /board/{uid}
+		@GetMapping("/board/{uid}")   // URI:  /board/{uid}
+		@ResponseBody
 		public ModaconAjaxList<BoardDTO> admView(@PathVariable int uid) {
 			List<BoardDTO> list = null;
 			
@@ -180,101 +180,37 @@ public class AdminController {
 			}
 			
 			ModaconAjaxList<BoardDTO> result = new ModaconAjaxList<BoardDTO>();
-			
+			result.setDataType("board");
 			result.setStatus(status);
 			result.setMessage(message.toString());
 			
-//			if(list != null) {
-//				result.setCount(list.size());
-//				result.setList(list);
-//			}
-//			
+			if(list != null) {
+				result.setCount(list.size());
+				result.setList(list);
+			}
+			
 			return result;		
 		}
 		
 		// 글 작성
-		@PostMapping("")  // URI: /board
-		public ModaconAjaxResult ntcWriteOk(BoardDTO dto) {
+		@PostMapping("/board")  // URI: /board
+		public int ntcWriteOk(BoardDTO dto) {
+			dto.setType("공지");
 			int count = 0;
-					
-			// message 
-			StringBuffer message = new StringBuffer();
-			String status = "FAIL";
+			count = adminService.write(dto);
 			
-			try {
-				count = adminService.write(dto);
-				if(count == 0) {
-					message.append("[트랜잭션 실패 : 0 insert]");
-				} else {
-					status = "OK";
-				}
-			} catch(Exception e) {
-				e.printStackTrace();
-				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
-			}
-			
-			ModaconAjaxResult result = new ModaconAjaxResult();
-			result.setStatus(status);
-			result.setMessage(message.toString());
-			result.setCount(count);
-			return result;
+			return count;
 		}
 		
 		// 글 수정
-		@PutMapping("")  // URI: /board
-		public ModaconAjaxResult ntcUpdateOk(BoardDTO dto) {
+		@PutMapping("/board")  // URI: /board
+		@ResponseBody
+		public int ntcUpdateOk(BoardDTO dto) {
 			int count = 0;
-				
-			// message 
-			StringBuffer message = new StringBuffer();
-			String status = "FAIL";
-			
-			try {
-				count = adminService.update(dto);
-				if(count == 0) {
-					message.append("[트랜잭션 실패 : 0 update]");
-				} else {
-					status = "OK";
-				}
-			} catch(Exception e) {
-				e.printStackTrace();
-				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
-			}
-			
-			ModaconAjaxResult result = new ModaconAjaxResult();
-			result.setStatus(status);
-			result.setMessage(message.toString());
-			result.setCount(count);
-			return result;
-		}
 
-		// 글 삭제
-		@DeleteMapping("")
-		@ResponseBody// URI: /board
-		public ModaconAjaxResult deleteOk(int [] uid) {
-			int count = 0;
-			
-			// message 
-			StringBuffer message = new StringBuffer();
-			String status = "FAIL";
-			
-			try {
-				
-				if(uid != null) {
-					count = adminService.deleteByChk(uid);
-					status = "OK";
-				}
-				
-			} catch(Exception e) {
-				e.printStackTrace();
-				message.append("[트랜잭션 에러: " + e.getMessage() + "]");
-			}
-			
-			ModaconAjaxResult result = new ModaconAjaxResult();
-			result.setStatus(status);
-			result.setMessage(message.toString());
-			result.setCount(count);
-			return result;
+			count = adminService.update(dto);
+
+			return count;
 		}
 		
 		// 글 삭제
@@ -287,7 +223,7 @@ public class AdminController {
 			return count;
 		}
 		
-		// 글 삭제
+		// 신고글 삭제
 		@DeleteMapping("/report")  // URI: /board
 		@ResponseBody
 		public int deleteReport(int uid) {
@@ -296,7 +232,7 @@ public class AdminController {
 
 			return count;
 		}
-		// 글 삭제
+		// 신고 내용 삭제
 		@DeleteMapping("/report/{board_uid}")  // URI: /board
 		@ResponseBody
 		public int deleteReportWithBoard(int report_uid , @PathVariable int board_uid) {
@@ -305,7 +241,7 @@ public class AdminController {
 
 			return count;
 		}
-		// 글 삭제
+		// 회원 삭제
 		@DeleteMapping("/member")  // URI: /board
 		@ResponseBody
 		public int deleteMember(int uid) {
@@ -572,7 +508,24 @@ public class AdminController {
 		} // end admMemberList
 		
 
-		
+		@PutMapping("/member/{member_uid}/{authority}") 
+		@ResponseBody
+		public int ChangeMemberAuth(Authentication authentication, @PathVariable int authority, @PathVariable int member_uid) {
+			
+			
+			int count = 0;
+			if (authentication != null) {
+				PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+				
+				Integer authByUid = adminService.selectAuthoritiesById(userDetails.getUid());
+				
+				if(authByUid == 2) {
+					count = adminService.changeAuth(authority, member_uid);
+				}
+			}
+
+			return count;
+		}
 	
 	
 	

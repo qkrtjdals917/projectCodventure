@@ -37,11 +37,6 @@ public class MainController {
 //			MemberDTO dto = new MemberDTO();
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
 
-			// 확인용 코드
-//			System.out.println("Email정보 : " + userDetails.getUsername());
-//			System.out.println("Nickname정보 : " + userDetails.getNickname());
-//			System.out.println("UID정보 : " + userDetails.getUid());
-
 			dto.setEmail(userDetails.getUsername());
 			dto.setNickname(userDetails.getNickname());
 			dto.setMember_uid(userDetails.getUid());
@@ -75,15 +70,6 @@ public class MainController {
 
 	@RequestMapping("")
 	public String mainPage(Model model, Authentication authentication) {
-
-//		model.addAttribute("key","service.__()");
-		// Service 로 데이터 가져와서 model 에 담아 view에 전달
-//		if (principal != null) {
-//			System.out.println("ID정보 : " + principal.getName());
-//			System.out.println("ID정보 : " + principal.getNickname());
-//			System.out.println("ID정보 : " + principal.getName());
-//		}
-
 		loginCheck(model, authentication);
 
 		return "user/main";
@@ -93,9 +79,14 @@ public class MainController {
 	@ResponseBody
 	public List<BoardDTO> mainNotice() {
 		List<BoardDTO> list = null;
-		
 		list = userService.selectNotice();
-		list = list.subList(0, 5);
+		if (list.size() < 5) {
+			list = list.subList(0, list.size());
+		}
+		else {
+			list = list.subList(0, 5);
+		}
+
 		return list;
 	}
 		// 마이페이지
@@ -189,7 +180,7 @@ public class MainController {
 			} else {
 				try {
 					// 글 전체 개수 구하기
-					totalCnt = userService.countBoard();
+					totalCnt = userService.countTag(tag);
 
 					// 총 몇페이지 분량?
 					totalPage = (int) Math.ceil(totalCnt / (double) pageRows);
@@ -214,7 +205,7 @@ public class MainController {
 			if (tag.equals("전체")) {
 				try {
 					// 글 전체 개수 구하기
-					totalCnt = userService.countBoard();
+					totalCnt = userService.countType(type);
 
 					// 총 몇페이지 분량?
 					totalPage = (int) Math.ceil(totalCnt / (double) pageRows);
@@ -236,7 +227,7 @@ public class MainController {
 			} else {
 				try {
 					// 글 전체 개수 구하기
-					totalCnt = userService.countBoard();
+					totalCnt = userService.countTag(tag);
 
 					// 총 몇페이지 분량?
 					totalPage = (int) Math.ceil(totalCnt / (double) pageRows);
@@ -396,8 +387,6 @@ public class MainController {
 		result.setStatus(status);
 		result.setMessage(message.toString());
 
-		System.out.println(result);
-
 		return result;
 	}
 
@@ -435,8 +424,6 @@ public class MainController {
 		StringBuffer message = new StringBuffer();
 		String status = "FAIL";
 		int count = 0;
-
-		System.out.println(dto.getTag());
 
 		// 태그의 문자열이 빈 문자열이면 null 값으로 처리
 		if (dto.getTag().isEmpty()) {
@@ -522,7 +509,6 @@ public class MainController {
 	@ResponseBody
 	public int likeCount(int uid) {
 		int count = 0;
-		System.out.println(uid);
 		count = userService.likeCount(uid);
 		return count;
 	}
@@ -546,7 +532,6 @@ public class MainController {
 	@ResponseBody
 	public void report(Model model, @RequestParam Map<String, Object> param, Authentication authentication) {
 		loginCheck(model, authentication);
-		System.out.println(param);
 		userService.report(param);
 
 	}

@@ -208,7 +208,7 @@ function chkPw(){
 				Swal.fire({
 					icon: 'error',
 					title: '입력된 비밀번호가 다릅니다.',
-					text: '다입력된 비밀번호를 다시 확인해주세요!'
+					text: '다시 입력된 비밀번호를 다시 확인해주세요!'
 				}).then(function(){   
 					clear_modal();
 				});

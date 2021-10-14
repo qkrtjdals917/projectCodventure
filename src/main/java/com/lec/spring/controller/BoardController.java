@@ -37,7 +37,6 @@ public class BoardController {
 			cdto.setMember_uid(userDetails.getUid());
 		}
 		cdto.setBoard_uid(board_uid);
-		System.out.println(cdto);
 		if (boardService.insert(cdto) == 1) {
 			return "success";			
 		}
@@ -49,7 +48,6 @@ public class BoardController {
 	@GetMapping(value="/getComment/{board_uid}", produces="application/json; charset=utf8")
 	@ResponseBody
 	public ModaconAjaxList<CommentDTO> ajax_getComment(@PathVariable int board_uid) {
-	    System.out.println("ajax_getComment");
 		ModaconAjaxList<CommentDTO> result = new ModaconAjaxList<CommentDTO> ();
 	    
 	    // 해당 게시물 댓글

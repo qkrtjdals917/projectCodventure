@@ -4,7 +4,6 @@ var board_type = '전체';
 var board_tag = '전체';
 var page = 1; // 현재 페이지
 var pageRows = 10; // 페이지당 글의 개수
-var viewItem = undefined; // 가장 최근에 view 한 글의 데이터
 
 // 1. 시작함수
 $().ready(function () {
@@ -12,21 +11,6 @@ $().ready(function () {
 });
 
 // 2. 페이지 로딩
-// function pageload() {
-//   $.ajax({
-//     url: '',
-//     type: 'POST',
-//     cache: false,
-//     data: {
-//       type: board_type,
-//       tag: board_tag
-//     },
-//     success: function (data) {
-//       pageset(data);
-//     }
-//   });
-// }
-
 function pageload(page) {
   $.ajax({
     url: '/modacon/board/' + page + '/' + pageRows,
@@ -81,6 +65,7 @@ function pageset(data) {
     // [페이징] 정보 업데이트
     var pagination = buildPagination(data.writepages, data.totalpage, data.page, data.pagerows);
     $("#pagination").html(pagination);
+
   }
 }
 
@@ -103,12 +88,14 @@ function type_toggle() {
     $('.free_sel').show();
     board_tag = $('#board_tag option:selected').val();
   }
+  page = 1;
   pageload(page);
 }
 
 // 4. 게시판 태그 토글
 function tag_toggle() {
   board_tag = $('#board_tag option:selected').val();
+  page = 1;
   pageload(page);
 }
 
@@ -155,6 +142,7 @@ function buildPagination(writePages, totalPage, curPage, pageRows) {
   if (curPage < totalPage) {
     str += `<li><a onclick="pageload(` + totalPage + `)" class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n`;
   }
+  console.log(str);
   return str;
 
 } // end buildPagination()
