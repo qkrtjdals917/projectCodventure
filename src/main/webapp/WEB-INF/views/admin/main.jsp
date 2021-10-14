@@ -162,7 +162,7 @@
 						<div id="memberContainer">
 						<table>
 							<thead>
-									<th>uid</th>
+									<th>uid </th>
 									<th>이메일</th>
 									<th>닉네임</th>
 									<th>전화번호</th>
