@@ -147,7 +147,7 @@ function chkLikeUp() {
 }
 
 // 추천취소
-function chkLikeDown(){
+function chkLikeDown() {
   if (member_null) {
     not_Login_msg();
     return;

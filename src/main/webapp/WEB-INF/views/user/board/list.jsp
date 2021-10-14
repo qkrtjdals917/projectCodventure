@@ -9,15 +9,15 @@
 <head>
   <meta charset="UTF-8">
   <title>커뮤니티</title>
-  
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script src="https://kit.fontawesome.com/001c1f3b98.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <%-- 확인용 스타일. css 먹인 후 삭제 --%>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/BoardTest.css">
   <script src="${pageContext.request.contextPath }/JS/BoardScript/list.js"></script>
-  
+
 
 </head>
 
@@ -60,13 +60,13 @@
         </tbody>
 
       </table>
-      
+
       <br>
       <%-- [페이징] --%>
       <div class="center">
         <ul class="pagination" id="pagination"></ul>
       </div>
-      
+
       <br>
       <button onclick="location.href = '/modacon/board/write'">새글작성</button>
     </div>
