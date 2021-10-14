@@ -118,7 +118,6 @@ $(function() {
 					]
 				},
 				options: {
-					
 					legend: { display: false },
 					title: {
 						display: true,
