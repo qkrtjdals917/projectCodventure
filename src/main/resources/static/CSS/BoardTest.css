@@ -110,7 +110,11 @@ tbody {
 }
 
 #comment_area {
-	margin-top: 30px;
+	margin-top: 40px;
+}
+
+.boardVw {
+	margin-top: 20px;
 }
 
 /* board write *//* board-update */
@@ -210,8 +214,8 @@ tbody {
 	padding: 20px 0;
 }
 
-.writecontent #content {
-	width: 92%;
+.commentArea2 #content {
+	width: 100%;
 }
 
 #commentForm button {
@@ -226,14 +230,11 @@ tbody {
 }
 
 
-.footer {
-	margin-top: 50px;
-}
+/* board write */
 
 /* [페이징] */
 .center {
 	text-align: center;
-	backgroundcolor: black;
 }
 
 ul.pagination{
@@ -255,9 +256,9 @@ ul.pagination a {
 }
 
 ul.pagination a.active {
-	background-color: #4CAF50;
+	background-color: #847ef1;
 	color: white;
-	border: 1px solid #4CAF50;
+	border: 1px solid #847ef1;
 }
 
 ul.pagination a:hover:not(.active) {background-color: #ddd;}

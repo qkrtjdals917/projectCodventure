@@ -22,7 +22,7 @@
   </div>
   <div style="clear:both; height:70px"></div>
 
-  <form id= "frm" class="frm" method="post">
+  <form id="frm" class="frm" method="post">
   
   	<div class="writeHeader">
   		<h2 class="writename">커뮤니티 글쓰기</h2>
@@ -47,20 +47,14 @@
 	        <option class="free_sel" value="질문">질문</option>
 	      </select>
 	    </div>
-	    <div class="writesubject">
-   	 		<input id="subject" name="subject" type="text" placeholder="제목을 입력해 주세요." />
-   		</div>
-	</div>
-	<div class="writecontent">
-    <textarea name="content" id="content" cols="100" rows="30" placeholder="내용 작성란"></textarea>
-    </div>
-    <div class="write_btn">
-    <button type="button" onclick="write_chk()">등록</button>   
-    <button type="button" onclick="history.back()">취소</button>
-    </div>
-    <br>
-    <br>
-  </form>
+	    <div class="write_btn">
+	    <button type="button" onclick="write_chk()">등록</button>   
+	    <button type="button" onclick="history.back()">취소</button>
+	    </div>
+	    <br>
+	    <br>
+	  </form>
+ 	</div>
 
   <div class="footer">
     <%@ include file="../../include/footer.jsp"%>

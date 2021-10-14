@@ -117,11 +117,14 @@ public class IndexController {
 		String pw = "";					// 현재 비밀번호
 		
 		if (authentication != null) {
+			System.out.println("여기로 오나?");
 			
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
 			
 			pw = userDetails.getPassword();
 		}
+		
+		System.out.println("현재 비밀번호: " + pw);
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		if(encoder.matches(currentPw, pw)) {
