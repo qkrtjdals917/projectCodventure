@@ -673,4 +673,3 @@ function korbit_all() {
 
 
 // 차트
-
