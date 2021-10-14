@@ -29,14 +29,14 @@
       <div class="header">
         <%@ include file="../../include/header.jsp"%>
       </div>
-      <div style="clear:both; height:70px"></div>
       <hr>
-
+	<div class="board_view">
       <div class="content_btn"> <%-- 상단 버튼 모음 --%>
-        <button id="back_btn" onclick="history.back();">돌아가기</button>
+        <button id="back_btn_ntc" onclick="history.back();">돌아가기</button>
       </div>
+      <div class="clearAll"></div>
 
-      <h2 id="boardname">공지사항</h2>
+      <h2 id="noticename">공지사항</h2>
       <hr>
 
       <div class="read_contents">
@@ -52,6 +52,8 @@
         <div id="content">
           ${list[0].content }
         </div>
+        <hr>
+      </div>
       </div>
       <div class="footer">
         <%@ include file="../../include/footer.jsp"%>

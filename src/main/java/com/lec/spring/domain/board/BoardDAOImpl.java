@@ -47,8 +47,8 @@ public class BoardDAOImpl implements BoardDAO {
 
 	// 커뮤니티 글 전체 리스트. 공지글은 해당 안함
 	@Override
-	public List<BoardDTO> selectCommunity() {
-		return mapper.selectCommunity();
+	public List<BoardDTO> selectCommunity(int from , int pageRows) {
+		return mapper.selectCommunity(from, pageRows);
 	}
 
 	// 공지사항 글 리스트
@@ -67,6 +67,33 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardDTO> selectTag(String tag) {
 		return mapper.selectTag(tag);
+	}
+	
+	// 페이징 Type 리스트
+	@Override
+	public List<BoardDTO> selectTypePaging(int from, int pageRows, String type) {
+		return mapper.selectTypePaging(from, pageRows, type);
+	}
+
+	// 페이징 Tag 리스트
+	@Override
+	public List<BoardDTO> selectTagPaging(int from, int pageRows, String tag) {
+		return mapper.selectTagPaging(from, pageRows, tag);
+	}
+	
+	@Override
+	public int countBoard() {
+		return mapper.countBoard();
+	}
+
+	@Override
+	public int countType(String type) {
+		return mapper.countType(type);
+	}
+
+	@Override
+	public int countTag(String tag) {
+		return mapper.countTag(tag);
 	}
 
 	// 글 작성
@@ -146,7 +173,6 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<CoinDTO> selectCoinList () {
 		return mapper.selectCoinList();
 	}
-
 
 
 }

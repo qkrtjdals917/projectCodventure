@@ -117,7 +117,6 @@ public class IndexController {
 		String pw = "";					// 현재 비밀번호
 		
 		if (authentication != null) {
-			System.out.print("아아");
 			
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
 			
@@ -133,7 +132,6 @@ public class IndexController {
 			String encPassword = passwordEncoder.encode(changePassword);	// 원본을 암호화
 			dto.setPw(encPassword); // 암호와된 pw세팅
 			
-			System.out.println(MemberService.changePassword(dto));
 			System.out.println("변경성공");
 			
 			return "success";

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,11 +36,6 @@ public class MainController {
 		if (authentication != null) {
 //			MemberDTO dto = new MemberDTO();
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
-
-			// 확인용 코드
-//			System.out.println("Email정보 : " + userDetails.getUsername());
-//			System.out.println("Nickname정보 : " + userDetails.getNickname());
-//			System.out.println("UID정보 : " + userDetails.getUid());
 
 			dto.setEmail(userDetails.getUsername());
 			dto.setNickname(userDetails.getNickname());
@@ -74,15 +70,6 @@ public class MainController {
 
 	@RequestMapping("")
 	public String mainPage(Model model, Authentication authentication) {
-
-//		model.addAttribute("key","service.__()");
-		// Service 로 데이터 가져와서 model 에 담아 view에 전달
-//		if (principal != null) {
-//			System.out.println("ID정보 : " + principal.getName());
-//			System.out.println("ID정보 : " + principal.getNickname());
-//			System.out.println("ID정보 : " + principal.getName());
-//		}
-
 		loginCheck(model, authentication);
 
 		return "user/main";
@@ -147,34 +134,154 @@ public class MainController {
 		return "user/board/list";
 	}
 
-	// 게시판 변경
-	@PostMapping("/board")
+	// 커뮤니티 리스트, 페이징
+	@GetMapping("/board/{page}/{pageRows}")
 	@ResponseBody
-	public BoardList infoBoard(String type, String tag, Model model, Authentication authentication) {
+	public BoardList<BoardDTO> boardList(@PathVariable int page, @PathVariable int pageRows, String type, String tag,
+			Model model, Authentication authentication) {
 		loginCheck(model, authentication);
-
 		List<BoardDTO> list = null;
+
+		// message
+		StringBuffer message = new StringBuffer();
+		String status = "FAIL";
+
+		// 페이징 관련 세팅 값들
+		// page : 현재 페이지
+		// pageRows : 한 '페이지'에 몇개의 글을 리스트 할것인가?
+		int writePages = 10; // 한 [페이징] 에 몇개의 '페이지'를 표현할 것인가?
+		int totalPage = 0; // 총 몇 '페이지' 분량인가?
+		int totalCnt = 0; // 글은 총 몇개인가?
 
 		switch (type) {
 		case "전체":
 			if (tag.equals("전체")) {
-				list = userService.communityList();
+				try {
+					// 글 전체 개수 구하기
+					totalCnt = userService.countBoard();
+
+					// 총 몇페이지 분량?
+					totalPage = (int) Math.ceil(totalCnt / (double) pageRows);
+
+					// from: 몇번째 row 부터?
+					int from = (page - 1) * pageRows; // MySQL 의 Limit 는 0-base
+
+					list = userService.communityList(from, pageRows);
+
+					if (list == null) {
+						message.append("[리스트할 데이터가 없습니다]");
+					} else {
+						status = "OK";
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+				}
 			} else {
-				list = userService.tagList(tag);
+				try {
+					// 글 전체 개수 구하기
+					totalCnt = userService.countTag(tag);
+
+					// 총 몇페이지 분량?
+					totalPage = (int) Math.ceil(totalCnt / (double) pageRows);
+
+					// from: 몇번째 row 부터?
+					int from = (page - 1) * pageRows; // MySQL 의 Limit 는 0-base
+
+					list = userService.tagListPage(from, pageRows, tag);
+
+					if (list == null) {
+						message.append("[리스트할 데이터가 없습니다]");
+					} else {
+						status = "OK";
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+				}
 			}
 			break;
 		default:
 			if (tag.equals("전체")) {
-				list = userService.typeList(type);
+				try {
+					// 글 전체 개수 구하기
+					totalCnt = userService.countType(type);
+
+					// 총 몇페이지 분량?
+					totalPage = (int) Math.ceil(totalCnt / (double) pageRows);
+
+					// from: 몇번째 row 부터?
+					int from = (page - 1) * pageRows; // MySQL 의 Limit 는 0-base
+
+					list = userService.typeListPage(from, pageRows, type);
+
+					if (list == null) {
+						message.append("[리스트할 데이터가 없습니다]");
+					} else {
+						status = "OK";
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+				}
 			} else {
-				list = userService.tagList(tag);
+				try {
+					// 글 전체 개수 구하기
+					totalCnt = userService.countTag(tag);
+
+					// 총 몇페이지 분량?
+					totalPage = (int) Math.ceil(totalCnt / (double) pageRows);
+
+					// from: 몇번째 row 부터?
+					int from = (page - 1) * pageRows; // MySQL 의 Limit 는 0-base
+
+					list = userService.tagListPage(from, pageRows, tag);
+
+					if (list == null) {
+						message.append("[리스트할 데이터가 없습니다]");
+					} else {
+						status = "OK";
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					message.append("[트랜잭션 에러: " + e.getMessage() + "]");
+				}
 			}
 		}
 
-		BoardList result = new BoardList();
-		result.setList(list);
+		BoardList<BoardDTO> result = new BoardList<BoardDTO>();
+
+		result.setStatus(status);
+		result.setMessage(message.toString());
+
+		if (list != null) {
+			result.setCount(list.size());
+			result.setList(list);
+		}
+
+		result.setPage(page);
+		result.setTotalPage(totalPage);
+		result.setWritePages(writePages);
+		result.setPageRows(pageRows);
+		result.setTotalCnt(totalCnt);
+
 		return result;
 	}
+
+//	// 게시판 변경
+//	@PostMapping("/board")
+//	@ResponseBody
+//	public BoardList infoBoard(String type, String tag, Model model, Authentication authentication) {
+//		loginCheck(model, authentication);
+//
+//		List<BoardDTO> list = null;
+//
+//		
+//
+//		BoardList result = new BoardList();
+//		result.setList(list);
+//		return result;
+//	}
 
 	// 커뮤니티 뷰
 	@RequestMapping("/board/view")
@@ -280,8 +387,6 @@ public class MainController {
 		result.setStatus(status);
 		result.setMessage(message.toString());
 
-		System.out.println(result);
-
 		return result;
 	}
 
@@ -319,8 +424,6 @@ public class MainController {
 		StringBuffer message = new StringBuffer();
 		String status = "FAIL";
 		int count = 0;
-
-		System.out.println(dto.getTag());
 
 		// 태그의 문자열이 빈 문자열이면 null 값으로 처리
 		if (dto.getTag().isEmpty()) {
@@ -392,7 +495,7 @@ public class MainController {
 		loginCheck(model, authentication);
 		userService.likeUp(dto);
 	}
-	
+
 	// 추천취소
 	@DeleteMapping("board/like")
 	@ResponseBody
@@ -406,23 +509,22 @@ public class MainController {
 	@ResponseBody
 	public int likeCount(int uid) {
 		int count = 0;
-		System.out.println(uid);
 		count = userService.likeCount(uid);
 		return count;
 	}
-	
+
 	// 추천여부 확인
 	@PostMapping("board/likeChk")
 	@ResponseBody
 	public int likeCnt(Model model, int board_uid, Authentication authentication) {
 		MemberDTO m_dto = loginCheck(model, authentication);
-		
+
 		int likecheck = 0;
-		
+
 		likecheck = userService.likeChk(board_uid, m_dto.getMember_uid());
-		
+
 		return likecheck;
-		
+
 	}
 
 	// 신고
@@ -430,7 +532,6 @@ public class MainController {
 	@ResponseBody
 	public void report(Model model, @RequestParam Map<String, Object> param, Authentication authentication) {
 		loginCheck(model, authentication);
-		System.out.println(param);
 		userService.report(param);
 
 	}
