@@ -98,18 +98,18 @@
 					<div class="text">XRP</div>
 				</div>
 				<!-- Next and previous buttons -->
-				<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-				<a class="next" onclick="plusSlides(1)">&#10095;</a>
+				<a class="prev" onclick="mainPlusSlides(-1)">&#10094;</a>
+				<a class="next" onclick="mainPlusSlides(1)">&#10095;</a>
 			</div>
 			<br>
 			
 			<!-- The dots/circles -->
 			<div style="text-align:center">
-				<span class="dot" onclick="currentSlide(1)"></span>
-				<span class="dot" onclick="currentSlide(2)"></span>
-				<span class="dot" onclick="currentSlide(3)"></span>
-				<span class="dot" onclick="currentSlide(4)"></span>
-				<span class="dot" onclick="currentSlide(5)"></span>
+				<span class="dot" onclick="mainCurrentSlide(1)"></span>
+				<span class="dot" onclick="mainCurrentSlide(2)"></span>
+				<span class="dot" onclick="mainCurrentSlide(3)"></span>
+				<span class="dot" onclick="mainCurrentSlide(4)"></span>
+				<span class="dot" onclick="mainCurrentSlide(5)"></span>
 			</div>
 	    </div>
 	    <br>
@@ -128,26 +128,29 @@
 	       	</table>
 	    </div>
 <script>
-var slideIndex = 1;
-showSlides(slideIndex);
+
+var mainSlideIndex = 1;
+
+mainShowSlides(mainSlideIndex);
+
 showNtc();
 
-function plusSlides(n) {
-	showSlides(slideIndex += n);	
+function mainPlusSlides(n) {
+	mainShowSlides(mainSlideIndex += n);	
 }
 
-function currentSlide(n) {
-	showSlides(slideIndex = n);
+function mainCurrentSlide(n) {
+	mainShowSlides(mainSlideIndex = n);
 }
 
-function showSlides(n) {
+function mainShowSlides(n) {
 	var i;
 	var slides = document.getElementsByClassName("mySlides");
 	var dots = document.getElementsByClassName("dot");
 	
-	if (n > slides.length) {slideIndex = 1}    
+	if (n > slides.length) {mainSlideIndex = 1}    
 	
-	if (n < 1) {slideIndex = slides.length}
+	if (n < 1) {mainSlideIndex = slides.length}
 	
 	for (i = 0; i < slides.length; i++) {
 	    slides[i].style.display = "none";  
@@ -155,8 +158,8 @@ function showSlides(n) {
 	for (i = 0; i < dots.length; i++) {
 	    dots[i].className = dots[i].className.replace(" active", "");
 	}
-	slides[slideIndex-1].style.display = "block";  
-	dots[slideIndex-1].className += " active";
+	slides[mainSlideIndex-1].style.display = "block";  
+	dots[mainSlideIndex-1].className += " active";
 }
 
 function showNtc () {
@@ -168,8 +171,9 @@ function showNtc () {
 	    success: function (data) {
 	    	
 	    	var result = "";
+	    	var count = data.length;
 	    	
-	    	for ( var i = 0 ; i < 5 ; i++) {
+	    	for ( var i = 0 ; i < count ; i++) {
 	    		
 	    		result += "<tr><td>" + data[i]['subject'] + "</td>";
 	    		result += "<td>" + data[i]['regDate'] + "</td></tr>";

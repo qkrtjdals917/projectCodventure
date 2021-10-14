@@ -92,9 +92,14 @@ public class MainController {
 	@ResponseBody
 	public List<BoardDTO> mainNotice() {
 		List<BoardDTO> list = null;
-		
 		list = userService.selectNotice();
-		list = list.subList(0, 5);
+		if(list.size() < 5) {
+			list.subList(0, list.size());
+		}
+		else {			
+			list = list.subList(0, 5);
+		}
+		
 		return list;
 	}
 		// 마이페이지
