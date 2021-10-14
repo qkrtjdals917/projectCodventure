@@ -43,7 +43,7 @@
       </div>
       <hr>
       
-      <div id="board_view">
+      <div class="board_view">
          <div class="content_btn"> <%-- 상단 버튼 모음 --%>
             <button id="back_btn" onclick="history.back()">돌아가기</button>
             <button style="display: none;" id="report_btn" onclick="chkReport()">신고</button>
