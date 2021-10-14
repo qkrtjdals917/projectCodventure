@@ -5,7 +5,7 @@ table {
 }
 
 table, th, td {
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #c0c0c0;
 	text-align: center;
 	border-collapse: collapse;
 	font-size: 18px;
@@ -19,6 +19,7 @@ table, th, td {
 
 #middle_menu h2 {
 	font-size: 40px;
+	margin-bottom: 15px;
 }
 
 .selectMenu {
@@ -35,9 +36,12 @@ select, option {
 	color: black;
 	font-size: 18px;
 }
-
+table {
+	box-shadow: 0 0 5px 5px #e0e0e0;
+}
 td {
 	padding: 10px 0;
+	
 }
 
 th {
@@ -51,7 +55,7 @@ thead {
 
 
 tbody {
-	background-color: rgba(218, 218, 218, 0.4);
+	background-color: #f3f3f4;
 }
 
 #middle_menu button {
@@ -63,10 +67,9 @@ tbody {
 	color: #fff;
 }
 
-
 /* board view */
-#board_view {
-	padding: 40px 50px;
+.board_view {
+	padding: 40px 60px;
 }
 
 .content_btn {
@@ -78,22 +81,31 @@ tbody {
 	border-radius: 3px;
 	font-size: 18px;
 }
+.content_btn #back_btn_ntc {
+	margin-bottom: 15px;
+}
 
 .content_btn button:hover {
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
 #boardname {
+	font-size: 25px;
+	color: #FFBF18;
+}
+
+#noticename {
 	font-size: 23px;
 	color: #FFBF18;
 }
 
-#content_name {
+.read_contents #content_name {
 	font-size: 35px;
 	margin-top: 25px;
+	margin-bottom: 12px;
 }
 
-#content {
+.read_contents #content {
 	padding: 30px 35px;
 }
 
@@ -101,6 +113,96 @@ tbody {
 	margin-top: 30px;
 }
 
+/* board write *//* board-update */
+.frm {
+	padding: 10px 100px;
+	background-color: #f7f7f7;
+}
+.writeHeader {
+	position: relative;
+	margin-top: 20px;
+	border-bottom: 1px solid #323232;
+}
+
+.writename {
+	font-size: 45px;
+	color: #100E34;
+}
+
+.writeTitle {
+	width: 600px;
+	display: block;
+	margin-top: 20px;
+}
+.writeTitle #selectMenu {
+	position: relative;
+	margin-bottom: 10px;
+}
+.writeTitle #selectMenu #board_type {
+	width: 67%;
+	font-size: 27px;
+	background-color: rgba(103, 98, 86, 0.2);
+	border: 1px solid #c0c0c0;
+	text-align: center;
+	border-collapse: collapse;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px #eaeaec;
+	
+}
+
+.writeTitle #selectMenu #board_tag {
+	width: 30%;
+	font-size: 27px;
+	background-color: rgba(103, 98, 86, 0.2);
+	border: 1px solid #c0c0c0;
+	text-align: center;
+	border-collapse: collapse;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px #eaeaec;
+}
+
+.writeTitle #subject {
+	border: 1px solid #c0c0c0;
+	border-collapse: collapse;
+	border-radius: 3px;
+	width: 98%;
+}
+.writeTitle #updatesubject {
+	border: 1px solid #c0c0c0;
+	border-collapse: collapse;
+	border-radius: 3px;
+	width: 98%;
+}
+#subject {
+	font-weight: 200px;
+	font-size: 30px;
+	margin-bottom: 10px;
+}
+#updatesubject{
+	font-weight: 200px;
+	font-size: 30px;
+	margin-bottom: 10px;
+}
+.writecontent #content {
+	border: 1px solid #c0c0c0;
+	height: 300px;
+	width: 700px;
+}
+
+.write_btn {
+	float: right;
+	margin-right: 200px;
+}
+
+.write_btn button {
+	border: 1px solid #c9c9c9;
+	border-radius: 3px;
+	font-size: 23px;
+}
+
+.write_btn button:hover {
+	background-color: #c4c3df;
+}
 
 /* comment */
 
@@ -108,7 +210,7 @@ tbody {
 	padding: 20px 0;
 }
 
-#content {
+.writecontent #content {
 	width: 92%;
 }
 
@@ -125,11 +227,8 @@ tbody {
 
 
 /* board write */
-.board_write {
-	padding: 40px 50px;
-}
 
 
 .footer {
-	margin-top: 50px;
+
 }
