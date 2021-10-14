@@ -44,7 +44,7 @@
       </div>
       <div style="clear:both; height:70px"></div>
 
-      <form class="frm" method="PUT">
+      <form id="frm" class="frm" method="PUT">
       
       	<div class="writeHeader">
       		<h2 class="writename">커뮤니티 글쓰기</h2>

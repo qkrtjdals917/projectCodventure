@@ -41,7 +41,7 @@ function select_set() {
 // 4. 게시글 수정
 function update_chk() {
   var content = $('#content').val().trim();
-  var subject = $('#subject').val().trim();
+  var subject = $('#updatesubject').val().trim();
   var member_uid = $('#member_uid').val();
   if (member_uid == null) {
     Swal.fire({
@@ -69,7 +69,7 @@ function update_chk() {
   var data = $('#frm').serialize();
 
   $.ajax({
-    url: "",
+    url: "/modacon/board/update",
     type: "PUT",
     cache: false,
     data: data,
@@ -81,7 +81,7 @@ function update_chk() {
             text: '글 수정을 완료했습니다.',
             icon: 'success',
             preConfirm: () => {
-              location.href = 'view?uid=' + data.uid;
+              location.href = '/modacon/board/view?uid=' + data.uid;
             }
           });
         } else {

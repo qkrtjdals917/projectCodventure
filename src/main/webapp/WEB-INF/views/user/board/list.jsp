@@ -62,16 +62,15 @@
 
       </table>
       
+      <br>
       <%-- [페이징] --%>
       <div class="center">
         <ul class="pagination" id="pagination"></ul>
       </div>
       
       <br>
-      <button onclick="location.href = 'board/write'">새글작성</button>
+      <button onclick="location.href = '/modacon/board/write'">새글작성</button>
     </div>
-
-    <div id="pagination-div" ></div>
 
     <div class="footer">
       <%@ include file="../../include/footer.jsp"%>
