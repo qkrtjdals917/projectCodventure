@@ -20,7 +20,6 @@
   <div class="header">
     <%@ include file="../../include/header.jsp"%>
   </div>
-  <div style="clear:both; height:70px"></div>
 
   <form id="frm" class="frm" method="post">
 
@@ -52,7 +51,7 @@
       </div>
     </div>
     <div class="writecontent">
-      <textarea name="content" id="content" cols="100" rows="30" placeholder="내용 작성란"></textarea>
+      <textarea name="content" id="content" placeholder="내용 작성란"></textarea>
     </div>
     <div class="write_btn">
       <button type="button" onclick="write_chk()">등록</button>
