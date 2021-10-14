@@ -101,7 +101,7 @@ public class UserService {
 	public List<CoinDTO> selectCoinList () {
 		return dao.selectCoinList();
 	}
-	
+
 	// 페이징관련
 	public int countBoard() {
 		return dao.countBoard();
@@ -111,5 +111,10 @@ public class UserService {
 	}
 	public int countTag(String tag) {
 		return dao.countTag(tag);
+	}
+
+	// 공지사항 가져오기
+	public List<BoardDTO> selectNotice () {
+		return dao.selectNotice();
 	}
 }

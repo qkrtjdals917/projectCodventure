@@ -57,12 +57,6 @@ public class MainController {
 			MemberDTO dto = new MemberDTO();
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
 
-			// 확인용 코드
-			System.out.println("Email정보 : " + userDetails.getUsername());
-			System.out.println("Nickname정보 : " + userDetails.getNickname());
-			System.out.println("Phonenum정보 : " + userDetails.getPhonNum());
-			System.out.println("cnt정보 : " + userDetails.getBordCnt());
-
 			dto.setEmail(userDetails.getUsername());
 			dto.setNickname(userDetails.getNickname());
 			dto.setPhoneNumber(userDetails.getPhonNum());
@@ -95,7 +89,16 @@ public class MainController {
 		return "user/main";
 	}
 
-	// 마이페이지
+	@RequestMapping("/mainNtc")
+	@ResponseBody
+	public List<BoardDTO> mainNotice() {
+		List<BoardDTO> list = null;
+		
+		list = userService.selectNotice();
+		list = list.subList(0, 5);
+		return list;
+	}
+		// 마이페이지
 	@RequestMapping("/mypage")
 	public String hy_myPage(Model model, Authentication authentication) {
 		// loginCheck(model, authentication);

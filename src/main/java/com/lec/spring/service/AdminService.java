@@ -82,10 +82,12 @@ public class AdminService {
 	}
 	
 	
+	public List<BoardDTO> typeList(String type){
+		return Bdao.selectType(type);
+	}
 	
-	// 게시판 정보를 가져온다
-	public List<BoardDTO> admCmtList(){
-		return Bdao.selectCommunity();
+	public List<BoardDTO> tagList(String tag){
+		return Bdao.selectTag(tag);
 	}
 	
 	// 커뮤티니 게시판 글의 개수를 카운트해서 가져온다.
