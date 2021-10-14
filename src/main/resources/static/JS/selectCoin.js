@@ -534,7 +534,7 @@ function avgcoin(coinNumber) {
 	var sum = 0;
 	var cntCoin = 0;
 	// 먼저 빗썸 가격 더해줌 
-<<<<<<< HEAD
+
 	sum += parseFloat( bithumb_data[coinNumber]['closing_price']);
 	cntCoin ++;
 	if (upbit_data[coinNumber]) {
@@ -544,30 +544,11 @@ function avgcoin(coinNumber) {
 	if (coinone_data[coinNumber]) {
 		sum += parseFloat( coinone_data[coinNumber]['last'])
 		cntCoin++;	
-=======
-	sum += parseFloat(bithumb_data[coinNumber]['closing_price']);
-	cntCoin++;
-	if (upbit_data[coinNumber]) {
-		sum += parseFloat(upbit_data[coinNumber]['trade_price'])
-		cntCoin++;
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure
 	}
-<<<<<<< HEAD
 	if (korbit_data[coinNumber]) {
 		sum += parseFloat(  korbit_data[coinNumber]['last'])
 		cntCoin++;	
-=======
-	if (coinone_data[coinNumber]) {
-		sum += parseFloat(coinone_data[coinNumber]['last'])
-		cntCoin++;
->>>>>>> branch 'master' of https://github.com/qkrtjdals917/projectCodventure
 	}
-	if (korbit_data[coinNumber]) {
-		sum += parseFloat(korbit_data[coinNumber]['last'])
-		cntCoin++;
-	}
-
-
 	var avg = sum / cntCoin;
 	return avg;
 }
