@@ -172,7 +172,7 @@ UPDATE mc_member
 SELECT * FROM mc_report;
 SELECT * FROM mc_board;
 SELECT * FROM mc_comment;
-SELECT * FROM mc_member WHERE email = "test3@email.com";
+SELECT * FROM mc_member WHERE email = "test11@email.com";
 SELECT count(subject) FROM mc_board WHERE member_uid = 77;
 UPDATE mc_member SET authority = 2 WHERE email = 'root99@email.com';
 

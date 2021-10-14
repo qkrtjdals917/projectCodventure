@@ -124,6 +124,12 @@ tbody {
 }
 
 
+/* board write */
+.board_write {
+	padding: 40px 50px;
+}
+
+
 .footer {
 	margin-top: 50px;
 }
