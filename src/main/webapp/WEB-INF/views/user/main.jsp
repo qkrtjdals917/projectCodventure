@@ -172,7 +172,7 @@ function showNtc () {
 	    	
 	    	for ( var i = 0 ; i < count ; i++) {
 	    		
-	    		result += "<tr><td>" + data[i]['subject'] + "</td>";
+	    		result += "<tr><td><a href='/modacon/notice/view?uid=" + data[i]['board_uid'] + "' >" + data[i]['subject'] + "</a></td>";
 	    		result += "<td>" + data[i]['regDate'] + "</td></tr>";
 	    		
 	    	}

@@ -8,7 +8,7 @@ function add_comment(uid) {
     success: function (data) {
       if (data == "success") {
         getCommentList(uid);
-        $("#content").val("");
+        $("#commentContent").val("");
       }
       if (data == "fail") {
         alert("댓글 저장에 실패했습니다.");

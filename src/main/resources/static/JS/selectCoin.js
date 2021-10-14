@@ -449,18 +449,18 @@ function avgcoin (coinNumber) {
 	var sum = 0;
 	var cntCoin = 0; 
 	// 먼저 빗썸 가격 더해줌 
-	sum += parseFloat( bithumb_data[i]['closing_price']);
+	sum += parseFloat( bithumb_data[coinNumber]['closing_price']);
 	cntCoin ++;
-	if (upbit_data[i]) {
-		sum += parseFloat( upbit_data[i]['trade_price'])
+	if (upbit_data[coinNumber]) {
+		sum += parseFloat( upbit_data[coinNumber]['trade_price'])
 		cntCoin++;	
 	}   
-	if (coinone_data[i]) {
-		sum += parseFloat( coinone_data[i]['last'])
+	if (coinone_data[coinNumber]) {
+		sum += parseFloat( coinone_data[coinNumber]['last'])
 		cntCoin++;	
 	}
-	if (korbit_data[i]) {
-		sum += parseFloat(  korbit_data[i]['last'])
+	if (korbit_data[coinNumber]) {
+		sum += parseFloat(  korbit_data[coinNumber]['last'])
 		cntCoin++;	
 	}
 	   
