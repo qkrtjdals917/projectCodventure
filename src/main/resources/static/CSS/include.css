@@ -187,11 +187,10 @@ b {
 }
 
 .modal .modal-content {
-    position: relative;
-   background-color: #fefefe;
-   width: 70%;   
-   left: 10%;
-    border-radius: 15px;
+	background-color: #fefefe;
+   	width: 80%;   
+	margin: 5% auto 15% auto;
+	border-radius: 10px;
 }
 
 .modal .logincontainer {
@@ -216,7 +215,7 @@ b {
 }
 
 h3.title {
-    color: #7367f0;
+    color: #847ef1;
     font-size: 35px;
 }
 

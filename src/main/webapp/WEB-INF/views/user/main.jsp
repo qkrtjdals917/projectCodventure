@@ -115,10 +115,11 @@
 	    <br>
 	    <div class="contentC">
 	    	<div class="Cheader">
-		    	<h2>공지 사항 </h2>
-		    	<a href="/modacon/notice">더보기</a>
+		    	<b>공지 사항 </b>
+		    	<span><a href="/modacon/notice">&plus;더보기</a></span>
+	    		<div class="clearAll"></div>
 	    	</div>
-	       	<table border="">
+	       	<table>
 	       		<thead>
 	       			<th>최근공지</th>
 	       			<th>작성일</th>
@@ -169,13 +170,13 @@ function showNtc () {
 	    type: 'GET',
 	    cache: false,
 	    success: function (data) {
-	    	
+
 	    	var result = "";
 	    	var count = data.length;
 	    	
 	    	for ( var i = 0 ; i < count ; i++) {
 	    		
-	    		result += "<tr><td>" + data[i]['subject'] + "</td>";
+	    		result += "<tr><td><a href='/modacon/notice/view?uid=" + data[i]['board_uid'] + "' >" + data[i]['subject'] + "</a></td>";
 	    		result += "<td>" + data[i]['regDate'] + "</td></tr>";
 	    		
 	    	}

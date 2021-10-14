@@ -116,11 +116,13 @@ public class IndexController {
 		String currentPw = dto.getCurrentpw();		// 현재 비밀번호(입력)
 		String pw = "";					// 현재 비밀번호
 		
-		if (authentication != null) {
+		if(authentication != null) {
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
-			
+
 			pw = userDetails.getPassword();
 		}
+		
+		System.out.println("현재 비밀번호: " + pw);
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		if(encoder.matches(currentPw, pw)) {
@@ -131,7 +133,6 @@ public class IndexController {
 			String encPassword = passwordEncoder.encode(changePassword);	// 원본을 암호화
 			dto.setPw(encPassword); // 암호와된 pw세팅
 			
-			System.out.println(MemberService.changePassword(dto));
 			System.out.println("변경성공");
 			
 			return "success";
