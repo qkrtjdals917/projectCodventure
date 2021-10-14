@@ -117,6 +117,8 @@ public class IndexController {
 		String pw = "";					// 현재 비밀번호
 		
 		if (authentication != null) {
+			System.out.print("아아");
+			
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
 			
 			pw = userDetails.getPassword();

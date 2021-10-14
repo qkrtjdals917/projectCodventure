@@ -166,10 +166,11 @@ function showNtc () {
 	    type: 'GET',
 	    cache: false,
 	    success: function (data) {
-	    	
+
 	    	var result = "";
+	    	var count = data.length;
 	    	
-	    	for ( var i = 0 ; i < 5 ; i++) {
+	    	for ( var i = 0 ; i < count ; i++) {
 	    		
 	    		result += "<tr><td>" + data[i]['subject'] + "</td>";
 	    		result += "<td>" + data[i]['regDate'] + "</td></tr>";

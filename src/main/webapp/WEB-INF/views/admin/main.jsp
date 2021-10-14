@@ -196,13 +196,13 @@
 						<%-- 읽기, 삭제, 수정을 위해 필요 --%>
 						
 						<div class="a01 ntc_group_header">
-						<div class="ntcLeft">
-							<p id="viewcnt"></p>
-						</div>
-						<div class="ntcright">
-							<p id="regdate"></p>
-						</div>
-						<div class="clear"></div>
+							<div class="ntcLeft">
+								<p id="viewcnt"></p>
+							</div>
+							<div class="ntcright">
+								<p id="regdate"></p>
+							</div>
+							<div class="clear"></div>
 						</div>
 						
 						<label for="subject"><b>글제목</b></label>
@@ -280,5 +280,49 @@
 
       </div>
    </footer>
+   
+<script>
+function changeAuth (member_uid) {
+	Swal.fire({
+	    title: "권한 변경",
+	    html: '<select id="Auth_tag" class="swal2-select">' +
+	      '<option value="" disabled selected hidden>변경될 권한을 선택해주세요.</option>' +
+	      '<option value="0">일반 회원</option>' +
+	      '<option value="1">게시판 관리자</option>' +
+	      '</select>',
+	    showCancelButton: true,
+	    confirmButtonColor: '#3085d6',
+	    cancelButtonColor: '#d33',
+	    confirmButtonText: '변경',
+	    cancelButtonText: '취소',
+	    preConfirm: () => {
+	      var auth_tag = document.getElementById('Auth_tag').value;
+	      if (auth_tag == "") {
+	        Swal.fire({
+	          icon: "error",
+	          text: "변경될 권한을 선택해주세요.",
+	          preConfirm: () => {
+	        	  changeAuth();
+	          }
+	        });
+	        return;
+	      }
+	      $.ajax({
+	          url: "/modaconAdmin/member/" + member_uid + "/" + auth_tag,
+	          type: "PUT",
+	          data: "authority=" + auth_tag,
+	          success: function () {
+	            Swal.fire({
+	              title: '변경 완료',
+	              text: '권한이 변경됐습니다.',
+	              icon: 'success'
+	            });
+	            location.reload();
+	          }
+	        })
+	      }
+	    });
+}
+</script>
 </body>
 </html>

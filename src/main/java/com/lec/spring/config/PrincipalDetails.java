@@ -51,7 +51,7 @@ public class PrincipalDetails implements UserDetails {	// UserDetails는 Spring 
 
 	@Override
 	public String getPassword() {
-		
+		System.out.println(dto.getPw());
 		return dto.getPw();
 	}
 

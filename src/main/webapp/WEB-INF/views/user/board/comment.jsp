@@ -39,9 +39,6 @@
 			cancelButtonText: '취소'
 			}).then((result) => {
 				if (result.isConfirmed) {
-					alert(comment_uid);
-					alert(member_uid)
-					alert("${member.member_uid}");
 					
 					if (member_uid == "${member.member_uid}") {
 						$.ajax({
@@ -54,9 +51,7 @@
 		            				title : '댓글 삭제',
 		            				text : '해당 댓글이 삭제되었습니다.',
 		            				icon : "success"
-		            			}).then((result) => {
-		         					location.reload();
-		         					})
+		            			})
 							}
 						});
 					} else {

@@ -148,7 +148,7 @@ $(function () {
 	
 	// 모달 창 외부 클릭시 모달창 닫기
 	$(".modal").click(function(e){
-		var modal = $(".modal-content")
+		var modal = $(".modal-content");
 		if(modal.has(e.target).length === 0){
 				if(modal_status == "join") {
 				Swal.fire({

@@ -173,6 +173,14 @@ public class AdminService {
 		return Mdao.deleteMember(uid);
 	}
 	
+	// 부여된 권한 가져오기
+	public Integer selectAuthoritiesById(int member_uid) {
+		return Mdao.selectAuthoritiesById(member_uid);
+	}
+	
+	public int changeAuth (int authority , int member_uid) {
+		return Mdao.changeAuth(authority, member_uid);
+	}
 	// 회원리스트를 본다
 	// TODO
 	// 강퇴기능
