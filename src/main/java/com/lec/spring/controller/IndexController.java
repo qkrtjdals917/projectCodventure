@@ -116,11 +116,9 @@ public class IndexController {
 		String currentPw = dto.getCurrentpw();		// 현재 비밀번호(입력)
 		String pw = "";					// 현재 비밀번호
 		
-		if (authentication != null) {
-			System.out.println("여기로 오나?");
-			
+		if(authentication != null) {
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
-			
+
 			pw = userDetails.getPassword();
 		}
 		

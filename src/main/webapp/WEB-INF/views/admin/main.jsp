@@ -192,7 +192,7 @@
 						<h3 class="title">공지 작성</h3>
 						<span class="close" title="Close Modal">&times;</span>
 						<%-- 닫기버튼 --%>
-						<input type="hidden" name="member_uid" value="${member.member_uid }">
+						<input type="hidden" name="member_uid" value="${member.member_uid }" />
 						<%-- 읽기, 삭제, 수정을 위해 필요 --%>
 						
 						<div class="a01 ntc_group_header">

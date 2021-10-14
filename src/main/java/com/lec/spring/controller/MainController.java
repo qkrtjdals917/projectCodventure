@@ -87,7 +87,6 @@ public class MainController {
 		else {
 			list = list.subList(0, 5);
 		}
-
 		return list;
 	}
 		// 마이페이지

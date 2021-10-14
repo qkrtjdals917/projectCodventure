@@ -147,13 +147,54 @@ img {
   to {opacity: 1}
 }
 
+/* contentC */
 .contentC {
-	display: flex;
-	text-align: center;
-	justify-content: center;
+	margin: 10px 90px 55px 90px;
 }
+
 .Cheader {
-	display: flex;
+	border-bottom: 1px solid black;
+	margin-bottom: 25px;
 }
+
+.Cheader b {
+	float: left;
+	white-space: nowrap;
+	font-size: 40px;
+}
+
+.Cheader span {
+	float: right;
+}
+
+.Cheader span a {
+	text-decoration: none;
+	display: inline-block;
+	padding-top: 20px;
+	color: #888;
+}
+
+.contentC table {
+	width: 100%;
+}
+
+.contentC table thead, tbody {
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
