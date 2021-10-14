@@ -80,6 +80,7 @@ public class MainController {
 	public List<BoardDTO> mainNotice() {
 		List<BoardDTO> list = null;
 		list = userService.selectNotice();
+		
 		if (list.size() < 5) {
 			list = list.subList(0, list.size());
 		}

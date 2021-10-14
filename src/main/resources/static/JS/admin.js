@@ -51,7 +51,7 @@ $(document).ready(function() {
 
 	// 글 수정 완료 버튼 누르면
 	$("#updateOk").click(function() {
-		chkUpdate();
+		chkUpdate(window.view_uid);
 	});
 
 	$(".modal").click(function(e) {
@@ -535,7 +535,7 @@ function chkWrite() {
 			if (status == "success") {
 				if (data) {
 					alert("글 작성 완료!");
-					loadPage(1,"community")
+					loadPage(1,"notice")
 				}
 				else {
 					alert("글 작성 실패");
@@ -550,13 +550,14 @@ function chkWrite() {
 
 
 // 글 수정
-function chkUpdate() {
-
-	var data = $("#noticeWrite").serialize();
+function chkUpdate(uid) {
+	
+	
+	var data = $("#noticeFrm").serialize();
 
 	// PUT 방식 
 	$.ajax({
-		url: "/modaconAdmin/board",  // URL: /board
+		url: "/modaconAdmin/board" = uid,  // URL: /board
 		type: "PUT",
 		cache: false,
 		data: data,
@@ -570,10 +571,7 @@ function chkUpdate() {
 			}
 			//현재 팝업 닫기
 			$("#noticeWrite").hide();
-		},
-		error: function(request, status, error) {
-			alert(status);
-			alert(error);
+			loadPage(1,"view_type");
 		}
 	});
 }

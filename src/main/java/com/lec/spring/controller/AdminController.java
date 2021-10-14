@@ -199,11 +199,12 @@ public class AdminController {
 	}
 
 	// 글 수정
-	@PutMapping("/board") // URI: /board
+	@PutMapping("/board/{board_uid}") // URI: /board
 	@ResponseBody
-	public int ntcUpdateOk(BoardDTO dto) {
+	public int ntcUpdateOk(BoardDTO dto, @PathVariable int board_uid) {
 		int count = 0;
-
+		dto.setType("공지");
+		dto.setBoard_uid(board_uid);
 		count = adminService.update(dto);
 
 		return count;
