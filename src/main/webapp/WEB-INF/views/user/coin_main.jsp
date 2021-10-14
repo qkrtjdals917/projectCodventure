@@ -300,8 +300,10 @@ td, th {
 				</table>
 			</div>
 		</div>
-		<div class="chart-container" style="position: relative; height:200px; width:40vw">
-			<canvas id="bar-chart" ></canvas>
+		<div>
+		<div id="bar_div">
+		<canvas id="bar-chart" width="300" height="230"></canvas>
+		</div>
 		</div>
 
 		<div class="footer">
