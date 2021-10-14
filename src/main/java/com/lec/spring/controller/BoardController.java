@@ -37,11 +37,13 @@ public class BoardController {
 			cdto.setMember_uid(userDetails.getUid());
 		}
 		cdto.setBoard_uid(board_uid);
-		if (boardService.insert(cdto) == 1) {
+		int count = boardService.insert(cdto);
+		System.out.println(count);
+		if (count == 1) {
 			return "success";			
 		}
 		else {
-			return "file";
+			return "fail";
 		}
 	}
     
