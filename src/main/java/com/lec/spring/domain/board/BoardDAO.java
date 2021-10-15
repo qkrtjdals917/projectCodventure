@@ -16,6 +16,8 @@ public interface BoardDAO {
 	// 공지글 list
 	public abstract List<BoardDTO> selectNotice();
 
+	public abstract List<BoardDTO> selectNoticePaging(@Param("from") int from, @Param("pageRows") int pageRows);
+
 	// Type list
 	public abstract List<BoardDTO> selectType(String type);
 
@@ -64,7 +66,7 @@ public interface BoardDAO {
 	public abstract int countType(String type);
 
 	public abstract int countTag(String tag);
-
+	
 	// ↓해연추가
 
 	// (공지사항 정보 가져오기)

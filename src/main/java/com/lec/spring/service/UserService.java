@@ -27,8 +27,8 @@ public class UserService {
 		return dao.selectCommunity(from, pageRows);
 	}
 	
-	public List<BoardDTO> noticeList(){
-		return dao.selectNotice();
+	public List<BoardDTO> noticeList(int from, int pageRows){
+		return dao.selectNoticePaging(from, pageRows);
 	}
 	
 	public List<BoardDTO> typeList(String type){
@@ -111,6 +111,9 @@ public class UserService {
 	}
 	public int countTag(String tag) {
 		return dao.countTag(tag);
+	}
+	public int countNotice() {
+		return dao.countNtc();
 	}
 
 	// 공지사항 가져오기

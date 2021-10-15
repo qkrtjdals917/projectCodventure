@@ -1,7 +1,3 @@
-// list
-// 전역변수
-var board_type = '전체';
-var board_tag = '전체';
 var page = 1; // 현재 페이지
 var pageRows = 10; // 페이지당 글의 개수
 
@@ -13,13 +9,9 @@ $().ready(function () {
 // 2. 페이지 로딩
 function pageload(page) {
   $.ajax({
-    url: '/modacon/board/' + page + '/' + pageRows,
+    url: '/modacon/notice/' + page + '/' + pageRows,
     type: 'GET',
     cache: false,
-    data: {
-      type: board_type,
-      tag: board_tag
-    },
     success: function (data, status) {
       if (status == 'success') {
         pageset(data);
@@ -37,17 +29,13 @@ function pageset(data) {
     window.pageRows = data.pagerows;
 
     for (var i = 0; i < count; i++) {
-      viewLink = '/modacon/board/view?uid='.concat(items[i].board_uid);
+      viewLink = '/modacon/notice/view?uid='.concat(items[i].board_uid);
       result += "<tr>\n";
       result += "<td>" + items[i].board_uid + "</td>\n";
-      if (items[i].tag == null) {
-        result += "<td><a href='" + viewLink + "'>" + items[i].subject + "</a></td>\n";
-      } else {
-        result += "<td><a href='" + viewLink + "'>[" + items[i].tag + "]" + items[i].subject + "</a></td>\n";
-      }
+      result += "<td><a href='" + viewLink + "'>" + items[i].subject + "</a></td>\n";
+
       result += "<td>" + items[i].nickname + "</td>\n";
       result += "<td>" + items[i].regDate + "</td>\n";
-      result += "<td>" + items[i].likeCnt + "</td>\n";
       result += "<td>" + items[i].count + "</td>\n";
       result += "</tr>\n";
     }
@@ -60,37 +48,6 @@ function pageset(data) {
   }
 }
 
-// 3. 게시판 타입 토글
-function type_toggle() {
-  board_type = $('#board_type option:selected').val();
-  if (board_type == '정보') {
-    $('#board_tag').val("전체").prop("selected", true);
-    $('.info_sel').show();
-    $('.free_sel').hide();
-    board_tag = $('#board_tag option:selected').val();
-  } else if (board_type == '자유') {
-    $('#board_tag').val("전체").prop("selected", true);
-    $('.info_sel').hide();
-    $('.free_sel').show();
-    board_tag = $('#board_tag option:selected').val();
-  } else if (board_type == '전체') {
-    $('#board_tag').val("전체").prop("selected", true);
-    $('.info_sel').show();
-    $('.free_sel').show();
-    board_tag = $('#board_tag option:selected').val();
-  }
-  page = 1;
-  pageload(page);
-}
-
-// 4. 게시판 태그 토글
-function tag_toggle() {
-  board_tag = $('#board_tag option:selected').val();
-  page = 1;
-  pageload(page);
-}
-
-// 5. 페이징
 // 페이징생성함수
 function buildPagination(writePages, totalPage, curPage, pageRows) {
   var str = ""; // 최종페이징 생성시 나타날 HTML <li>태그로 구성함
