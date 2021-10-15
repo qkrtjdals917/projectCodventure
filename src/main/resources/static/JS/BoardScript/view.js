@@ -189,9 +189,11 @@ function likeCount() {
     data: {
       uid: board_uid
     },
+	dataType: "text",
     success: function (count) {
       $("#likeCount").html(count);
-    },
+    }
+
   })
 }
 
@@ -203,6 +205,7 @@ function likeChk() {
     data: {
       board_uid: board_uid
     },
+	dataType: "text",
     success: function (data) {
       if (data == 1) {
         $('#like_up_btn').hide();
@@ -272,6 +275,7 @@ function chkReport() {
           report_content: rep_content,
           member_uid: member_uid
         },
+		dataType: "text",
         success: function () {
           Swal.fire({
             title: '신고완료',

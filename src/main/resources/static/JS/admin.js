@@ -505,12 +505,13 @@ function delete_by_uid(uid, type) {
 	});
 }
 function delete_report(report_uid, board_uid) {
-	if (!confirm(uid + "번째 신고를 삭제하시겠습니까?")) return false;
+	if (!confirm(board_uid + "번째 신고를 삭제하시겠습니까?")) return false;
 	$.ajax({
 		url: "/modaconAdmin/report/" + board_uid,
 		type: "DELETE",
-		data: "report_uid" + report_uid,
+		data: "report_uid=" + report_uid,
 		cache: false,
+		dataType:"text",
 		success: function(data) {
 
 			alert("신고가 취하되었습니다");

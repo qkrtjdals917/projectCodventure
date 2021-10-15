@@ -99,7 +99,7 @@
 				<form id="memDeleteform" action="/deleteOk" name="memDeleteform" method="post" onsubmit="return chkDelete()">
 					<div class="btn_secession">
 						<b>정말로 탈퇴하십니까?</b><br>
-						<b>탈퇴하시려면 아래 입력란에 회원탈퇴를 입력하세요.</b><br>
+						<b>탈퇴하시려면 아래 입력란에 <span>회원탈퇴</span>를 입력하세요.</b><br>
 						<input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid}">
 						<input type="hidden" id="pw" name="pw" value="${member.pw}">
 						<input type="text" name="checksecession" required>

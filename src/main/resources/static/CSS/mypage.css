@@ -146,3 +146,7 @@
 	width: 100%;
 	cursor: pointer;
 }
+
+.btn_secession span {
+	color: red;
+}
