@@ -47,7 +47,7 @@
       <form id="frm" class="frm" method="PUT">
 
         <div class="writeHeader">
-          <h2 class="writename">커뮤니티 글쓰기</h2>
+          <h2 class="writename">커뮤니티 글 수정</h2>
         </div>
 
         <input type="hidden" id="member_uid" name="member_uid" value="${member.member_uid }" />

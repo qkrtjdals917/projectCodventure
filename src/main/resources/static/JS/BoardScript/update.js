@@ -50,15 +50,14 @@ function update_chk() {
       text: '로그인 하지 않았습니다. 로그인 해주세요.'
     });
     return;
-  } else if (subject == null || subject == "") {
-    Swal.fire({
-      icon: 'warning',
-      title: '제목 입력',
-      text: '제목을 입력해주세요.'
-    });
-    return;
-  } else if (content == null || content == "" || content.length < 3) {
-    Swal.fire({
+  }
+  if (subject == null || subject == "") {
+    document.getElementById("updatesubject").value = $('#updatesubject').attr('placeholder');
+  }
+  if (content == null || content == "") {
+    document.getElementById("content").value = $('#content').attr('placeholder');
+  } else if (content.length < 3){
+	Swal.fire({
       icon: 'warning',
       title: '내용 입력',
       text: '글 내용을 최소 3글자 이상 입력해주세요.'

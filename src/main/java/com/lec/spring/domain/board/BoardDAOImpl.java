@@ -175,4 +175,10 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 
+	@Override
+	public List<BoardDTO> selectNoticePaging(int from, int pageRows) {
+		return mapper.selectNoticePaging(from, pageRows);
+	}
+
+
 }
