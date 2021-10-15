@@ -397,7 +397,7 @@ function setPopup(mode) {
 	if (mode == "view") {
 
 		$("#noticeWrite .title").text("글 읽기");
-		$("#noticeWrite .ntc_group_header").show();
+		$("#noticeWrite .ntc_group_header").hide();
 		$("#noticeWrite .ntc_group_write").hide();
 		$("#noticeWrite .ntc_group_view").show();
 		if (window.view_type != "공지") {
@@ -423,7 +423,7 @@ function setPopup(mode) {
 
 		$("#noticeWrite .title").text("글 수정");
 
-		$("#noticeWrite .ntc_group_header").show();
+		$("#noticeWrite .ntc_group_header").hide();
 		$("#noticeWrite .ntc_group_write").hide();
 		$("#noticeWrite .ntc_group_view").hide();
 		$("#noticeWrite .ntc_group_update").show();

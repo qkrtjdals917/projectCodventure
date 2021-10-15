@@ -163,6 +163,10 @@ VALUES (0, '회원') , (1, '관리자'), (2, '운영자');
 INSERT INTO mc_member (email, password, nickname, phoneNumber, authority) 
 VALUES( 'root@root.com', 'root', 'root', '010-1234-1234', 2);
 
+UPDATE mc_member 
+SET authority = 2
+WHERE email = 'root@root.com';
+
 SELECT * FROM mc_authority;
 SELECT * FROM mc_member ORDER BY member_uid DESC;
 
