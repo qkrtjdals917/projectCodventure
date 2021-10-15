@@ -1,19 +1,27 @@
-#select_coin {
+.select_table {
 	display : none;
 }
 #bar-chart{
 	display : none;
 }
 
-tbody {
-	background-color: rgba(218, 218, 218, 0.4);
+.content_table tbody {
+	background-color: rgb(231, 231, 231);
+}
+
+.content {
+	padding: 80px 30px;
+}
+
+#targetTrade {
+	margin-left: 40px;
+	margin-bottom: 20px;
 }
 
 
 /* Slideshow container */
 .slideshow-container {
-	width: 70%;
-
+	width: 100%;
   position: relative;
   margin: auto;
 }
@@ -22,14 +30,78 @@ tbody {
 .mySlides {
   display: none;
 }
+
+/* All일때 보이는 테이블 */
 .content_table {
 	text-align: center;
 	display: flex;
-  justify-content: center;
+  	justify-content: center;
 }
 
 .content_table table {
-	width: 70%;
+	width: 80%;
+}
+
+.content_table table, th, td {
+	border-bottom: 1px solid black;
+	text-align: center;
+	border-collapse: collapse;
+	font-size: 25px;
+}
+
+.content_table table th {
+	padding: 15px 20px;
+	background-color: rgba(0, 28, 181, 0.3);
+}
+
+.content_table td {
+	padding: 15px 20px;
+}
+
+.content_table table tbody td:not(:first-child) {
+	text-align: right;
+}
+
+/* selece해서 보이는 table */
+#select_coin {
+	text-align: center;
+	display: flex;
+  	justify-content: center;
+}
+
+#select_coin table {
+	width: 100%;
+	margin: 0 40px;
+}
+
+.select_table th, td {
+	border-bottom: 1px solid black;
+	text-align: center;
+	border-collapse: collapse;
+	font-size: 25px;
+}
+
+.select_table th {
+	padding: 15px 20px;
+	background-color: rgba(0, 28, 181, 0.3);
+}
+
+.select_table td {
+	padding: 15px 20px;
+}
+
+.secondTitle td {
+	background-color: rgb(218, 218, 218);
+}
+
+.sort td {
+	text-align: right;
+	background-color: rgb(235, 235, 235);
+}
+
+/* 그래프 */
+#bar_div {
+	margin: 0 60px;
 }
 
 /* Next & previous buttons */
@@ -102,133 +174,6 @@ tbody {
   -webkit-animation-duration: 1.5s;
   animation-name: fade;
   animation-duration: 1.5s;
-}
-
-
-
-
-
-table {
-	width: 100%;
-}
-
-table, th, td {
-	border-bottom: 1px solid black;
-	text-align: center;
-	border-collapse: collapse;
-	font-size: 18px;
-}
-
-
-/* board list */
-#middle_menu {
-	padding: 40px 50px;
-}
-
-#middle_menu h2 {
-	font-size: 40px;
-}
-
-.selectMenu {
-	margin: 0 0 10px 0;
-	float: right;
-}
-
-select, option {
-	font-size: 22px;
-}
-
-#middle_menu a:link, a:visited {
-	text-decoration: none;
-	color: black;
-	font-size: 18px;
-}
-
-td {
-	padding: 10px 0;
-}
-
-th {
-	padding: 10px 0;
-	font-size: 22px;
-}
-
-thead {
-	background-color: rgba(115, 103, 240, 0.4);
-}
-
-
-tbody {
-	background-color: rgba(218, 218, 218, 0.4);
-}
-
-#middle_menu button {
-	background-color: #4F48EC;
-	border: none;
-	border-radius: 5px;
-	height: 40px;
-	padding: 8px;
-	color: #fff;
-}
-
-
-/* board view */
-#board_view {
-	padding: 40px 50px;
-}
-
-.content_btn {
-	float: right;
-}
-
-.content_btn button {
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	font-size: 18px;
-}
-
-.content_btn button:hover {
-	background-color: rgba(0, 0, 0, 0.4);
-}
-
-#boardname {
-	font-size: 23px;
-	color: #FFBF18;
-}
-
-#content_name {
-	font-size: 35px;
-	margin-top: 25px;
-}
-
-#content {
-	padding: 30px 35px;
-}
-
-#comment_area {
-	margin-top: 30px;
-}
-
-
-/* comment */
-
-.comment {
-	padding: 20px 0;
-}
-
-#content {
-	width: 92%;
-}
-
-#commentForm button {
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	font-size: 18px;
-	float: right;
-}
-
-#commentForm button:hover {
-	background-color: rgba(0, 0, 0, 0.4);
 }
 
 

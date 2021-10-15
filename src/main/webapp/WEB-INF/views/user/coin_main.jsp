@@ -146,97 +146,92 @@ td, th {
 
 					<!-- Full-width images with number and caption text -->
 					<div class="mySlides fade">
-						<div class="numbertext">1 / 5</div>
-						<div class="content_table">
-							<table>
-								<tr>
+							<div class="content_table">
+								<table>
+									<tr>
+										<th>코인명</th>
+										<th>평균거래가</th>
+										<th>빗썸</th>
+										<th>업비트</th>
+										<th>코인원</th>
+										<th>코빗</th>
+									</tr>
+									<tbody id="coinMain_0"></tbody>
+								</table>
+							</div>
+							
+						</div>
+	
+						<div class="mySlides fade">
+							<div class="content_table">
+								<table>
+									<tr>
+										<th>코인명</th>
+										<th>평균거래가</th>
+										<th>빗썸</th>
+										<th>업비트</th>
+										<th>코인원</th>
+										<th>코빗</th>
+									</tr>
+									<tbody id="coinMain_1"></tbody>
+								</table>
+							</div>
+							<div class="text"></div>
+						</div>
+	
+						<div class="mySlides fade">
+							<div class="content_table">
+								<table>
+									<tr>
+										<th>코인명</th>
+										<th>평균거래가</th>
+										<th>빗썸</th>
+										<th>업비트</th>
+										<th>코인원</th>
+										<th>코빗</th>
+									</tr>
+									<tbody id="coinMain_2"></tbody>
+								</table>
+							</div>
+							<div class="text"></div>
+						</div>
+	
+						<div class="mySlides fade">
+							<div class="content_table">
+								<table>
+									<tr>
+										<th>코인명</th>
+										<th>평균거래가</th>
+										<th>빗썸</th>
+										<th>업비트</th>
+										<th>코인원</th>
+										<th>코빗</th>
+									</tr>
+									<tbody id="coinMain_3"></tbody>
+								</table>
+							</div>
+							<div class="text"></div>
+						</div>
+	
+						<div class="mySlides fade">
+							<div class="content_table">
+								<table>
+									<theader>
 									<th>코인명</th>
 									<th>평균거래가</th>
 									<th>빗썸</th>
 									<th>업비트</th>
 									<th>코인원</th>
 									<th>코빗</th>
-								</tr>
-								<tbody id="coinMain_0"></tbody>
-							</table>
+									</theader>
+									<tbody id="coinMain_4"></tbody>
+								</table>
+							</div>
+							<div class="text"></div>
 						</div>
-						
-					</div>
-
-					<div class="mySlides fade">
-						<div class="numbertext">2 / 5</div>
-						<div class="content_table">
-							<table>
-								<tr>
-									<th>코인명</th>
-									<th>평균거래가</th>
-									<th>빗썸</th>
-									<th>업비트</th>
-									<th>코인원</th>
-									<th>코빗</th>
-								</tr>
-								<tbody id="coinMain_1"></tbody>
-							</table>
-						</div>
-						<div class="text"></div>
-					</div>
-
-					<div class="mySlides fade">
-						<div class="numbertext">3 / 5</div>
-						<div class="content_table">
-							<table>
-								<tr>
-									<th>코인명</th>
-									<th>평균거래가</th>
-									<th>빗썸</th>
-									<th>업비트</th>
-									<th>코인원</th>
-									<th>코빗</th>
-								</tr>
-								<tbody id="coinMain_2"></tbody>
-							</table>
-						</div>
-						<div class="text"></div>
-					</div>
-
-					<div class="mySlides fade">
-						<div class="numbertext">4 / 5</div>
-						<div class="content_table">
-							<table>
-								<tr>
-									<th>코인명</th>
-									<th>평균거래가</th>
-									<th>빗썸</th>
-									<th>업비트</th>
-									<th>코인원</th>
-									<th>코빗</th>
-								</tr>
-								<tbody id="coinMain_3"></tbody>
-							</table>
-						</div>
-						<div class="text"></div>
-					</div>
-
-					<div class="mySlides fade">
-						<div class="numbertext">5 / 5</div>
-						<div class="content_table">
-							<table>
-								<theader>
-								<th>코인명</th>
-								<th>평균거래가</th>
-								<th>빗썸</th>
-								<th>업비트</th>
-								<th>코인원</th>
-								<th>코빗</th>
-								</theader>
-								<tbody id="coinMain_4"></tbody>
-							</table>
-						</div>
-						<div class="text"></div>
-					</div>
-					<!-- Next and previous buttons -->
-					<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a
-						class="next" onclick="plusSlides(1)">&#10095;</a>
+						<!-- Next and previous buttons -->
+						<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a
+							class="next" onclick="plusSlides(1)">&#10095;</a>
 				</div>
 
 				<!-- The dots/circles -->
@@ -256,29 +251,29 @@ td, th {
 
 			<div id="select_coin">
 				<!-- 거래소 시세 정보 -->
-				<table border=1>
-					<tr>
+				<table class="select_table">
+					<tr class="secondTitle">
 						<th>거래소</th>
 						<td>시세(원화)</td>
 						<td>변동(24h)</td>
 						<td>변동률(24h)</td>
 						<td>거래량(개)</td>
 					</tr>
-					<tr>
+					<tr class="sort">
 						<th>빗썸</th>
 						<td id="bithumb_Price"></td>
-						<td id="bithumb_fluctate_24H"><span></span></td>
+						<td id="bithumb_fluctate_24H"></td>
 						<td id="bithumb_fluctate_rate_24H"></td>
 						<td id="bithumb_units_traded_24H"></td>
 					</tr>
-					<tr>
+					<tr class="sort">
 						<th>업비트</th>
 						<td id="upbit_Price"></td>
 						<td id="upbit_Change_price"></td>
 						<td id="upbit_Change_Rate"></td>
 						<td id="upbit_Acc_trade_volume"></td>
 					</tr>
-					<tr>
+					<tr class="sort">
 						<th>코인원</th>
 						<td id="coinone_BTC_last"></td>
 						<td id="coinone_BTC_change"></td>
@@ -286,7 +281,7 @@ td, th {
 						<td id="coinone_BTC_volume"></td>
 					</tr>
 
-					<tr>
+					<tr class="sort">
 						<th>코빗</th>
 						<td id="korbit_last"></td>
 						<td id="korbit_change"></td>
@@ -302,7 +297,7 @@ td, th {
 		</div>
 		<div>
 		<div id="bar_div">
-		<canvas id="bar-chart" width="300" height="230"></canvas>
+		<canvas id="bar-chart" width="300" height="100"></canvas>
 		</div>
 		</div>
 
