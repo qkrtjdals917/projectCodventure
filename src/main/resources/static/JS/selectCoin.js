@@ -42,14 +42,16 @@ $(function() {
       //alert(result);
 
       if (result == 0) {
-         $('#select_coin').hide();
+         $('#select_coin').hide();   // select시 보이는것
+       $('.select_table').hide();   // select시 보이는것
          $('#select_all').show();
          $('#bar-chart').hide();
       }
       else {
          proc(Number(result) - 1);
          // 가져온 전체 데이터에서 원하는 부분만 뽑아서 보내는 함수 
-         $('#select_coin').show();
+         $('#select_coin').show();   // select시 보이는것
+       $('.select_table').show();   // select시 보이는것
          $('#select_all').hide();
          $('#bar-chart').show();
 
@@ -97,7 +99,7 @@ $(function() {
          //alert(coinsum);
          //차트 중복현상 방지     
          $("#bar-chart").remove();
-         var canvasHtml = '<canvas id="bar-chart" width="300" height="230"></canvas>';
+         var canvasHtml = '<canvas id="bar-chart" width="300" height="100"></canvas>';
          $("#bar_div").append(canvasHtml);
 
          var input = document.getElementById("bar-chart");
