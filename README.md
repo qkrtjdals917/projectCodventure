@@ -66,4 +66,4 @@ Spring Framework/Spring Boot (130 시간)
 협업,형상관리
  GitHub
 
-
+발표자료 영상 링크 : https://www.youtube.com/watch?v=RsyUFzA7Wyk&list=PLedGoSru794850VQuzA4qUV1j_cN71WTe&index=7
