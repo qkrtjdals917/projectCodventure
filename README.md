@@ -24,7 +24,7 @@ java, Spring, mybatis, mysql, lombok, github, html5, JS, CSS, sweetalert2, chart
 eclipse, visual studio code, balsamiq wireframes, chrome 
 
 ## 버전 관리 : Git-Hub
-https://github.com/qkrtjdals917/proje...
+https://github.com/qkrtjdals917/projectCodventure
 
 
 ──────────────────────────────────
